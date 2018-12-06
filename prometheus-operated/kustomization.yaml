@@ -1,0 +1,7 @@
+namespace: monitoring
+
+resources: 
+  - deploy.yml
+  - rbac.yml
+  - rules.yml
+  - sm.yml

@@ -1,0 +1,8 @@
+namespace: kube-system
+
+resources: 
+  - controller-manager.yml
+  - scheduler.yml
+  - coredns.yml
+  - kubelet.yml
+  - rules.yml

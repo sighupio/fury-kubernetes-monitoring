@@ -1,0 +1,33 @@
+namespace: monitoring
+
+resources:
+  - deploy.yml
+  - rbac.yml
+  - datasources.yml
+
+configMapGenerator:
+  - name: grafana-dashboards
+    files:
+    - dashboards.yaml
+  - name: grafana-dashboard-definitions-k8s
+    files:
+    - dashboards/etcd.json
+    - dashboards/coredns.json
+    - dashboards/kubernetes-cluster.json
+    - dashboards/kubernetes-deployments.json
+    - dashboards/kubernetes-nodes.json
+    - dashboards/kubernetes-pods.json
+    - dashboards/kubernetes-statefulsets.json
+  - name: grafana-dashboard-definitions-gluster
+    files:
+    - dashboards/gluster-nodes.json
+    - dashboards/gluster-utilisation.json
+  - name: grafana-dashboard-definitions-nginx
+    files:
+    - dashboards/nginx-ingress.json
+
+# secretGenerator:
+#   - name: grafana-datasources
+#     commands:
+#       prometheus.yaml: "cat prometheus.yaml"
+

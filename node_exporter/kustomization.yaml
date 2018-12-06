@@ -1,0 +1,5 @@
+namespace: monitoring
+
+resources: 
+  - deploy.yml
+  - sm.yml
