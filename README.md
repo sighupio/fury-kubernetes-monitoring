@@ -4,101 +4,49 @@ This repo is the documentation for Github Fury Kuberetes Monitoring repo. To be 
 
 # Fury Kubernetes Monitoring
  
-This repo contains all components necessary to deploy monitoring tools on top of Kubernetes. We use Prometheus, a very popular open source monitoring and alerting toolkit. You can monitor both cluster itself and applications deployed on cluster via Prometheus. On Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus instances and to manage Service Monitoring and Alerts. This repo contains a package to deploy Prometheus Operator and other packages to deploy Prometheus instances and exporters to be consumed by Prometheus.
-
+This repo contains all components necessary to deploy monitoring tools on top of Kubernetes. We use Prometheus, a very popular open source monitoring and alerting toolkit. You can monitor both cluster itself and applications deployed on cluster via Prometheus. AlertManager which makes part of Prometheus stack, handles alerts sent by client applications such as the Prometheus server and let you manage alerts flexibly and let you route them receiver integrations such as email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes Monitoring stack, you're going to have full control on your cluster. On Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus instances and to manage Service Monitoring and Alerts. This repo contains a package to deploy Prometheus Operator and other packages to deploy Prometheus instances and exporters to be consumed by Prometheus. Packages with `-operated` postfix are packages which are deployed via Operator' therefore  you need Prometheus operator up and running to be able to deploy them.  
 
 
 ## Requirements
 
-- Kubernetes cluster v1.3.x or v1.4.x with alpha APIs enabled (qui magari un link a documentazione)
+- Kubernetes cluster >= v1.10 (qui magari un link a documentazione)
 - [Furyctl](documentation_link) package manager to install Fury packages
 - [Kustomize v1](https://github.com/kubernetes-sigs/kustomize) 
 
 
 
-## Furyctl
+### Furyctl
 
-In order to get Fury packages you should first install [Furyctl](documentation_link)
-Furyctl is package manager for Fury distribution. It’s simple to use and reads a single Furyfile which contains packages you want to get. To learn how to install and use Furyctl please see the link above
+In order to get Fury packages you should first install [Furyctl](documentation_link). Furyctl is package manager for Fury distribution. It’s simple to use and reads a single Furyfile which contains packages you want to get. To learn how to install and use Furyctl please see the link above.
 
 
-## Kustomize
+### Kustomize
 
-Kustomize lets you create customized Kubernetes resources based on a Kubernetes YAML resource file, leaving the original YAML untouched and usable as is. For more detail on Kustomize please follow the under requirements section.  
-
-Once you have kustomize, modify kustomization.yaml you find inside the package to meet your customization needs or leave it as it is if defaults are ok for you. Then you can run kustomize in the root of the package folder:
+Kustomize lets you create customized Kubernetes resources based on a Kubernetes YAML resource file, leaving the original YAML untouched and usable as is. To learn how to install Kustomize . Once you have kustomize, modify kustomization.yaml you find inside the package to meet your customization needs or leave it as it is if defaults are ok for you. Then you can run kustomize in the root of the package you want to deploy:
 
 `$ kustomize build | kubectl apply -f -`
 
 
+##  Monitoring Packages 
 
+Following packages are included in Fury Kubernetes Monitoring katalog. All resources in these repositories are going to be deployed in `monitoring` namespace in your Kubernetes cluster.
 
-## Prometheus Operator
-
-Operators are application specific controllers for complex stateful applications. They are used to have more Kubernetes-native control over applications. Prometheus Operator makes it easy to deploy and manage Prometheus instances. But also provides easy monitoring definitions for Kubernetes services.  
-
-Thanks to Prometheus Operator you don't have to learn Prometheus specific configuration language to monitor your services. Service targeting is achieved via Kubernetes Labels and monitoring target configurations are automatically generated based on Kubernetes label queries.
-
-/* da ri-scrivere
-Operator ensures at all times that for each Prometheus resource in the cluster a set of Prometheus servers with the desired configuration are running. 
-Each Prometheus instance is paired with a respective configuration that specifies which monitoring targets to scrape for metrics and with which parameters.
-
-The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
-perator encapsulates a large part of the Prometheus domain knowledge and only surfaces aspects meaningful to the monitoring system's end user. 
-*/
-
-
-### Prometheus Operator CRDs:
-
-Spiega a cosa servono 
-
-The Operator acts on the following custom resource definitions (CRDs):
-
-- `Prometheus`, which defines a desired Prometheus deployment. The Operator ensures at all times that a deployment matching the resource definition is running.
-
-- `ServiceMonitor`, which declaratively specifies how groups of services should be monitored. The Operator automatically generates Prometheus scrape configuration based on the definition.
-
-- `PrometheusRule`, which defines a desired Prometheus rule file, which can be loaded by a Prometheus instance containing Prometheus alerting and recording rules.
-
-- `Alertmanager`, which defines a desired Alertmanager deployment. The Operator ensures at all times that a deployment matching the resource definition is running.
-
-
-### Service Monitoring
-
-Our Prometheus Operator package deploys Prometheus to monitor both cluster itself and applications deployed on cluster.
-
-NEED EXAMPLE HERE
-
-
-### Alerts
-
-
-### Accessing Prometheus UI
-
-After deploying a Prometheus Instance we can access Prometehus UI by exposed Kubernetes Service on port 9090:
-
-`kubectl port-forward svc/prometheus-k8s 9090:9090`
-
-
-
-## Monitoring Packages 
-
-To deploy Prometheus Operator you need 
-
-- [prometheus-operator]() package. You can click on link to get more information about our prometheus operator deployment.
-
-One you have Prometheus Operator up and running you can deploy following components :
-
-- [alertmanager-operated]() :
-- [gcp-sm]() :
-- [grafana]() :
-- [kubeadm-sm]() :
-- [kube-state-metrics]() : 
-- [node-exporter]() :
-- [prometheus-operated]() : Prometheus instances
+- [prometheus-operator]() It manages full stack of monitoring.
+- [alertmanager-operated]() : Prometheus Alert Manager to handle alerts sent by client applications such as the Prometheus server
+- [gcp-sm]() : Service Monitor to collect metrics from GoogleCloud Kubernetes cluster kubelet components(?)
+- [grafana]() : Grafana lets you query and visualize metrics collected by Prometheus
+- [kubeadm-sm]() : Service Monitor to collect metrics exposed by CoreDNS server on your Kubernetes cluster
+- [kube-state-metrics]() : Exporter for metrics about the state of Kubernetes objects such as Deployments, Nodes and Pods  
+- [node-exporter]() : Exporter for hardware and OS metrics exposed by \*NIX kernels
+- [prometheus-operated]() : Prometheus instance to deploy with Prometheus Operator
 
 
 You can click on each package to learn how to deploy and use each of them.
+
+
+### Prometheus Operator
+
+To be able to deploy monitoring components, first you should deploy Prometheus Operator. As explained above, it manages Prometheus instances, service monitoring and alert management. To learn how to deploy Prometheus Operator please follow the documentation of [prometheus-operator]() package.
 
 
 ## License
