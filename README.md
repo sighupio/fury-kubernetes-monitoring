@@ -9,6 +9,8 @@ This repo contains all components necessary to deploy monitoring tools on top of
 
 ## Requirements
 
+All packages in this repository have following dependencies, for package specific dependencies please visit the single package's documentation:
+
 - Kubernetes cluster >= v1.10 (qui magari un link a documentazione)
 - [Furyctl](documentation_link) package manager to install Fury packages
 - [Kustomize v1](https://github.com/kubernetes-sigs/kustomize) 
