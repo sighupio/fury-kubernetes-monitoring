@@ -11,9 +11,9 @@ This repo contains all components necessary to deploy monitoring tools on top of
 
 All packages in this repository have following dependencies, for package specific dependencies please visit the single package's documentation:
 
-- Kubernetes cluster >= v1.10 (qui magari un link a documentazione)
+- [Kubernetes](kubernetes.io) >= `v1.10`
 - [Furyctl](documentation_link) package manager to install Fury packages
-- [Kustomize v1](https://github.com/kubernetes-sigs/kustomize) 
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize) 
 
 
 
@@ -28,6 +28,7 @@ Kustomize lets you create customized Kubernetes resources based on a Kubernetes 
 
 `$ kustomize build | kubectl apply -f -`
 
+For further details please visit project's [repo] (https://github.com/kubernetes-sigs/kustomize)
 
 ##  Monitoring Packages 
 
