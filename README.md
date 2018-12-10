@@ -34,14 +34,14 @@ For further details please visit project's [repo] (https://github.com/kubernetes
 
 Following packages are included in Fury Kubernetes Monitoring katalog. All resources in these repositories are going to be deployed in `monitoring` namespace in your Kubernetes cluster.
 
-- [prometheus-operator]() It manages full stack of monitoring.
-- [alertmanager-operated]() : Prometheus Alert Manager to handle alerts sent by client applications such as the Prometheus server
-- [gcp-sm]() : Service Monitor to collect metrics from GoogleCloud Kubernetes cluster kubelet components(?)
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator/README.md) It manages full stack of monitoring.
+- [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operated/README.md) : Prometheus instance to deploy with Prometheus Operator
+- [alertmanager-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/alertmanager-operated/README.md) : Prometheus Alert Manager to handle alerts sent by client applications such as the Prometheus server
 - [grafana]() : Grafana lets you query and visualize metrics collected by Prometheus
+- [gcp-sm]() : Service Monitor to collect metrics from GoogleCloud Kubernetes cluster kubelet components(?)
 - [kubeadm-sm]() : Service Monitor to collect metrics exposed by CoreDNS server on your Kubernetes cluster
 - [kube-state-metrics]() : Exporter for metrics about the state of Kubernetes objects such as Deployments, Nodes and Pods  
 - [node-exporter]() : Exporter for hardware and OS metrics exposed by \*NIX kernels
-- [prometheus-operated]() : Prometheus instance to deploy with Prometheus Operator
 
 
 You can click on each package to learn how to deploy and use each of them.
