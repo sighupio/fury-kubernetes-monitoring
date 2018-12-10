@@ -4,6 +4,9 @@ Prometheus Operated deploys Prometheus instance(s) via Prometheus CRD (defined b
 
 Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus'sexpression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prometheus, please visit the [grafana]() package's documentation.
 
+Prometheus CRD occupies deploying Prometheus instances. Configuration of entities to monitor is realized via ServiceMonitor CRD.
+
+ The ServiceMonitor resource specifies how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
 
 ## Requirements
 
@@ -16,6 +19,54 @@ Prometheus is a monitoring tool to collect metric based time series data and pro
 
 * Prometheus image : quay.io/prometheus/prometheus:v2.4.3
 * Prometheus documenatation: [https://prometheus.io/docs/introduction/overview/]()
+
+
+### Service Monitoring
+
+Service monitoring is decoupled from deployment of Prometheus instances. While Prometheus CRD handles deployment of Prometheus instances, ServiceMonitor CRD handles to retrieve metrics from a set of services.
+
+Fury Prometheus Operator package deploys Prometheus to monitor both cluster itself and applications deployed on cluster. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
+
+Targeting services to monitor is very easy with Prometheus Operator. ServiceMonitor CRD let us to create a monitoring configuration to apply services with matching label. Let say you have services with label `app: frontend` which exposes metrics on port `metric` under standard path `/metrics`. With ServiceMonitor you express that you want to monitor metrics exposed by these services.
+
+```yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  endpoints:
+  - port: metric 
+      interval: 10s 
+```
+
+ServiceMonitors belonging to a Prometheus setup are selected, once again, based on labels. When deploying said Prometheus instance, the Operator configures it according to the matching service monitors.
+  Define that all ServiceMonitor TPRs with the label `tier = frontend` should be included into the server's configuration.
+
+```yaml
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: Prometheus
+metadata:
+  name: prometheus-frontend
+    labels:
+        prometheus: frontend
+spec:
+  version: v1.3.0
+    serviceMonitors:
+    - selector:
+        matchLabels:
+          app: frontend
+```
+
+
+Prometheus will automatically pick up new services having the tier = frontend label and adapt to their deployments scaling up and down. Additionally, the Operator will immediately reconfigure Prometheus appropriately if ServiceMonitors are added, removed, or modified.
+
 
 
 ### Record and Alert rules
@@ -37,6 +88,8 @@ Prometheus instance has the following configuration:
 - Data retention for 30 days
 - 50Gi storage of default storage class (?)
 - Alert manager endpoint with `alertmanager-main` 
+
+### Accessing Prometheus UI
 
 
 ## Alerts
