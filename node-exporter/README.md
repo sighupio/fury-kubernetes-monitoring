@@ -1,26 +1,28 @@
 # Node Exporter Katalog
 
-[FILL_ME_WITH_DESCRIPTION]
-
-### Image repository and tag
-[Link_to_image_repo/doc and tag used]
+This package provides monitoring for hardware and OS metrics exposed by \*NIX kernels provided by node-exporter service. You can see list of collectors enabled by default from project's [repository](https://github.com/prometheus/node_exporter#collectors)
 
 
 ## Requirements
 
 - Kubernetes >= 1.10.0
-- Kustomize v1
+- Kustomize >= v1
+- [prometheus-operator]()
+- [prometheus-operated]()
+
+## Image repository and tag
+node-exporter image : `quay.io/prometheus/node-exporter:v0.16.0`
+node-exporter repository : [](https://github.com/prometheus/node_exporter) 
 
 
 ## Configuration
 
-[FILL_ME_WITH_CONFIGURATION]
+As mentioned above a serie of collectors are enabled by default. Fury distribution ignores following metrics:
+- filesystem mount points that start with `dev|proc|sys|var/lib/docker`
+- filesystem fs types `autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs`
 
 
 ## Alerts
-
-
-
 
 
 ## Examples

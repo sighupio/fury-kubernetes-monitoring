@@ -1,15 +1,18 @@
 # Gcp Sm Katalog
 
-[FILL_ME_WITH_DESCRIPTION]
+This package provides monitoring for kubelet component metrics on GKE cluster. 
 
 ### Image repository and tag
-[Link_to_image_repo/doc and tag used]
+
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated]() documentation.
 
 
 ## Requirements
 
 - Kubernetes >= 1.10.0
-- Kustomize v1
+- Kustomize >= v1
+- [prometheus-operator]()
+- [prometheus-operated]()
 
 
 ## Configuration
@@ -18,9 +21,6 @@
 
 
 ## Alerts
-
-
-
 
 
 ## Examples

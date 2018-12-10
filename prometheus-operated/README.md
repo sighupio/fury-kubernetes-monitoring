@@ -2,7 +2,7 @@
 
 Prometheus Operated deploys Prometheus instance(s) via Prometheus CRD (defined by Prometheus Operator.) as explained in the monitoring documentation. To learn how to deploy [prometheus-operator]() please follow it's documentation.
 
-Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus'sexpression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prometheus, please visit the [grafana]() package's documentation.
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus'sexpression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prmonometheus, please visit the [grafana]() package's documentation.
 
 Prometheus CRD occupies deploying Prometheus instances. Configuration of entities to monitor is realized via ServiceMonitor CRD.
 
@@ -17,7 +17,7 @@ Prometheus CRD occupies deploying Prometheus instances. Configuration of entitie
 
 ## Image repository and tag
 
-* Prometheus image : quay.io/prometheus/prometheus:v2.4.3
+* Prometheus image : `quay.io/prometheus/prometheus:v2.4.3`
 * Prometheus documenatation: [https://prometheus.io/docs/introduction/overview/]()
 
 

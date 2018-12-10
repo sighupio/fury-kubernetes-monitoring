@@ -1,24 +1,32 @@
 # Kubeadm Sm Katalog
 
-[FILL_ME_WITH_DESCRIPTION]
+This package provides monitoring for following Kubernetes components:
+- kube-control-manager
+- coredns
+- kubelet
+- kube-scheduler
 
-### Image repository and tag
-[Link_to_image_repo/doc and tag used]
+These are components needed to deliver a functioning Kubernetes cluster. If you want to learn more about these components please follow the ufficial [documentation](https://kubernetes.io/docs/concepts/overview/components/)
+
 
 
 ## Requirements
 
 - Kubernetes >= 1.10.0
 - Kustomize v1
+- [prometheus-operator]()
+- [prometheus-operated]()
+
+
+## Image repository and tag
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated]() documentation.
+
 
 
 ## Configuration
 
-[FILL_ME_WITH_CONFIGURATION]
-
 
 ## Alerts
-
 
  
 ### kubernetes-absent-kubeadm  
