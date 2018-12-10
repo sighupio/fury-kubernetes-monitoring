@@ -8,13 +8,18 @@ The Operator acts on the following custom resource definitions ([CRDs](link)):
 
 - `ServiceMonitor`: declaratively specifies how groups of services should be monitored. The Operator automatically generates Prometheus scrape configuration based on the definition.
 
-- `PrometheusRule`: defines a desired Prometheus rule file, which can be loaded by a Prometheus instance containing Prometheus alerting and recording rules.
+- `PrometheusRule`: defines a desired Prometheus rule file, which is going to be loaded by a Prometheus instance containing Prometheus alerting and recording rules.
 
 - `Alertmanager`, defines a desired Alertmanager deployment. It's used by the Operator to deploy AlertManager instances.
 
 Operator takes care of Prometheus deployment and monitors Services as illustrated in this image:
 
 ![operator architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
+
+## What is Prometheus
+
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. 
+The result of an expression can either be shown as a graph, viewed as tabular data in Prometheus's expression browser, or consumed by external systems via the HTTP API.
 
 
 ### Image repository and tag

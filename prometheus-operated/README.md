@@ -1,20 +1,42 @@
 # Prometheus Operated Katalog
 
-[FILL_ME_WITH_DESCRIPTION]
+Prometheus Operated deploys Prometheus instance(s) via Prometheus CRD (defined by Prometheus Operator.) as explained in the monitoring documentation. To learn how to deploy [prometheus-operator]() please follow it's documentation.
 
-### Image repository and tag
-[Link_to_image_repo/doc and tag used]
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus'sexpression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prometheus, please visit the [grafana]() package's documentation.
 
 
 ## Requirements
 
 - Kubernetes >= 1.10.0
-- Kustomize v1
+- Kustomize >= v1
+- [prometheus-operator]()
 
 
-## Configuration
+## Image repository and tag
 
-[FILL_ME_WITH_CONFIGURATION]
+* Prometheus image : quay.io/prometheus/prometheus:v2.4.3
+* Prometheus documenatation: [https://prometheus.io/docs/introduction/overview/]()
+
+
+### Record and Alert rules
+
+Prometheus scrapes time series data identified by metric name and key/value pairs. Aggregated data let us to have insight about the state and the sanity of our system. In the light of these informations we can take measures before problems occur or we can take actions once they occur.
+
+Prometheus has its own querying language [PromQL](), to select and aggregate time series data in real time. Some query expressions can be computationally expensive but used frequently. Prometheus let you precompute these expressions and save the result as a new set of time series, so they can be accessed much more faster. These are called as * Recording Rules *  and they are useful for dashboards which need to evaluate same expression again and again.
+
+Prometheus also allow you to define * Alert Rules * which are alert conditions based on PromQL expressions which then will be used by AlertManager to send notifications about firing alerts to an external service.
+
+So basically what does prometheus is scraping metrics from jobs/exporters, storing those data locally and then running defined rules over the data to aggregate/record new time series or generate alerts.  
+You can define your own recording and alerting rules via PrometheusRule CRD, in a Kubernetes-native, declarative manner. To learn more about rules and alerts please visit [alertmanager-operated]() package's documentation.
+
+
+### Configuration
+
+Prometheus instance has the following configuration: 
+- Deployed as 1 replica
+- Data retention for 30 days
+- 50Gi storage of default storage class (?)
+- Alert manager endpoint with `alertmanager-main` 
 
 
 ## Alerts

@@ -4,7 +4,7 @@ This repo is the documentation for Github Fury Kuberetes Monitoring repo. To be 
 
 # Fury Kubernetes Monitoring
  
-This repo contains all components necessary to deploy monitoring tools on top of Kubernetes. We use Prometheus, a very popular open source monitoring and alerting toolkit. You can monitor both cluster itself and applications deployed on cluster via Prometheus. AlertManager which makes part of Prometheus stack, handles alerts sent by client applications such as the Prometheus server and let you manage alerts flexibly and let you route them receiver integrations such as email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes Monitoring stack, you're going to have full control on your cluster. On Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus instances and to manage Service Monitoring and Alerts. This repo contains a package to deploy Prometheus Operator and other packages to deploy Prometheus instances and exporters to be consumed by Prometheus. Packages with `-operated` postfix are packages which are deployed via Operator' therefore  you need Prometheus operator up and running to be able to deploy them.  
+This repo contains all components necessary to deploy monitoring tools on top of Kubernetes. We use Prometheus, a very popular open source monitoring and alerting toolkit for cloud-native applications. You can monitor both cluster itself and applications deployed on cluster via Prometheus. AlertManager which makes part of Prometheus stack, handles alerts sent by Prometheus server and let you manage alerts flexibly and route them receiver integrations such as email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes Monitoring stack, you're going to have full control on your cluster. On Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus instances and to manage Service Monitoring and Alerts. This repo contains a package to deploy Prometheus Operator and other packages to deploy Prometheus instances and exporters to be consumed by Prometheus. Packages with `-operated` postfix are packages which are deployed via Operator' therefore  you need Prometheus operator up and running to be able to deploy them.  
 
 
 ## Requirements
@@ -50,6 +50,8 @@ You can click on each package to learn how to deploy and use each of them.
 ### Prometheus Operator
 
 To be able to deploy monitoring components, first you should deploy Prometheus Operator. As explained above, it manages Prometheus instances, service monitoring and alert management. To learn how to deploy Prometheus Operator please follow the documentation of [prometheus-operator]() package.
+
+To learn more about Prometheus and how to deploy it's instances follow [prometheus-operated]() package's documentation.
 
 
 ## License
