@@ -80,6 +80,10 @@ Prometheus also allow you to define * Alert Rules * which are alert conditions b
 So basically what does prometheus is scraping metrics from jobs/exporters, storing those data locally and then running defined rules over the data to aggregate/record new time series or generate alerts.  
 You can define your own recording and alerting rules via PrometheusRule CRD, in a Kubernetes-native, declarative manner. To learn more about rules and alerts please visit [alertmanager-operated]() package's documentation.
 
+## Deployment
+
+
+
 
 ### Configuration
 

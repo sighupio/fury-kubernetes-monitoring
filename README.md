@@ -24,11 +24,146 @@ In order to get Fury packages you should first install [Furyctl](documentation_l
 
 ### Kustomize
 
-Kustomize lets you create customized Kubernetes resources based on a Kubernetes YAML resource file, leaving the original YAML untouched and usable as is. To learn how to install Kustomize . Once you have kustomize, modify kustomization.yaml you find inside the package to meet your customization needs or leave it as it is if defaults are ok for you. Then you can run kustomize in the root of the package you want to deploy:
+[Kustomize]() lets you create customized Kubernetes resources based on a Kubernetes YAML resource file, leaving the original YAML untouched and usable as is. You're going to use kustomize to patch our distribution based on your needs (for production, for staging etc), without modifying original resource files.
 
-`$ kustomize build | kubectl apply -f -`
+#### Basic usage of Kustomize
 
-For further details please visit project's [repo] (https://github.com/kubernetes-sigs/kustomize)
+Customization is achieved via a `kustomize.yaml` file which will be "applied" on your resources to produces new resources with your modifications, without touching the original files.
+
+A simple kustomization example would be something like this, where your `kustomization.yaml`, `deployment.yml` and `service.yml` are placed in `web-app` directory.
+
+          
+```yaml
+kustomization.yaml         | deployment.yml          | service.yml 
+---------------------      | ---------------------   | ---------------------
+namespace: production      | apiVersion: apps/v1     |  apiVersion: v1                          
+resources:                 | kind: Deployment        |  kind: Service                         
+- deployment.yml           | metada:                 |  metada:                                      
+- service.yml              |   name: web-app         |    name: web-app                              
+configMapGenerator:        |   labels:               |  spec:              
+- name: app-configuration  |     app: web-app        |    ports:
+  files:                   | spec:                   |    ...                         
+    - deafult.json         |   replicas: 1           | 
+                               ...
+```
+
+In your `kustomization.yaml` you specify which resources you want your patches to be applied. You can overwrite existing fields and add new fields. In this example `namespace: production` field and configMap `app-configuration` will be added to resources `deployment.yaml` and `service.yaml`.
+
+Then you can generate customized resources with:
+
+`kubectl build /path/to/web-app`
+
+And you can directly deploy them to the cluster with:
+
+`kubectl build /path/to/web-app | kubectl apply -f -`
+
+
+#### Customization of packages with overlays
+
+To generate variants of a configuration for different cases (like development, staging or production) you need to use overlays of Kustomize. An overlay is just another kustomization, refering to the base and to the patches to apply on that base.
+
+** overlay = kustomization file + patches + more resources **
+
+Create a directory structure like following for you resources:
+
+```
+├── base
+│   └── kustomization.yaml
+├── production
+│   ├── a_resource.yml
+│   ├── kustomization.yaml
+│   └── a_patch.yml
+└── staging
+    ├── a_resource.yml
+    ├── kustomization.yaml
+    └── a_patch.yml
+```
+
+Your `base` dir must include all bases and patches common to your different environments. It can also include other resources you want to add. Then in your overlaying directories you can apply patches to only differing bases.
+
+Your `base/kustomization.yaml` file will look like that:
+
+```yaml
+bases:
+  - /relative/path/to/vendor/bases/monitoring/alertmanager-operated
+  - /relative/path/to/vendor/bases/monitoring/prometheus-operated
+  - /relative/path/to/vendor/bases/monitoring/node_exporter
+  // ...
+
+patches:
+  - ./prometheus-patch
+  - ./alertmanager-patch
+  //..
+
+resources:
+  - /relative/path/to/resource/file
+  // ..
+```
+
+Fury distribution packages will be your bases to refer. Remember that `furyctl` downloads them under `vendor` directory. Ofcourse you can structure your directory gerarchy differently, as long as you use correct paths to your dirs and files, kustomize will work.
+
+
+#### Example
+
+So let say you want to customize `prometheus-operated` of Fury distribution with some `externalLabels` for your cluster, then you would create a patch file which has only minimal necessary information to apply your patch to the correct resource:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: k8s
+  namespace: monitoring
+spec:
+  externalLabels:
+      k8s_cluster: mycluster
+```
+
+When you add `prometheus-operated` to your bases and patch file above to the patches in your kustomization.yaml it will be applied to the Prometheus resource which is in `monitoring` namespace and has name `k8s`: 
+
+```yaml
+bases:
+ - /path/to/vendor/bases/monitoring/prometheus-operated
+ //..
+
+patches:
+ - prometheus-patch.yaml
+ //...
+```
+ 
+Now let say now you want to add `additionalScrapeConfig` to Prometheus for production environment. What you need to do is creating a `kustomization.yaml` in your production overlay directory, refering to your `bases` directory and adding the patch files you want to apply. Your patch file would be:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: k8s
+  namespace: monitoring
+spec:
+  additionalScrapeConfigs:
+    name: prometheus-additional-scrapes
+    key: prometheus-additional-scrapes.yml
+```
+
+And your kustomization file would be:
+
+```yaml
+bases:
+  - ../bases
+
+patches:
+  - ./prometheus-patch.yml
+```
+
+Then you can generate resource files for environment you want by using its directory:
+
+`$ kustomize build /path/to/production`
+
+or apply it directly to a cluster:
+
+`$ kustomize build /path/to/production | kubectl apply -f -`
+
+
+You'are going to find examples in each package's documentation to customize Fury distribution resources. For further details please visit project's [repo](https://github.com/kubernetes-sigs/kustomize)
 
 ##  Monitoring Packages 
 
