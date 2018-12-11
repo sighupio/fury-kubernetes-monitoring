@@ -1,3 +1,5 @@
+This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
+
 # Node Exporter Katalog
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX kernels provided by node-exporter service. You can see list of collectors enabled by default from project's [repository](https://github.com/prometheus/node_exporter#collectors)
@@ -7,8 +9,8 @@ This package provides monitoring for hardware and OS metrics exposed by \*NIX ke
 
 - Kubernetes >= 1.10.0
 - Kustomize >= v1
-- [prometheus-operator]()
-- [prometheus-operated]()
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operator)
+- [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated)
 
 
 ## Image repository and tag
@@ -28,23 +30,11 @@ Fury distribution node-exporter is deployed with following configuration:
 - Listens on port `9100`
 
 
-
 ## Deployment
 
 You can deploy node-exporter by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`
-
-To learn how to customize it for your needs please see the [#Examples]() section.
-
-
-## Examples
-
-### How do you add a new rule
-[FILL_ME]
-
-### How do you add a new alert
-[FILL_ME]
 
 
 ## License

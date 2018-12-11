@@ -1,6 +1,6 @@
 # Prometheus AlertManager External URL
 
-This example shows how to add external URLs to access Prometheus expression browser and AlertManager dashboard`.
+This example shows how to add external URLs to access Prometheus expression browser and AlertManager dashboard.
 
 1. Replace `externalUrl` field's value with your desired URLs for Prometheus and Alertmanager resources in `prometheus-alertmanager-externalUrl.yml`.
 

@@ -1,6 +1,6 @@
-# Prometheus Adding External Labels Example
+# Prometheus Adding External Labels
 
-This example shows how to add external labels to any time series or alerts.
+This example shows how to add external labels to any time series or alerts for your Prometheus deployment.
 
 1. Add/modify labels you want to add to your Prometheus deployment, by modifying `prometheus-externalLabels.yml` file. 
 

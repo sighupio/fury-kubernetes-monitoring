@@ -1,3 +1,5 @@
+This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
+
 # Kubeadm Sm Katalog
 
 This package provides monitoring for following Kubernetes components:
@@ -19,7 +21,7 @@ These are components needed to deliver a functioning Kubernetes cluster. If you 
 
 
 ## Image repository and tag
-There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated]() documentation.
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated) documentation.
 
 
 ## Configuration
@@ -64,16 +66,6 @@ Followings are predefined alerts that Prometheus can send alert notifications fo
 | EtcdHighNumberOfFailedProposals | This alert fires if there were more than 5 proposal failure in the last hour. | warning |  |
 | EtcdHighFsyncDurations | This alert fires if the WAL fsync 99th percentile latency was higher than 0.5s in the last 10 minutes. | warning | 10m |
 | EtcdHighCommitDurations | This alert fires if the backend commit 99th percentile latency was higher than 0.25s in the last 10 minutes. | warning | 10m |
-
-
-
-## Examples
-
-### How do you add a new rule
-[FILL_ME]
-
-### How do you add a new alert
-[FILL_ME]
 
 
 ## License

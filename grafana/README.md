@@ -1,3 +1,5 @@
+This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
+
 # Grafana Katalog
 
 Grafana is an open source data visualization and graph composer platform for numeric time-series data. It has built in support for Prometheus. you can use it to visualize metrics scraped by Prometheus. It offers different types of visualization options, form pie charts to histograms and to heatmaps. You can choose different graphs to analyze better your metrics. To create your graphs you need to use Prometheus query language PromQL. With Grafana you can also template queries for generic dashboards. 
@@ -45,8 +47,6 @@ You can deploy Grafana by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`
 
-To learn how to customize it for your needs please see the [#Examples]() section.
-
 
 ### How do you access Grafana 
 
@@ -57,11 +57,9 @@ You can access Grafana Dashboard by port-forwarding on port `3000`:
 Grafana will be available on `http://127.0.0.1:3000` from your browser.
 
 
-## Examples
-
-
 ### How do you add a new graph
-[FILL_ME]
+
+To learn how to add and remove dashboards to Grafana please see the [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples)
 
 
 ## License

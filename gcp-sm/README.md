@@ -1,3 +1,5 @@
+This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
+
 # GCP Sm Katalog
 
 This package provides monitoring for kubelet components on Google Cloud Platform. Kubelet exposes its metrics on two different endpoints: 
@@ -23,18 +25,6 @@ Fury distribution GCP Service Monitor has following configuration:
 
 - Metrics are scraped with `30s` intervals 
 - namespace : `kube-system`
-
-
-## Examples
-
-### How do you add a new rule
-[FILL_ME]
-
-### How do you add a new alert
-[FILL_ME]
-
-
-
 
 
 ## License
