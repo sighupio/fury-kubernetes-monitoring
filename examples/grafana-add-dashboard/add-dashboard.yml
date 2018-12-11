@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+spec:
+  template:
+    spec:
+      containers:
+      - image: grafana/grafana:5.3.4
+        name: grafana
+        volumeMounts:
+        - mountPath: /grafana-dashboard-definitions/0/sighup
+          name: sighup-sample-dashboard-definition
+          readOnly: false
+      volumes:
+      - configMap:
+          name: sighup-sample-dashboard-definition
+        name: sighup-sample-dashboard-definition
