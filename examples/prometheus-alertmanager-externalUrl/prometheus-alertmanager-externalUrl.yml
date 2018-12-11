@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+    prometheus: k8s
+  name: k8s
+spec:
+  externalUrl: "http://prometheus.k8s.sighup.io/"
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Alertmanager
+metadata:
+  name: main
+spec:
+  externalUrl: "http://alertmanager.k8s.sighup.io/"
