@@ -22,12 +22,18 @@ These are components needed to deliver a functioning Kubernetes cluster. If you 
 There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated]() documentation.
 
 
-
 ## Configuration
+
+Prometheus scrapes Kubernetes components metrics on port `metrics` with following intervals:
+- kube-control-manager: `30s`
+- coredns: `15s`
+- kubelet: `15s` (port `http-metrics`)
+- kube-scheduler: `30s`
 
 
 ## Alerts
 
+Followings are predefined alerts that Prometheus can send alert notifications for, if it's configured with an AlertManager.
  
 ### kubernetes-absent-kubeadm  
 | Parameter | Description | Severity | Interval | 
@@ -58,9 +64,6 @@ There is no image used since this packages provides only ServiceMonitor resource
 | EtcdHighNumberOfFailedProposals | This alert fires if there were more than 5 proposal failure in the last hour. | warning |  |
 | EtcdHighFsyncDurations | This alert fires if the WAL fsync 99th percentile latency was higher than 0.5s in the last 10 minutes. | warning | 10m |
 | EtcdHighCommitDurations | This alert fires if the backend commit 99th percentile latency was higher than 0.25s in the last 10 minutes. | warning | 10m |
-
-
-
 
 
 
