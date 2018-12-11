@@ -13,6 +13,7 @@ Fury Prometheus deployment(see [prometheus-operated]()) is already configured to
 ### Image repository and tag
 
 * Alert Manager image: `quay.io/prometheus/alertmanager:v0.15.3`
+* Alert Manager documentation: [https://prometheus.io/docs/alerting/alertmanager/]()
 
 
 ## Requirements
