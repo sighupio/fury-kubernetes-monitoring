@@ -17,6 +17,11 @@ Operator takes care of Prometheus deployment and monitors Services as illustrate
 ![operator architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 
 
+## Requirements
+- Kubernetes >= 1.10.0
+- Kustomize v1
+
+
 ## Image repository and tag
 
 * Prometheus Operator image: `quay.io/coreos/prometheus-operator:v0.25.0`
@@ -26,16 +31,23 @@ Operator takes care of Prometheus deployment and monitors Services as illustrate
 * You can have further details about Prometheus Operator on this [blog post](https://coreos.com/blog/the-prometheus-operator.html)
 
 
-### Configuration
+## Configuration
 
-//Explain operator flags and/or what they can customize at deployment.
+Fury distribution Prometheus Opeator is deployed with following configuration:
+- Replica number : `1` 
+- Requires `50Gi` storage(with default storage type of Provider)
+- Logging to stderr is enabled
+- Resource limits are `200m` for CPU and `200Mi` for memory
+- Listens on port `8080` 
 
 
-### Deployment
+## Deployment
 
 You can deploy Prometheus Operator by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`
+
+To learn how to customize it for your needs please see the [#Examples]() section.
 
 
 
@@ -47,12 +59,12 @@ The result of an expression can either be shown as a graph, viewed as tabular da
 Once Prometheus Operator is deployed, you can deploy Prometheus and AlertManager instances via Operator. Then you will be able to monitor and send notifications about your services deployed on Kubernetes cluster. To learn how to deploy Prometheus instances via Prometheus Operator please see [prometheus-operated]() documentation.
 
 
-## Service Monitoring
+### Service Monitoring
 
 Configuration of Prometheus for service monitoring is realized via ServiceMonitor resource. It specifies how metrics can be retrieved from a set of services and Prometheus dynamically includes ServiceMonitor objects by their labels. To learn how to create ServiceMonitor resources for your services please see the documentation of [prometheus-operatod]()
 
 
-## Alerts
+### Alerts
 
 The Alertmanager handles alerts sent by client applications such as the Prometheus server. It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. It also takes care of silencing and inhibition of alerts. The Prometheus Operator introduces an Alertmanager resource, which allows users to declaratively describe an Alertmanager cluster. To learn how to deploy Alert Manager please visit [alertmanager-operated]()
 
