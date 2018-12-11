@@ -1,4 +1,4 @@
-# Alertmanager Operated Katalog
+# AlertManager Operated Katalog
 
 AlertManager handles alerts sent by Prometheus server and routes them to configured receiver integration such as email, Slack, PageDuty or OpsGenie. It helps you to manage alerts in a flexible manner with it's grouping, inhibition and silencing features.
 
@@ -30,7 +30,7 @@ Fury Prometheus deployment(see [prometheus-operated]()) is already configured to
 
 Fury distribution AlertManager is deployed with following configuration:
 - Replica number : `3` 
-- Listens on port 9093
+- Listens on port `9093`
 - Metrics are scraped by Prometheus within `30s` intervals
 
 
@@ -105,8 +105,6 @@ spec:
         severity: critical
    // other alerts
 ```
-
-### Record Rules
 
 
 ## Examples
