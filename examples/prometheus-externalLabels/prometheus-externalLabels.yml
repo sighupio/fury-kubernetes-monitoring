@@ -1,0 +1,10 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+    prometheus: k8s
+  name: k8s
+spec:
+  externalLabels:
+    k8s_cluster: sighup
+    cluster_env: production
