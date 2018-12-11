@@ -22,7 +22,21 @@ kube-state-metrics repo: [https://github.com/kubernetes/kube-state-metrics]()
 
 ## Configuration
 
-kube-state-metrics exposes metrics about itself on port `8082` and kubernetes-relates metrics on port `8081` every 30 seconds. 
+Fury distribution kube-state-metrics is deployed with following configuration:
+- Resource limits are `100m` for CPU and `150Mi` for memory 
+- Listens on port 8081
+- Exposes kubernetes-related metrics on port `8081` and metrics about itself on port `8082` and 
+- Metrics are scraped every 30 seconds by Prometheus
+
+## Deployment
+
+You can deploy kube-state-metrics by running following command in the root of the project:
+
+`$ kustomize build | kubectl apply -f -`
+
+To learn how to customize it for your needs please see the [#Examples]() section.
+
+
 
 ## Alerts
 

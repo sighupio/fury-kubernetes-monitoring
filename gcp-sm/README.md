@@ -27,6 +27,14 @@ Fury distribution GCP Service Monitor has following configuration:
 
 ## Examples
 
+### How do you add a new rule
+[FILL_ME]
+
+### How do you add a new alert
+[FILL_ME]
+
+
+
 
 
 ## License

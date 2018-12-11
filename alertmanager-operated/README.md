@@ -2,11 +2,12 @@
 
 AlertManager handles alerts sent by Prometheus server and routes them to configured receiver integration such as email, Slack, PageDuty or OpsGenie. It helps you to manage alerts in a flexible manner with it's grouping, inhibition and silencing features.
 
-Alerts are important to diagnose a system's problems and to interfere in time, but if they are not managed well they can cause more frustration and can lead to ignore symptoms of a problem. AlertManager's features help to manage sanely your alerts:
+Alerts are important to diagnose a system's problems and to interfere in time, but if they are not managed well they can cause more frustration and can lead to ignore symptoms of a problem. AlertManager's features help to manage your alerts:
 
-- grouping alert of similare nature ...
-- silencing alerts for a given time  ...
-- route noitifications to receiver integrations ...
+- grouping alerts of similare nature to avoid alert flooding
+- suppressing notifications for certain alerts if some other alerts are already firing
+- silencing alerts for a given time when it's needed
+- route noitifications to receiver integrations to be notified via your preferred platform
 
 Fury Prometheus deployment(see [prometheus-operated]()) is already configured to automatically discover AlertManager instances(s) deployed with this package and to mount rule files created with PrometheusRule resource.
 
@@ -27,15 +28,27 @@ Fury Prometheus deployment(see [prometheus-operated]()) is already configured to
 
 ## Configuration
 
-- AlertManager is deployed as a cluster of 3 instances.
+Fury distribution AlertManager is deployed with following configuration:
+- Replica number : `3` 
 - Listens on port 9093
+- Metrics are scraped by Prometheus within `30s` intervals
+
+
+## Deployment
+
+You can deploy AlertManager by running following command in the root of the project:
+
+`$ kustomize build | kubectl apply -f -`
+
+To learn how to customize it for your needs please see the [#Examples]() section.
+
 
 
 ## Alert Rules
 
 From Prometheus [documentation]() :
 
-" *Alerting rules allow you to define alert conditions based on Prometheus expression language expressions and to send notifications about firing alerts to an external service. Whenever the alert expression results in one or more vector elements at a given point in time, the alert counts as active for these elements' label sets.* "
+" Alerting rules allow you to define alert conditions based on Prometheus expression language expressions and to send notifications about firing alerts to an external service. Whenever the alert expression results in one or more vector elements at a given point in time, the alert counts as active for these elements' label sets. "
 
 
 
