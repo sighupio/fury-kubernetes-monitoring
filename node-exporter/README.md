@@ -12,6 +12,7 @@ This package provides monitoring for hardware and OS metrics exposed by \*NIX ke
 
 ## Image repository and tag
 node-exporter image : `quay.io/prometheus/node-exporter:v0.16.0`
+
 node-exporter repository : [](https://github.com/prometheus/node_exporter) 
 
 
