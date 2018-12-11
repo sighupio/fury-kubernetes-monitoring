@@ -1,0 +1,36 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: myapp-k8s-rules
+  namespace: monitoring
+spec:
+  groups:
+  - name: myapp.rules
+    rules:
+    - alert: MyAppDown
+      annotations:
+        message: 'MyApp instance {{ $labels.instance }} has disappered from
+          Prometheus target discovery.'
+        doc: "This alert fires if Prometheus target discovery was not able to
+          reach myapp-metrics in the last 3 minutes."
+      expr: |
+        absent(up{job="myapp-metrics"} == 1)
+      for: 3m
+      labels:
+        severity: critical
+    - alert: MyAppFailureRate
+      annotations:
+        message: 'MyApp failure rate is {{ prints "%.2f" $value }}%.'
+        doc: "This alert fires if the failure rate (the rate of 4xx and 5xx
+          responses) measured on a time window of 2 minutes was higher than 10%
+          in the last 10 minutes."
+      expr: |
+        (sum without (status) (rate(myapp_http_requests_total{status=~"(4|5).*"}[2m]))
+          /
+         sum without (status) (rate(myapp_http_requests_total[2m]))) * 100 > 10
+      for: 10m
+      labels:
+        severity: warning
