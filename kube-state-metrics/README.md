@@ -16,6 +16,7 @@ From kube-state-metrics [repository]():
 
 ## Image repository and tag
 kube-state-metrics image : `quay.io/coreos/kube-state-metrics:v1.3.1`  
+
 kube-state-metrics repo: [https://github.com/kubernetes/kube-state-metrics]()
 
 
