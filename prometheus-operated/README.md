@@ -2,11 +2,9 @@
 
 Prometheus Operated deploys Prometheus instance(s) via Prometheus CRD (defined by Prometheus Operator.) as explained in the monitoring documentation. To learn how to deploy [prometheus-operator]() please follow it's documentation.
 
-Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus'sexpression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prmonometheus, please visit the [grafana]() package's documentation.
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus's expression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prometheus, please visit the [grafana]() package's documentation.
 
-Prometheus CRD occupies deploying Prometheus instances. Configuration of entities to monitor is realized via ServiceMonitor CRD.
-
- The ServiceMonitor resource specifies how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
+Prometheus CRD occupies deploying Prometheus instances. Configuration of entities to monitor is realized via ServiceMonitor CRD. The ServiceMonitor resource specifies how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
 
 ## Requirements
 
@@ -19,6 +17,33 @@ Prometheus CRD occupies deploying Prometheus instances. Configuration of entitie
 
 * Prometheus image : `quay.io/prometheus/prometheus:v2.4.3`
 * Prometheus documenatation: [https://prometheus.io/docs/introduction/overview/]()
+
+
+## Configuration
+
+Fury distribution Prometheus is deployed with following configuration:
+- Replica number : `1` 
+- Retention for `30` days
+- Requires `50Gi` storage(with default storage type of Provider)
+- Listens on port `9090` 
+- Alert manager endpoint set to `alertmanager-main` 
+
+
+## Deployment
+
+You can deploy Prometheus Operated by running following command in the root of the project:
+
+`$ kustomize build | kubectl apply -f -`
+
+To learn how to customize it for your needs please see the [#Examples]() section.
+
+### Accessing Prometheus UI
+
+You can access to Prometheus expression browser by port-forwarding on port 9090:
+
+`kubectl port-forward svc/prometheus-k8s 9090:9090`
+
+Now if you go to `http://127.0.0.1:9090` on your browser you can execute queries and visualize query results.
 
 
 ### Service Monitoring
@@ -46,8 +71,7 @@ spec:
       interval: 10s 
 ```
 
-ServiceMonitors belonging to a Prometheus setup are selected, once again, based on labels. When deploying said Prometheus instance, the Operator configures it according to the matching service monitors.
-  Define that all ServiceMonitor TPRs with the label `tier = frontend` should be included into the server's configuration.
+ServiceMonitors belonging to a Prometheus setup are selected vian labels. When deploying the Prometheus instance, the Operator configures it according to the matching service monitors. It defines that all ServiceMonitor CRDs with the label `app = frontend` should be included into the server's configuration.
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1alpha1
@@ -80,24 +104,10 @@ Prometheus also allow you to define * Alert Rules * which are alert conditions b
 So basically what does prometheus is scraping metrics from jobs/exporters, storing those data locally and then running defined rules over the data to aggregate/record new time series or generate alerts.  
 You can define your own recording and alerting rules via PrometheusRule CRD, in a Kubernetes-native, declarative manner. To learn more about rules and alerts please visit [alertmanager-operated]() package's documentation.
 
-## Deployment
-
-
-
-
-### Configuration
-
-Prometheus instance has the following configuration: 
-- Deployed as 1 replica
-- Data retention for 30 days
-- 50Gi storage of default storage class (?)
-- Alert manager endpoint with `alertmanager-main` 
-
-### Accessing Prometheus UI
-
 
 ## Alerts
 
+Followings are predefined alerts that Prometheus can send alert notifications for, if it's configured with an AlertManager.
  
 ### kubernetes-apps  
 | Parameter | Description | Severity | Interval | 
@@ -228,14 +238,10 @@ Prometheus instance has the following configuration:
 
 
 
-
-
-
-
-
-
-
 ## Examples
+
+### How do you customize Fury package
+[FILL_ME]
 
 ### How do you add a new rule
 [FILL_ME]
