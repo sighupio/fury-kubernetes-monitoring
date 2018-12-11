@@ -1,0 +1,5 @@
+bases:
+  - git::git@github.com:sighup-io/fury-kubernetes-monitoring.git//prometheus-operated
+
+patches:
+  - prometheus-operated-deployment.yml
