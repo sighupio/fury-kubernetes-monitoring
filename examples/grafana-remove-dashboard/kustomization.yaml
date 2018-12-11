@@ -1,0 +1,10 @@
+bases:
+  - git::git@github.com:sighup-io/fury-kubernetes-monitoring.git//grafana
+
+patchesJson6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: grafana
+    path: remove-dashboard.yml
