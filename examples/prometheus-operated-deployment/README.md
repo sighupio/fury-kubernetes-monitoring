@@ -1,11 +1,15 @@
 # Prometheus Operated Deployment
 
-This example shows how to customize your Prometheus deployment (which you deploy via Prometheus Operator) changing default retention policy and adding a PersistentVolumeClaim for 150Gi storage. To see full list of fields that you can modify please refer to Prometheus CRD manifest.
+This example shows how to customize your Prometheus deployment (which you deploy via Prometheus Operator) changing default retention policy and adding a PersistentVolumeClaim for 150Gi of storage. To see full list of fields that you can modify please refer to Prometheus CRD manifest.
 
-1. Modify `retention` field for your desired time duration.
+In `prometheus-operated-deployment.yml`
 
-2. Modify `VolumeClaimTemplate` fields to claim a storage resource of your desired `size` and `accessMode`.
+1. Modify `retention` field for time duration you want.
 
-3. run `make build` to see output of kustomize with your modifications.
+2. Modify `VolumeClaimTemplate` field to claim a storage resource of your desired `size` and `accessMode`.
 
-4.  Once you're satisfied with generated output run `make deploy` to deploy it on cluster.
+In the example's directory:
+
+3. Run `make build` to see output of kustomize with your modifications.
+
+4. Once you're satisfied with generated output run `make deploy` to deploy it on cluster.
