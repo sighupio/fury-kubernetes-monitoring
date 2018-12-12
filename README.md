@@ -10,7 +10,7 @@ All packages in this repository have following dependencies, for package specifi
 - [Kubernetes](https://kubernetes.io) >= `v1.10.0`
 - [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v1` 
-`
+ 
 
 ## Examples
 
