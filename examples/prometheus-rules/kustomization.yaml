@@ -1,5 +1,6 @@
 bases:
-  - git::git@github.com:sighup-io/fury-kubernetes-monitoring.git//prometheus-operated
+  - vendor/bases/monitoring/prometheus-operated
+  - vendor/bases/monitoring/prometheus-operator
 
 resources:
   - add-alert.yml
