@@ -1,27 +1,22 @@
-This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
-
 # GCP Sm Katalog
 
-This package provides monitoring for kubelet components on Google Cloud Platform. Kubelet exposes its metrics on two different endpoints: 
+This package provides monitoring for kubelet components on GKE. Kubelet exposes its metrics on two different endpoints: 
 - `/` : Http metrics
 - `/metrics/cadvisor/` : Kubernetes built-in monitoring 
 
 ### Image repository and tag
 
-There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated]() documentation.
-
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. 
 
 ## Requirements
 
 - Kubernetes >= 1.10.0
 - Kustomize >= v1
-- [prometheus-operator]()
-- [prometheus-operated]()
 
 
 ## Configuration
 
-Fury distribution GCP Service Monitor has following configuration:
+Fury distribution GCP ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals 
 - namespace : `kube-system`
@@ -29,4 +24,4 @@ Fury distribution GCP Service Monitor has following configuration:
 
 ## License
 
-For license details please see [LICENSE](license_link) 
+For license details please see [LICENSE](https://sighup.io/fury/license) 
