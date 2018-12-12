@@ -7,7 +7,7 @@ This repo contains all components necessary to deploy monitoring tools on top of
 
 All packages in this repository have following dependencies, for package specific dependencies please visit the single package's documentation:
 
-- [Kubernetes](https://kubernetes.io) >= `v1.10`
+- [Kubernetes](https://kubernetes.io) >= `v1.10.0`
 - [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v1` 
 `

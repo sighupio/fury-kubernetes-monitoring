@@ -41,7 +41,7 @@ To learn how to customize it for your needs please see the [examples folder](htt
 
 You can access to Prometheus expression browser by port-forwarding on port 9090:
 
-`kubectl port-forward svc/prometheus-k8s 9090:9090`
+`kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
 
 Now if you go to `http://127.0.0.1:9090` on your browser you can execute queries and visualize query results.
 
@@ -62,7 +62,7 @@ To learn how to define alert rules for your services please go to [examples](htt
 
 ## Alerts
 
-Followings are predefined alerts that Prometheus can send alert notifications for, if it's configured with an AlertManager.
+Followings alerts are already defined for this package.
  
 ### kubernetes-apps  
 | Parameter | Description | Severity | Interval | 

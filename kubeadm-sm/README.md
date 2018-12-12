@@ -30,7 +30,7 @@ Prometheus scrapes Kubernetes component metrics on port `metrics` with following
 
 ## Alerts
 
-Followings are predefined alerts that Prometheus can send alert notifications for, if it's configured with an AlertManager.
+Followings alerts are already defined for this package.
  
 ### kubernetes-absent-kubeadm  
 | Parameter | Description | Severity | Interval | 

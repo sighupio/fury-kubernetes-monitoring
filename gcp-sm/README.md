@@ -10,8 +10,8 @@ There is no image used since this packages provides only ServiceMonitor resource
 
 ## Requirements
 
-- Kubernetes >= 1.10.0
-- Kustomize >= v1
+- Kubernetes >= `1.10.0`
+- Kustomize >= `v1`
 
 
 ## Configuration

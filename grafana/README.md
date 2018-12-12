@@ -6,6 +6,7 @@ Grafana is an open source data visualization and graph composer platform for num
 ## Image repository and tag
 
 * Grafana image: `grafana/grafana:5.3.4`
+* Grafana repo: https://github.com/grafana/grafana
 * Grafana documentation: https://docs.grafana.org 
 
 
@@ -24,7 +25,7 @@ Fury distribution Grafana is deployed with following configuration:
 - Resource limits are `200m` for CPU and `200Mi` for memory
 - Listens on port `3000`
 - Data source is Prometheus
-- Dashboards ready to use (see [grafana/dashboards/]()):
+- Dashboards ready to use (see [grafana/dashboards/](dashboards)):
    * coreDNS
    * Etcd
    * Gluster Nodes
