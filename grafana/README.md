@@ -8,10 +8,11 @@ Grafana is an open source data visualization and graph composer platform for num
 * Grafana image: `grafana/grafana:5.3.4`
 * Grafana documentation: https://docs.grafana.org 
 
+
 ## Requirements
 
-- Kubernetes >= 1.10.0
-- Kustomize >= v1
+- Kubernetes >= `1.10.0`
+- Kustomize >= `v1`
 
 
 ## Configuration
