@@ -1,17 +1,15 @@
 # Prometheus Operated Katalog
 
-Prometheus Operated deploys Prometheus instance(s) via Prometheus CRD (defined by Prometheus Operator.) as explained in the monitoring documentation. To learn how to deploy [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator) please follow it's documentation.
+Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined by [Prometheus Operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator).
 
-Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time series data in real time. Prometheus's expression browser(it's web UI) make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with other time-series analytics tools like Grafana. In Fury monitoring katalog we provide Grafana integration. To learn how to deploy Grafana to visualize your time-series data collected by Prometheus, please visit the [grafana](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/grafana) package's documentation.
-
-With Prometheus Operator, service monitoring is decoupled from deployment of Prometheus instances. While Prometheus CRD occupies deploying Prometheus instances, configuration of entities to monitor is realized via ServiceMonitor CRD. To learn more about ServiceMonitor resources please see the [#Service Monitoring](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operated#Service-Monitoring) section below.
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time-series data in real time. Prometheus's expression browser make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with third-party time-series analytics tools like Grafana. Grafana ontegration is provided in Fury monitoring katalog, please see [grafana](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/grafana) package's documentation.
 
 
 ## Requirements
 
-- Kubernetes >= 1.10.0
-- Kustomize >= v1
-- [prometheus-operator]()
+- Kubernetes >= `1.10.0`
+- Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
@@ -50,20 +48,16 @@ Now if you go to `http://127.0.0.1:9090` on your browser you can execute queries
 
 ### Service Monitoring
 
-ServiceMonitor resources specify how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster. Monitoring configurations defined via ServiceMonitor are applied to services with matching labels.
+Target discovery is achieved via ServiceMonitor CRD, to learn more about ServiceMonitor please follow Prometheus Operator's [documentation](https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/running-exporters.md)
 
-To learn how to create ServiceMonitor resources for your services please go to [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples).
+To learn how to create ServiceMonitor resources for your services please go to [examples](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples).
  
 
-### Record and Alert rules
+### Prometheus Rules and Alerts
 
-Prometheus scrapes time series data identified by metric name and key/value pairs. Aggregated data let us to have insight about the state and the sanity of our system. In the light of these informations we can take measures before problems occur or we can take actions once they occur.
+Alerting rules are created via PrometheusRule CRD, to learn more about PrometheusRule please follow Prometheus Operator [documentation](https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/alerting.md) and Prometheus [documentation](https://github.com/prometheus/prometheus/blob/master/docs/configuration/alerting_rules.md).
 
-Prometheus has its own querying language [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/), to select and aggregate time series data in real time. Prometheus allow you to define *Alert Rules* which are conditions based on PromQL expressions that cause Prometheus to fire alerts when these conditions occur. These alerts then can be used by AlertManager to send notifications  to an external service.
-
-You can define alerting rules via PrometheusRule CRD in a Kubernetes-native, declarative manner. To learn more about rules and alerts please visit [alertmanager-operated]() package's documentation.
-
-To learn how to define Alert Rules for your services please go to [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples).
+To learn how to define alert rules for your services please go to [examples](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples).
 
 
 ## Alerts
