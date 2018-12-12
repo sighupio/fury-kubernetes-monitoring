@@ -1,4 +1,4 @@
-# Kubeadm Sm Katalog
+# Kubeadm ServiceMonitor Katalog
 
 This package provides monitoring for following Kubernetes components:
 - kube-control-manager
