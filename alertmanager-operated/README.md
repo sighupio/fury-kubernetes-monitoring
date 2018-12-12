@@ -5,7 +5,8 @@ Alertmanager handles alerts sent by Prometheus server and routes them to configu
 
 Fury Prometheus deployment (see [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated)) is already configured to automatically discover Alertmanager instances deployed with this package.
 
-### Image repository and tag
+
+## Image repository and tag
 
 * Alertmanager image: `quay.io/prometheus/alertmanager:v0.15.3`
 * Alertmanager documentation: https://prometheus.io/docs/alerting/alertmanager
