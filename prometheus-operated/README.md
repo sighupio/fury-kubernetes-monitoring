@@ -194,4 +194,4 @@ Followings are predefined alerts that Prometheus can send alert notifications fo
 
 ## License
 
-For license details please see [LICENSE](license_link) 
+For license details please see [LICENSE](https://sighup.io/fury/license) 
