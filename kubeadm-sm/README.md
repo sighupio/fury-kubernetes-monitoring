@@ -1,5 +1,3 @@
-This repo is the documentation for Github Fury Kubernetes Monitoring repo. To be able to access the  fury-kubernetes-monitoring packages you must be a Sighup customer. If you're not a customer yet, contact us at info@sighup.io or http://www.sighup.io for info on how to get access!
-
 # Kubeadm Sm Katalog
 
 This package provides monitoring for following Kubernetes components:
@@ -11,22 +9,19 @@ This package provides monitoring for following Kubernetes components:
 These are components needed to deliver a functioning Kubernetes cluster. If you want to learn more about these components please follow the ufficial [documentation](https://kubernetes.io/docs/concepts/overview/components/) of Kubernetes.
 
 
-
 ## Requirements
 
-- Kubernetes >= 1.10.0
-- Kustomize v1
-- [prometheus-operator]()
-- [prometheus-operated]()
+- Kubernetes >= `1.10.0`
+- Kustomize >= `v1`
 
 
 ## Image repository and tag
-There is no image used since this packages provides only ServiceMonitor resource for Prometheus. To learn about ServiceMonitor resources used by Prometheus Operator please follow [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated) documentation.
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. 
 
 
 ## Configuration
 
-Prometheus scrapes Kubernetes components metrics on port `metrics` with following intervals:
+Prometheus scrapes Kubernetes component metrics on port `metrics` with following intervals:
 - kube-control-manager: `30s`
 - coredns: `15s`
 - kubelet: `15s` (port `http-metrics`)
@@ -70,4 +65,4 @@ Followings are predefined alerts that Prometheus can send alert notifications fo
 
 ## License
 
-For license details please see [LICENSE](license_link) 
+For license details please see [LICENSE](https://sighup.io/fury/license) 
