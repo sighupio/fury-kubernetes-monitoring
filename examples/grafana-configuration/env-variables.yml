@@ -14,7 +14,7 @@ spec:
           - name: GF_DEFAULT_INSTANCE_NAME
             value: "grafana"
           - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-            value: "Editor"
+            value: "Viewer"
    
 
 
