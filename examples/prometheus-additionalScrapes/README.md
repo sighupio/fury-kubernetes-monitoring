@@ -1,8 +1,8 @@
 # Prometheus Additional Scrapes
 
-This example shows how to customize your Prometheus deployment (which you deploy via Prometheus Operator) to add additional scrapes. Example adds 2 scrapes for metrics from external-node-exporter and metrics from etcd.
+This example shows how to customize your Prometheus deployment (deployed via Prometheus Operator CRD) to add additional scrapes. Example adds 2 scrape configuration; one for metrics from external-node-exporter and other for metrics from etcd.
 
-1. Add you scrapes specifying `job_name`, `interval` and `configuration` for each of them in `prometheus-additional-scrapes.yml` 
+1. To learn how to write scrape config like in `prometheus-additional-scrapes.yml` file please refer to https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E
 
 2. Run `make build` to see output of kustomize with your modifications.
 
