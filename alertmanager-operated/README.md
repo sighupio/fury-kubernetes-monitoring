@@ -8,7 +8,7 @@ Fury Prometheus deployment (see [prometheus-operated](https://github.com/sighup-
 ### Image repository and tag
 
 * Alertmanager image: `quay.io/prometheus/alertmanager:v0.15.3`
-* Alertmanager documentation: [https://prometheus.io/docs/alerting/alertmanager/]()
+* Alertmanager documentation: https://prometheus.io/docs/alerting/alertmanager
 
 
 ## Requirements
