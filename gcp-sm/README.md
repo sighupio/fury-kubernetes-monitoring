@@ -1,8 +1,8 @@
-# GCP Sm Katalog
+# GCP ServiceMonitor Katalog
 
 This package provides monitoring for kubelet components on GKE. Kubelet exposes its metrics on two different endpoints: 
-- `/` : Http metrics
-- `/metrics/cadvisor/` : Kubernetes built-in monitoring 
+- `/metrics` : kubelet metrics
+- `/metrics/cadvisor/` : container metrics 
 
 ### Image repository and tag
 
