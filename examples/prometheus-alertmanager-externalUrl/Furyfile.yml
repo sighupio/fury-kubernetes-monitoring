@@ -1,0 +1,8 @@
+bases:
+  - name: monitoring/alertmanager-operated
+    version: master
+  - name: monitoring/prometheus-operated
+    version: master
+  - name: monitoring/prometheus-operator
+    version: master
+
