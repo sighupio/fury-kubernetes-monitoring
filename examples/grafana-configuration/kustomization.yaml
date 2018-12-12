@@ -1,0 +1,7 @@
+namespace: monitoring
+
+bases:
+  - vendor/bases/monitoring/grafana
+
+patches:
+  - env-variables.yml

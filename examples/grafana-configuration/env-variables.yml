@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+spec:
+  template:
+    spec:
+      containers:
+      - image: grafana/grafana:5.3.4
+        name: grafana
+        env:
+          - name: GF_DEFAULT_INSTANCE_NAME
+            value: "grafana"
+          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+            value: "Editor"
+   
+
+
