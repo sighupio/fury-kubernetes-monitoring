@@ -1,0 +1,6 @@
+bases:
+  - vendor/bases/monitoring/prometheus-operated
+  - vendor/bases/monitoring/prometheus-operator
+
+patches:
+  - prometheus-operated-nodeSelector.yml
