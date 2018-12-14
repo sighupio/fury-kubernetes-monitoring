@@ -6,17 +6,18 @@ This package provides monitoring for following Kubernetes components:
 - kubelet
 - kube-scheduler
 
-These are components needed to deliver a functioning Kubernetes cluster. If you want to learn more about these components please follow the official [documentation](https://kubernetes.io/docs/concepts/overview/components/) of Kubernetes.
+These are components needed to deliver a functioning Kubernetes cluster. If you want to learn more about these components please follow the ufficial [documentation](https://kubernetes.io/docs/concepts/overview/components/) of Kubernetes.
 
 
 ## Requirements
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
-There is no image used since this packages provides only ServiceMonitor resources for Prometheus. 
+There is no image used since this packages provides only ServiceMonitor resource for Prometheus. 
 
 
 ## Configuration

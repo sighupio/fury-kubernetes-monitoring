@@ -15,7 +15,8 @@ Prometheus is a monitoring tool to collect metric based time series data and pro
 ## Image repository and tag
 
 * Prometheus image : `quay.io/prometheus/prometheus:v2.4.3`
-* Prometheus documentation: [https://prometheus.io/docs/introduction/overview/]()
+* Prometheus repo: https://github.com/prometheus/prometheus
+* Prometheus documenatation: https://prometheus.io/docs/introduction/overview
 
 
 ## Configuration
@@ -39,11 +40,11 @@ To learn how to customize it for your needs please see the [examples folder](htt
 
 ### Accessing Prometheus UI
 
-You can access the Prometheus expression browser by port-forwarding on port 9090:
+You can access to Prometheus expression browser by port-forwarding on port 9090:
 
 `kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
 
-Now if you go to <http://127.0.0.1:9090> on your browser you can execute queries and visualize query results.
+Now if you go to `http://127.0.0.1:9090` on your browser you can execute queries and visualize query results.
 
 
 ### Service Monitoring
