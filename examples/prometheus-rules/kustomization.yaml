@@ -4,8 +4,3 @@ bases:
 
 resources:
   - add-alert.yml
-
-# patches:
-#   - add-alert.yml
-#   - remove-alert.yml
-#   - modify-alert.yml
