@@ -36,13 +36,13 @@ You can deploy Alertmanager by running following command in the root of the proj
 
 ### Accessing Alertmanager UI
 
-You can access to Alertmanager dashboard by port-forwarding on port 9093:
+You can access the Alertmanager dashboard by port-forwarding on port 9093:
 
 `kubectl port-forward svc/alertmanager-main 9093:9093 --namespace monitoring`
 
-Now you can go to `http://127.0.0.1:9093` on your browser to see and manage your alerts. 
+Now you can go to <http://127.0.0.1:9093> on your browser to see and manage your alerts. 
 
-To learn how to add external URL to acess AlertManager please see the [example](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples/prometheus-alertmanager-externalUrl).
+To learn how to add external URL to acess Alertmanager please see the [example](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples/prometheus-alertmanager-externalUrl).
 
 
 ## License

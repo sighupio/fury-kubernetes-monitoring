@@ -47,18 +47,18 @@ You can deploy Grafana by running following command in the root of the project:
 
 ### Accessing Grafana UI
 
-You can access Grafana Dashboard by port-forwarding on port `3000`:
+You can access Grafana by port-forwarding on port `3000`:
 
 `kubectl port-forward svc/grafana 3000:3000 --namespace monitoring`
 
-Grafana will be available on `http://127.0.0.1:3000` from your browser.
+Grafana will be available on <http://127.0.0.1:3000> from your browser.
 
 
 ### Adding/Removing Dashboards
 
-To learn how to add or remove dashboards to Grafana please see the [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples)
+To learn how to add or remove dashboards to Grafana please see the [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples).
 
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license) 
+For license details please see [LICENSE](https://sighup.io/fury/license)

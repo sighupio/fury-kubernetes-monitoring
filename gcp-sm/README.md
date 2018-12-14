@@ -6,7 +6,7 @@ This package provides monitoring for kubelet components on GKE. Kubelet exposes 
 
 ### Image repository and tag
 
-There is no image used since this packages provides only ServiceMonitor resource for Prometheus. 
+There is no image used since this packages provides only ServiceMonitor resources for Prometheus. 
 
 ## Requirements
 
