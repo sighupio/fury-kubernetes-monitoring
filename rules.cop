@@ -1,0 +1,26 @@
+rule OnlAllowedAPI ensure {
+    fetch("$.apiVersion").first == "v1" or
+    fetch("$.apiVersion").first == "apps/v1" or
+    fetch("$.apiVersion").first == "monitoring.coreos.com/v1" or
+    fetch("$.apiVersion").first == "rbac.authorization.k8s.io/v1" or 
+    fetch("$.apiVersion").first == "apiextensions.k8s.io/v1beta1"
+}
+
+rule NoLatestTag ensure {
+    fetch("$.spec.template.spec.containers..image")
+        .as(:image)
+        .pick(:tag)
+        .contains("latest") == false and
+    fetch("$.spec.template.spec.initContainers..image")
+        .as(:image)
+        .pick(:tag)
+        .contains("latest") == false
+}
+
+rule NoDefaultNamespace warn {
+    fetch("$.metadata.namespace").first != "default"
+}
+
+rule NoServiceTypeLoadBalancer warn {
+    fetch("$.spec.type").first != "LoadBalancer"
+}

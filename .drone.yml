@@ -1,0 +1,27 @@
+---
+kind: pipeline
+name: test
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: copper
+    image: ruby:2.5
+    commands:
+      - gem install c66-copper
+      - copper version
+      - copper check --rules rules.cop --file prometheus-operator/rbac.yml
+    when:
+      event:
+      - push
+  # - name: prom-rules
+  #   image: python:3.7-slim
+  #   commands:
+  #     - gem install c66-copper
+  #     - copper version
+  #     - copper check --rules rules.cop --file prometheus-operator/rbac.yml
+  #   when:
+  #     event:
+  #     - push
