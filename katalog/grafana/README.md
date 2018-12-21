@@ -56,7 +56,7 @@ Grafana will be available on `http://127.0.0.1:3000` from your browser.
 
 ### Adding/Removing Dashboards
 
-To learn how to add or remove dashboards to Grafana please see the [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples)
+To learn how to add or remove dashboards to Grafana please see the [examples](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples) folder.
 
 
 ## License

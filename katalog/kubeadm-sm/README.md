@@ -13,6 +13,7 @@ These are components needed to deliver a functioning Kubernetes cluster. If you 
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag

@@ -12,6 +12,7 @@ There is no image used since this packages provides only ServiceMonitor resource
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Configuration
@@ -19,7 +20,7 @@ There is no image used since this packages provides only ServiceMonitor resource
 Fury distribution GCP ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals 
-- namespace : `kube-system`
+- Matched namespace : `kube-system`
 
 
 ## License

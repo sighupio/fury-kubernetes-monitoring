@@ -11,6 +11,7 @@ From kube-state-metrics [repository](https://github.com/kubernetes/kube-state-me
 
 - Kubernetes >= `1.10.0`
 - Kustomize => `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
@@ -23,9 +24,9 @@ From kube-state-metrics [repository](https://github.com/kubernetes/kube-state-me
 
 Fury distribution kube-state-metrics is deployed with following configuration:
 - Resource limits are `100m` for CPU and `150Mi` for memory 
-- Listens on port 8081
-- Exposes kubernetes-related metrics on port `8081` and metrics about itself on port `8082` and 
-- Metrics are scraped by Prometheus every 30 seconds 
+- Listens on port `8081`
+- Exposes kubernetes-related metrics on port `8081` and metrics about itself on port `8082` 
+- Metrics are scraped by Prometheus with `30s` intervals 
 
 
 ## Deployment

@@ -1,6 +1,6 @@
 # Prometheus Operator Katalog
 
-Operators are application specific controllers for complex stateful applications. They are used to have more Kubernetes-native control over applications. Prometheus Operator makes it easy to deploy and manage Prometheus instances. But also provides easy monitoring definitions for Kubernetes services. We can easily deploy Prometheus servers and use advanced options in the Prometheus CDR to let the Operator handle version upgrades, persistent volume claims and discovery Alertmanager instances. Thanks to Prometheus Operator you don't have to learn Prometheus specific configuration language to monitor your services. Target discovery is achieved through ServiceMonitor CRD, target configurations are automatically generated based on Kubernetes label selectors. 
+Operators are application specific controllers for complex stateful applications. They are used to have more Kubernetes-native control over applications. Prometheus Operator makes it easy to deploy and manage Prometheus instances. But also provides easy monitoring definitions for Kubernetes services. We can easily deploy Prometheus servers and use advanced options in the Prometheus CRD to let the Operator handle version upgrades, persistent volume claims and the discovery of Alertmanager instances. Thanks to Prometheus Operator you don't have to learn Prometheus specific configuration language to monitor your services. Target discovery is achieved through ServiceMonitor CRD, target configurations are automatically generated based on Kubernetes label selectors. 
 
 The Operator acts on the following custom resource definitions ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)):
 
@@ -45,12 +45,10 @@ You can deploy Prometheus Operator by running following command in the root of t
 
 `$ kustomize build | kubectl apply -f -`
 
-To learn how to customize it for your needs please see the [examples folder](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/examples)
-
 
 ## Deploying Prometheus
 
-Once Prometheus Operator is deployed, you can deploy Prometheus and Alertmanager instances through Operator's CRDs. Then you will be able to monitor and get alerts about the services deployed on your Kubernetes cluster. To learn how to deploy Prometheus via Operator please see [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated) documentation. To learn how to deploy Alertmanager please see [alertmanager-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/alertmanager-operated)
+Once Prometheus Operator is deployed, you can deploy Prometheus and Alertmanager instances through Operator's CRDs. Then you will be able to monitor and get alerts about the services deployed on your Kubernetes cluster. To learn how to deploy Prometheus via Operator please see [prometheus-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/prometheus-operated) documentation. To learn how to deploy Alertmanager please see [alertmanager-operated](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/alertmanager-operated) documentation.
 
 
 ## License

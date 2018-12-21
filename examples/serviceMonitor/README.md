@@ -1,6 +1,8 @@
 # Monitoring Services with Prometheus ServiceMonitor
 
-This example shows how to define ServiceMonitor resources to specify how to retrieve metrics from a set of services exposing them.
+This example shows how to define a ServiceMonitor resources to retrieve metrics from an application.
+
+0. Run furyctl to get packages: `$ furyctl install --dev`
 
 In `sm.yml` file:
 
@@ -8,8 +10,7 @@ In `sm.yml` file:
 
 2. Specify endpoints where your application exposes metrics. There can be more then 1 endpoint. Specify `path`, `port` and `scheme` of endpoints and define `interval` for scrape frequency you desire.
 
-3. Set `matchLabels` and `matchNames` with your app's label in order to target correct services.
-
+3. Set `matchNames` and `matchLabels` with your app's namespace and label in order to target correct services.
 
 In the example's folder:
 

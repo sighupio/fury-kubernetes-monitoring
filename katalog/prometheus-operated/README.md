@@ -2,7 +2,7 @@
 
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined by [Prometheus Operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator).
 
-Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time-series data in real time. Prometheus's expression browser make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with third-party time-series analytics tools like Grafana. Grafana ontegration is provided in Fury monitoring katalog, please see [grafana](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/grafana) package's documentation.
+Prometheus is a monitoring tool to collect metric based time series data and provides a functional expression language that lets the user select and aggregate time-series data in real time. Prometheus's expression browser make it possible to analyse queried data as a graph or view it as tabular data, but it's also possible to integrate it with third-party time-series analytics tools like Grafana. Grafana integration is provided in Fury monitoring katalog, please see [grafana](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/grafana) package's documentation.
 
 
 ## Requirements
@@ -15,7 +15,8 @@ Prometheus is a monitoring tool to collect metric based time series data and pro
 ## Image repository and tag
 
 * Prometheus image : `quay.io/prometheus/prometheus:v2.4.3`
-* Prometheus documenatation: [https://prometheus.io/docs/introduction/overview/]()
+* Prometheus repo: https://github.com/prometheus/prometheus
+* Prometheus documenatation: https://prometheus.io/docs/introduction/overview
 
 
 ## Configuration
