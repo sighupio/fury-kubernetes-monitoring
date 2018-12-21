@@ -5,7 +5,7 @@ resources:
   - rbac.yml
   - sm.yml
 
-# secretGenerator: 
-# - name: alertmanager-main
-#   commands:
-#     alertmanager.yaml: "cat alertmanager.yml"
+secretGenerator: 
+- name: alertmanager-main
+  commands:
+    alertmanager.yaml: "cat alertmanager.yaml"
