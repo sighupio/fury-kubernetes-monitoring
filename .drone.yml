@@ -38,6 +38,8 @@ steps:
     environment:
       CLUSTER_HOST: docker
       DIRS: prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
+      commands:
+        - bats /tests/common.bats
     volumes:
       - name: dockersock
         path: /var/run
