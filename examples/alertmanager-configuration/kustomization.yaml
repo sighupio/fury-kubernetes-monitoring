@@ -1,0 +1,12 @@
+bases:
+  - vendor/bases/monitoring/alertmanager-operated
+  - vendor/bases/monitoring/prometheus-operator
+
+secretGenerator: 
+- name: alertmanager-main
+  behavior: merge
+  commands:
+    alertmanager.yaml: "cat alertmanager.yaml"
+
+generatorOptions:
+  disableNameSuffixHash: true

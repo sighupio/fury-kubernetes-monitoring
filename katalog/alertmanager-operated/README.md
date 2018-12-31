@@ -30,6 +30,8 @@ Fury distribution AlertManager is deployed with following configuration:
 
 ## Deployment
 
+Before deploying this, please take a look at how to configure alertmanager [the right way](../../examples/alertmanger-configuration)
+
 You can deploy Alertmanager by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`

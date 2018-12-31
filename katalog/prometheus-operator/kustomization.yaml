@@ -9,4 +9,3 @@ resources:
   - crd-alertmanager.yml
   - crd-servicemonitor.yml
   - sm.yml
-  
