@@ -36,7 +36,7 @@ steps:
     environment:
       CLUSTER_HOST: docker
     commands:
-      - sh test prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
+      - sh /test/test prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
     volumes:
       - name: dockersock
         path: /var/run
