@@ -32,7 +32,7 @@ steps:
       - push
 
   - name: integration-test
-    image: sighup/kind:v1.0.0
+    image: sighup/kind:v1.12.3
     environment:
       CLUSTER_HOST: docker
     commands:
