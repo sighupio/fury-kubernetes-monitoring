@@ -12,7 +12,7 @@ steps:
     image: python:3
     commands:
       - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
-      - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
+      - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
       - pip install -rkatalog/tests/test-requirements.txt
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
