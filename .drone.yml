@@ -8,26 +8,26 @@ platform:
 
 steps:
 
-  #- name: katalog
-    #image: sighup/katalog:v1.0.11
-    #group: tests
-    #pull: always
-    #commands:
-      #- flake8 --ignore=E501 katalog/tests/test.py
-      #- bash katalog/tests/pytest.sh
-      #- rm -rf .pytest_cache katalog/tests/__pycache__
-    #when:
-      #event:
-      #- push
+  - name: katalog
+    image: sighup/katalog:v1.0.11
+    group: tests
+    pull: always
+    commands:
+      - flake8 --ignore=E501 katalog/tests/test.py
+      - bash katalog/tests/pytest.sh
+      - rm -rf .pytest_cache katalog/tests/__pycache__
+    when:
+      event:
+      - push
 
-  #- name: prom-rules
-    #image: sighup/prom-rules:v1.0.0
-    #pull: always
-    #commands:
-      #- bash katalog/tests/promtool.sh
-    #when:
-      #event:
-      #- push
+  - name: prom-rules
+    image: sighup/prom-rules:v1.0.0
+    pull: always
+    commands:
+      - bash katalog/tests/promtool.sh
+    when:
+      event:
+      - push
 
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
