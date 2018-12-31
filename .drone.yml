@@ -32,7 +32,7 @@ steps:
       - push
 
   - name: integration-test
-    image: phisco/kind
+    image: sighup/kind:v1.0.0
     environment:
       CLUSTER_HOST: docker
     commands:
