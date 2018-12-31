@@ -22,7 +22,6 @@ steps:
 
   - name: prom-rules
     image: sighup/prom-rules:v1.0.0
-    group: tests
     pull: always
     commands:
       - bash katalog/tests/promtool.sh
@@ -32,12 +31,10 @@ steps:
 
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
-    group: tests
+    pull: always
     environment:
       CLUSTER_HOST: docker
       DIRS: prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
-    commands:
-      - /test
     volumes:
       - name: dockersock
         path: /var/run
