@@ -1,0 +1,12 @@
+apiVersion: kind.sigs.k8s.io/v1alpha1
+kind: Config
+
+# patch it further using a json 6902 patch
+kubeadmConfigPatchesJson6902:
+- group: kubeadm.k8s.io
+  version: v1alpha3
+  kind: ClusterConfiguration
+  patch: |
+    - op: add
+      path: /apiServerCertSANs/-
+      value: docker
