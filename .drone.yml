@@ -37,6 +37,7 @@ steps:
     depends_on:
     environment:
       CLUSTER_HOST: docker
+      BASEDIR: katalog
       DIRS: prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
     commands:
       - bats /tests/common.bats
