@@ -9,11 +9,9 @@ platform:
 steps:
 
   - name: katalog
-    image: python:3
+    image: sighup/katalog:v1.0.11
+    pull: always
     commands:
-      - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
-      - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
-      - pip install -rkatalog/tests/test-requirements.txt
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
       - rm -rf .pytest_cache katalog/tests/__pycache__
@@ -22,11 +20,9 @@ steps:
       - push
 
   - name: prom-rules
-    image: alpine:3.8
+    image: sighup/prom-rules:v1.0.0
+    pull: always
     commands:
-      - apk add --no-cache --update ca-certificates curl bash
-      - curl -L -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/2.2.0/yq_linux_amd64 && chmod +x /usr/local/bin/yq
-      - curl -O -L  https://github.com/prometheus/prometheus/releases/download/v2.5.0/prometheus-2.5.0.linux-amd64.tar.gz && tar -xzvf prometheus-2.5.0.linux-amd64.tar.gz && chmod +x prometheus-2.5.0.linux-amd64/promtool && mv prometheus-2.5.0.linux-amd64/promtool /usr/local/bin/promtool && promtool --version
       - bash katalog/tests/promtool.sh
     when:
       event:
