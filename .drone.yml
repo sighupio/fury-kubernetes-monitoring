@@ -31,12 +31,13 @@ steps:
       - push
 
   - name: integration-test
-    image: sighup/kind:v1.12.3
+    image: sighup/kind:v1.12.3-bats
     group: tests
     environment:
       CLUSTER_HOST: docker
+      DIRS: prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
     commands:
-      - cd katalog && /test prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
+      - /test
     volumes:
       - name: dockersock
         path: /var/run
