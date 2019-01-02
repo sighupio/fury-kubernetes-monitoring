@@ -37,9 +37,7 @@ steps:
     depends_on:
     environment:
       CLUSTER_HOST: docker
-      BASEDIR: katalog
       TESTS: katalog/tests/tests.bats
-      DIRS: prometheus-operator kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated
     volumes:
       - name: dockersock
         path: /var/run
