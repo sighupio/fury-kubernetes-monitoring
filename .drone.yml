@@ -16,7 +16,6 @@ steps:
     commands:
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
-      - rm -rf .pytest_cache katalog/tests/__pycache__
     when:
       event:
       - push
