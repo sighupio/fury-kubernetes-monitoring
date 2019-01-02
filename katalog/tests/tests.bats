@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 @test "testing prometheus-operator apply" {
-  kustomize build katalog/prometheus-operator | kubectl apply -f - && kustomize build katalog/prometheus-operator | kubectl apply -f -
+  kustomize build katalog/prometheus-operator | kubectl apply -f - || kustomize build katalog/prometheus-operator | kubectl apply -f -
   [ "$status" -eq 0 ]
 }
 
