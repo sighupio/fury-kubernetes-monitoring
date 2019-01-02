@@ -5,7 +5,10 @@ apply (){
 }
 
 @test "testing prometheus-operator apply" {
-  run apply katalog/prometheus-operator || apply katalog/prometheus-operator
+  test(){
+    apply katalog/prometheus-operator || apply katalog/prometheus-operator
+  }
+  run test
   [ "$status" -eq 0 ]
 }
 
