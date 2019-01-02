@@ -8,6 +8,9 @@
 }
 
 @test "testing kube-state-metrics apply" {
+  echo $KUBECONFIG >&3
+  cat $KUBECONFIG >&3
+  kubectl get nodes >&3
   kustomize build katalog/kube-state-metrics | kubectl apply -f -
   [ "$status" -eq 0 ]
 }
