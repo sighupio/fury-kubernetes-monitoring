@@ -41,3 +41,12 @@ apply (){
   run apply katalog/prometheus-operated
   [ "$status" -eq 0 ]
 }
+
+@test "wait for apply to settle and dump state to dump.json" {
+  sleep 60
+  kubectl get all --all-namespaces -o json > dump.json
+}
+
+@test "test state"{
+  cat dump.json
+}
