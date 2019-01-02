@@ -1,4 +1,8 @@
-setup:
-	cd katalog/tests && make setup
-test:
-	cd katalog/tests && make test
+test-1:
+	vagrant ssh -c "docker run -w /test_dir -v /workspace/sighup/fury-kubernetes-monitoring:/test_dir sighup/katalog:v1.0.11 sh -c \"pwd; ls ; flake8 --ignore=E501 katalog/tests/test.py; bash katalog/tests/pytest.sh; rm -rf .pytest_cache katalog/tests/__pycache__ ;\"" $(FURY_VM_ID)
+test-2:
+	vagrant ssh -c "docker run -w /test_dir -v /workspace/sighup/fury-kubernetes-monitoring:/test_dir sighup/prom-rules:v1.0.0 bash katalog/tests/promtool.sh" $(FURY_VM_ID)
+test-3:
+	vagrant ssh -c "docker run -ti -w /test_dir -v /workspace/sighup/fury-kubernetes-monitoring:/test_dir -v /workspace:/workspace -e CLUSTER_HOST=localhost -e KUBECONFIG=/workspace/kubeconfig --network=host sighup/kind:v1.12.3-bats \"bats katalog/tests/tests.bats\"" $(FURY_VM_ID)
+
+test: test-1 test-2 test-3
