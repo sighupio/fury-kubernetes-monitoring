@@ -1193,19 +1193,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(max by (namespace, pod, service)\n(node_filesystem_size_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"}) \n- \n(max by (namespace, pod, service)\n(node_filesystem_avail_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"})",
+          "expr": "(max by (namespace, pod, device)\n(node_filesystem_size_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs|vfat|tmpfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"}) \n- \n(max by (namespace, pod, service)\n(node_filesystem_avail_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs|vfat|tmpfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "used",
+          "legendFormat": "{{ device }} used",
           "refId": "A"
         },
         {
-          "expr": "max by (namespace, pod, service)\n(node_filesystem_size_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"}",
+          "expr": "max by (namespace, pod, device)\n(node_filesystem_size_bytes{job=\"node-exporter\", fstype=~\"ext[234]|btrfs|xfs|zfs|vfat|tmpfs\"}) *\non (namespace, pod) group_left (node) node_namespace_pod:kube_pod_info:{node=\"$node\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
-          "legendFormat": "total",
+          "legendFormat": "{{ device }} total",
           "refId": "B"
         }
       ],
