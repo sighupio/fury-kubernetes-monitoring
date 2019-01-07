@@ -1040,47 +1040,43 @@ spec:
       for: 30m
       labels:
         severity: warning
-    - alert: NodeDiskRunningFull
-      annotations:
-        message: "Device {{ $labels.device }} of node-exporter
-          {{ $labels.namespace }}/{{ $labels.pod }} is running full within the
-          next 24 hours."
-        doc: "This alert fires if in the last 30 minutes the filesystem usage
-          was more than 85% and, based on a linear prediction on the
-          volume usage in the last 6 hours, the volume will be full in 24
-          hours."
-      expr: |
-        (node:node_filesystem_usage: > 0.85)
-        and
-        (predict_linear(node:node_filesystem_avail:[6h], 3600 * 24) < 0)
-      for: 30m
-      labels:
-        severity: warning
-    - alert: NodeDiskRunningFull
+    - alert: NodeFilesystemUsageCritical
       annotations:
         message: 'Device {{ $labels.device }} of node-exporter
-          {{ $labels.namespace }}/{{ $labels.pod }} is running full within the
-          next 2 hours.'
-        doc: "This alert fires if in the last 10 minutes the filesystem usage
+          {{ $labels.namespace }}/{{ $labels.pod }} on instance
+          {{ $labels.instance }} has {{ printf "%0.0f" $value }}% free space.'
+        doc: "This alert fires if in the last minute the filesystem usage
+          was more than 90%."
+      expr: |
+        100 * node:node_filesystem_usage: > 90
+      for: 1m
+      labels:
+        severity: critical
+    - alert: NodeFilesystemFullInFourDays
+      annotations:
+        message: 'Device {{ $labels.device }} of node-exporter
+          {{ $labels.namespace }}/{{ $labels.pod }} on instance
+          {{ $labels.instance }} is running full within the next four days.'
+        doc: "This alert fires if in the last 5 minutes the filesystem usage
           was more than 85% and, based on a linear prediction on the
-          volume usage in the last 30 minutes, the volume will be full in 2
-          hours."
+          volume usage in the last 6 hours, the volume will be full in four
+          days."
       expr: |
         (node:node_filesystem_usage: > 0.85)
         and
-        (predict_linear(node:node_filesystem_avail:[30m], 3600 * 2) < 0)
-      for: 10m
+        (predict_linear(node:node_filesystem_avail:[6h], 4 * 24 * 3600) < 0)
+      for: 5m
       labels:
-        severity: critical
+        severity: warning
     - alert: NodeFilesystemInodeUsageCritical
       annotations:
-        message: 'Node {{ $labels.instance }} has {{ printf "%0.0f" $value }}% inodes free.'
+        message: 'Node {{ $labels.instance }} has {{ printf "%0.0f" $value }}% free inodes.'
         doc: "This alert fires if the available inodes in a given
           filesystem were less than 10% in the last minute."
       expr: |
-        100 * (node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}
+        100 * (node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}
           /
-        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs"}) < 10
+        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}) < 10
       for: 1m
       labels:
         severity: critical
@@ -1092,11 +1088,11 @@ spec:
           inodes usage in the last 6 hours, the filesystem will exhaust its inodes
           in four days."
       expr: |
-        ((node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}
+        ((node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}
           /
-        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs"}) < 0.15)
+        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}) < 0.15)
         and
-        predict_linear(node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}[6h], 4 * 24 * 3600) < 0
+        predict_linear(node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}[6h], 4 * 24 * 3600) < 0
       for: 5m
       labels:
         severity: critical
