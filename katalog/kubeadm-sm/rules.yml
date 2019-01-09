@@ -210,7 +210,7 @@ spec:
         expr: |
           increase(coredns_panic_count_total[10m]) > 0
         labels:
-          severity: warning
+          severity: critical
       - alert: CoreDNSRequestsLatency
         annotations:
           message: 'CoreDNS instance {{ $labels.instance }} requests latency too

@@ -186,12 +186,12 @@ spec:
         )
       record: node:node_disk_saturation:avg_irate
     - expr: |
-        max by (namespace, pod, device) ((node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs"}
-        - node_filesystem_avail{fstype=~"ext[234]|btrfs|xfs|zfs"})
-        / node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs"})
+        max by (namespace, pod, device, instance) ((node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs|vfat|tmpfs"}
+        - node_filesystem_avail{fstype=~"ext[234]|btrfs|xfs|zfs|vfat|tmpfs"})
+        / node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs|vfat|tmpfs"})
       record: 'node:node_filesystem_usage:'
     - expr: |
-        max by (namespace, pod, device) (node_filesystem_avail{fstype=~"ext[234]|btrfs|xfs|zfs"} / node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs"})
+        max by (namespace, pod, device, instance) (node_filesystem_avail{fstype=~"ext[234]|btrfs|xfs|zfs|vfat|tmpfs"} / node_filesystem_size{fstype=~"ext[234]|btrfs|xfs|zfs|vfat|tmpfs"})
       record: 'node:node_filesystem_avail:'
     - expr: |
         sum(irate(node_network_receive_bytes{job="node-exporter",device=~"eth[[:digit:]]+|en.*"}[1m])) +
@@ -514,7 +514,7 @@ spec:
         rate(kube_pod_container_status_restarts_total{job="kube-state-metrics"}[15m]) > 0
       for: 1h
       labels:
-        severity: critical
+        severity: warning
     - alert: KubePodNotReady
       annotations:
         message: '{{ $labels.namespace }}/{{ $labels.pod }} is not ready.'
@@ -524,7 +524,7 @@ spec:
         sum by (namespace, pod) (kube_pod_status_phase{job="kube-state-metrics", phase=~"Pending|Unknown"}) > 0
       for: 1h
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeDeploymentGenerationMismatch
       annotations:
         message: 'Deployment {{ $labels.namespace }}/{{ $labels.deployment }}
@@ -539,7 +539,7 @@ spec:
         kube_deployment_metadata_generation{job="kube-state-metrics"}
       for: 15m
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeDeploymentReplicasMismatch
       annotations:
         message: 'Deployment {{ $labels.namespace }}/{{ $labels.deployment }}
@@ -552,7 +552,7 @@ spec:
         kube_deployment_status_replicas_available{job="kube-state-metrics"}
       for: 1h
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeStatefulSetReplicasMismatch
       annotations:
         message: 'StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }}
@@ -565,7 +565,7 @@ spec:
         kube_statefulset_status_replicas{job="kube-state-metrics"}
       for: 15m
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeStatefulSetGenerationMismatch
       annotations:
         message: 'StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }}
@@ -578,7 +578,7 @@ spec:
         kube_statefulset_metadata_generation{job="kube-state-metrics"}
       for: 15m
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeDaemonSetRolloutStuck
       annotations:
         message: 'Only {{ printf "%.2f" $value }}% of desired pods scheduled and
@@ -591,14 +591,14 @@ spec:
         kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"} * 100 < 100
       for: 15m
       labels:
-        severity: critical
+        severity: warning
     - alert: KubeDaemonSetNotScheduled
       annotations:
         message: 'A number of pods of daemonset {{ $labels.namespace }}/{{
           $labels.daemonset }} are not scheduled.'
-        doc: " This alert fires if the desired number of scheduled DaemonSet was
+        doc: "This alert fires if the desired number of scheduled DaemonSet was
           higher than the number of currently scheduled DaemonSet in the last 10
-          minutes. "
+          minutes."
       expr: |
         kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
           -
@@ -780,7 +780,7 @@ spec:
         predict_linear(kubelet_volume_stats_available_bytes{job="kubelet"}[6h], 4 * 24 * 3600) < 0
       for: 5m
       labels:
-        severity: critical
+        severity: warning
     - alert: KubePersistentVolumeInodeUsageCritical
       annotations:
         message: 'The persistent volume claimed by
@@ -813,7 +813,7 @@ spec:
         predict_linear(kubelet_volume_stats_inodes_available{job="kubelet"}[6h], 4 * 24 * 3600) < 0
       for: 5m
       labels:
-        severity: critical
+        severity: warning
   - name: kubernetes-system
     rules:
     - alert: KubeNodeNotReady
@@ -825,7 +825,7 @@ spec:
         kube_node_status_condition{job="kube-state-metrics",condition="Ready",status="true"} == 0
       for: 1h
       labels:
-        severity: warning
+        severity: critical
     - alert: KubeVersionMismatch
       annotations:
         message: 'There are {{ $value }} different versions of Kubernetes
@@ -936,7 +936,7 @@ spec:
         label_replace(prometheus_operator_alertmanager_spec_replicas{job="prometheus-operator"}, "job", "alertmanager-$1", "alertmanager", "(.*)") / ON(job) GROUP_RIGHT() sum(up{job="alertmanager-main"}) BY (job) != 1
       for: 5m
       labels:
-        severity: warning
+        severity: critical
     - alert: AlertmanagerFailedReload
       annotations:
         message: "Reloading Alertmanager's configuration has failed for
@@ -947,7 +947,7 @@ spec:
         alertmanager_config_last_reload_successful{job="alertmanager-main"} == 0
       for: 10m
       labels:
-        severity: warning
+        severity: critical
   - name: general.rules
     rules:
     - alert: TargetDown
@@ -959,7 +959,7 @@ spec:
       expr: 100 * (count(up == 0) BY (job) / count(up) BY (job)) > 10
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: FdExhaustion
       annotations:
         message: '{{ $labels.job }} instance {{ $labels.instance }} will exhaust
@@ -1040,47 +1040,43 @@ spec:
       for: 30m
       labels:
         severity: warning
-    - alert: NodeDiskRunningFull
-      annotations:
-        message: "Device {{ $labels.device }} of node-exporter
-          {{ $labels.namespace }}/{{ $labels.pod }} is running full within the
-          next 24 hours."
-        doc: "This alert fires if in the last 30 minutes the filesystem usage
-          was more than 85% and, based on a linear prediction on the
-          volume usage in the last 6 hours, the volume will be full in 24
-          hours."
-      expr: |
-        (node:node_filesystem_usage: > 0.85)
-        and
-        (predict_linear(node:node_filesystem_avail:[6h], 3600 * 24) < 0)
-      for: 30m
-      labels:
-        severity: warning
-    - alert: NodeDiskRunningFull
+    - alert: NodeFilesystemUsageCritical
       annotations:
         message: 'Device {{ $labels.device }} of node-exporter
-          {{ $labels.namespace }}/{{ $labels.pod }} is running full within the
-          next 2 hours.'
-        doc: "This alert fires if in the last 10 minutes the filesystem usage
+          {{ $labels.namespace }}/{{ $labels.pod }} on instance
+          {{ $labels.instance }} has {{ printf "%0.0f" $value }}% free space.'
+        doc: "This alert fires if in the last minute the filesystem usage
+          was more than 90%."
+      expr: |
+        100 * node:node_filesystem_usage: > 90
+      for: 1m
+      labels:
+        severity: critical
+    - alert: NodeFilesystemFullInFourDays
+      annotations:
+        message: 'Device {{ $labels.device }} of node-exporter
+          {{ $labels.namespace }}/{{ $labels.pod }} on instance
+          {{ $labels.instance }} is running full within the next four days.'
+        doc: "This alert fires if in the last 5 minutes the filesystem usage
           was more than 85% and, based on a linear prediction on the
-          volume usage in the last 30 minutes, the volume will be full in 2
-          hours."
+          volume usage in the last 6 hours, the volume will be full in four
+          days."
       expr: |
         (node:node_filesystem_usage: > 0.85)
         and
-        (predict_linear(node:node_filesystem_avail:[30m], 3600 * 2) < 0)
-      for: 10m
+        (predict_linear(node:node_filesystem_avail:[6h], 4 * 24 * 3600) < 0)
+      for: 5m
       labels:
-        severity: critical
+        severity: warning
     - alert: NodeFilesystemInodeUsageCritical
       annotations:
-        message: 'Node {{ $labels.instance }} has {{ printf "%0.0f" $value }}% inodes free.'
+        message: 'Node {{ $labels.instance }} has {{ printf "%0.0f" $value }}% free inodes.'
         doc: "This alert fires if the available inodes in a given
           filesystem were less than 10% in the last minute."
       expr: |
-        100 * (node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}
+        100 * (node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}
           /
-        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs"}) < 10
+        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}) < 10
       for: 1m
       labels:
         severity: critical
@@ -1092,14 +1088,14 @@ spec:
           inodes usage in the last 6 hours, the filesystem will exhaust its inodes
           in four days."
       expr: |
-        ((node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}
+        ((node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}
           /
-        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs"}) < 0.15)
+        node_filesystem_files{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}) < 0.15)
         and
-        predict_linear(node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs"}[6h], 4 * 24 * 3600) < 0
+        predict_linear(node_filesystem_files_free{fstype=~"ext[234]|btrfs|xfs|zfs|tmpfs"}[6h], 4 * 24 * 3600) < 0
       for: 5m
       labels:
-        severity: critical
+        severity: warning
     - alert: NodeNetworkDroppingPackets
       annotations:
         message: 'Network interface {{ $labels.device }} on node
@@ -1126,19 +1122,19 @@ spec:
         prometheus_config_last_reload_successful{job="prometheus-k8s"} == 0
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusNotificationQueueRunningFull
       annotations:
         message: "Prometheus' alert notification queue is running full for
           {{ $labels.namespace }}/{{ $labels.pod }}."
         doc: "This alert fires if Prometheus's alert notification queue is
-          running full, based on a linear prediction on the usage in the last 30
-          minutes."
+          running full in the next 30 minutes, based on a linear prediction on
+          the usage in the last 5 minutes."
       expr: |
         predict_linear(prometheus_notifications_queue_length{job="prometheus-k8s"}[5m], 60 * 30) > prometheus_notifications_queue_capacity{job="prometheus-k8s"}
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusErrorSendingAlerts
       annotations:
         message: 'Errors while sending alerts from Prometheus
@@ -1150,7 +1146,7 @@ spec:
         rate(prometheus_notifications_errors_total{job="prometheus-k8s"}[5m]) / rate(prometheus_notifications_sent_total{job="prometheus-k8s"}[5m]) > 0.01
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusErrorSendingAlerts
       annotations:
         message: 'Errors while sending alerts from Prometheus
@@ -1173,7 +1169,7 @@ spec:
         prometheus_notifications_alertmanagers_discovered{job="prometheus-k8s"} < 1
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusTSDBReloadsFailing
       annotations:
         message: '{{ $labels.job }} at {{ $labels.instance }} had
@@ -1184,7 +1180,7 @@ spec:
         increase(prometheus_tsdb_reloads_failures_total{job="prometheus-k8s"}[2h]) > 0
       for: 12h
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusTSDBCompactionsFailing
       annotations:
         message: '{{ $labels.job }} at {{ $labels.instance }} had
@@ -1195,7 +1191,7 @@ spec:
         increase(prometheus_tsdb_compactions_failed_total{job="prometheus-k8s"}[2h]) > 0
       for: 12h
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusTSDBWALCorruptions
       annotations:
         message: '{{ $labels.job }} at {{ $labels.instance }} has a corrupted
@@ -1206,7 +1202,7 @@ spec:
         tsdb_wal_corruptions_total{job="prometheus-k8s"} > 0
       for: 4h
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusNotIngestingSamples
       annotations:
         message: "Prometheus {{ $labels.namespace }}/{{ $labels.pod}} isn't
@@ -1218,7 +1214,7 @@ spec:
         rate(prometheus_tsdb_head_samples_appended_total{job="prometheus-k8s"}[5m]) <= 0
       for: 10m
       labels:
-        severity: warning
+        severity: critical
     - alert: PrometheusTargetScrapesDuplicate
       annotations:
         message: '{{ $labels.namespace }}/{{ $labels.pod }} has many samples
