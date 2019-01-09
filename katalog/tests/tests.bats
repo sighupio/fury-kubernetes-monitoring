@@ -45,7 +45,7 @@ apply (){
 @test "wait for apply to settle and dump state to dump.json" {
   max_retry=0
   while echo "=====" $max_retry "=====" && kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" ; do
-    [ $max_retry -lt 12 ] || ( kubectl describe pods >&3 && return 1 )
+    [ $max_retry -lt 12 ] || ( kubectl describe pods --all-namespaces && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$[ $max_retry + 1 ]
   done
