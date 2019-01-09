@@ -44,8 +44,10 @@ apply (){
 
 @test "wait for apply to settle and dump state to dump.json" {
   max_retry=0
-  while echo "=====" $max_retry "=====" && kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" ; do
-    [ $max_retry -lt 12 ] || ( kubectl describe pods --all-namespaces && return 1 )
+  echo "=====" $max_retry "=====" >&2
+  while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&3
+  do
+    [ $max_retry -lt 24 ] || ( kubectl describe pods --all-namespaces && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$[ $max_retry + 1 ]
   done
@@ -54,41 +56,46 @@ apply (){
 
 @test "check prometheus-operator" {
   test(){
-    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "prometheus-operator" ) | .status.replicas == .status.readyReplicas ' < /dump.json | grep -iv true
+    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "prometheus-operator" and .status.replicas != .status.readyReplicas )' < /dump.json
   }
   run test
+  echo "$output" | jq '.' >&2
   [ "$output" == "" ]
 }
 
 @test "check alertmanager-operated" {
   test(){
-    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "alertmanager-main" ) | .status.replicas == .status.readyReplicas ' < /dump.json | grep -iv true
+    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "alertmanager-main" and .status.replicas != .status.readyReplicas )' < /dump.json
   }
   run test
+  echo "$output" | jq '.' >&2
   [ "$output" == "" ]
 }
 
 
 @test "check node-exporter" {
   test(){
-    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "alertmanager-main" ) | .status.desiredNumberScheduled == .status.currentNumberScheduled ' < /dump.json | grep -iv true
+    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "alertmanager-main" and .status.desiredNumberScheduled != .status.currentNumberScheduled )' < /dump.json
   }
   run test
+  echo "$output" | jq '.' >&2
   [ "$output" == "" ]
 }
 
 @test "check grafana" {
   test(){
-    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "grafana" ) | .status.replicas == .status.readyReplicas ' < /dump.json | grep -iv true
+    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "grafana" and .status.replicas != .status.readyReplicas )' < /dump.json 
   }
   run test
+  echo "$output" | jq '.' >&2
   [ "$output" == "" ]
 }
 
 @test "check prometheus-operated" {
   test(){
-    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "prometheus-k8s" ) | .status.replicas == .status.readyReplicas ' < /dump.json | grep -iv true
+    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "prometheus-k8s" and .status.replicas != .status.readyReplicas )' < /dump.json
   }
   run test
+  echo "$output" | jq '.' >&2
   [ "$output" == "" ]
 }
