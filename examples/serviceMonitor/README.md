@@ -2,7 +2,7 @@
 
 This example shows how to define a ServiceMonitor resources to retrieve metrics from an application.
 
-0. Run furyctl to get packages: `$ furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install --dev`
 
 In `sm.yml` file:
 
