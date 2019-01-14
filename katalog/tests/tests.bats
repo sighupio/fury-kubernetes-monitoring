@@ -53,7 +53,6 @@ apply (){
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$[ $max_retry + 1 ]
   done
-  sleep 30
 }
 
 #@test "check prometheus-operator exists" {
@@ -152,6 +151,7 @@ apply (){
   then
     skip
   fi
+  sleep 30
   for dir in kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated prometheus-operator
   do
     echo "# deleting katalog/$dir" >&3
