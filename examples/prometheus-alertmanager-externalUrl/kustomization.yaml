@@ -1,7 +1,7 @@
 bases:
-  - vendor/bases/monitoring/alertmanager-operated
-  - vendor/bases/monitoring/prometheus-operated
-  - vendor/bases/monitoring/prometheus-operator
+  - vendor/katalog/monitoring/alertmanager-operated
+  - vendor/katalog/monitoring/prometheus-operated
+  - vendor/katalog/monitoring/prometheus-operator
 
 patches:
   - prometheus-alertmanager-externalUrl.yml

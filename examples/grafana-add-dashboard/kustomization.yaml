@@ -1,7 +1,7 @@
 namespace: monitoring
 
 bases:
-  - vendor/bases/monitoring/grafana
+  - vendor/katalog/monitoring/grafana
 
 configMapGenerator:
   - name: sighup-sample-dashboard-definition

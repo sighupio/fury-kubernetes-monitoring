@@ -28,6 +28,12 @@ steps:
       event:
       - push
 
+  - name: examples
+    image: sighup/furyctl-bats
+    pull: always
+    commands:
+      - bats examples/tests.bats
+
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
     pull: always
