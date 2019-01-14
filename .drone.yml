@@ -6,13 +6,19 @@ platform:
   os: linux
   arch: amd64
 
+clone:
+  disable: true
 steps:
+
+  - name: clone
+    image: alpine
+    commands:
+      - env
   - name: katalog
     image: sighup/katalog:v1.0.11
     pull: always
     depends_on: [ clone ]
     commands:
-      - env
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
       - rm -rf .pytest_cache katalog/tests/__pycache__
