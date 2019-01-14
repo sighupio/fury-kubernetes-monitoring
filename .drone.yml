@@ -11,7 +11,7 @@ steps:
   - name: katalog
     image: sighup/katalog:v1.0.11
     pull: always
-    depends_on: [clone]
+    depends_on: [ clone ]
     commands:
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
@@ -23,7 +23,7 @@ steps:
   - name: prom-rules
     image: sighup/prom-rules:v1.0.0
     pull: always
-    depends_on: [clone]
+    depends_on: [ clone ]
     commands:
       - bash katalog/tests/promtool.sh
     when:
@@ -40,7 +40,7 @@ steps:
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
     pull: always
-    depends_on: [clone]
+    depends_on: [ clone ]
     environment:
       CLUSTER_HOST: docker
       TESTS: katalog/tests/tests.bats
