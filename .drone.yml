@@ -36,6 +36,9 @@ steps:
     commands:
       - git config --global url."https://github.com/".insteadOf ssh://git@github.com
       - bats examples/tests.bats
+    when:
+      event:
+      - push
 
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
