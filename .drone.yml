@@ -34,7 +34,7 @@ steps:
     pull: always
     depends_on: [ clone ]
     commands:
-      - git config --global url."https://github.com/".insteadOf git@github.com
+      - git config --global url."https://github.com/".insteadOf ssh://git@github.com
       - bats examples/tests.bats
 
   - name: integration-test
