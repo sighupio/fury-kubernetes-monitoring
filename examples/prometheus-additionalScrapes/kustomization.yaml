@@ -1,6 +1,6 @@
 bases:
-  - vendor/bases/monitoring/prometheus-operated
-  - vendor/bases/monitoring/prometheus-operator
+  - vendor/katalog/monitoring/prometheus-operated
+  - vendor/katalog/monitoring/prometheus-operator
 
 resources:
   - prometheus-additionalScrapes.yml

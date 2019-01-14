@@ -1,8 +1,8 @@
 bases:
-  - vendor/bases/monitoring/alertmanager-operated
-  - vendor/bases/monitoring/prometheus-operator
+  - vendor/katalog/monitoring/alertmanager-operated
+  - vendor/katalog/monitoring/prometheus-operator
 
-secretGenerator: 
+secretGenerator:
 - name: alertmanager-main
   behavior: merge
   commands:

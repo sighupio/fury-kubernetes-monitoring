@@ -1,5 +1,5 @@
 bases:
-  - vendor/bases/monitoring/grafana
+  - vendor/katalog/monitoring/grafana
 
 patchesJson6902:
   - target:

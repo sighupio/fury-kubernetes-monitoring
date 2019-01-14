@@ -7,10 +7,10 @@ platform:
   arch: amd64
 
 steps:
-
   - name: katalog
     image: sighup/katalog:v1.0.11
     pull: always
+    depends_on: [ clone ]
     commands:
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
@@ -22,15 +22,25 @@ steps:
   - name: prom-rules
     image: sighup/prom-rules:v1.0.0
     pull: always
+    depends_on: [ clone ]
     commands:
       - bash katalog/tests/promtool.sh
     when:
       event:
       - push
 
+  - name: examples
+    image: sighup/furyctl-bats:v0.1.0
+    pull: always
+    depends_on: [ clone ]
+    commands:
+      - git config --global url."https://github.com/".insteadOf ssh://git@github.com
+      - bats examples/tests.bats
+
   - name: integration-test
     image: sighup/kind:v1.12.3-bats
     pull: always
+    depends_on: [ clone ]
     environment:
       CLUSTER_HOST: docker
       TESTS: katalog/tests/tests.bats
