@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: sighup/katalog:v1.0.11
+    image: quay.io/sighup/katalog:1.0.11_3
     pull: always
     depends_on: [ clone ]
     commands:
@@ -20,7 +20,7 @@ steps:
       - push
 
   - name: prom-rules
-    image: sighup/prom-rules:v1.0.0
+    image: quay.io/sighup/prom-rules:3.8_v0.1.0_2.5.0_2.2.0
     pull: always
     depends_on: [ clone ]
     commands:
@@ -30,7 +30,7 @@ steps:
       - push
 
   - name: examples
-    image: sighup/furyctl-bats:v0.1.0
+    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.11
     pull: always
     depends_on: [ clone ]
     commands:
