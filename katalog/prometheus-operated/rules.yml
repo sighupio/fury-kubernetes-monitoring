@@ -1059,11 +1059,11 @@ spec:
           {{ $labels.namespace }}/{{ $labels.pod }} on instance
           {{ $labels.instance }} is running full within the next four days.'
         doc: "This alert fires if in the last 5 minutes the filesystem usage
-          was more than 85% and, based on a linear prediction on the
+          was more than 80% and, based on a linear prediction on the
           volume usage in the last 6 hours, the volume will be full in four
           days."
       expr: |
-        (node:node_filesystem_usage: > 0.85)
+        (node:node_filesystem_usage: > 0.80)
         and
         (predict_linear(node:node_filesystem_avail:[6h], 4 * 24 * 3600) < 0)
       for: 5m
