@@ -818,12 +818,13 @@ spec:
     rules:
     - alert: KubeNodeNotReady
       annotations:
-        message: '{{ $labels.node }} has been unready for more than an hour'
+        message: '{{ $labels.node }} has been in {{ $labels.condition }}
+          condition for more than 15 minutes.'
         doc: "This alert fires if a given node was not in Ready status in the
-          last hour."
+          last 15 minutes.."
       expr: |
-        kube_node_status_condition{job="kube-state-metrics",condition="Ready",status="true"} == 0
-      for: 1h
+        kube_node_status_condition{job="kube-state-metrics",condition!="Ready",status="true"} == 1
+      for: 15m
       labels:
         severity: critical
     - alert: KubeVersionMismatch
