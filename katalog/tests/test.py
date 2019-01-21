@@ -115,10 +115,12 @@ def test_service_type(doc):
 def test_resources_set(doc):
     if doc["kind"] in ["DaemonSet", "Deployment", "Job", "StatefulSet"]:
         for container in doc["spec"]["template"]["spec"]["containers"]:
-            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
+            assert "resources" in container and  set(["limits","requests"]).issubset(container["resources"])
     elif doc["kind"] == "Pod":
         for container in doc["spec"]["containers"]:
-            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
+            assert "resources" in container and set(["limits","requests"]).issubset(container["resources"])
     elif doc["kind"] == "CronJob":
         for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"]["containers"]:
-            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
+            assert "resources" in container and set(["limits","requests"]).issubset(container["resources"])
+    elif doc["kind"] in ["Prometheus","Alertmanager"]:
+        assert "resources" in doc["spec"] and set(["limits","requests"]).issubset(doc["spec"]["resources"])
