@@ -38,7 +38,6 @@ def test_api_version(doc):
 
 def get_images():
     images = []
-
     for doc in spec():
         if doc["kind"] in ["DaemonSet", "Deployment", "Job", "StatefulSet"]:
             for init_container in doc["spec"]["template"]["spec"].get("initContainers", []):
@@ -111,3 +110,15 @@ def test_service_type(doc):
     if doc["kind"] == "Service":
         service_type = doc["spec"].get("type", "ClusterIP")
         assert service_type in allowed_service_type
+
+@pytest.mark.parametrize('doc', spec())
+def test_resources_set(doc):
+    if doc["kind"] in ["DaemonSet", "Deployment", "Job", "StatefulSet"]:
+        for container in doc["spec"]["template"]["spec"]["containers"]:
+            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
+    elif doc["kind"] == "Pod":
+        for container in doc["spec"]["containers"]:
+            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
+    elif doc["kind"] == "CronJob":
+        for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"]["containers"]:
+            assert "resources" in container.keys() and "limits" in container["resources"] and "requests" in container["resources"]
