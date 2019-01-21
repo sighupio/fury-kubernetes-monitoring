@@ -41,7 +41,7 @@ steps:
       - push
 
   - name: integration-test
-    image: sighup/kind:v1.12.3-bats
+    image: quay.io/sighup/kind:v1.12.0_1.0.11
     pull: always
     depends_on: [ clone ]
     environment:

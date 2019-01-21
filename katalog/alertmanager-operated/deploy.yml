@@ -8,6 +8,13 @@ metadata:
 spec:
   baseImage: quay.io/prometheus/alertmanager
   replicas: 3
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 150m
+      memory: 150Mi
   serviceAccountName: alertmanager-main
   version: v0.15.3
 ---
