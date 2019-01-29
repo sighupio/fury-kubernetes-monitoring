@@ -630,7 +630,7 @@ spec:
         severity: warning
     - alert: KubeJobCompletion
       annotations:
-        message: 'Job {{ $labels.namespace }}/{{ $labels.job }} is taking more
+        message: 'Job {{ $labels.namespace }}/{{ $labels.job_name }} is taking more
           than 1h to complete.'
         doc: "This alert fires if at least on Job took more than one hour to
           complete."
@@ -643,7 +643,7 @@ spec:
         severity: warning
     - alert: KubeJobFailed
       annotations:
-        message: 'Job {{ $labels.namespace }}/{{ $labels.job }} failed to
+        message: 'Job {{ $labels.namespace }}/{{ $labels.job_name }} failed to
           complete.'
         doc: "This alert fires if at least one Job failed in the last hour."
       expr: |
