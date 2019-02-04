@@ -2,7 +2,7 @@
 
 This example shows how to customize your Prometheus deployment (which you deploy via Prometheus Operator) changing the node selector to deploy Prometheus only on nodes with a particular labels. To see full list of fields that you can modify please refer to Prometheus CRD manifest.
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 In `prometheus-operated-nodeSelector.yml`
 

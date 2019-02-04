@@ -2,7 +2,7 @@
 
 This example shows how to deploy a customized Alertmanager. It customizes Fury distribution Alertmanager to deploy version `0.15.2` as 1 replica.
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 1. You can modify `alertmanager-operated-deployment.yml` file to change replica number and version. To see all fields you can modify please refer to [documentation](https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/alerting.md)
 

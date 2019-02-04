@@ -3,7 +3,7 @@
 This example shows how to add external URLs to access Prometheus expression
 browser and Alertmanager dashboard.
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 1. Replace `externalUrl` field's value with your desired URLs for Prometheus and
    Alertmanager resources in `prometheus-alertmanager-externalUrl.yml`.

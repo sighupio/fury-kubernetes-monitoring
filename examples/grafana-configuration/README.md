@@ -6,7 +6,7 @@ users to "Viewer". All options in the configuration file can be overridden using
 environment variables. To learn more about Grafana configuration please see the
 [documentation](http://docs.grafana.org/installation/configuration/).
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 1. You can modify environment variable values in `env-variables.yml` file.
 

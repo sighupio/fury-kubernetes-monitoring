@@ -2,7 +2,7 @@
 
 This example shows how to customize your Prometheus deployment (which you deploy via Prometheus Operator) changing default retention policy and adding a PersistentVolumeClaim for 150Gi of storage. To see full list of fields that you can modify please refer to Prometheus CRD manifest.
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 In `prometheus-operated-deployment.yml`
 

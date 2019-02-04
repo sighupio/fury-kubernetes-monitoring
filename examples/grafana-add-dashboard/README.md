@@ -9,7 +9,7 @@ dashboard. Each data query visualization is a panel. To learn more about Grafana
 dashboard JSON please see the Grafana
 [documentation](http://docs.grafana.org/reference/dashboard/).
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 1. Configure dashboard details, add or remove panels from dashboard by modifying
    `sighup-sample-dashboard.json` file.

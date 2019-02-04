@@ -5,7 +5,7 @@ Prometheus Operator CRD) to add additional scrapes. This example adds 2 scrape
 configurations: one for metrics from external-node-exporter and other for
 metrics from etcd.
 
-0. Run furyctl to get packages: `furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install`
 
 1. To learn how to write scrape config like in
    `prometheus-additional-scrapes.yml` file please refer to Prometheus
