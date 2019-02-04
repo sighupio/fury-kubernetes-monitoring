@@ -1,19 +1,75 @@
 # Monitoring Services with Prometheus ServiceMonitor
 
-This example shows how to define a ServiceMonitor resources to retrieve metrics from an application.
+This example shows how to define a ServiceMonitor resource to retrieve metrics from an application. As an example we use [prometheus-example-app](https://github.com/brancz/prometheus-example-app) which is a simple app for demonstration purposes. You can deploy it or you can replace it with your application and modify ServiceMonitor in order to monitor you own service. `prometheus-example-app` has following endpoints:
 
-0. Run furyctl to get packages: `furyctl install --dev`
+- `/` results in a 200 response code. 
+- `/err` results in a 404 response code
+- `/metrics` simply counts 200 and 404 response codes.
+
+
+0. Run furyctl to get packages: `furyctl install`
 
 In `sm.yml` file:
 
-1. Set labels to identify your app that exposes metrics.
+1. `name` and `labels` are set to identify the app that exposes metrics.
 
-2. Specify endpoints where your application exposes metrics. There can be more then 1 endpoint. Specify `path`, `port` and `scheme` of endpoints and define `interval` for scrape frequency you desire.
+2. Endpoints specifies where our application exposes metrics. `path` and `port` must match with the one defined in Service. Choose `interval` for scrape frequency as you want.
 
-3. Set `matchNames` and `matchLabels` with your app's namespace and label in order to target correct services.
+3. `matchNames` must match namespace where your app is deployed and `matchLabels` must match your app's label(same one used in Service selector) in order to target correct application.
+
+4. `jobLabel` must match the label of ServiceMonitor (see point 1) 
 
 In the example's folder:
 
-4. Run `make build` to see output of kustomize with your modifications.
+4. Run `make build` to see output of what is going to be deployed.
 
-5. Once you're satisfied with generated output run `make deploy` to deploy it on your cluster.
+5. Once you're satisfied with generated output run `make deploy` to deploy app and ServiceMonitor on your cluster.
+
+6. If you deploy our example application, make some HTTP GET requests to generate metrics, you can use `curl` for example. 
+But first, to access application from localhost:
+
+`$ kubectl proxy &`
+
+Then you can curl:
+
+```
+$ curl -I 127.0.0.1:8080
+
+HTTP/1.1 200 OK
+Date: Mon, 04 Feb 2019 15:36:22 GMT
+Content-Length: 31
+Content-Type: text/plain; charset=utf-8
+```
+
+```
+$ curl -I 127.0.0.1:8080/err
+
+HTTP/1.1 404 Not Found
+Date: Mon, 04 Feb 2019 15:36:12 GMT
+Content-Type: text/plain; charset=utf-8
+```
+
+You must see corresponding numbers when you make a HTTP GET request to `metrics` endpoint:
+
+```
+$ curl 127.0.0.1:8080/metrics
+
+# HELP http_requests_total Count of all HTTP requests
+# TYPE http_requests_total counter
+http_requests_total{code="200",method="get"} 1
+http_requests_total{code="404",method="get"} 1
+# HELP version Version information about this binary
+# TYPE version gauge
+version{version="v0.1.0"} 0
+```
+
+Same results must appear in the Prometheus expression browser, to access it launch:
+
+`$ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
+
+Then in the Prometheus browser, when you query for `http_requests_total` you must get corresponding results:
+
+```
+http_requests_total{code="200",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"}	1
+http_requests_total{code="404",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"} 1
+```

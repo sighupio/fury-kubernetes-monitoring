@@ -4,3 +4,4 @@ bases:
 
 resources:
   - sm.yml
+  - example-app.yml

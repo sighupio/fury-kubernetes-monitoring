@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-app
+  labels:
+    app: example-app
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30001
+    protocol: TCP
+    name: http
+  selector:
+    app: example-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  labels:
+    app: example-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-app
+        image: quay.io/brancz/prometheus-example-app:v0.1.0
+        ports:
+        - containerPort: 8080
