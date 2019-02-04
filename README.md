@@ -15,76 +15,6 @@ instances, rules, alerts and exporters. Packages with `-operated` postfix are
 deployed via Operator's CRD, therefore you need Prometheus Operator up and
 running to be able to deploy them.
 
-
-## Requirements
-
-All packages in this repository have following dependencies, for package
-specific dependencies please visit the single package's documentation:
-
-- [Kubernetes](https://kubernetes.io) >= `v1.10.0`
-- [Furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl) package manager to install Fury packages
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v1`
-
-
-## Deployment
-
-To start using Fury Kubernetes Monitoring tools first you need to download packages. [furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl) 
-is the package manager for Fury distribution. In order to download packages you want to use, you must
-create a `Furyfile.yml` where you gonna list desired packages from monitoring katalog. For further details 
-about `furyctl`please follow the link above. For monitoring components, you need at least 
-[prometheus-operator](katalog/prometheus-operator) and [prometheus-operated](katalog/prometheus-operated) 
-to be deployed for other packages to be deployed. So your basic `Furyfile` must have at least these 2 packages:
-
-```
-bases:
-  - name: monitoring/prometheus-operator
-    version: master
-  - name: monitoring/prometheus-operator
-    version: master
-```
-
-Katalog packages goes under `bases` section, in the form `katalog_name/package_name`.  Once you've created your Furyfile, 
-execute the following command from the same directory where your Furyfile is stored:
-
-`$ furyctl install`
-
-If everything goes well, packages will be located under `./vendor/katalog/monitoring` directory of your current directory. 
-
-You can add other packages as well based on your needs, following packages are going to work with every kind 
-of cloud setup: 
-
-- [alertmanager-operated](katalog/alertmanager-operated)
-- [grafana](katalog/grafana)
-- [kube-state-metrics](katalog/kube-state-metrics)
-- [node-exporter](katalog/node-exporter) 
-
-Instead, to obtain metrics for Kubernetes cluster components you must add one of the following packages respect to your cloud setup:
-
-- If you have access to your master node (e.g. on-premise cloud): [kubeadm-sm](katalog/kubeadm-sm)
-- Otherwise (e.g. a public cloud service): [gcp-sm](katalog/gcp-sm)
-
-You can find necessary details about each package under its own directory in this repo.
-
-Now you got the monitoring katalog packages, you can deploy them. At this point you have 2 options:
-
-1. You can directly deploy our manifests which are ready to use. For each package you have, you can execute the following
-command (from directory where your vendor dir is located) which points to the package directory:
-
-`$ kustomize build vendor/katalog/monitoring/prometheus-operator | kubectl apply -f -`
-
-2. If you need to customize our packages you can do it with `Kustomize`. It lets you create 
-customized Kubernetes resources based on other Kubernetes resource files, leaving the original 
-YAML untouched and usable as is. To learn how to create you customization layer with it
-please see the Kustomize [repo](https://github.com/kubernetes-sigs/kustomize).
-
-Each monitoring package repo explains how to deploy and access(where it's possible) the component. For further details please refer to
-the single package directories in this repo.
-
-## Examples
-
-To see examples on how to customize Fury distribution with kustomize please go to [examples](examples)
-
-
 ##  Monitoring Packages
 
 Following packages are included in Fury Kubernetes Monitoring katalog. All
@@ -108,9 +38,123 @@ namespace in your Kubernetes cluster.
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
   metrics exposed by \*NIX kernels.
 
-
 You can click on each package to see its documentation.
 
+## Requirements
+
+All packages in this repository have following dependencies, for package
+specific dependencies please visit the single package's documentation:
+
+- [Kubernetes](https://kubernetes.io) >= `v1.10.0`
+- [Furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl) package manager to install Fury packages
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v1.0.10`
+
+
+## Deployment
+
+To start using Fury Kubernetes Monitoring, you need to use
+[furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl)
+and create a `Furyfile.yml` with the list of all the packages that you want to
+download.
+
+You can download the packages for a full monitoring stack including
+Prometheus Operator, Prometheus, Alertmanager, node-exporter, kube-state-metrics
+and Grafana using the following `Furyfile.yml` :
+```yaml
+bases:
+  - name: monitoring/prometheus-operator
+    version: master
+  - name: monitoring/prometheus-operated
+    version: master
+  - name: monitoring/alertmanager-operated
+    version: master
+  - name: monitoring/node-exporter
+    version: master
+  - name: monitoring/kube-state-metrics
+    version: master
+  - name: monitoring/grafana
+    version: master
+```
+and execute
+```bash
+$ furyctl install
+```
+to download the packages under `./vendor/katalog/monitoring`.
+
+See `furyctl`
+[documentation](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#furyfile)
+for details about `Furyfile.yml` format.
+
+To deploy the packages to your cluster, define a `kustomization.yaml` with the
+following content:
+```yaml
+bases:
+- ./vendor/katalog/monitoring/prometheus-operator
+```
+and execute
+```shell
+$ kustomize build . | kubectl apply -f -
+```
+to deploy Prometheus Operator and create the Custom Resource Definitions needed
+by the other packages.
+
+Now you can add the other packages to `kustomization.yaml`, the final file will
+have the following content:
+```yaml
+bases:
+- ./vendor/katalog/monitoring/prometheus-operator
+- ./vendor/katalog/monitoring/prometheus-operated
+- ./vendor/katalog/monitoring/alertmanager-operated
+- ./vendor/katalog/monitoring/node-exporter
+- ./vendor/katalog/monitoring/kube-state-metrics
+- ./vendor/katalog/monitoring/grafana
+```
+
+See `kustomize`
+[documentation](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/README.md)
+for details about `kustomization.yaml` format.
+
+To deploy all the packages to your cluster, execute the following command:
+```bash
+$ kustomize build . | kubectl apply -f -
+```
+
+The following cluster architectures are supported to obtain metrics from
+Kubernetes components:
+- on-premise or unmanaged cloud clusters
+- Google Kubernetes Engine (GKE)
+- Azure Kubernetes Service (AKS)
+
+### On-premise or unmanaged cloud clusters
+- Add `monitoring/kubeadm-sm` to `Furyfile.yml`.
+- Download package with `furyctl install`
+- Add `./vendor/katalog/monitoring/kubeadm-sm` to `kustomization.yaml`.
+- Deploy package with `kustomize build . | kubectl apply -f -`
+
+### Google Kubernetes Engine (GKE)
+- Add `monitoring/gcp-sm` to `Furyfile.yml`.
+- Download package with `furyctl install`
+- Add `./vendor/katalog/monitoring/gcp-sm` to `kustomization.yaml`.
+- Deploy package with `kustomize build . | kubectl apply -f -`
+
+### Azure Kubernetes Service (AKS)
+- Add `monitoring/aks-sm` to `Furyfile.yml`.
+- Download package with `furyctl install`
+- Add `./vendor/katalog/monitoring/aks-sm` to `kustomization.yaml`.
+- Deploy package with `kustomize build . | kubectl apply -f -`
+
+If you need to customize our packages you can do it with `kustomize`. It lets
+you create customized Kubernetes resources based on other Kubernetes resource
+files, leaving the original YAML untouched and usable as is. To learn how to
+create you customization layer with it please see the `kustomize`
+[repository](https://github.com/kubernetes-sigs/kustomize).
+
+For further details please refer to the single package directories in this repo.
+
+## Examples
+
+To see examples on how to customize Fury Kubernetes Monitoring packages please
+go to [examples](examples) directory.
 
 ## License
 
