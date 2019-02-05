@@ -1,0 +1,38 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: kubelet
+  name: kubelet
+  namespace: kube-system
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
+    port: https-metrics
+    relabelings:
+    - regex: (.*):10250
+      replacement: ${1}:10255
+      sourceLabels:
+      - __address__
+      targetLabel: __address__
+    scheme: http
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    honorLabels: true
+    interval: 30s
+    path: /metrics/cadvisor
+    port: https-metrics
+    relabelings:
+    - regex: (.*):10250
+      replacement: ${1}:10255
+      sourceLabels:
+      - __address__
+      targetLabel: __address__
+    scheme: http
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  selector:
+    matchLabels:
+      k8s-app: kubelet
