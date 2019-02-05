@@ -1,4 +1,4 @@
-# Prometheus Operated Katalog
+# Prometheus Operated 
 
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined
 by [Prometheus Operator](../prometheus-operator).
@@ -15,7 +15,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize = `v1.0.10`
 - [prometheus-operator](../prometheus-operator)
 
 

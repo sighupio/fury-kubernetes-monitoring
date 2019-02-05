@@ -1,4 +1,4 @@
-# Kube State Metrics Katalog
+# Kube State Metrics 
 
 This package provides kube-state-metrics service which listens Kubernetes API
 server and generates metrics about the state of Kubernetes objects like
@@ -20,7 +20,7 @@ From kube-state-metrics
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize => `v1`
+- Kustomize = `v1.0.10`
 - [prometheus-operator](../prometheus-operator)
 
 

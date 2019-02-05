@@ -1,4 +1,4 @@
-# Prometheus Operator Katalog
+# Prometheus Operator 
 
 Operators are application specific controllers for complex stateful
 applications. They are used to have more Kubernetes-native control over
@@ -39,7 +39,7 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize = `v1.0.10`
 
 
 ## Image repository and tag

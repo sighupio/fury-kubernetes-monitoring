@@ -1,4 +1,4 @@
-# Kubeadm ServiceMonitor Katalog
+# Kubeadm ServiceMonitor 
 
 This package provides monitoring for following Kubernetes components:
 - kube-control-manager
@@ -15,7 +15,7 @@ Kubernetes.
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize = `v1.0.10`
 - [prometheus-operator](../prometheus-operator)
 
 

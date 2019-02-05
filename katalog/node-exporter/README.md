@@ -1,4 +1,4 @@
-# Node Exporter Katalog
+# Node Exporter 
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX
 kernels provided by node-exporter service. You can see list of collectors
@@ -9,7 +9,7 @@ enabled by default from project's
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize = `v1.0.10`
 - [prometheus-operator](../prometheus-operator)
 
 

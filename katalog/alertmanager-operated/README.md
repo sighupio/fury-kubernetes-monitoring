@@ -1,4 +1,4 @@
-# Alertmanager Operated Katalog
+# Alertmanager Operated
 
 Alertmanager handles alerts sent by Prometheus server and routes them to
 configured receiver integrations such as email, Slack, PageDuty or OpsGenie. It
@@ -20,7 +20,8 @@ with this package.
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize  = `v1.0.10`
+`
 - [prometheus-operator](../prometheus-operator)
 
 

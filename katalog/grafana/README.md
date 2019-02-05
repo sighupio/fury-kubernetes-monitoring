@@ -1,4 +1,4 @@
-# Grafana Katalog
+# Grafana 
 
 Grafana is an open source data visualization and graph composer platform for
 numeric time-series datai with Prometheus integration.
@@ -14,7 +14,8 @@ numeric time-series datai with Prometheus integration.
 ## Requirements
 
 - Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kustomize = `v1.0.10`
+
 
 
 ## Configuration
