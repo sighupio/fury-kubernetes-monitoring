@@ -46,14 +46,14 @@ All packages in this repository have following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
 - [Kubernetes](https://kubernetes.io) >= `v1.10.0`
-- [Furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl) package manager to install Fury packages
+- [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages  #FIX LINK
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v1.0.10`
 
 
 ## Deployment
 
 To start using Fury Kubernetes Monitoring, you need to use
-[furyctl](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#Furyctl)
+[furyctl](https://github.com/sighup-io/furyctl/blob/master/TUTORIAL.md)
 and create a `Furyfile.yml` with the list of all the packages that you want to
 download.
 
@@ -82,7 +82,7 @@ $ furyctl install
 to download the packages under `./vendor/katalog/monitoring`.
 
 See `furyctl`
-[documentation](https://github.com/sighup-io/fury-utilities/blob/master/docs/FURY.md/#furyfile)
+[documentation](https://github.com/sighup-io/furyctl/blob/master/TUTORIAL.md)
 for details about `Furyfile.yml` format.
 
 To deploy the packages to your cluster, define a `kustomization.yaml` with the
