@@ -15,7 +15,6 @@ spec:
       labels:
         app: grafana
     spec:
-      serviceAccountName: default
       automountServiceAccountToken: false
       containers:
       - image: grafana/grafana:5.3.4
