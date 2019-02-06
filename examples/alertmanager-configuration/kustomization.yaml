@@ -9,4 +9,4 @@ secretGenerator:
     alertmanager.yaml: "cat alertmanager.yaml"
 
 generatorOptions:
-  disableNameSuffixHash: true
+  disableHash: true
