@@ -21,7 +21,6 @@ with this package.
 
 - Kubernetes >= `1.10.0`
 - Kustomize  = `v1.0.10`
-`
 - [prometheus-operator](../prometheus-operator)
 
 
