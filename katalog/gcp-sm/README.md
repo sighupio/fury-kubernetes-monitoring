@@ -19,8 +19,6 @@ for Prometheus.
 Fury distribution GCP ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals
-- Matched namespace: `kube-system`
-
 
 ## License
 
