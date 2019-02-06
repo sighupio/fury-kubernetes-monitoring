@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: quay.io/sighup/katalog:1.0.11_3
+    image: quay.io/sighup/katalog:1.0.10_3
     pull: always
     depends_on: [ clone ]
     commands:
@@ -30,7 +30,7 @@ steps:
       - push
 
   - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.11
+    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.10
     pull: always
     depends_on: [ clone ]
     commands:
@@ -41,7 +41,7 @@ steps:
       - push
 
   - name: integration-test
-    image: quay.io/sighup/kind:0.1.0_v1.12.0_1.0.11
+    image: quay.io/sighup/kind:v1.12.0_1.0.10
     pull: always
     depends_on: [ clone ]
     environment:
