@@ -25,9 +25,9 @@ In the example's folder:
 
 6. Run `make deploy` to deploy app and it service monitor on your cluster.
 
-7. When app's pod status become Ready, make some HTTP GET requests to generate metrics, but first, to access application from localhost run:
+7. When app's pod status become Ready, make some HTTP GET requests to generate metrics. For this purpose first port-forward your app to access it from localhost:
 
-`$ kubectl proxy &`
+`$ kubectl port-forward svc/example-app 8080`
 
 Then you can use curl to make requests:
 
@@ -66,7 +66,7 @@ Same results must appear in the Prometheus expression browser, to access it run:
 
 `$ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
 
-Then in the Prometheus browser, when you query for `http_requests_total` you must get corresponding results:
+Then in the Prometheus browser, when you query for `http_requests_total{job="example-app"}` you must get corresponding results:
 
 ```
 http_requests_total{code="200",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"}	1
