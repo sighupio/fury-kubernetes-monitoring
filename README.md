@@ -29,10 +29,10 @@ namespace in your Kubernetes cluster.
   deployed with Prometheus Operator's CRD.
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus.
-- [gcp-sm](katalog/gcp-sm): Service Monitor to collect metrics from GKE
-  cluster's kubelet components.
-- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
-  alerts for your Kubernetes cluster control plane, kubelet and CoreDNS.
+- [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components metrics from AKS 
+- [gcp-sm](katalog/gcp-sm): Service Monitor to collect Kubernetes components metrics from GCP
+- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and alerts for 
+  Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
   Kubernetes objects such as Deployments, Nodes and Pods.
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
