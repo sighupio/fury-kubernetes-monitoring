@@ -1,6 +1,7 @@
-# GCP ServiceMonitor 
+# GKE ServiceMonitor
 
-This package provides monitoring for Kubernetes component `kubelet` on GKE. 
+This package provides monitoring for Kubernetes component `kubelet` and
+`api-server` on GKE.
 
 ### Image repository and tag
 
@@ -16,9 +17,10 @@ for Prometheus.
 
 ## Configuration
 
-Fury distribution GCP ServiceMonitor has following configuration:
+Fury distribution GKE ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals
+- Automatically discover `kubelet` and `api-server` scraping targets enpoints
 
 ## License
 
