@@ -1,6 +1,7 @@
 # AKS ServiceMonitor
 
-This package provides monitoring for Kubernetes components `kubelet` and `api-server` on AKS. 
+This package provides monitoring for Kubernetes components `kubelet` and
+`api-server` on AKS.
 
 ### Image repository and tag
 
@@ -19,6 +20,8 @@ for Prometheus.
 Fury distribution AKS ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals
+- Relabel metrics in order for the discovered targets to point to the correct
+  endpoints
 
 
 ## License
