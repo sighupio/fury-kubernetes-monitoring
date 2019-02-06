@@ -1,6 +1,7 @@
-# Kubeadm ServiceMonitor 
+# Kubeadm ServiceMonitor
 
 This package provides monitoring for following Kubernetes components:
+- api-server
 - kube-control-manager
 - coredns
 - kubelet
