@@ -2,7 +2,6 @@ namespace: monitoring
 
 resources:
   - deploy.yml
-  - datasources.yml
 
 configMapGenerator:
   - name: grafana-dashboards
