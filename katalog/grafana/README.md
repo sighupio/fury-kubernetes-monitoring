@@ -1,7 +1,7 @@
-# Grafana 
+# Grafana
 
 Grafana is an open source data visualization and graph composer platform for
-numeric time-series datai with Prometheus integration.
+numeric time-series data with Prometheus integration.
 
 
 ## Image repository and tag
@@ -23,10 +23,10 @@ numeric time-series datai with Prometheus integration.
 Fury distribution Grafana is deployed with following configuration:
 - Replica number: `1`
 - Anonymous authentication enabled
-- Role for unauthenticated users as `Admin`
+- `Admin` role for unauthenticated users
 - Resource limits are `200m` for CPU and `200Mi` for memory
 - Listens on port `3000`
-- Data source is Prometheus
+- Prometheus configured as data source
 - Dashboards ready to use (see [dashboards](dashboards) folder):
    * CoreDNS
    * Etcd
