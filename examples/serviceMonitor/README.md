@@ -25,7 +25,7 @@ In the example's folder:
 
 6. Run `make deploy` to deploy app and it service monitor on your cluster.
 
-7. When app's pod status become Ready, make some HTTP GET requests to generate metrics. For this purpose first port-forward your app to access it from localhost:
+7. When app becomes ready, make some HTTP GET requests to generate metrics. For this purpose first port-forward your app to access it from localhost:
 
 `$ kubectl port-forward svc/example-app 8080`
 
