@@ -29,10 +29,12 @@ namespace in your Kubernetes cluster.
   deployed with Prometheus Operator's CRD.
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus.
-- [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components metrics from AKS 
-- [gcp-sm](katalog/gcp-sm): Service Monitor to collect Kubernetes components metrics from GCP
-- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and alerts for 
-  Kubernetes components of unmanaged/on-promise clusters.
+- [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
+  metrics from AKS
+- [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
+  metrics from GKE
+- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
+  alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
   Kubernetes objects such as Deployments, Nodes and Pods.
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
@@ -46,7 +48,8 @@ All packages in this repository have following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
 - [Kubernetes](https://kubernetes.io) >= `v1.10.0`
-- [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages  #FIX LINK
+- [Furyctl](https://github.com/sighup-io/furyctl) package manager to install
+  Fury packages
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v1.0.10`
 
 
@@ -132,9 +135,9 @@ Kubernetes components:
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Google Kubernetes Engine (GKE)
-- Add `monitoring/gcp-sm` to `Furyfile.yml`.
+- Add `monitoring/gke-sm` to `Furyfile.yml`.
 - Download package with `furyctl install`
-- Add `./vendor/katalog/monitoring/gcp-sm` to `kustomization.yaml`.
+- Add `./vendor/katalog/monitoring/gke-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Azure Kubernetes Service (AKS)
@@ -159,4 +162,3 @@ go to [examples](examples) directory.
 ## License
 
 For license details please see [LICENSE](https://sighup.io/fury/license)
-
