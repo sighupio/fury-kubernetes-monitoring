@@ -1,4 +1,5 @@
 namespace: kube-system
 
-resources: 
-  - kubelet.yml
+resources:
+- apiserver.yml
+- kubelet.yml
