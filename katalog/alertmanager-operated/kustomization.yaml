@@ -12,4 +12,4 @@ secretGenerator:
     alertmanager.tmpl: "cat alertmanager.tmpl"
 
 generatorOptions:
-  disableNameSuffixHash: true
+  disableHash: true
