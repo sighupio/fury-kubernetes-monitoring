@@ -1,10 +1,10 @@
 # Monitoring Services with Prometheus ServiceMonitor
 
-This example shows how to define a ServiceMonitor resource to retrieve metrics from an application. As an example we use [prometheus-example-app](https://github.com/brancz/prometheus-example-app) which is a simple app for demonstration purposes. You can deploy it or you can replace it with your application and modify ServiceMonitor in order to monitor you own service. `prometheus-example-app` has following endpoints:
+This example shows how to define a ServiceMonitor resource to retrieve metrics from an application. As an example we use [prometheus-example-app](https://github.com/brancz/prometheus-example-app) which is a simple app for demonstration purposes. You can deploy it or you can replace it with your application and modify ServiceMonitor in order to monitor your own service. `prometheus-example-app` has following endpoints:
 
 - `/` results in a 200 response code. 
 - `/err` results in a 404 response code
-- `/metrics` simply counts 200 and 404 response codes.
+- `/metrics` simply returns total count for 200 and 404 response codes.
 
 
 0. Run furyctl to get packages: `furyctl install`
@@ -13,27 +13,26 @@ In `sm.yml` file:
 
 1. `name` and `labels` are set to identify the app that exposes metrics.
 
-2. Endpoints specifies where our application exposes metrics. `path` and `port` must match with the one defined in Service. Choose `interval` for scrape frequency as you want.
+2.  `endpoints` specifies where our application exposes metrics. `path` and `port` must match with the one defined in Service. Choose `interval` for scrape frequency as you want.
 
-3. `matchNames` must match namespace where your app is deployed and `matchLabels` must match your app's label(same one used in Service selector) in order to target correct application.
+3. `jobLabel`  is used to retrieve the prometheus job name.
 
-4. `jobLabel` must match the label of ServiceMonitor (see point 1) 
+4. `matchNames` must match namespace where your app is deployed and `matchLabels` must match your app's label(same one used in Service selector) in order to target correct application.
 
 In the example's folder:
 
-4. Run `make build` to see output of what is going to be deployed.
+5. Run `make build` to see what is going to be deployed.
 
-5. Once you're satisfied with generated output run `make deploy` to deploy app and ServiceMonitor on your cluster.
+6. Run `make deploy` to deploy app and it service monitor on your cluster.
 
-6. If you deploy our example application, make some HTTP GET requests to generate metrics, you can use `curl` for example. 
-But first, to access application from localhost:
+7. When app's pod status become Ready, make some HTTP GET requests to generate metrics, but first, to access application from localhost run:
 
 `$ kubectl proxy &`
 
-Then you can curl:
+Then you can use curl to make requests:
 
 ```
-$ curl -I 127.0.0.1:8080
+$ curl 127.0.0.1:8080
 
 HTTP/1.1 200 OK
 Date: Mon, 04 Feb 2019 15:36:22 GMT
@@ -42,7 +41,7 @@ Content-Type: text/plain; charset=utf-8
 ```
 
 ```
-$ curl -I 127.0.0.1:8080/err
+$ curl 127.0.0.1:8080/err
 
 HTTP/1.1 404 Not Found
 Date: Mon, 04 Feb 2019 15:36:12 GMT
@@ -63,7 +62,7 @@ http_requests_total{code="404",method="get"} 1
 version{version="v0.1.0"} 0
 ```
 
-Same results must appear in the Prometheus expression browser, to access it launch:
+Same results must appear in the Prometheus expression browser, to access it run:
 
 `$ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
 
