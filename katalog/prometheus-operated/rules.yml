@@ -1045,7 +1045,7 @@ spec:
       annotations:
         message: 'Device {{ $labels.device }} of node-exporter
           {{ $labels.namespace }}/{{ $labels.pod }} on instance
-          {{ $labels.instance }} has {{ printf "%0.0f" $value }}% free space.'
+          {{ $labels.instance }} has {{ printf "%0.0f" $value }}% used space.'
         doc: "This alert fires if in the last minute the filesystem usage
           was more than 85%."
       expr: |
