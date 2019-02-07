@@ -70,3 +70,13 @@ http_requests_total{code="404",method="get"} 1
 # TYPE version gauge
 version{version="v0.1.0"} 0
 ```
+Same results will appear in the Prometheus expression browser, to access it run:
+
+`$ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring`
+
+Then in the Prometheus browser, when you query for `http_requests_total{job="example-app"}` you will get corresponding results:
+
+```
+http_requests_total{code="200",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"}	1
+http_requests_total{code="404",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"} 1
+```  
