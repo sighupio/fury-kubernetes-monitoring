@@ -7,7 +7,7 @@ numeric time-series data with Prometheus integration.
 ## Image repository and tag
 
 * Grafana image: `grafana/grafana:5.3.4`
-* Grafana repo: https://github.com/grafana/grafana
+* Grafana repository: https://github.com/grafana/grafana
 * Grafana documentation: https://docs.grafana.org
 
 

@@ -1,4 +1,4 @@
-# Prometheus Operator 
+# Prometheus Operator
 
 Operators are application specific controllers for complex stateful
 applications. They are used to have more Kubernetes-native control over
@@ -30,7 +30,7 @@ The Operator acts on the following custom resource definitions
   Operator to deploy AlertManager instances.
 
 Operator takes care of Prometheus deployment and monitors Services as
-illustrated in this image from Prometheus Operator repo:
+illustrated in this image from Prometheus Operator repository:
 
 ![operator
 architecture](https://coreos.com/sites/default/files/inline-images/p1.png)

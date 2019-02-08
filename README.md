@@ -1,7 +1,7 @@
 # Fury Kubernetes Monitoring
 
-This repo contains all components necessary to deploy monitoring tools on top of
-Kubernetes. We use Prometheus, a very popular open source monitoring and
+This repository contains all components necessary to deploy monitoring tools on
+top of Kubernetes. We use Prometheus, a very popular open source monitoring and
 alerting toolkit for cloud-native applications. You can monitor both cluster
 itself and applications deployed on cluster via Prometheus. Alertmanager which
 makes part of Prometheus stack, handles alerts sent by Prometheus server and let
@@ -9,8 +9,8 @@ you manage alerts flexibly and route them through receiver integrations such as
 email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes
 Monitoring stack, you're going to have full control on your cluster. On
 Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus
-instances and to manage service monitoring and alerts. This repo contains a
-package to deploy Prometheus Operator and other packages to deploy Prometheus
+instances and to manage service monitoring and alerts. This repository contains
+a package to deploy Prometheus Operator and other packages to deploy Prometheus
 instances, rules, alerts and exporters. Packages with `-operated` postfix are
 deployed via Operator's CRD, therefore you need Prometheus Operator up and
 running to be able to deploy them.
@@ -152,7 +152,8 @@ files, leaving the original YAML untouched and usable as is. To learn how to
 create you customization layer with it please see the `kustomize`
 [repository](https://github.com/kubernetes-sigs/kustomize).
 
-For further details please refer to the single package directories in this repo.
+For further details please refer to the single package directories in this
+repository.
 
 ## Examples
 

@@ -1,4 +1,4 @@
-# Prometheus Operated 
+# Prometheus Operated
 
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined
 by [Prometheus Operator](../prometheus-operator).
@@ -22,7 +22,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 ## Image repository and tag
 
 * Prometheus image: `quay.io/prometheus/prometheus:v2.4.3`
-* Prometheus repo: https://github.com/prometheus/prometheus
+* Prometheus repository: https://github.com/prometheus/prometheus
 * Prometheus documentation: https://prometheus.io/docs/introduction/overview
 
 
@@ -38,7 +38,8 @@ Fury distribution Prometheus is deployed with following configuration:
 
 ## Deployment
 
-You can deploy Prometheus Operated by running following command in the root of the project:
+You can deploy Prometheus Operated by running following command in the root of
+the project:
 
 ```shell
 $ kustomize build | kubectl apply -f -

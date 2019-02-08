@@ -1,4 +1,4 @@
-# Kube State Metrics 
+# Kube State Metrics
 
 This package provides kube-state-metrics service which listens Kubernetes API
 server and generates metrics about the state of Kubernetes objects like
@@ -27,7 +27,8 @@ From kube-state-metrics
 ## Image repository and tag
 
 * kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v1.5.0`
-* kube-state-metrics repo: https://github.com/kubernetes/kube-state-metrics
+* kube-state-metrics repository:
+  https://github.com/kubernetes/kube-state-metrics
 
 
 ## Configuration
