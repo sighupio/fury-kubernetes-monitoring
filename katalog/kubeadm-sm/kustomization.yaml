@@ -4,6 +4,7 @@ resources:
 - apiserver.yml
 - controller-manager.yml
 - coredns.yml
+- etcd-metrics.yml
 - kubelet.yml
 - rules.yml
 - scheduler.yml
