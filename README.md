@@ -1,7 +1,7 @@
 # Fury Kubernetes Monitoring
 
 This repository contains all components necessary to deploy monitoring tools on
-top of Kubernetes. We use Prometheus, a very popular open source monitoring and
+top of Kubernetes. We use [Prometheus](https://prometheus.io/), a very popular open source monitoring and
 alerting toolkit for cloud-native applications. You can monitor both cluster
 itself and applications deployed on cluster via Prometheus. Alertmanager which
 makes part of Prometheus stack, handles alerts sent by Prometheus server and let
