@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-adapter
+  labels:
+    app: prometheus-adapter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-adapter
+  template:
+    metadata:
+      labels:
+        app: prometheus-adapter
+    spec:
+      serviceAccountName: prometheus-adapter
+      containers:
+      - name: prometheus-adapter
+        image: directxman12/k8s-prometheus-adapter-amd64:v0.5.0
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["all"]
+          runAsNonRoot: true
+          runAsUser: 10001
+        args:
+        - /adapter
+        - --secure-port=6443
+        - --cert-dir=/tmp/cert
+        - --logtostderr=true
+        - --prometheus-url=http://prometheus-k8s.monitoring:9090
+        - --metrics-relist-interval=45s
+        - --v=4
+        - --config=/etc/adapter/config.yml
+        ports:
+        - name: https
+          containerPort: 6443
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: https
+            scheme: HTTPS
+          initialDelaySeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: https
+            scheme: HTTPS
+        volumeMounts:
+        - mountPath: /etc/adapter/
+          name: config
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: prometheus-adapter
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-adapter
+  labels:
+    app: prometheus-adapter
+spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app: prometheus-adapter

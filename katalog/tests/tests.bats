@@ -44,6 +44,11 @@ apply (){
   [ "$status" -eq 0 ]
 }
 
+@test "testing prometheus-adapter apply" {
+  run apply katalog/prometheus-adapter
+  [ "$status" -eq 0 ]
+}
+
 @test "wait for apply to settle and dump state to dump.json" {
   max_retry=0
   echo "=====" $max_retry "=====" >&2
@@ -152,7 +157,7 @@ apply (){
     skip
   fi
   sleep 30
-  for dir in kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated prometheus-operator
+  for dir in kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated prometheus-operator prometheus-adapter
   do
     echo "# deleting katalog/$dir" >&3
     kustomize build katalog/$dir | kubectl delete -f - || true

@@ -1,0 +1,11 @@
+namespace: kube-system
+
+resources:
+- apiservice.yml
+- deploy.yml
+- rbac.yml
+
+configMapGenerator:
+- name: prometheus-adapter
+  files:
+  - config.yml
