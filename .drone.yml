@@ -41,7 +41,7 @@ steps:
       - push
 
   - name: integration-test
-    image: quay.io/sighup/kind:v0.3.0_v1.12.0_1.0.10
+    image: quay.io/sighup/kind:v0.4.0_v1.12.0_1.0.10
     pull: always
     depends_on: [ clone ]
     environment:
