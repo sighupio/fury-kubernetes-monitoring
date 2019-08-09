@@ -957,7 +957,8 @@ spec:
           are down.'
         doc: "This alert fires if more than 10% of the targets were down in the
           last 10 minutes."
-      expr: 100 * (count(up == 0) BY (job) / count(up) BY (job)) > 10
+      expr: |
+        100 * (count(up == 0) by (job,namespace) / count(up) by (job,namespace)) > 10
       for: 10m
       labels:
         severity: critical
