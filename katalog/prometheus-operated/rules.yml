@@ -1024,6 +1024,18 @@ spec:
       for: 15m
       labels:
         severity: warning
+    - alert: NodeCPUStuckInSystem
+      annotations:
+        message: '{{ $labels.instance }} spent more than half its CPU time in
+          System in the last 5 minutes'
+        doc: "This alert fires if CPU time in System mode calculated on a 5
+          minutes window for a given instance was more than 50% in the last 15
+          minutes."
+      expr: |
+        rate(node_cpu_seconds_total{mode="system"}[5m]) > 0.5
+      for: 15m
+      labels:
+        severity: warning
     - alert: NodeMemoryRunningFull
       annotations:
         message: 'Memory on node {{ $labels.instance }} is running full, current
