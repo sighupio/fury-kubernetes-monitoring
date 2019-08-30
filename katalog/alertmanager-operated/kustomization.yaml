@@ -4,12 +4,5 @@ resources:
   - deploy.yml
   - rbac.yml
   - sm.yml
+  - secret.yml
 
-# secretGenerator:
-# - name: alertmanager-main
-#   commands:
-#     alertmanager.yaml: "cat alertmanager.yaml"
-#     alertmanager.tmpl: "cat alertmanager.tmpl"
-
-# generatorOptions:
-#   disableHash: true
