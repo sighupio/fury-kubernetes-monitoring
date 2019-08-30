@@ -26,7 +26,7 @@ namespace in your Kubernetes cluster.
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
   deployed with Prometheus Operator's CRD.
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
-  deployed with Prometheus Operator's CRD.
+  deployed with Prometheus Operator's CRD, pay attention to change the [config](katalog/alertmanager-operated/secret.yml) as needed.
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus.
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
