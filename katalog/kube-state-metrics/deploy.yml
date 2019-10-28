@@ -1,28 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: kube-state-metrics
   labels:
     app: kube-state-metrics
-  name: kube-state-metrics
-  namespace: monitoring
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: kube-state-metrics
+  replicas: 1
   template:
     metadata:
       labels:
         app: kube-state-metrics
     spec:
+      serviceAccountName: kube-state-metrics
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
       containers:
-      - args:
-        - --host=0.0.0.0
-        - --port=8081
-        - --telemetry-host=0.0.0.0
-        - --telemetry-port=8082
-        image: quay.io/coreos/kube-state-metrics:v1.5.0
-        name: kube-state-metrics
+      - name: kube-state-metrics
+        image: quay.io/coreos/kube-state-metrics:v1.8.0
+        ports:
+        - name: http-metrics
+          containerPort: 8080
+        - name: telemetry
+          containerPort: 8081
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-metrics
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http-metrics
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
         resources:
           limits:
             cpu: 100m
@@ -30,7 +45,9 @@ spec:
           requests:
             cpu: 100m
             memory: 150Mi
-      - command:
+      - name: addon-resizer
+        image: quay.io/coreos/addon-resizer:1.8.4
+        command:
         - /pod_nanny
         - --container=kube-state-metrics
         - --cpu=100m
@@ -50,8 +67,6 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: quay.io/coreos/addon-resizer:1.0
-        name: addon-resizer
         resources:
           limits:
             cpu: 10m
@@ -59,26 +74,21 @@ spec:
           requests:
             cpu: 10m
             memory: 30Mi
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-      serviceAccountName: kube-state-metrics
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    k8s-app: kube-state-metrics
   name: kube-state-metrics
-  namespace: monitoring
+  labels:
+    app: kube-state-metrics
 spec:
   clusterIP: None
   ports:
-  - name: http-main
+  - name: http-metrics
+    port: 8080
+    targetPort: http-metrics
+  - name: telemetry
     port: 8081
-    targetPort: 8081
-  - name: http-self
-    port: 8082
-    targetPort: 8082
+    targetPort: telemetry
   selector:
     app: kube-state-metrics
