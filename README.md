@@ -22,13 +22,13 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources.
+  manage Prometheus and related resources. Version: **0.29.0**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
-  deployed with Prometheus Operator's CRD.
+  deployed with Prometheus Operator's CRD. Version: **2.7.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
-  deployed with Prometheus Operator's CRD, pay attention to change the [config](katalog/alertmanager-operated/secret.yml) as needed.
+  deployed with Prometheus Operator's CRD, pay attention to change the [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.16.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
-  collected by Prometheus.
+  collected by Prometheus. Version: **5.3.4**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
   metrics from AKS
 - [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
@@ -36,9 +36,9 @@ namespace in your Kubernetes cluster.
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods.
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.5.0**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
-  metrics exposed by \*NIX kernels.
+  metrics exposed by \*NIX kernels. Version: **0.16.0**
 
 You can click on each package to see its documentation.
 
