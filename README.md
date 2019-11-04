@@ -53,6 +53,18 @@ specific dependencies please visit the single package's documentation:
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v1.0.10`
 
 
+## Compatibility
+
+| Module Version / Kubernetes Version | 1.14.X | 1.15.X             |
+|-------------------------------------|--------|--------------------|
+| v1.0.0                              |        | :white_check_mark: |
+| v1.1.0                              |        | :white_check_mark: |
+
+- :white_check_mark: Compatible
+- :warning: Has issues
+- :x: Incompatible
+
+
 ## Deployment
 
 To start using Fury Kubernetes Monitoring, you need to use
