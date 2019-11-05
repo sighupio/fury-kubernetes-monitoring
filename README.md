@@ -56,7 +56,7 @@ specific dependencies please visit the single package's documentation:
 ## Compatibility
 
 | Module Version / Kubernetes Version | 1.14.X | 1.15.X             |
-|-------------------------------------|--------|--------------------|
+|-------------------------------------|:------:|:------------------:|
 | v1.0.0                              |        | :white_check_mark: |
 | v1.1.0                              |        | :white_check_mark: |
 
