@@ -40,13 +40,44 @@ steps:
       event:
       - push
 
-  - name: integration-test
-    image: quay.io/sighup/kind:v0.4.0_v1.12.0_1.0.10
+  - name: integration-test-1.16
+    image: quay.io/sighup/kind:v0.5.1_v1.16.2_3.2.2
     pull: always
     depends_on: [ clone ]
     environment:
       CLUSTER_HOST: docker
       TESTS: katalog/tests/tests.bats
+      NAME: "116"
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      event:
+      - push
+
+  - name: integration-test-1.15
+    image: quay.io/sighup/kind:v0.5.1_v1.15.3_3.2.2
+    pull: always
+    depends_on: [ clone ]
+    environment:
+      CLUSTER_HOST: docker
+      TESTS: katalog/tests/tests.bats
+      NAME: "115"
+    volumes:
+      - name: dockersock
+        path: /var/run
+    when:
+      event:
+      - push
+
+  - name: integration-test-1.14
+    image: quay.io/sighup/kind:v0.5.1_v1.14.6_3.2.2
+    pull: always
+    depends_on: [ clone ]
+    environment:
+      CLUSTER_HOST: docker
+      TESTS: katalog/tests/tests.bats
+      NAME: "114"
     volumes:
       - name: dockersock
         path: /var/run
