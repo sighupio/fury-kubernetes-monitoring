@@ -1,0 +1,10 @@
+namespace: monitoring
+
+resources:
+  - rbac.yml
+  - deploy.yml
+  - sm.yml
+
+images:
+- name: docker.io/bloomberg/goldpinger
+  newTag: 2.0.0
