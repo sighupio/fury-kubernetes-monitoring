@@ -26,9 +26,12 @@ namespace in your Kubernetes cluster.
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
   deployed with Prometheus Operator's CRD. Version: **2.7.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
-  deployed with Prometheus Operator's CRD, pay attention to change the [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.16.0**
+  deployed with Prometheus Operator's CRD, pay attention to change the
+[config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.16.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus. Version: **5.3.4**
+- [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alertings.
+Version: **2.0.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
   metrics from AKS
 - [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
