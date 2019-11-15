@@ -72,11 +72,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_cpu_usage_seconds_total{job=\"kubelet\",container_name!=\"POD\",container_name!=\"\",namespace=\"$namespace\",pod_name=\"$pod\",container_name=~\"$container\"}[1m])",
+          "expr": "rate(container_cpu_usage_seconds_total{job=\"kubelet\",container!=\"POD\",container!=\"\",namespace=\"$namespace\",pod=\"$pod\",container=~\"$container\"}[1m])",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{ pod_name }}/{{ container_name }} current",
+          "legendFormat": "{{ pod }}/{{ container }} current",
           "refId": "A"
         },
         {
@@ -182,11 +182,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{job=\"kubelet\",container_name!=\"POD\",container_name!=\"\",namespace=\"$namespace\",pod_name=\"$pod\",container_name=~\"$container\"}",
+          "expr": "container_memory_usage_bytes{job=\"kubelet\",container!=\"POD\",container!=\"\",namespace=\"$namespace\",pod=\"$pod\",container=~\"$container\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{ pod_name }}/{{ container_name }} current",
+          "legendFormat": "{{ pod }}/{{ container }} current",
           "refId": "A"
         },
         {
@@ -292,7 +292,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod_name) (rate(container_network_transmit_bytes_total{job=\"kubelet\",namespace=\"$namespace\",pod_name=\"$pod\"}[1m]))",
+          "expr": "sum by (namespace,pod) (rate(container_network_transmit_bytes_total{job=\"kubelet\",namespace=\"$namespace\",pod=\"$pod\"}[1m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -300,7 +300,7 @@
           "refId": "B"
         },
         {
-          "expr": "-(sum by (namespace,pod_name) (rate(container_network_receive_bytes_total{job=\"kubelet\",namespace=\"$namespace\",pod_name=\"$pod\"}[1m])))",
+          "expr": "-(sum by (namespace,pod) (rate(container_network_receive_bytes_total{job=\"kubelet\",namespace=\"$namespace\",pod=\"$pod\"}[1m])))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
