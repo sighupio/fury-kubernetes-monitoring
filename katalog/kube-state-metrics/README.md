@@ -26,7 +26,7 @@ From kube-state-metrics
 
 ## Image repository and tag
 
-* kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v1.5.0`
+* kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v1.8.0`
 * kube-state-metrics repository:
   https://github.com/kubernetes/kube-state-metrics
 
@@ -35,9 +35,9 @@ From kube-state-metrics
 
 Fury distribution kube-state-metrics is deployed with following configuration:
 - Resource limits are `100m` for CPU and `150Mi` for memory
-- Listens on port `8081`
-- Exposes kubernetes-related metrics on port `8081` and metrics about itself on
-  port `8082`
+- Listens on port `8080`
+- Exposes kubernetes-related metrics on port `8080` and metrics about itself on
+  port `8081`
 - Metrics are scraped by Prometheus with `30s` intervals
 
 
