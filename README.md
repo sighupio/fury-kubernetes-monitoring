@@ -93,6 +93,8 @@ bases:
     version: master
   - name: monitoring/grafana
     version: master
+  - name: monitoring/goldpinger
+    version: master
 ```
 and execute
 ```bash
@@ -127,6 +129,7 @@ bases:
 - ./vendor/katalog/monitoring/node-exporter
 - ./vendor/katalog/monitoring/kube-state-metrics
 - ./vendor/katalog/monitoring/grafana
+- ./vendor/katalog/monitoring/goldpinger
 ```
 
 See `kustomize`
