@@ -16,6 +16,8 @@ configMapGenerator:
     - dashboards/kubernetes-nodes.json
     - dashboards/kubernetes-pods.json
     - dashboards/kubernetes-statefulsets.json
+  - name: grafana-dashboard-definitions-goldpinger
+    files:
     - dashboards/goldpinger.json
   - name: grafana-dashboard-definitions-gluster
     files:

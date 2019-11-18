@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: quay.io/sighup/katalog:1.0.10_3
+    image: quay.io/sighup/katalog:3.2.2_3
     pull: always
     depends_on: [ clone ]
     commands:

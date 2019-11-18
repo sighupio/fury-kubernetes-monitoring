@@ -1,9 +1,9 @@
-# Goldpinger
+# Goldpinger
 
 **Goldpinger** makes calls between its instances for visibility and alerting. It runs as a `DaemonSet` on `Kubernetes`
 and produces `Prometheus` metrics that can be scraped, visualised and alerted on.
 
-*Source: *[bloomberg/goldpinger](https://github.com/bloomberg/goldpinger/tree/2.0.0).
+*Source:* [bloomberg/goldpinger](https://github.com/bloomberg/goldpinger/tree/2.0.0).
 
 ### Image repository and tag
 
