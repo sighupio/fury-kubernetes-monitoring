@@ -79,7 +79,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\", namespace=\"$namespace\", pod_name=~\"$statefulset.*\", container_name!=\"POD\", container_name!=\"\"}[3m]))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\", namespace=\"$namespace\", pod=~\"$statefulset.*\", container!=\"POD\", container!=\"\"}[3m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -160,7 +160,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(container_memory_usage_bytes{job=\"kubelet\", namespace=\"$namespace\", pod_name=~\"$statefulset.*\", container_name!=\"POD\", container_name!=\"\"})",
+          "expr": "sum(container_memory_usage_bytes{job=\"kubelet\", namespace=\"$namespace\", pod=~\"$statefulset.*\", container!=\"POD\", container!=\"\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -241,7 +241,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_network_transmit_bytes_total{job=\"kubelet\", namespace=\"$namespace\", pod_name=~\"$statefulset.*\"}[3m])) + sum(rate(container_network_receive_bytes_total{namespace=\"$namespace\",pod_name=~\"$statefulset.*\"}[3m]))",
+          "expr": "sum(rate(container_network_transmit_bytes_total{job=\"kubelet\", namespace=\"$namespace\", pod=~\"$statefulset.*\"}[3m])) + sum(rate(container_network_receive_bytes_total{namespace=\"$namespace\",pod=~\"$statefulset.*\"}[3m]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -767,7 +767,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod) (label_replace(rate(container_cpu_usage_seconds_total{job=\"kubelet\",container_name!=\"POD\",container_name!=\"\"}[1m]), \"pod\", \"$1\", \"pod_name\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
+          "expr": "sum by (namespace,pod) (label_replace(rate(container_cpu_usage_seconds_total{job=\"kubelet\",container!=\"POD\",container!=\"\"}[1m]), \"pod\", \"$1\", \"pod\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -866,7 +866,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod) (label_replace(container_memory_usage_bytes{job=\"kubelet\",container_name!=\"POD\",container_name!=\"\"}, \"pod\", \"$1\", \"pod_name\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
+          "expr": "sum by (namespace,pod) (label_replace(container_memory_usage_bytes{job=\"kubelet\",container!=\"POD\",container!=\"\"}, \"pod\", \"$1\", \"pod\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1150,7 +1150,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod) (label_replace(rate(container_network_transmit_bytes_total{job=\"kubelet\"}[1m]), \"pod\", \"$1\", \"pod_name\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))\n + \nsum by (namespace,pod) (label_replace(rate(container_network_receive_bytes_total{job=\"kubelet\"}[1m]), \"pod\", \"$1\", \"pod_name\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
+          "expr": "sum by (namespace,pod) (label_replace(rate(container_network_transmit_bytes_total{job=\"kubelet\"}[1m]), \"pod\", \"$1\", \"pod\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))\n + \nsum by (namespace,pod) (label_replace(rate(container_network_receive_bytes_total{job=\"kubelet\"}[1m]), \"pod\", \"$1\", \"pod\", \"(.*)\") * on (namespace,pod) group_left(created_by_name) (kube_pod_info{created_by_name=~\"$statefulset.*\",namespace=\"$namespace\"}))",
           "format": "time_series",
           "hide": false,
           "interval": "",
