@@ -56,8 +56,8 @@ apply (){
 }
 
 @test "wait for apply to settle and dump state to dump.json" {
-  echo "Waiting 30 seconds to prometheus-operator to spin up alertmanager-operated and prometheus-operated" >&2
-  sleep 30
+  echo "Waiting 120 seconds to prometheus-operator to spin up alertmanager-operated and prometheus-operated" >&2
+  sleep 120
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&2
