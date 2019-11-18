@@ -442,11 +442,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod_name) (rate(container_cpu_usage_seconds_total{job=\"kubelet\", container_name!=\"POD\", container_name!=\"\"}[1m]) * on(namespace, pod_name) group_left(node) label_replace(node_namespace_pod:kube_pod_info:{node=\"$node\"}, \"pod_name\", \"$1\", \"pod\", \"(.*)\"))",
+          "expr": "sum by (namespace,pod) (rate(container_cpu_usage_seconds_total{job=\"kubelet\", container!=\"POD\", container!=\"\"}[1m]) * on(namespace, pod) group_left(node) label_replace(node_namespace_pod:kube_pod_info:{node=\"$node\"}, \"pod\", \"$1\", \"pod\", \"(.*)\"))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{ namespace }}/{{ pod_name }}",
+          "legendFormat": "{{ namespace }}/{{ pod }}",
           "refId": "A"
         }
       ],
@@ -831,11 +831,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (namespace,pod_name) (container_memory_usage_bytes{job=\"kubelet\", container_name!=\"POD\", container_name!=\"\"} * on(namespace, pod_name) group_left(node) label_replace(node_namespace_pod:kube_pod_info:{node=\"$node\"}, \"pod_name\", \"$1\", \"pod\", \"(.*)\"))",
+          "expr": "sum by (namespace,pod) (container_memory_usage_bytes{job=\"kubelet\", container!=\"POD\", container!=\"\"} * on(namespace, pod) group_left(node) label_replace(node_namespace_pod:kube_pod_info:{node=\"$node\"}, \"pod\", \"$1\", \"pod\", \"(.*)\"))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
-          "legendFormat": "{{ namespace }}/{{ pod_name }}",
+          "legendFormat": "{{ namespace }}/{{ pod }}",
           "refId": "A"
         }
       ],
