@@ -74,10 +74,9 @@ metadata:
   labels:
     k8s-app: goldpinger
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 8080
-      nodePort: 31080
       name: http
   selector:
     k8s-app: goldpinger
