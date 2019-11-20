@@ -53,6 +53,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/nginx
           name: grafana-dashboard-definitions-nginx
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/goldpinger
+          name: grafana-dashboard-definitions-goldpinger
+          readOnly: false
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
@@ -74,6 +77,9 @@ spec:
       - configMap:
           name: grafana-dashboard-definitions-nginx
         name: grafana-dashboard-definitions-nginx
+      - configMap:
+          name: grafana-dashboard-definitions-goldpinger
+        name: grafana-dashboard-definitions-goldpinger
 ---
 apiVersion: v1
 kind: Service
