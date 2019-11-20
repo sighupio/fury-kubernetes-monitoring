@@ -14,7 +14,6 @@ spec:
       labels:
         k8s-app: goldpinger
     spec:
-      serviceAccount: goldpinger
       serviceAccountName: goldpinger
       tolerations:
         - operator: Exists
