@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: quay.io/sighup/katalog:1.0.10_3
+    image: quay.io/sighup/katalog:3.2.2_3
     pull: always
     depends_on: [ clone ]
     commands:
@@ -58,7 +58,7 @@ steps:
   - name: integration-test-1.15
     image: quay.io/sighup/kind:v0.5.1_v1.15.3_3.2.2
     pull: always
-    depends_on: [ clone ]
+    depends_on: [ integration-test-1.14 ]
     environment:
       CLUSTER_HOST: docker
       TESTS: katalog/tests/tests.bats
@@ -73,7 +73,7 @@ steps:
   - name: integration-test-1.16
     image: quay.io/sighup/kind:v0.5.1_v1.16.2_3.2.2
     pull: always
-    depends_on: [ clone ]
+    depends_on: [ integration-test-1.15 ]
     environment:
       CLUSTER_HOST: docker
       TESTS: katalog/tests/tests.bats

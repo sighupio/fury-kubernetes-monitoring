@@ -24,6 +24,11 @@ apply (){
   [ "$status" -eq 0 ]
 }
 
+@test "testing goldpinger apply" {
+  run apply katalog/goldpinger
+  [ "$status" -eq 0 ]
+}
+
 @test "testing alertmanager-operated apply" {
   patch(){
     kubectl patch alertmanager main -n monitoring -p='[{"op": "add", "path": "/spec/replicas", "value": 2}]' --type json
@@ -51,8 +56,8 @@ apply (){
 }
 
 @test "wait for apply to settle and dump state to dump.json" {
-  echo "Waiting 30 seconds to prometheus-operator to spin up alertmanager-operated and prometheus-operated" >&2
-  sleep 30
+  echo "Waiting 120 seconds to prometheus-operator to spin up alertmanager-operated and prometheus-operated" >&2
+  sleep 120
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&2
@@ -112,6 +117,24 @@ apply (){
 @test "check node-exporter status" {
   test(){
     kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "node-exporter" and .status.desiredNumberScheduled != .status.numberReady )'
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
+
+@test "check goldpinger exists" {
+  test(){
+    kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "goldpinger" )'
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" != "" ]
+}
+
+@test "check goldpinger status" {
+  test(){
+    kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "goldpinger" and .status.desiredNumberScheduled != .status.numberReady )'
   }
   run test
   echo "$output" | jq '.' >&2
