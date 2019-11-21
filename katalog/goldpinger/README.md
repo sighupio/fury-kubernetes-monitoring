@@ -21,8 +21,8 @@ and produces `Prometheus` metrics that can be scraped, visualised and alerted on
 Fury distribution goldpinger is deployed with following configuration:
 - Resource limits is `80Mi` for memory.
 - Listens on port `8080`.
-- Exposes prometheus metrics on port `8080`.
-- Exposes it's own dashboard as a NodePort `31080`.
+- Exposes it's own dashboard on port `8080`, path: `/`.
+- Exposes prometheus metrics on port `8080`, path: `/metrics`.
 - Metrics are scraped by Prometheus with `30s` intervals.
 
 ## Deployment
