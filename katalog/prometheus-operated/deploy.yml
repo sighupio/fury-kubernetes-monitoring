@@ -12,36 +12,26 @@ spec:
       namespace: monitoring
       port: web
   baseImage: quay.io/prometheus/prometheus
-  replicas: 1
+  nodeSelector:
+    kubernetes.io/os: linux
+  podMonitorNamespaceSelector: {}
+  podMonitorSelector: {}
+  replicas: 2
   resources:
     requests:
-      cpu: 500m
       memory: 400Mi
-    limits:
-      cpu: 2000m
-      memory: 2Gi
-  retention: 30d
   ruleSelector:
     matchLabels:
       prometheus: k8s
       role: alert-rules
-  ruleNamespaceSelector: {}
-  serviceAccountName: prometheus-k8s
-  serviceMonitorNamespaceSelector: {}
-  serviceMonitorSelector: {}
   securityContext:
     fsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
-  storage:
-    volumeClaimTemplate:
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 50Gi
-  version: v2.7.1
+  serviceAccountName: prometheus-k8s
+  serviceMonitorNamespaceSelector: {}
+  serviceMonitorSelector: {}
+  version: v2.15.2
 ---
 apiVersion: v1
 kind: Service
