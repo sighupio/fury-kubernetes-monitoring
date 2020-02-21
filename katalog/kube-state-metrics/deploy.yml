@@ -18,6 +18,7 @@ spec:
         app.kubernetes.io/version: v1.9.4
     spec:
       containers:
+      - name: kube-state-metrics
       - image: quay.io/coreos/kube-state-metrics:v1.9.4
         livenessProbe:
           httpGet:
@@ -25,7 +26,6 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           timeoutSeconds: 5
-        name: kube-state-metrics
         ports:
         - containerPort: 8080
           name: http-metrics
@@ -37,11 +37,48 @@ spec:
             port: 8081
           initialDelaySeconds: 5
           timeoutSeconds: 5
-        securityContext:
-          runAsUser: 65534
+        resources:
+          limits:
+            cpu: 100m
+            memory: 150Mi
+          requests:
+            cpu: 100m
+            memory: 150Mi
+      - name: addon-resizer
+      - image: k8s.gcr.io/addon-resizer:1.8.4
+        command:
+        - /pod_nanny
+        - --container=kube-state-metrics
+        - --cpu=100m
+        - --extra-cpu=2m
+        - --memory=150Mi
+        - --extra-memory=30Mi
+        - --threshold=5
+        - --deployment=kube-state-metrics
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        resources:
+          limits:
+            cpu: 10m
+            memory: 30Mi
+          requests:
+            cpu: 10m
+            memory: 30Mi
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: kube-state-metrics
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
 ---
 apiVersion: v1
 kind: Service
