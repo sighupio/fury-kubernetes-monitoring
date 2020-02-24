@@ -96,6 +96,5 @@ configMapGenerator:
 
 secretGenerator:
   - name: grafana-datasources
-    commands:
-       prometheus.yaml: "cat prometheus.yaml"
-
+    files:
+      - prometheus.yaml=prometheus.yaml
