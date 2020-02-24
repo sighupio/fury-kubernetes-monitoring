@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: prom-rules
-    image: quay.io/sighup/prom-rules:3.8_v0.1.0_2.5.0_2.2.0
+    image: quay.io/sighup/prom-rules:3.11_v0.2.2_2.16.0_2.3.0
     pull: always
     depends_on: [ clone ]
     commands:
