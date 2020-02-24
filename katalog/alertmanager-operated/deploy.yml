@@ -10,7 +10,7 @@ spec:
   nodeSelector:
     kubernetes.io/os: linux
   replicas: 3
-  esources:
+  resources:
     limits:
       cpu: 500m
       memory: 512Mi
