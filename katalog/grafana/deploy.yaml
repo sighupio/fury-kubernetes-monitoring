@@ -18,6 +18,11 @@ spec:
       containers:
       - image: grafana/grafana:6.6.0
         name: grafana
+        env:
+          - name: GF_AUTH_ANONYMOUS_ENABLED
+            value: "true"
+          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+            value: "Admin"
         ports:
         - containerPort: 3000
           name: http
