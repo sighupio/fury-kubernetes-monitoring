@@ -90,9 +90,6 @@ configMapGenerator:
   - name: grafana-dashboard-definitions-nginx
     files:
     - dashboards/nginx-ingress.json
-#  - name: grafana-datasources
-#    files:
-#    - prometheus.yaml
 
 
 secretGenerator:
