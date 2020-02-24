@@ -4,6 +4,10 @@ resources:
   - deploy.yaml
   - rbac.yaml
 
+images:
+  - name: grafana/grafana
+    newTag: 6.6.2
+
 configMapGenerator:
   - name: grafana-dashboards
     files:

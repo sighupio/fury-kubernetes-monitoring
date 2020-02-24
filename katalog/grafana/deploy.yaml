@@ -16,7 +16,7 @@ spec:
         app: grafana
     spec:
       containers:
-      - image: grafana/grafana:6.6.0
+      - image: grafana/grafana
         name: grafana
         env:
           - name: GF_AUTH_ANONYMOUS_ENABLED
