@@ -16,7 +16,7 @@ configMapGenerator:
   - name: grafana-dashboard-controller-manager
     files:
     - grafana-dashboard-controller-manager.json
-  - name: rafana-dashboard-k8s-resources-cluster
+  - name: grafana-dashboard-k8s-resources-cluster
     files:
     - grafana-dashboard-k8s-resources-cluster.json
   - name: grafana-dashboard-k8s-resources-namespace
@@ -31,7 +31,7 @@ configMapGenerator:
   - name: grafana-dashboard-k8s-resources-workload
     files:
     - grafana-dashboard-k8s-resources-workload.json
-  - name: rafana-dashboard-k8s-resources-workloads-namespace
+  - name: grafana-dashboard-k8s-resources-workloads-namespace
     files:
     - grafana-dashboard-k8s-resources-workloads-namespace.json
   - name: grafana-dashboard-kubelet
