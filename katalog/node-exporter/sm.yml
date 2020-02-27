@@ -4,7 +4,6 @@ metadata:
   labels:
     k8s-app: node-exporter
   name: node-exporter
-  namespace: monitoring
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token

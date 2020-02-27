@@ -4,7 +4,6 @@ metadata:
   labels:
     app: node-exporter
   name: node-exporter
-  namespace: monitoring
 spec:
   selector:
     matchLabels:
@@ -94,7 +93,6 @@ metadata:
   labels:
     k8s-app: node-exporter
   name: node-exporter
-  namespace: monitoring
 spec:
   clusterIP: None
   ports:

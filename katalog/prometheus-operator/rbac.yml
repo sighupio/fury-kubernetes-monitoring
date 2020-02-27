@@ -113,4 +113,3 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.36.0
   name: prometheus-operator
-  namespace: monitoring

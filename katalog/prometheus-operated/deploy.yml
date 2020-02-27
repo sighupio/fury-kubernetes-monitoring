@@ -4,7 +4,6 @@ metadata:
   labels:
     prometheus: k8s
   name: k8s
-  namespace: monitoring
 spec:
   alerting:
     alertmanagers:
@@ -53,7 +52,6 @@ metadata:
   labels:
     prometheus: k8s
   name: prometheus-k8s
-  namespace: monitoring
 spec:
   ports:
   - name: web

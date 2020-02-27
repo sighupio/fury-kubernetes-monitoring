@@ -5,7 +5,6 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: v1.9.4
   name: kube-state-metrics
-  namespace: monitoring
 spec:
   endpoints:
   - honorLabels: true

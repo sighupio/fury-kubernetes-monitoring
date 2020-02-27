@@ -4,7 +4,6 @@ metadata:
   labels:
     app: grafana
   name: grafana
-  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -231,7 +230,6 @@ metadata:
   labels:
     app: grafana
   name: grafana
-  namespace: monitoring
 spec:
   ports:
   - name: http
@@ -244,7 +242,6 @@ spec:
   kind: ServiceMonitor
   metadata:
     name: grafana
-    namespace: monitoring
   spec:
     endpoints:
     - interval: 30s

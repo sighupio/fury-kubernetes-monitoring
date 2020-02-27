@@ -12,6 +12,10 @@ configMapGenerator:
   - name: grafana-dashboards
     files:
     - dashboards.yaml
+  - name: grafana-dashboard-definitions-k8s
+    files:
+    - dashboards/etcd.json
+    - dashboards/coredns.json
   - name: grafana-dashboard-apiserver
     files:
     - dashboards/grafana-dashboard-apiserver.json
