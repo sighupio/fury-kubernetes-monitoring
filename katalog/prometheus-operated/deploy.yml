@@ -8,7 +8,6 @@ spec:
   alerting:
     alertmanagers:
     - name: alertmanager-main
-      namespace: monitoring
       port: web
   baseImage: quay.io/prometheus/prometheus
   nodeSelector:
