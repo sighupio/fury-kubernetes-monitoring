@@ -39,7 +39,7 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 50Gi
+            storage: 150Gi
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
