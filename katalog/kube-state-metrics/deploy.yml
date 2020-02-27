@@ -22,7 +22,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 8080
+            port: http-metrics
           initialDelaySeconds: 5
           timeoutSeconds: 5
         ports:
@@ -33,7 +33,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: 8081
+            port: telemetry
           initialDelaySeconds: 5
           timeoutSeconds: 5
         resources:
