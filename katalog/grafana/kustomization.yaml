@@ -1,8 +1,8 @@
 namespace: monitoring
 
 resources:
-  - deploy.yaml
-  - rbac.yaml
+  - deploy.yml
+  - rbac.yml
 
 images:
   - name: grafana/grafana

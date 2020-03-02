@@ -4,6 +4,7 @@ metadata:
   labels:
     alertmanager: main
   name: main
+  namespace: monitoring
 spec:
   baseImage: quay.io/prometheus/alertmanager
   nodeSelector:
