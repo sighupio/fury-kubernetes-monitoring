@@ -19,6 +19,15 @@ apply (){
   [ "$status" -eq 0 ]
 }
 
+@test "testing metrics-server apply" {
+  run apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1"
+  cert_manager_status="$status"
+  sleep 20
+  run apply katalog/metrics-server
+  metrics_server_status="$status"
+  [ "$cert_manager_status" -eq 0 ] && [ "$metrics_server_status" -eq 0 ]
+}
+
 @test "testing node-exporter apply" {
   run apply katalog/node-exporter
   [ "$status" -eq 0 ]
@@ -159,6 +168,24 @@ apply (){
   [ "$output" == "" ]
 }
 
+@test "check metrics-server exists" {
+  test(){
+    kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "metrics-server")'
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" != "" ]
+}
+
+@test "check metrics-server status" {
+  test(){
+    kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "metrics-server" and .status.replicas != .status.availableReplicas )'
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
+
 @test "check prometheus-operated exists" {
   test(){
       kubectl get all --all-namespaces -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "prometheus-k8s")'
@@ -183,7 +210,15 @@ apply (){
     skip
   fi
   sleep 30
-  for dir in kube-state-metrics node-exporter alertmanager-operated grafana kubeadm-sm prometheus-operated prometheus-operator
+  for dir in "alertmanager-operated" \
+    "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1" \
+    "grafana" \
+    "kube-state-metrics" \
+    "kubeadm-sm" \
+    "metrics-server" \
+    "node-exporter" \
+    "prometheus-operated" \
+    "prometheus-operator"
   do
     echo "# deleting katalog/$dir" >&3
     kustomize build katalog/$dir | kubectl delete -f - || true
