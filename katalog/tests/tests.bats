@@ -20,7 +20,11 @@ apply (){
 }
 
 @test "testing metrics-server apply" {
-  run apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1"
+  test() {
+   apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1" || apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1"
+   sleep 20
+  }
+  run test
   cert_manager_status="$status"
   sleep 20
   run apply katalog/metrics-server
