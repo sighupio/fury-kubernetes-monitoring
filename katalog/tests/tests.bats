@@ -43,14 +43,13 @@ apply (){
 }
 
 @test "testing alertmanager-operated apply" {
-  patch(){
-    kubectl patch alertmanager main -n monitoring -p='[{"op": "add", "path": "/spec/replicas", "value": 2}]' --type json
-  }
+  # patch(){
+  #   kubectl patch alertmanager main -n monitoring -p='[{"op": "add", "path": "/spec/replicas", "value": 2}]' --type json
+  # }
   run apply katalog/alertmanager-operated
-  apply_result="$status"
-  run patch
-  patch_result="$status"
-  [ "$apply_result" -eq 0 ] && [ "$patch_result" -eq 0 ]
+  # run patch
+  # patch_result="$status"
+  [ "$status" -eq 0 ]
 }
 
 @test "testing grafana apply" {
