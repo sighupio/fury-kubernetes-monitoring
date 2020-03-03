@@ -7,7 +7,7 @@ metadata:
 spec:
   endpoints:
   - interval: 30s
-    port: http-metrics
+    port: metrics
   jobLabel: k8s-app
   namespaceSelector:
     matchNames:
