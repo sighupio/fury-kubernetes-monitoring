@@ -4,11 +4,10 @@ metadata:
   labels:
     k8s-app: kube-scheduler
   name: kube-scheduler
-  namespace: monitoring
 spec:
   endpoints:
   - interval: 30s
-    port: metrics
+    port: http-metrics
   jobLabel: k8s-app
   namespaceSelector:
     matchNames:
