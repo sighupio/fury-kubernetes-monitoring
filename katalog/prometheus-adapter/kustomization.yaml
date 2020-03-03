@@ -3,7 +3,6 @@ namespace: monitoring
 resources:
   - deploy.yml
   - rbac.yml
-  - apiservice.yml
 
 configMapGenerator:
   - name: adapter-config
