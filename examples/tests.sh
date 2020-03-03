@@ -1,3 +1,5 @@
+#!/usr/bin/env bats
+
 @test "testing kustomize build alertmanager-configuration" {
   cd examples/alertmanager-configuration
   furyctl install

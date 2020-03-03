@@ -51,7 +51,7 @@ steps:
     depends_on: [ clone ]
     commands:
       - git config --global url."https://github.com/".insteadOf ssh://git@github.com
-      - bats examples/tests.bats
+      - bats -t examples/tests.sh
     when:
       event:
       - push
@@ -99,7 +99,7 @@ steps:
       - export CLUSTER_NAME=116
       - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-116
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -172,7 +172,7 @@ steps:
       - export CLUSTER_NAME=115
       - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-115
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -245,7 +245,7 @@ steps:
       - export CLUSTER_NAME=114
       - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-114
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
