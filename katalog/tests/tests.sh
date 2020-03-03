@@ -4,7 +4,7 @@ load ./helper
 
 @test "Applying prometheus-operator, cert-manager CRDs and cert-manager" {
   info
-  kubectl apply -f katalog/prometheus-operator/crd-prometheus.yml
+  kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
   kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/master/katalog/cert-manager/cert-manager-controller/crd.yml
   apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1"
 }
@@ -154,7 +154,7 @@ load ./helper
 @test "node-exporter is Running" {
   info
   test() {
-    kubectl get pods -l app=node-exporter -o json -n kube-system | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app=node-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
   loop_it test 60 10
   status=${loop_it_result}
