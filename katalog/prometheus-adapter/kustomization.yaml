@@ -1,11 +1,11 @@
 namespace: monitoring
 
 resources:
-- deploy.yml
-- rbac.yml
-- apiservice.yml
+  - deploy.yml
+  - rbac.yml
+  - apiservice.yml
 
 configMapGenerator:
-    - name: adapter-config
-      files:
-      - configmap.yml
+  - name: adapter-config
+    files:
+      - config.yaml=config.yaml
