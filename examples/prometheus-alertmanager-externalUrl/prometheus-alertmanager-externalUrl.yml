@@ -4,6 +4,7 @@ metadata:
   labels:
     prometheus: k8s
   name: k8s
+  namespace: monitoring
 spec:
   externalUrl: "http://prometheus.k8s.sighup.io/"
 ---
@@ -11,5 +12,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
 metadata:
   name: main
+  namespace: monitoring
 spec:
   externalUrl: "http://alertmanager.k8s.sighup.io/"
