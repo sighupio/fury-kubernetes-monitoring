@@ -1,33 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: kube-state-metrics
   labels:
     app: kube-state-metrics
-  name: kube-state-metrics
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: kube-state-metrics
+  replicas: 1
   template:
     metadata:
       labels:
         app: kube-state-metrics
     spec:
+      serviceAccountName: kube-state-metrics
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
       containers:
       - name: kube-state-metrics
-        image: quay.io/coreos/kube-state-metrics:v1.9.4
+        image: quay.io/coreos/kube-state-metrics:v1.9.5
+        ports:
+        - name: http-metrics
+          containerPort: 8080
+        - name: telemetry
+          containerPort: 8081
         livenessProbe:
           httpGet:
             path: /healthz
             port: http-metrics
           initialDelaySeconds: 5
           timeoutSeconds: 5
-        ports:
-        - containerPort: 8080
-          name: http-metrics
-        - containerPort: 8081
-          name: telemetry
         readinessProbe:
           httpGet:
             path: /
@@ -41,19 +45,13 @@ spec:
           requests:
             cpu: 100m
             memory: 150Mi
-      nodeSelector:
-        kubernetes.io/os: linux
-      serviceAccountName: kube-state-metrics
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  name: kube-state-metrics
   labels:
     app: kube-state-metrics
-  name: kube-state-metrics
 spec:
   clusterIP: None
   ports:
