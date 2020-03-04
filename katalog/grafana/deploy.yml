@@ -18,10 +18,10 @@ spec:
       - image: grafana/grafana
         name: grafana
         env:
-          - name: GF_AUTH_ANONYMOUS_ENABLED
-            value: "true"
-          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-            value: "Admin"
+        - name: GF_AUTH_ANONYMOUS_ENABLED
+          value: "true"
+        - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+          value: "Admin"
         ports:
         - containerPort: 3000
           name: http
@@ -39,12 +39,16 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/grafana
           name: grafana-storage
+          readOnly: false
         - mountPath: /etc/grafana/provisioning/datasources
           name: grafana-datasources
+          readOnly: false
         - mountPath: /etc/grafana/provisioning/dashboards
           name: grafana-dashboards
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/k8s
           name: grafana-dashboard-definitions-k8s
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/apiserver
           name: grafana-dashboard-apiserver
         - mountPath: /grafana-dashboard-definitions/0/cluster-total
@@ -95,10 +99,13 @@ spec:
           name: grafana-dashboard-workload-total
         - mountPath: /grafana-dashboard-definitions/0/gluster
           name: grafana-dashboard-definitions-gluster
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/nginx
           name: grafana-dashboard-definitions-nginx
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/goldpinger
           name: grafana-dashboard-definitions-goldpinger
+          readOnly: false
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -213,14 +220,20 @@ spec:
   selector:
     app: grafana
 ---
-  apiVersion: monitoring.coreos.com/v1
-  kind: ServiceMonitor
-  metadata:
-    name: grafana
-  spec:
-    endpoints:
-    - interval: 30s
-      port: http
-    selector:
-      matchLabels:
-        app: grafana
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: grafana
+  name: grafana
+spec:
+  endpoints:
+  - interval: 30s
+    port: http
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app: grafana
