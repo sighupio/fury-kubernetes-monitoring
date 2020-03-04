@@ -16,6 +16,7 @@ steps:
     when:
       event:
       - push
+      - tag
 
 ---
 kind: pipeline
@@ -36,6 +37,7 @@ steps:
     when:
       event:
       - push
+      - tag
 
 ---
 kind: pipeline
