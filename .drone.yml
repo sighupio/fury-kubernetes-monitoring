@@ -28,11 +28,10 @@ platform:
 
 steps:
   - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.1.3_3.2.2
+    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
     pull: always
     depends_on: [ clone ]
     commands:
-      - git config --global url."https://github.com/".insteadOf ssh://git@github.com
       - bats -t examples/tests.sh
     when:
       event:
