@@ -42,6 +42,9 @@ Version: **2.0.0**
   Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.8.0**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
   metrics exposed by \*NIX kernels. Version: **0.16.0**
+- [metrics-server](katalog/metrics-server): Resource metrics collection from
+  kubelet and exposition through [Metrics API](https://github.com/kubernetes/metrics).
+  Version: **0.3.6**
 
 You can click on each package to see its documentation.
 
