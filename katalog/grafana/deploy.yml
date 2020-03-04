@@ -39,16 +39,12 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/grafana
           name: grafana-storage
-          readOnly: false
         - mountPath: /etc/grafana/provisioning/datasources
           name: grafana-datasources
-          readOnly: false
         - mountPath: /etc/grafana/provisioning/dashboards
           name: grafana-dashboards
-          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/k8s
           name: grafana-dashboard-definitions-k8s
-          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/apiserver
           name: grafana-dashboard-apiserver
         - mountPath: /grafana-dashboard-definitions/0/cluster-total
@@ -99,13 +95,10 @@ spec:
           name: grafana-dashboard-workload-total
         - mountPath: /grafana-dashboard-definitions/0/gluster
           name: grafana-dashboard-definitions-gluster
-          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/nginx
           name: grafana-dashboard-definitions-nginx
-          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/goldpinger
           name: grafana-dashboard-definitions-goldpinger
-          readOnly: false
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
