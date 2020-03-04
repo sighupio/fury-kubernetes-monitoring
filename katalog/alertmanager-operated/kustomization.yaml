@@ -4,5 +4,13 @@ resources:
   - deploy.yml
   - rbac.yml
   - sm.yml
-  - secret.yml
 
+generatorOptions:
+ disableNameSuffixHash: true
+
+secretGenerator:
+- name: alertmanager-main
+  namespace: monitoring
+  files: 
+    - alertmanager.yaml=alertmanager.yaml
+    - alertmanager.tmpl=alertmanager.tmpl

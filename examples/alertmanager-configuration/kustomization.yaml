@@ -2,11 +2,12 @@ bases:
   - vendor/katalog/monitoring/alertmanager-operated
   - vendor/katalog/monitoring/prometheus-operator
 
+generatorOptions:
+ disableNameSuffixHash: true
+
 secretGenerator:
 - name: alertmanager-main
   behavior: merge
-  commands:
-    alertmanager.yaml: "cat alertmanager.yaml"
-
-generatorOptions:
-  disableHash: true
+  namespace: monitoring
+  files: 
+    - alertmanager.yaml=alertmanager.yaml

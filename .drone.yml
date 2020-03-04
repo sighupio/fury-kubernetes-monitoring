@@ -28,7 +28,7 @@ platform:
 
 steps:
   - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.10
+    image: quay.io/sighup/furyctl-bats:v0.1.3_3.2.2
     pull: always
     depends_on: [ clone ]
     commands:
