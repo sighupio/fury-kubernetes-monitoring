@@ -1,6 +1,6 @@
 bases:
   - name: monitoring/prometheus-operated
-    version: fix-examples
+    version: master
   - name: monitoring/prometheus-operator
-    version: fix-examples
+    version: master
 
