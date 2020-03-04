@@ -22,7 +22,7 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.36.0**
+  manage Prometheus and related resources. Version: **0.37.0**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
   deployed with Prometheus Operator's CRD. Version: **2.16.0**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
@@ -67,6 +67,7 @@ specific dependencies please visit the single package's documentation:
 | v1.1.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.2.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues

@@ -45,14 +45,6 @@ platform:
   os: linux
   arch: amd64
 
----
-kind: pipeline
-name: e2e-kubernetes-1.16
-
-platform:
-  os: linux
-  arch: amd64
-
 steps:
   - name: init
     image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
