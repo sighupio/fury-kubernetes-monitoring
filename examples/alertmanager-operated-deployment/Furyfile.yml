@@ -1,6 +1,6 @@
 bases:
   - name: monitoring/alertmanager-operated
-    version: master
+    version: fix-examples
   - name: monitoring/prometheus-operator
-    version: master
+    version: fix-examples
 
