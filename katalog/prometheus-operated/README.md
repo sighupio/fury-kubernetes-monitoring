@@ -21,7 +21,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 
 ## Image repository and tag
 
-* Prometheus image: `quay.io/prometheus/prometheus:v2.7.1`
+* Prometheus image: `quay.io/prometheus/prometheus:v2.16.0`
 * Prometheus repository: https://github.com/prometheus/prometheus
 * Prometheus documentation: https://prometheus.io/docs/introduction/overview
 
@@ -31,7 +31,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 Fury distribution Prometheus is deployed with following configuration:
 - Replica number: `1`
 - Retention for `30` days
-- Requires `50Gi` storage(with default storage type of Provider)
+- Requires `150Gi` storage(with default storage type of Provider)
 - Listens on port `9090`
 - Alert manager endpoint set to `alertmanager-main`
 

@@ -4,7 +4,6 @@ metadata:
   labels:
     k8s-app: prometheus-operator
   name: prometheus-operator
-  namespace: monitoring
 spec:
   endpoints:
   - honorLabels: true

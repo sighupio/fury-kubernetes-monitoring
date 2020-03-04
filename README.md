@@ -22,14 +22,14 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.30.0**
+  manage Prometheus and related resources. Version: **0.37.0**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
-  deployed with Prometheus Operator's CRD. Version: **2.7.1**
+  deployed with Prometheus Operator's CRD. Version: **2.16.0**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
-[config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.16.0**
+[config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.20.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
-  collected by Prometheus. Version: **5.3.4**
+  collected by Prometheus. Version: **6.6.2**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alertings.
 Version: **2.0.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
@@ -39,9 +39,9 @@ Version: **2.0.0**
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.8.0**
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.4**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
-  metrics exposed by \*NIX kernels. Version: **0.16.0**
+  metrics exposed by \*NIX kernels. Version: **0.18.1**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
   kubelet and exposition through [Metrics API](https://github.com/kubernetes/metrics).
   Version: **0.3.6**
@@ -53,10 +53,10 @@ You can click on each package to see its documentation.
 All packages in this repository have following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
-- [Kubernetes](https://kubernetes.io) >= `v1.10.0`
-- [Furyctl](https://github.com/sighup-io/furyctl) package manager to install
-  Fury packages
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v1.0.10`
+- [Kubernetes](https://kubernetes.io) >= `v1.14.0`
+- [Furyctl](https://github.com/sighupio/furyctl) package manager to download
+  Fury packages >= [`v0.2.2`](https://github.com/sighupio/furyctl/releases/tag/v0.2.2)
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v3.3.0`
 
 
 ## Compatibility
@@ -67,6 +67,7 @@ specific dependencies please visit the single package's documentation:
 | v1.1.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.2.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -102,7 +103,7 @@ bases:
 ```
 and execute
 ```bash
-$ furyctl install
+$ furyctl vendor
 ```
 to download the packages under `./vendor/katalog/monitoring`.
 
@@ -153,19 +154,19 @@ Kubernetes components:
 
 ### On-premise or unmanaged cloud clusters
 - Add `monitoring/kubeadm-sm` to `Furyfile.yml`.
-- Download package with `furyctl install`
+- Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/kubeadm-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Google Kubernetes Engine (GKE)
 - Add `monitoring/gke-sm` to `Furyfile.yml`.
-- Download package with `furyctl install`
+- Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/gke-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Azure Kubernetes Service (AKS)
 - Add `monitoring/aks-sm` to `Furyfile.yml`.
-- Download package with `furyctl install`
+- Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/aks-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 

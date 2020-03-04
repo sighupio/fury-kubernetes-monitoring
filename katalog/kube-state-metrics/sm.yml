@@ -10,6 +10,9 @@ spec:
     interval: 30s
     port: http-metrics
     scheme: http
+    relabelings:
+    - action: labeldrop
+      regex: (pod|service|endpoint|namespace)
     scrapeTimeout: 30s
   - interval: 30s
     port: telemetry

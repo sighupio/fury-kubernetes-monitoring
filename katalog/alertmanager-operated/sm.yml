@@ -4,7 +4,6 @@ metadata:
   labels:
     k8s-app: alertmanager
   name: alertmanager
-  namespace: monitoring
 spec:
   endpoints:
   - interval: 30s

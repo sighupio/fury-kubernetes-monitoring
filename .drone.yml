@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: prom-rules
-    image: quay.io/sighup/prom-rules:3.8_v0.1.0_2.5.0_2.2.0
+    image: quay.io/sighup/prom-rules:3.11_v0.2.2_2.16.0_2.3.0
     pull: always
     depends_on: [ clone ]
     commands:
@@ -16,6 +16,8 @@ steps:
     when:
       event:
       - push
+      - tag
+
 ---
 kind: pipeline
 name: render-examples
@@ -35,6 +37,8 @@ steps:
     when:
       event:
       - push
+      - tag
+
 ---
 kind: pipeline
 name: e2e-kubernetes-1.16
@@ -45,7 +49,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     volumes:
     - name: shared
@@ -66,8 +70,9 @@ steps:
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.1.3_2.16.1_1.4.0_1.16.3_3.2.2_2.4.1
     pull: always
@@ -76,17 +81,16 @@ steps:
       path: /shared
     depends_on: [ init ]
     commands:
-      - export CLUSTER_NAME=116
-      - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-116
-      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/tests.bats
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     depends_on: [ e2e ]
     settings:
@@ -108,6 +112,7 @@ steps:
 volumes:
 - name: shared
   temp: {}
+
 ---
 kind: pipeline
 name: e2e-kubernetes-1.15
@@ -118,7 +123,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     volumes:
     - name: shared
@@ -139,8 +144,9 @@ steps:
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.1.3_2.16.1_1.4.0_1.15.6_3.2.2_2.4.1
     pull: always
@@ -149,17 +155,16 @@ steps:
       path: /shared
     depends_on: [ init ]
     commands:
-      - export CLUSTER_NAME=115
-      - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-115
-      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/tests.bats
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     depends_on: [ e2e ]
     settings:
@@ -181,6 +186,7 @@ steps:
 volumes:
 - name: shared
   temp: {}
+
 ---
 kind: pipeline
 name: e2e-kubernetes-1.14
@@ -191,7 +197,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     volumes:
     - name: shared
@@ -212,8 +218,9 @@ steps:
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.1.3_2.16.1_1.4.0_1.14.9_3.2.2_2.4.1
     pull: always
@@ -222,17 +229,16 @@ steps:
       path: /shared
     depends_on: [ init ]
     commands:
-      - export CLUSTER_NAME=114
-      - export INSTANCE_IP=$(cat /shared/machine/ip)
       - export KUBECONFIG=/shared/kube/kubeconfig-114
-      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/tests.bats
     when:
       ref:
         include:
-          - refs/heads/**
+          - refs/heads/hotfix-*
           - refs/tags/**
+
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.1.0-rc11
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc5
     pull: always
     depends_on: [ e2e ]
     settings:

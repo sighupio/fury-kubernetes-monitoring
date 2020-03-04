@@ -15,7 +15,7 @@ enabled by default from project's
 
 ## Image repository and tag
 
-* node-exporter image: `quay.io/prometheus/node-exporter:v0.16.0`
+* node-exporter image: `quay.io/prometheus/node-exporter:v0.18.1`
 * node-exporter repository: https://github.com/prometheus/node_exporter
 
 
@@ -24,7 +24,7 @@ enabled by default from project's
 Fury distribution node-exporter is deployed with following configuration:
 - Ignore filesystem mount points starting with `dev|proc|sys|var/lib/docker` (local to the container file system)
 - Ignore filesystem types `autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs`
-- Resource limits are `102m` for CPU and `180Mi` for memory
+- Resource limits are `250m` for CPU and `180Mi` for memory
 - Listens on port `9100`
 
 

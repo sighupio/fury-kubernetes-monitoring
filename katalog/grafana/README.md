@@ -6,7 +6,7 @@ numeric time-series data with Prometheus integration.
 
 ## Image repository and tag
 
-* Grafana image: `grafana/grafana:5.3.4`
+* Grafana image: `grafana/grafana:6.6.2`
 * Grafana repository: https://github.com/grafana/grafana
 * Grafana documentation: https://docs.grafana.org
 
@@ -32,12 +32,33 @@ Fury distribution Grafana is deployed with following configuration:
    * Etcd
    * Gluster Nodes
    * Gluster Utilisation
-   * Kubernetes Cluster
-   * Kubernetes Deployments
-   * Kubernetes Nodes
-   * Kubernetes Pods
-   * Kubernetes Statefulsets
+   * Goldpinger
+   * Apiserver
+   * Cluster Total
+   * Controller Manager
+   * k8s Resources Cluster
+   * k8s Resources Namespace
+   * k8s Resources Node
+   * k8s Resources Pod
+   * k8s Resources Workload
+   * k8s Resources Workloads Namespace
+   * Kubelet
+   * Namespace By Pod
+   * Namespace By Workload
+   * Node Cluster RSRC use
+   * Node RSRC use
+   * Nodes
+   * Persistent Volumes Usage
+   * Pod Total
+   * Pods
+   * Prometheus Remote Write
+   * Prometheus
+   * Proxy
+   * Scheduler
+   * Statefulset
+   * Workload Total
    * Nginx Ingress Controller
+
 
 
 ## Deployment

@@ -20,7 +20,7 @@ spec:
         runAsUser: 65534
       containers:
       - name: kube-state-metrics
-        image: quay.io/coreos/kube-state-metrics:v1.8.0
+        image: quay.io/coreos/kube-state-metrics:v1.9.5
         ports:
         - name: http-metrics
           containerPort: 8080
@@ -35,7 +35,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: http-metrics
+            port: telemetry
           initialDelaySeconds: 5
           timeoutSeconds: 5
         resources:
@@ -45,35 +45,6 @@ spec:
           requests:
             cpu: 100m
             memory: 150Mi
-      - name: addon-resizer
-        image: k8s.gcr.io/addon-resizer:1.8.4
-        command:
-        - /pod_nanny
-        - --container=kube-state-metrics
-        - --cpu=100m
-        - --extra-cpu=2m
-        - --memory=150Mi
-        - --extra-memory=30Mi
-        - --threshold=5
-        - --deployment=kube-state-metrics
-        env:
-        - name: MY_POD_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: MY_POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        resources:
-          limits:
-            cpu: 10m
-            memory: 30Mi
-          requests:
-            cpu: 10m
-            memory: 30Mi
 ---
 apiVersion: v1
 kind: Service
