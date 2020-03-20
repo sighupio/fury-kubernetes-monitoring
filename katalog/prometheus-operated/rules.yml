@@ -409,6 +409,15 @@ spec:
       for: 1h
       labels:
         severity: warning
+    - alert: NodeMachineIDCollision
+      annotations:
+        description: 'Machine ID {{ $labels.id }} is duplicated among {{ $value }} nodes.'
+        summary: Machine ID collision.
+      expr: |
+        count by (id) (systemd_machine_id) > 1
+      for: 5m
+      labels:
+        severity: critical
   - name: kubernetes-apps
     rules:
     - alert: KubePodCrashLooping
