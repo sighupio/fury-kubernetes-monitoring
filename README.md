@@ -69,6 +69,7 @@ specific dependencies please visit the single package's documentation:
 | v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v1.4.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.5.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -88,19 +89,19 @@ and Grafana using the following `Furyfile.yml` :
 ```yaml
 bases:
   - name: monitoring/prometheus-operator
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/prometheus-operated
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/alertmanager-operated
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/node-exporter
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/kube-state-metrics
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/grafana
-    version: master
+    version: v1.5.0-rc1
   - name: monitoring/goldpinger
-    version: master
+    version: v1.5.0-rc1
 ```
 and execute
 ```bash

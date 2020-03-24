@@ -13,6 +13,17 @@ spec:
       labels:
         app: node-exporter
     spec:
+      initContainers:
+      - name: machine-id
+        image: alpine:3
+        command: ['/bin/sh', '-c']
+        args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
+        volumeMounts:
+        - name: textfile-collector
+          mountPath: /var/lib/node_exporter
+        - name: root
+          mountPath: /host/root
+          readOnly: true
       containers:
       - args:
         - --web.listen-address=127.0.0.1:9100
@@ -23,6 +34,7 @@ spec:
         - --no-collector.hwmon
         - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+)($|/)
         - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$
+        - --collector.textfile.directory=/var/lib/node_exporter
         image: quay.io/prometheus/node-exporter:v0.18.1
         name: node-exporter
         resources:
@@ -33,6 +45,8 @@ spec:
             cpu: 102m
             memory: 180Mi
         volumeMounts:
+        - mountPath: /var/lib/node_exporter
+          name: textfile-collector
         - mountPath: /host/proc
           name: proc
         - mountPath: /host/sys
@@ -75,6 +89,8 @@ spec:
       tolerations:
       - operator: Exists
       volumes:
+      - emptyDir: {}
+        name: textfile-collector
       - hostPath:
           path: /proc
         name: proc
