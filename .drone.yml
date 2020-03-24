@@ -35,7 +35,6 @@ steps:
       - bats -t examples/tests.sh
     when:
       event:
-      - push
       - tag
 
 ---
