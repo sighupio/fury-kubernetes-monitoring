@@ -5,8 +5,8 @@ load ./helper
 @test "Applying prometheus-operator, cert-manager CRDs and cert-manager" {
   info
   kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/master/katalog/cert-manager/cert-manager-controller/crd.yml
-  apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.4.1"
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.5.0/katalog/cert-manager/cert-manager-controller/crd.yml
+  apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.5.0"
 }
 
 @test "Deploy prometheus-operator" {
