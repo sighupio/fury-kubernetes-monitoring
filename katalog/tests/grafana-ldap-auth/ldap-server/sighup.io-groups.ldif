@@ -1,0 +1,38 @@
+version: 1
+
+dn: ou=groups,dc=sighup,dc=io
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=sighup,dc=io
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=angel,ou=people,dc=sighup,dc=io
+objectClass: top
+objectClass: person
+cn: angel
+sn: barrera
+userPassword: angel
+
+dn: cn=jacopo,ou=people,dc=sighup,dc=io
+objectClass: top
+objectClass: person
+cn: jacopo
+sn: nardiello
+userPassword: admin
+
+dn: cn=engineering,ou=groups,dc=sighup,dc=io
+objectClass: top
+objectClass: groupOfNames
+cn: engineering
+member: cn=angel,ou=people,dc=sighup,dc=io
+member: cn=jacopo,ou=people,dc=sighup,dc=io
+
+dn: cn=amministrazione,ou=groups,dc=sighup,dc=io
+objectClass: top
+objectClass: groupOfNames
+cn: amministrazione
+member: cn=jacopo,ou=people,dc=sighup,dc=io
