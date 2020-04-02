@@ -69,9 +69,12 @@ load ./helper
 @test "Test Angel LDAP user in Grafana" {
     info
     test(){
-        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana --output=name)
+        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
+        echo $grafana_pod >&3
         user_info=$(kubectl -n monitoring exec -it ${grafana_pod} -- wget -qO- http://angel:angel@localhost:3000/api/user)
+        echo $user_info >&3
         isGrafanaAdmin=$(echo ${user_info} | jq -r .isGrafanaAdmin)
+        echo $isGrafanaAdmin >&3
         if [ "${isGrafanaAdmin}" != "false" ]; then return 1; fi
     }
     run test
@@ -81,9 +84,12 @@ load ./helper
 @test "Test Jacopo LDAP user in Grafana" {
     info
     test(){
-        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana --output=name)
+        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
+        echo $grafana_pod >&3
         user_info=$(kubectl -n monitoring exec -it ${grafana_pod} -- wget -qO- http://jacopo:admin@localhost:3000/api/user)
+        echo $user_info >&3
         isGrafanaAdmin=$(echo ${user_info} | jq -r .isGrafanaAdmin)
+        echo $isGrafanaAdmin >&3
         if [ "${isGrafanaAdmin}" != "true" ]; then return 1; fi
     }
     run test
