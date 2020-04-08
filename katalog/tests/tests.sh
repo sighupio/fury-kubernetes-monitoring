@@ -4,12 +4,17 @@ load ./helper
 
 @test "Applying prometheus-operator, cert-manager CRDs and cert-manager" {
   info
-  kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.5.0/katalog/cert-manager/cert-manager-controller/crd.yml
-  apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.5.0"
+  setup() {
+    kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
+    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.6.0/katalog/cert-manager/cert-manager-controller/crd.yml
+    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.6.0"
+  }
+  loop_it setup 60 10
+  status=${loop_it_result}
 }
 
 @test "Deploy prometheus-operator" {
+  info
   deploy() {
     apply katalog/prometheus-operator
   }
@@ -28,6 +33,7 @@ load ./helper
 }
 
 @test "Deploy prometheus-operated" {
+  info
   deploy() {
     apply katalog/prometheus-operated
   }
@@ -46,6 +52,7 @@ load ./helper
 }
 
 @test "Deploy alertmanager-operated" {
+  info
   deploy() {
     apply katalog/alertmanager-operated
   }
@@ -64,6 +71,7 @@ load ./helper
 }
 
 @test "Deploy goldpinger" {
+  info
   deploy() {
     apply katalog/goldpinger
   }
@@ -82,6 +90,7 @@ load ./helper
 }
 
 @test "Deploy grafana" {
+  info
   deploy() {
     apply katalog/grafana
   }
@@ -100,6 +109,7 @@ load ./helper
 }
 
 @test "Deploy kube-state-metrics" {
+  info
   deploy() {
     apply katalog/kube-state-metrics
   }
@@ -118,6 +128,7 @@ load ./helper
 }
 
 @test "Deploy kubeadm-sm" {
+  info
   deploy() {
     apply katalog/kubeadm-sm
   }
@@ -126,6 +137,7 @@ load ./helper
 }
 
 @test "Deploy metrics-server" {
+  info
   deploy() {
     apply katalog/metrics-server
   }
@@ -144,6 +156,7 @@ load ./helper
 }
 
 @test "Deploy node-exporter" {
+  info
   deploy() {
     apply katalog/node-exporter
   }
