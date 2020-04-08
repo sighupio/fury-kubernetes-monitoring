@@ -1,4 +1,4 @@
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
   name: metrics-server-selfsign
@@ -7,7 +7,7 @@ metadata:
 spec:
   selfSigned: {}
 ---
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: metrics-server-ca
@@ -21,7 +21,7 @@ spec:
   commonName: "ca.metrics-server.kube-system"
   isCA: true
 ---
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
   name: metrics-server-ca
@@ -31,7 +31,7 @@ spec:
   ca:
     secretName: metrics-server-ca
 ---
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: metrics-server-tls
