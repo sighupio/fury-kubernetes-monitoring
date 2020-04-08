@@ -70,6 +70,7 @@ specific dependencies please visit the single package's documentation:
 | v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v1.4.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v1.5.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.6.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
