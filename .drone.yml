@@ -80,7 +80,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-116
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -154,7 +154,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-115
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -228,7 +228,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-114
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
