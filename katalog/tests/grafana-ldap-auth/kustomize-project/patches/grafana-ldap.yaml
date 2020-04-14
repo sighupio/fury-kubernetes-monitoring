@@ -1,0 +1,29 @@
+# https://grafana.com/docs/grafana/latest/installation/configuration/#configure-with-environment-variables
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      volumes:
+        - name: ldap-config
+          configMap:
+            name: ldap-config
+      containers:
+        - name: grafana
+          volumeMounts:
+            - name: ldap-config
+              mountPath: /etc/grafana/ldap/
+          env:
+            - name: GF_AUTH_LDAP_ENABLED
+              value: "true"
+            - name: GF_AUTH_LDAP_CONFIG_FILE
+              value: /etc/grafana/ldap/ldap.toml
+            - name: GF_AUTH_LDAP_ALLOW_SIGN_UP
+              value: "true"
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: "false"
+            - name: GF_LOG_FILTERS
+              value: "ldap:debug"

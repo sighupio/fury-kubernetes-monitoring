@@ -81,6 +81,7 @@ steps:
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-116
       - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
     when:
       ref:
         include:
@@ -155,6 +156,7 @@ steps:
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-115
       - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
     when:
       ref:
         include:
@@ -229,6 +231,7 @@ steps:
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-114
       - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
     when:
       ref:
         include:
