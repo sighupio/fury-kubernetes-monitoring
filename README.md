@@ -90,19 +90,19 @@ and Grafana using the following `Furyfile.yml` :
 ```yaml
 bases:
   - name: monitoring/prometheus-operator
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/prometheus-operated
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/alertmanager-operated
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/node-exporter
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/kube-state-metrics
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/grafana
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
   - name: monitoring/goldpinger
-    version: vversion: v1.6.0
+    version: vversion: v1.6.1
 ```
 and execute
 ```bash
