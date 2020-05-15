@@ -92,6 +92,9 @@ configMapGenerator:
   - name: grafana-dashboard-definitions-goldpinger
     files:
     - dashboards/goldpinger.json
+  - name: grafana-dashboard-definitions-kong
+    files:
+    - dashboards/kong.json
   - name: grafana-dashboard-definitions-gluster
     files:
     - dashboards/gluster-nodes.json
