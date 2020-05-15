@@ -99,6 +99,8 @@ spec:
           name: grafana-dashboard-definitions-nginx
         - mountPath: /grafana-dashboard-definitions/0/goldpinger
           name: grafana-dashboard-definitions-goldpinger
+        - mountPath: /grafana-dashboard-definitions/0/kong
+          name: grafana-dashboard-definitions-kong
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -198,6 +200,9 @@ spec:
       - configMap:
           name: grafana-dashboard-definitions-goldpinger
         name: grafana-dashboard-definitions-goldpinger
+      - configMap:
+          name: grafana-dashboard-definitions-kong
+        name: grafana-dashboard-definitions-kong
 ---
 apiVersion: v1
 kind: Service
