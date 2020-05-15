@@ -39,7 +39,7 @@ Version: **2.0.0**
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.4**
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.5**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
   metrics exposed by \*NIX kernels. Version: **0.18.1**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
