@@ -77,6 +77,10 @@ specific dependencies please visit the single package's documentation:
 - :warning: Has issues
 - :x: Incompatible
 
+### Warning
+
+- [kube-state-metrics](katalog/kube-state-metrics) is not able to scrape
+  `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
 
 ## Deployment
 
