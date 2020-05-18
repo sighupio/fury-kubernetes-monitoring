@@ -39,7 +39,7 @@ Version: **2.0.0**
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.4**
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.5**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
   metrics exposed by \*NIX kernels. Version: **0.18.1**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
@@ -67,16 +67,20 @@ specific dependencies please visit the single package's documentation:
 | v1.1.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.2.0                              | :white_check_mark: | :white_check_mark: | :x:                |
 | v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.4.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.5.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.6.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.6.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.4.0                              | :warning:          | :warning:          | :white_check_mark: |
+| v1.4.1                              | :warning:          | :warning:          | :white_check_mark: |
+| v1.5.0                              | :warning:          | :warning:          | :white_check_mark: |
+| v1.6.0                              | :warning:          | :warning:          | :white_check_mark: |
+| v1.6.1                              | :warning:          | :warning:          | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
 - :x: Incompatible
 
+### Warning
+
+- [kube-state-metrics](katalog/kube-state-metrics) is not able to scrape
+  `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
 
 ## Deployment
 
