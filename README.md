@@ -72,6 +72,7 @@ specific dependencies please visit the single package's documentation:
 | v1.5.0                              | :warning:          | :warning:          | :white_check_mark: |
 | v1.6.0                              | :warning:          | :warning:          | :white_check_mark: |
 | v1.6.1                              | :warning:          | :warning:          | :white_check_mark: |
+| v1.7.0                              | :warning:          | :warning:          | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
