@@ -95,6 +95,9 @@ configMapGenerator:
   - name: grafana-dashboard-definitions-kong
     files:
     - dashboards/kong.json
+  - name: grafana-dashboard-definitions-gatekeeper
+    files:
+    - dashboards/gatekeeper.json
   - name: grafana-dashboard-definitions-gluster
     files:
     - dashboards/gluster-nodes.json
