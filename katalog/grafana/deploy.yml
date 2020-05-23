@@ -101,6 +101,8 @@ spec:
           name: grafana-dashboard-definitions-goldpinger
         - mountPath: /grafana-dashboard-definitions/0/kong
           name: grafana-dashboard-definitions-kong
+        - mountPath: /grafana-dashboard-definitions/0/gatekeeper
+          name: grafana-dashboard-definitions-gatekeeper
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -203,6 +205,9 @@ spec:
       - configMap:
           name: grafana-dashboard-definitions-kong
         name: grafana-dashboard-definitions-kong
+      - configMap:
+          name: grafana-dashboard-definitions-gatekeeper
+        name: grafana-dashboard-definitions-gatekeeper
 ---
 apiVersion: v1
 kind: Service
