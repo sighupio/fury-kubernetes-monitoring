@@ -23,8 +23,38 @@ So, you'll need to add to your `bases` the `thanos` or `thanos-with-store` depen
 Remember than `thanos-with-store` is a superset that include also the high availability feature. 
 
 # Caveats
+Due to the integration with prometheus you have to manually patch some resources in order to make Thanos works properly
 
-Depending of the number of replicas you choose in the prometheus section, you'll need to patch the configuration of the query component accordingly in order to keep it aware of the existing services:
+## Prometheus CRD Patch
+
+just create a patch like this that will contain the `thanos` section: 
+
+
+```yml
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: k8s
+  namespace: monitoring
+spec:
+  nodeSelector:
+    asg_role: infra
+  version: v2.16.0
+  retention: 15d
+  externalUrl: "https://prometheus-example.example.com/"
+  externalLabels:
+    k8s_cluster: <your cluster name>
+  thanos:
+    baseImage: thanosio/thanos
+    version: v0.12.2
+    objectStorageConfig:
+      name: thanos
+      key: config
+```
+
+## Thanos discovery config file
+
+Depending of the number of replicas you choose in the prometheus section, you'll need to patch the configuration of the query component (see [here](thanos-components/thanos-query/store-sd.yaml)) accordingly in order to keep it aware of the existing services:
 
 Examples:
 
@@ -46,7 +76,7 @@ Examples:
     - prometheus-k8s-2.prometheus-operated:10901
 ```
 
-> Same example can be done for solution with store, is just to add to the previous examples the line :
+> Same example can be done for solution with store, is just to add to the previous examples the line (see [here](thanos-with-store/store-sd.yaml)) :
 
 `- thanos-store:10901`
 
