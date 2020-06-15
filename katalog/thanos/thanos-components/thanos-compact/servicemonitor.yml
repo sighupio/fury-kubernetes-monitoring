@@ -6,7 +6,7 @@ metadata:
   namespace: monitoring
 spec:
   endpoints:
-    - port: http
+    - port: http-query
   selector:
     matchLabels:
       app: thanos-compact
