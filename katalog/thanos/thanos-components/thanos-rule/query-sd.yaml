@@ -1,0 +1,4 @@
+- targets:
+  - thanos-query.monitoring:9090
+  labels:
+    team: infra

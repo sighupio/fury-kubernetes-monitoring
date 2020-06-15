@@ -1,0 +1,37 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  generation: 1
+  name: thanos-store
+  labels:
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+    - name: thanos-store.rules
+      rules:
+        - alert: ThanosStoreGrpcErrorRate
+          expr: rate(grpc_server_handled_total{grpc_code=~"Unknown|ResourceExhausted|Internal|Unavailable",job="thanos-store-http"}[5m]) > 0
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Thanos Store is returning Internal/Unavailable errors
+            description: Long Term Storage Prometheus queries are failing
+        - alert: ThanosStoreBucketOperationsFailed
+          expr: sum without (operation) (rate(thanos_objstore_bucket_operation_failures_total{job="thanos-store-http"}[5m])) > 0
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Thanos Store is failing to do bucket operations
+            description: Long Term Storage Prometheus queries are failing
+        - alert: ThanosStoreIsNotRunning
+          expr: up{job="thanos-store-http"} == 0 or absent({job="thanos-store-http"})
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Thanos Store is not running
+            description: Long term storage queries will not work

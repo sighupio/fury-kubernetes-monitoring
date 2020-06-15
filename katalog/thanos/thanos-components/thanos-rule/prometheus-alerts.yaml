@@ -1,0 +1,10 @@
+groups:
+- name: thanos-rule
+  rules:
+  - alert: ThanosRuleIsDown
+    expr: up{app="thanos-rule"} == 0 or absent(up{app="thanos-rule"})
+    for: 10m
+    annotations:
+      summary: Thanos Rule is down
+      impact: Telecom alerts are not working
+      action: 'check {{ $labels.kubernetes_pod_name }} pod in {{ $labels.kubernetes_namespace}} namespace'
