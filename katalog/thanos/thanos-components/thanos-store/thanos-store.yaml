@@ -83,7 +83,6 @@ spec:
               mountPath: /etc/thanos
           resources:
             requests:
-              cpu: 0m
               memory: 500Mi
             limits:
               memory: 4000Mi
