@@ -1,6 +1,6 @@
 # Thanos
 
-Basically Thanos is an opensource Prometheus setup that allows to have 2 important features:
+Thanos is an opensource Prometheus setup that allows to have 2 important features:
 
 1. high availability on Prometheus (setting more prometheus replicas)
 2. long term storage capacity relying on an external object storage
