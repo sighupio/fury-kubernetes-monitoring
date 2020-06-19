@@ -26,6 +26,8 @@ spec:
             - name: RESOURCE
               # configmap and secret
               value: both
+            - name: NAMESPACE
+              value: "ALL"
           resources:
             limits:
               cpu: 100m
