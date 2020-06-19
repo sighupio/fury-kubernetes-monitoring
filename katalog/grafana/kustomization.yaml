@@ -1,4 +1,8 @@
+---
 namespace: monitoring
+
+bases:
+  - dashboards
 
 resources:
   - deploy.yml
@@ -7,105 +11,13 @@ resources:
 images:
   - name: grafana/grafana
     newTag: 6.6.2
+  - name: kiwigrid/k8s-sidecar
+    newTag: 0.1.151
 
 configMapGenerator:
   - name: grafana-dashboards
     files:
-    - dashboards.yaml
-  - name: grafana-dashboard-definitions-k8s
-    files:
-    - dashboards/etcd.json
-    - dashboards/coredns.json
-    - dashboards/calico.json
-  - name: grafana-dashboard-apiserver
-    files:
-    - dashboards/grafana-dashboard-apiserver.json
-  - name: grafana-dashboard-cluster-total
-    files:
-    - dashboards/grafana-dashboard-cluster-total.json
-  - name: grafana-dashboard-controller-manager
-    files:
-    - dashboards/grafana-dashboard-controller-manager.json
-  - name: grafana-dashboard-k8s-resources-cluster
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-cluster.json
-  - name: grafana-dashboard-k8s-resources-namespace
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-namespace.json
-  - name: grafana-dashboard-k8s-resources-node
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-node.json
-  - name: grafana-dashboard-k8s-resources-pod
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-pod.json
-  - name: grafana-dashboard-k8s-resources-workload
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-workload.json
-  - name: grafana-dashboard-k8s-resources-workloads-namespace
-    files:
-    - dashboards/grafana-dashboard-k8s-resources-workloads-namespace.json
-  - name: grafana-dashboard-kubelet
-    files:
-    - dashboards/grafana-dashboard-kubelet.json
-  - name: grafana-dashboard-namespace-by-pod
-    files:
-    - dashboards/grafana-dashboard-namespace-by-pod.json
-  - name: grafana-dashboard-namespace-by-workload
-    files:
-    - dashboards/grafana-dashboard-namespace-by-workload.json
-  - name: grafana-dashboard-node-cluster-rsrc-use
-    files:
-    - dashboards/grafana-dashboard-node-cluster-rsrc-use.json
-  - name: grafana-dashboard-node-rsrc-use
-    files:
-    - dashboards/grafana-dashboard-node-rsrc-use.json
-  - name: grafana-dashboard-nodes
-    files:
-    - dashboards/grafana-dashboard-nodes.json
-  - name: grafana-dashboard-persistentvolumesusage
-    files:
-    - dashboards/grafana-dashboard-persistentvolumesusage.json
-  - name: grafana-dashboard-pod-total
-    files:
-    - dashboards/grafana-dashboard-pod-total.json
-  - name: grafana-dashboard-pods
-    files:
-    - dashboards/grafana-dashboard-pods.json
-  - name: grafana-dashboard-prometheus-remote-write
-    files:
-    - dashboards/grafana-dashboard-prometheus-remote-write.json
-  - name: grafana-dashboard-prometheus
-    files:
-    - dashboards/grafana-dashboard-prometheus.json
-  - name: grafana-dashboard-proxy
-    files:
-    - dashboards/grafana-dashboard-proxy.json
-  - name: grafana-dashboard-scheduler
-    files:
-    - dashboards/grafana-dashboard-scheduler.json
-  - name: grafana-dashboard-statefulset
-    files:
-    - dashboards/grafana-dashboard-statefulset.json
-  - name: grafana-dashboard-workload-total
-    files:
-    - dashboards/grafana-dashboard-workload-total.json
-  - name: grafana-dashboard-definitions-goldpinger
-    files:
-    - dashboards/goldpinger.json
-  - name: grafana-dashboard-definitions-kong
-    files:
-    - dashboards/kong.json
-  - name: grafana-dashboard-definitions-gatekeeper
-    files:
-    - dashboards/gatekeeper.json
-  - name: grafana-dashboard-definitions-gluster
-    files:
-    - dashboards/gluster-nodes.json
-    - dashboards/gluster-utilisation.json
-  - name: grafana-dashboard-definitions-nginx
-    files:
-    - dashboards/nginx-ingress.json
-
+      - dashboards.yaml
 
 secretGenerator:
   - name: grafana-datasources
