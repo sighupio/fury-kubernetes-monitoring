@@ -14,8 +14,8 @@ numeric time-series data with Prometheus integration.
 
 ## Requirements
 
--   Kubernetes >= `1.10.0`
--   Kustomize = `v1.0.10`
+-   Kubernetes >= `1.14.0`
+-   Kustomize = `v3.5.3`
 
 ## Configuration
 
