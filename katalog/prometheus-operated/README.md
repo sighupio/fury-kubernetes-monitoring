@@ -22,8 +22,8 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 ## Image repository and tag
 
 * Prometheus image: `quay.io/prometheus/prometheus:v2.16.0`
-* Prometheus repository: https://github.com/prometheus/prometheus
-* Prometheus documentation: https://prometheus.io/docs/introduction/overview
+* Prometheus repository: <https://github.com/prometheus/prometheus>
+* Prometheus documentation: <https://prometheus.io/docs/introduction/overview>
 
 
 ## Configuration
@@ -42,7 +42,7 @@ You can deploy Prometheus Operated by running following command in the root of
 the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 To learn how to customize it for your needs please see the
@@ -54,10 +54,10 @@ To learn how to customize it for your needs please see the
 You can access to Prometheus expression browser by port-forwarding on port 9090:
 
 ```shell
-$ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring
+kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring
 ```
 
-Now if you go to http://127.0.0.1:9090 on your browser you can execute queries
+Now if you go to <http://127.0.0.1:9090> on your browser you can execute queries
 and visualize query results.
 
 

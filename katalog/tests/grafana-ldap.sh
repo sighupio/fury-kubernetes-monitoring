@@ -14,7 +14,7 @@ load ./helper
         if [ "${status}" != "Running" ]; then return 1; fi
     }
     loop_it test 30 2
-    status=${loop_it_result}
+    status=${loop_it_result:?}
     [ "$status" -eq 0 ]
 }
 
@@ -36,7 +36,7 @@ load ./helper
         if [ "${status}" != "Running" ]; then return 1; fi
     }
     loop_it test 30 2
-    status=${loop_it_result}
+    status=${loop_it_result:?}
     [ "$status" -eq 0 ]
 }
 
@@ -49,7 +49,7 @@ load ./helper
 @test "Rollout Grafana" {
     info
     rollout(){
-        kubectl patch deployment grafana -n monitoring -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+        kubectl patch deployment grafana -n monitoring -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$(date +'%s')\"}}}}}"
     }
     run rollout
     [ "$status" -eq 0 ]
@@ -62,7 +62,7 @@ load ./helper
         if [ "${status}" != "Running" ]; then return 1; fi
     }
     loop_it test 30 2
-    status=${loop_it_result}
+    status=${loop_it_result:?}
     [ "$status" -eq 0 ]
 }
 
@@ -70,8 +70,8 @@ load ./helper
     info
     test(){
         grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
-        user_info=$(kubectl -n monitoring exec -it ${grafana_pod} -- wget -qO- http://angel:angel@localhost:3000/api/user)
-        isGrafanaAdmin=$(echo ${user_info} | jq -r .isGrafanaAdmin)
+        user_info=$(kubectl -n monitoring exec -it "${grafana_pod}" -- wget -qO- http://angel:angel@localhost:3000/api/user)
+        isGrafanaAdmin=$(echo "${user_info}" | jq -r .isGrafanaAdmin)
         if [ "${isGrafanaAdmin}" != "false" ]; then return 1; fi
     }
     run test
@@ -82,11 +82,10 @@ load ./helper
     info
     test(){
         grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
-        user_info=$(kubectl -n monitoring exec -it ${grafana_pod} -- wget -qO- http://jacopo:admin@localhost:3000/api/user)
-        isGrafanaAdmin=$(echo ${user_info} | jq -r .isGrafanaAdmin)
+        user_info=$(kubectl -n monitoring exec -it "${grafana_pod}" -- wget -qO- http://jacopo:admin@localhost:3000/api/user)
+        isGrafanaAdmin=$(echo "${user_info}" | jq -r .isGrafanaAdmin)
         if [ "${isGrafanaAdmin}" != "true" ]; then return 1; fi
     }
     run test
     [ "$status" -eq 0 ]
 }
-

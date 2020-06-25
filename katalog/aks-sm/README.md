@@ -3,11 +3,6 @@
 This package provides monitoring for Kubernetes components `kubelet` and
 `api-server` on AKS.
 
-### Image repository and tag
-
-There is no image used since this packages provides only ServiceMonitor resource
-for Prometheus.
-
 ## Requirements
 
 - Kubernetes >= `1.10.0`
@@ -23,7 +18,11 @@ Fury distribution AKS ServiceMonitor has following configuration:
 - Relabel metrics in order for the discovered targets to point to the correct
   endpoints
 
-
 ## License
 
 For license details please see [LICENSE](https://sighup.io/fury/license)
+
+### Image repository and tag
+
+There is no image used since this packages provides only ServiceMonitor resource
+for Prometheus.

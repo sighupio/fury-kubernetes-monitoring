@@ -45,7 +45,7 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 ## Image repository and tag
 
 * Prometheus Operator image: `quay.io/coreos/prometheus-operator:v0.37.0`
-* Prometheus Operator repository: https://github.com/coreos/prometheus-operator
+* Prometheus Operator repository: <https://github.com/coreos/prometheus-operator>
 
 
 ## Configuration
@@ -64,7 +64,7 @@ You can deploy Prometheus Operator by running following command in the root of
 the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 

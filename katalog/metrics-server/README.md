@@ -16,8 +16,8 @@ on each node.
 ## Image repository and tag
 
 * Metrics Server image: `gcr.io/google_containers/metrics-server-amd64:v0.3.6`
-* Metrics Server repo: https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server
-* Metrics Server documentation: https://kubernetes.io/docs/tasks/debug-application-cluster/core-metrics-pipeline/
+* Metrics Server repo: <https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server>
+* Metrics Server documentation: <https://kubernetes.io/docs/tasks/debug-application-cluster/core-metrics-pipeline/>
 
 
 ## Configuration
@@ -35,7 +35,7 @@ You can deploy Metrics Server by running following command in the root of the
 project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 
