@@ -15,7 +15,7 @@ instances, rules, alerts and exporters. Packages with `-operated` postfix are
 deployed via Operator's CRD, therefore you need Prometheus Operator up and
 running to be able to deploy them.
 
-##  Monitoring Packages
+## Monitoring Packages
 
 Following packages are included in Fury Kubernetes Monitoring katalog. All
 resources in these repositories are going to be deployed in `monitoring`
@@ -27,11 +27,11 @@ namespace in your Kubernetes cluster.
   deployed with Prometheus Operator's CRD. Version: **2.16.0**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
-[config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.20.0**
+  [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.20.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus. Version: **6.6.2**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alertings.
-Version: **2.0.0**
+  Version: **2.0.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
   metrics from AKS
 - [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
@@ -58,22 +58,21 @@ specific dependencies please visit the single package's documentation:
   Fury packages >= [`v0.2.2`](https://github.com/sighupio/furyctl/releases/tag/v0.2.2)
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v3.3.0`
 
-
 ## Compatibility
 
-| Module Version / Kubernetes Version | 1.14.X             | 1.15.X             | 1.16.X             | 1.17.X             | 1.18.X             |
-|-------------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|
+| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
 | v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: | :x:                |                    |                    |
-| v1.2.0                              | :white_check_mark: | :white_check_mark: | :x:                |                    |                    |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |
+| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |
 | v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.4.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.4.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.5.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.6.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.6.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.7.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
-| v1.7.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |
+| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
+| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
 | v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
@@ -83,7 +82,7 @@ specific dependencies please visit the single package's documentation:
 ### Warning
 
 - [kube-state-metrics](katalog/kube-state-metrics) is not able to scrape
-  `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
+    `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
 
 ## Deployment
 
@@ -95,27 +94,31 @@ download.
 You can download the packages for a full monitoring stack including
 Prometheus Operator, Prometheus, Alertmanager, node-exporter, kube-state-metrics
 and Grafana using the following `Furyfile.yml` :
+
 ```yaml
 bases:
-  - name: monitoring/prometheus-operator
-    version: v1.8.0
-  - name: monitoring/prometheus-operated
-    version: v1.8.0
-  - name: monitoring/alertmanager-operated
-    version: v1.8.0
-  - name: monitoring/node-exporter
-    version: v1.8.0
-  - name: monitoring/kube-state-metrics
-    version: v1.8.0
-  - name: monitoring/grafana
-    version: v1.8.0
-  - name: monitoring/goldpinger
-    version: v1.8.0
+    - name: monitoring/prometheus-operator
+      version: v1.8.0
+    - name: monitoring/prometheus-operated
+      version: v1.8.0
+    - name: monitoring/alertmanager-operated
+      version: v1.8.0
+    - name: monitoring/node-exporter
+      version: v1.8.0
+    - name: monitoring/kube-state-metrics
+      version: v1.8.0
+    - name: monitoring/grafana
+      version: v1.8.0
+    - name: monitoring/goldpinger
+      version: v1.8.0
 ```
+
 and execute
+
 ```bash
-$ furyctl vendor
+furyctl vendor
 ```
+
 to download the packages under `./vendor/katalog/monitoring`.
 
 See `furyctl`
@@ -124,28 +127,33 @@ for details about `Furyfile.yml` format.
 
 To deploy the packages to your cluster, define a `kustomization.yaml` with the
 following content:
+
 ```yaml
 bases:
-- ./vendor/katalog/monitoring/prometheus-operator
+    - ./vendor/katalog/monitoring/prometheus-operator
 ```
+
 and execute
+
 ```shell
-$ kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply -f -
 ```
+
 to deploy Prometheus Operator and create the Custom Resource Definitions needed
 by the other packages.
 
 Now you can add the other packages to `kustomization.yaml`, the final file will
 have the following content:
+
 ```yaml
 bases:
-- ./vendor/katalog/monitoring/prometheus-operator
-- ./vendor/katalog/monitoring/prometheus-operated
-- ./vendor/katalog/monitoring/alertmanager-operated
-- ./vendor/katalog/monitoring/node-exporter
-- ./vendor/katalog/monitoring/kube-state-metrics
-- ./vendor/katalog/monitoring/grafana
-- ./vendor/katalog/monitoring/goldpinger
+    - ./vendor/katalog/monitoring/prometheus-operator
+    - ./vendor/katalog/monitoring/prometheus-operated
+    - ./vendor/katalog/monitoring/alertmanager-operated
+    - ./vendor/katalog/monitoring/node-exporter
+    - ./vendor/katalog/monitoring/kube-state-metrics
+    - ./vendor/katalog/monitoring/grafana
+    - ./vendor/katalog/monitoring/goldpinger
 ```
 
 See `kustomize`
@@ -153,29 +161,34 @@ See `kustomize`
 for details about `kustomization.yaml` format.
 
 To deploy all the packages to your cluster, execute the following command:
+
 ```bash
-$ kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply -f -
 ```
 
 The following cluster architectures are supported to obtain metrics from
 Kubernetes components:
+
 - on-premise or unmanaged cloud clusters
 - Google Kubernetes Engine (GKE)
 - Azure Kubernetes Service (AKS)
 
 ### On-premise or unmanaged cloud clusters
+
 - Add `monitoring/kubeadm-sm` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/kubeadm-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Google Kubernetes Engine (GKE)
+
 - Add `monitoring/gke-sm` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/gke-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Azure Kubernetes Service (AKS)
+
 - Add `monitoring/aks-sm` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/aks-sm` to `kustomization.yaml`.

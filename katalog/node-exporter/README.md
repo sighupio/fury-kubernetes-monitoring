@@ -1,4 +1,4 @@
-# Node Exporter 
+# Node Exporter
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX
 kernels provided by node-exporter service. You can see list of collectors
@@ -16,7 +16,7 @@ enabled by default from project's
 ## Image repository and tag
 
 * node-exporter image: `quay.io/prometheus/node-exporter:v0.18.1`
-* node-exporter repository: https://github.com/prometheus/node_exporter
+* node-exporter repository: <https://github.com/prometheus/node_exporter>
 
 
 ## Configuration
@@ -33,7 +33,7 @@ Fury distribution node-exporter is deployed with following configuration:
 You can deploy node-exporter by running following command in the root of the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 

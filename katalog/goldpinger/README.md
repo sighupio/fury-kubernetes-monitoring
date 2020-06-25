@@ -5,7 +5,7 @@ and produces `Prometheus` metrics that can be scraped, visualised and alerted on
 
 *Source:* [bloomberg/goldpinger](https://github.com/bloomberg/goldpinger/tree/2.0.0).
 
-### Image repository and tag
+## Image repository and tag
 
 - goldpinger image: `docker.io/bloomberg/goldpinger:2.0.0`.
 - goldpinger repository: [https://github.com/bloomberg/goldpinger](https://github.com/bloomberg/goldpinger).
@@ -30,7 +30,7 @@ Fury distribution goldpinger is deployed with following configuration:
 You can deploy goldpinger by running following command in the root of this project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 ## License

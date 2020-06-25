@@ -19,7 +19,7 @@ In `sm.yml` file:
 
 1. `name` and `labels` are set to identify the app that exposes metrics.
 
-2.  `endpoints` specifies where our application exposes metrics. `path` and
+2. `endpoints` specifies where our application exposes metrics. `path` and
     `port` must match the ones defined in Service. Set `interval` to choose the
     scrape frequency.
 
@@ -38,7 +38,7 @@ In the example's folder:
 
 To access the application run:
 ```shell
-$ kubectl port-forward svc/example-app 8080
+kubectl port-forward svc/example-app 8080
 ```
 
 Then you can use curl to make requests:
@@ -59,7 +59,7 @@ Content-Type: text/plain; charset=utf-8
 You will see the metrics matching the number of calls made to the respective
 endpoint by querying the `/metrics` endpoint:
 
-```
+```bash
 $ curl 127.0.0.1:8080/metrics
 
 # HELP http_requests_total Count of all HTTP requests
@@ -76,7 +76,7 @@ Same results will appear in the Prometheus expression browser, to access it run:
 
 Then in the Prometheus browser, when you query for `http_requests_total{job="example-app"}` you will get corresponding results:
 
-```
-http_requests_total{code="200",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"}	1
+```bash
+http_requests_total{code="200",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"} 1
 http_requests_total{code="404",endpoint="http",instance="172.17.0.14:8080",job="example-app",method="get",namespace="default",pod="example-app-7f8458f6cf-6fwm2",service="example-app"} 1
 ```  

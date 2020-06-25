@@ -28,7 +28,7 @@ From kube-state-metrics
 
 * kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v1.9.5`
 * kube-state-metrics repository:
-  https://github.com/kubernetes/kube-state-metrics
+  <https://github.com/kubernetes/kube-state-metrics>
 
 
 ## Configuration
@@ -47,7 +47,7 @@ You can deploy kube-state-metrics by running following command in the root of
 the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 
