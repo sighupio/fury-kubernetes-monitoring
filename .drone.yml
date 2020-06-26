@@ -15,6 +15,9 @@ steps:
 kind: pipeline
 name: check-prometheus-rules
 
+depends_on:
+  - policeman
+
 platform:
   os: linux
   arch: amd64
@@ -35,6 +38,9 @@ steps:
 kind: pipeline
 name: render-examples
 
+depends_on:
+  - policeman
+
 platform:
   os: linux
   arch: amd64
@@ -54,6 +60,9 @@ steps:
 kind: pipeline
 name: e2e-kubernetes-1.16
 
+depends_on:
+  - policeman
+
 platform:
   os: linux
   arch: amd64
@@ -65,7 +74,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.4.2
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.5.0
     pull: always
     volumes:
       - name: shared
@@ -135,6 +144,9 @@ volumes:
 ---
 kind: pipeline
 name: e2e-kubernetes-1.17
+
+depends_on:
+  - policeman
 
 platform:
   os: linux
@@ -217,6 +229,9 @@ volumes:
 ---
 kind: pipeline
 name: e2e-kubernetes-1.18
+
+depends_on:
+  - policeman
 
 platform:
   os: linux
