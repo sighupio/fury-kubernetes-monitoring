@@ -1,6 +1,6 @@
 bases:
   - name: monitoring/prometheus-operated
-    version: v1.9.0-rc3
+    version: v1.9.0
   - name: monitoring/prometheus-operator
-    version: v1.9.0-rc3
+    version: v1.9.0
 
