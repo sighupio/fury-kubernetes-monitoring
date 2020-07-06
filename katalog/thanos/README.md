@@ -9,12 +9,12 @@ This is the simplified diagram of a Thanos architecture:
 
 ![thanos-architecture](images/thanos-arch.png)
 
-# Image repository and tag
+## Image repository and tag
 
--   Thanos components versions: `v0.12.2`
--   Thanos components image: `quay.io/thanos/thanos:v0.12.2`
+- Thanos components versions: `v0.12.2`
+- Thanos components image: `quay.io/thanos/thanos:v0.12.2`
 
-# Setup in Fury Module
+## Setup in Fury Module
 
 We designed 2 different possible setup accordingly with the 2 features listed above:
 
@@ -27,11 +27,11 @@ thanos-components #this directory contains all the thanos components and is inte
 So, you'll need to add to your `bases` the `thanos` or `thanos-with-store` depending on your needs.
 Remember than `thanos-with-store` is a superset that include also the high availability feature.
 
-# Caveats
+## Caveats
 
 Due to the integration with prometheus you have to manually patch some resources in order to make Thanos work properly
 
-## Prometheus CRD Patch
+### Prometheus CRD Patch
 
 just create a patch like this that will contain the `thanos` section:
 
@@ -57,7 +57,7 @@ spec:
             key: config
 ```
 
-## Thanos discovery config file
+### Thanos discovery config file
 
 Depending of the number of replicas you choose in the prometheus section, you'll need to patch the configuration of the query component (see [here](thanos-components/thanos-query/store-sd.yaml)) accordingly in order to keep it aware of the existing services:
 
@@ -102,7 +102,7 @@ secretGenerator:
 
 you can see and example of the `thanos-secret.yml` [here](thanos-components/thanos-store/thanos-storage-secret.yaml)
 
-# Ingress
+## Ingress
 
 there is no ingress defined by default, but if you want, you can add something like this:
 
