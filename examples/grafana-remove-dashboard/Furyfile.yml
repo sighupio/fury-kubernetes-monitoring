@@ -1,3 +1,0 @@
-bases:
-  - name: monitoring/grafana
-    version: v1.9.0-rc1
