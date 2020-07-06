@@ -24,12 +24,6 @@
   kustomize build
   rm -rf vendor
 }
-@test "testing kustomize build grafana-remove-dashboard" {
-  cd examples/grafana-remove-dashboard
-  furyctl vendor -H
-  kustomize build
-  rm -rf vendor
-}
 @test "testing kustomize build prometheus-additionalScrapes" {
   cd examples/prometheus-additionalScrapes
   furyctl vendor -H
