@@ -5,8 +5,8 @@ This package provides monitoring for Kubernetes components `kubelet` and
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize = `v1.0.10`
+- Kubernetes >= `1.14.0`
+- Kustomize >= `3`
 - [prometheus-operator](../prometheus-operator)
 
 
@@ -15,8 +15,6 @@ This package provides monitoring for Kubernetes components `kubelet` and
 Fury distribution AKS ServiceMonitor has following configuration:
 
 - Metrics are scraped with `30s` intervals
-- Relabel metrics in order for the discovered targets to point to the correct
-  endpoints
 
 ## License
 
