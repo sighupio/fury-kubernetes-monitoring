@@ -5,6 +5,7 @@ kind: Kustomization
 generatorOptions:
   labels:
     grafana-sighup-dashboard: default
+  disableNameSuffixHash: true
 
 configMapGenerator:
   - name: grafana-dashboard-definitions-k8s
