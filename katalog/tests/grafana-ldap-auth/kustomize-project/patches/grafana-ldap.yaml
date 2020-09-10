@@ -29,5 +29,7 @@ spec:
               value: "true"
             - name: GF_AUTH_ANONYMOUS_ENABLED
               value: "false"
+            - name: GF_AUTH_ANONYMOUS_DISABLE_LOGIN_FORM
+              value: "false"
             - name: GF_LOG_FILTERS
               value: "ldap:debug"
