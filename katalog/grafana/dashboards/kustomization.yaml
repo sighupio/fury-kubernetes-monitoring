@@ -16,7 +16,6 @@ configMapGenerator:
     files:
       - etcd.json
       - coredns.json
-      - calico.json
   - name: grafana-dashboard-apiserver
     files:
       - grafana-dashboard-apiserver.json
@@ -89,19 +88,10 @@ configMapGenerator:
   - name: grafana-dashboard-workload-total
     files:
       - grafana-dashboard-workload-total.json
-  - name: grafana-dashboard-definitions-goldpinger
-    files:
-      - goldpinger.json
   - name: grafana-dashboard-definitions-kong
     files:
       - kong.json
-  - name: grafana-dashboard-definitions-gatekeeper
-    files:
-      - gatekeeper.json
   - name: grafana-dashboard-definitions-gluster
     files:
       - gluster-nodes.json
       - gluster-utilisation.json
-  - name: grafana-dashboard-definitions-nginx
-    files:
-      - nginx-ingress.json
