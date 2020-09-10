@@ -1,21 +1,21 @@
 # Node Exporter
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX
-kernels provided by node-exporter service. You can see list of collectors
+kernels provided by node-exporter service. You can see a list of collectors
 enabled by default from project's
 [repository](https://github.com/prometheus/node_exporter#collectors)
 
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize = `v1.0.10`
+- Kubernetes >= `1.16.0`
+- Kustomize = `v3.0.x`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* node-exporter image: `quay.io/prometheus/node-exporter:v0.18.1`
+* node-exporter image: `quay.io/prometheus/node-exporter:v1.0.1`
 * node-exporter repository: <https://github.com/prometheus/node_exporter>
 
 
@@ -30,7 +30,7 @@ Fury distribution node-exporter is deployed with following configuration:
 
 ## Deployment
 
-You can deploy node-exporter by running following command in the root of the project:
+You can deploy node-exporter by running the following command in the root of the project:
 
 ```shell
 kustomize build | kubectl apply -f -
@@ -39,4 +39,4 @@ kustomize build | kubectl apply -f -
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)
