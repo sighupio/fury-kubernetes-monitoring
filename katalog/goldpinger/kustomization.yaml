@@ -4,6 +4,9 @@
 
 namespace: monitoring
 
+bases:
+  - dashboards
+
 resources:
   - rbac.yml
   - deploy.yml
@@ -11,4 +14,4 @@ resources:
 
 images:
 - name: docker.io/bloomberg/goldpinger
-  newTag: 2.0.0
+  newTag: v3.0.0
