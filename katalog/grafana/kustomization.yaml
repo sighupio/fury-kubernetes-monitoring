@@ -14,9 +14,9 @@ resources:
 
 images:
   - name: grafana/grafana
-    newTag: 6.6.2
+    newTag: 7.1.5
   - name: kiwigrid/k8s-sidecar
-    newTag: 0.1.151
+    newTag: 0.1.193
 
 configMapGenerator:
   - name: grafana-dashboards
