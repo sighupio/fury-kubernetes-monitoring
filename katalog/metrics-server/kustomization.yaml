@@ -11,5 +11,5 @@ resources:
 - tls.yml
 
 imageTags:
-- name: k8s.gcr.io/metrics-server-amd64
-  newTag: v0.3.6
+- name: k8s.gcr.io/metrics-server/metrics-server
+  newTag: v0.3.7

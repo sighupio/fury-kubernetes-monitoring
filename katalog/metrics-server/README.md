@@ -8,14 +8,14 @@ on each node.
 
 ## Requirements
 
-- Kubernetes >= `1.8.0`
-- Kustomize >= `3`
+- Kubernetes >= `1.16.0`
+- Kustomize >= `3.0.x`
 - cert-manager >= `0.11.0`
 
 
 ## Image repository and tag
 
-* Metrics Server image: `gcr.io/google_containers/metrics-server-amd64:v0.3.6`
+* Metrics Server image: `gcr.io/google_containers/metrics-server-amd64:v0.3.7`
 * Metrics Server repo: <https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server>
 * Metrics Server documentation: <https://kubernetes.io/docs/tasks/debug-application-cluster/core-metrics-pipeline/>
 
@@ -31,7 +31,7 @@ Fury distribution Metrics Server is deployed with the following configuration:
 
 ## Deployment
 
-You can deploy Metrics Server by running following command in the root of the
+You can deploy Metrics Server by running the following command in the root of the
 project:
 
 ```shell
