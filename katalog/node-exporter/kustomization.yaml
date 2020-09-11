@@ -4,6 +4,9 @@
 
 namespace: monitoring
 
+bases:
+  - dashboards
+
 images:
   - name: quay.io/prometheus/node-exporter
     newTag: v1.0.1

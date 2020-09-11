@@ -1,0 +1,37 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: etcd-metrics
+  name: etcd-metrics
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 15s
+    port: metrics
+  jobLabel: etcd-metrics
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  selector:
+    matchLabels:
+      app: etcd-metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: etcd-metrics
+  name: etcd-metrics
+  namespace: kube-system
+spec:
+  ports:
+  - name: metrics
+    port: 2378
+    protocol: TCP
+  selector:
+    component: kube-apiserver
