@@ -1,6 +1,6 @@
 # Prometheus Operator
 
-Operators are application specific controllers for complex stateful
+Operators are application-specific controllers for complex stateful
 applications. They are used to have more Kubernetes-native control over
 applications. Prometheus Operator makes it easy to deploy and manage Prometheus
 instances. But also provides easy monitoring definitions for Kubernetes
@@ -15,7 +15,7 @@ selectors.
 The Operator acts on the following custom resource definitions
 ([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)):
 
-- `Prometheus`: defines a desired Prometheus deployment. It's used by the
+- `Prometheus`: defines the desired Prometheus deployment. It's used by the
   Operator to deploy Prometheus instances.
 
 - `ServiceMonitor`: declaratively specifies how groups of services should be
@@ -29,7 +29,7 @@ The Operator acts on the following custom resource definitions
 - `Alertmanager`, defines a desired Alertmanager deployment. It's used by the
   Operator to deploy AlertManager instances.
 
-Operator takes care of Prometheus deployment and monitors Services as
+The operator takes care of Prometheus deployment and monitors Services as
 illustrated in this image from Prometheus Operator repository:
 
 ![operator
@@ -38,19 +38,19 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize = `v1.0.10`
+- Kubernetes >= `1.16.0`
+- Kustomize = `v3.0.X`
 
 
 ## Image repository and tag
 
-* Prometheus Operator image: `quay.io/coreos/prometheus-operator:v0.37.0`
+* Prometheus Operator image: `quay.io/coreos/prometheus-operator:v0.42.0`
 * Prometheus Operator repository: <https://github.com/coreos/prometheus-operator>
 
 
 ## Configuration
 
-Fury distribution Prometheus Operator is deployed with following configuration:
+Fury distribution Prometheus Operator is deployed with the following configuration:
 - Replica number: `1`
 - Requires `50Gi` storage (with default storage provider)
 - Logging to stderr is enabled
@@ -60,7 +60,7 @@ Fury distribution Prometheus Operator is deployed with following configuration:
 
 ## Deployment
 
-You can deploy Prometheus Operator by running following command in the root of
+You can deploy Prometheus Operator by running the following command in the root of
 the project:
 
 ```shell
