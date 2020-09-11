@@ -437,7 +437,7 @@ steps:
     pull: always
     depends_on: [ clone ]
     commands:
-      - tar -zcvf fury-kubernetes-networking-${DRONE_TAG}.tar.gz katalog/ LICENSE README.md
+      - tar -zcvf fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz katalog/ LICENSE README.md
     when:
       ref:
         include:
