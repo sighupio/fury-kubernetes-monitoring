@@ -5,8 +5,8 @@ by [Prometheus Operator](../prometheus-operator).
 
 Prometheus is a monitoring tool to collect metric based time series data and
 provides a functional expression language that lets the user select and
-aggregate time-series data in real time. Prometheus's expression browser make it
-possible to analyse queried data as a graph or view it as tabular data, but it's
+aggregate time-series data in real-time. Prometheus's expression browser makes it
+possible to analyze queried data as a graph or view it as tabular data, but it's
 also possible to integrate it with third-party time-series analytics tools like
 Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 [Grafana](../grafana) package's documentation.
@@ -14,21 +14,21 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize = `v1.0.10`
+- Kubernetes >= `1.16.0`
+- Kustomize = `v3.0.X`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* Prometheus image: `quay.io/prometheus/prometheus:v2.16.0`
+* Prometheus image: `quay.io/prometheus/prometheus:v2.20.1`
 * Prometheus repository: <https://github.com/prometheus/prometheus>
 * Prometheus documentation: <https://prometheus.io/docs/introduction/overview>
 
 
 ## Configuration
 
-Fury distribution Prometheus is deployed with following configuration:
+Fury distribution Prometheus is deployed with the following configuration:
 - Replica number: `1`
 - Retention for `30` days
 - Requires `150Gi` storage(with default storage type of Provider)
@@ -38,7 +38,7 @@ Fury distribution Prometheus is deployed with following configuration:
 
 ## Deployment
 
-You can deploy Prometheus Operated by running following command in the root of
+You can deploy Prometheus Operated by running the following command in the root of
 the project:
 
 ```shell
@@ -85,7 +85,7 @@ To learn how to define alert rules for your services please see the
 
 ## Alerts
 
-Followings alerts are already defined for this package.
+The followings alerts are already defined for this package.
 
 ### kubernetes-apps
 | Parameter | Description | Severity | Interval |
@@ -189,4 +189,4 @@ Followings alerts are already defined for this package.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)
