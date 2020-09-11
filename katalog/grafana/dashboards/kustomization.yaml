@@ -12,13 +12,6 @@ generatorOptions:
   disableNameSuffixHash: true
 
 configMapGenerator:
-  - name: grafana-dashboard-definitions-k8s
-    files:
-      - etcd.json
-      - coredns.json
-  - name: grafana-dashboard-apiserver
-    files:
-      - grafana-dashboard-apiserver.json
   - name: grafana-dashboard-cluster-total
     files:
       - grafana-dashboard-cluster-total.json
@@ -43,24 +36,12 @@ configMapGenerator:
   - name: grafana-dashboard-k8s-resources-workloads-namespace
     files:
       - grafana-dashboard-k8s-resources-workloads-namespace.json
-  - name: grafana-dashboard-kubelet
-    files:
-      - grafana-dashboard-kubelet.json
   - name: grafana-dashboard-namespace-by-pod
     files:
       - grafana-dashboard-namespace-by-pod.json
   - name: grafana-dashboard-namespace-by-workload
     files:
       - grafana-dashboard-namespace-by-workload.json
-  - name: grafana-dashboard-node-cluster-rsrc-use
-    files:
-      - grafana-dashboard-node-cluster-rsrc-use.json
-  - name: grafana-dashboard-node-rsrc-use
-    files:
-      - grafana-dashboard-node-rsrc-use.json
-  - name: grafana-dashboard-nodes
-    files:
-      - grafana-dashboard-nodes.json
   - name: grafana-dashboard-persistentvolumesusage
     files:
       - grafana-dashboard-persistentvolumesusage.json
@@ -88,10 +69,3 @@ configMapGenerator:
   - name: grafana-dashboard-workload-total
     files:
       - grafana-dashboard-workload-total.json
-  - name: grafana-dashboard-definitions-kong
-    files:
-      - kong.json
-  - name: grafana-dashboard-definitions-gluster
-    files:
-      - gluster-nodes.json
-      - gluster-utilisation.json
