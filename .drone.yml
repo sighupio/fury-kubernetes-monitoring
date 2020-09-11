@@ -465,7 +465,7 @@ steps:
         from_secret: github_token
       file_exists: overwrite
       files:
-        - fury-kubernetes-networking-${DRONE_TAG}.tar.gz
+        - fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz
       prerelease: true
       overwrite: true
       title: "Preview ${DRONE_TAG}"
@@ -489,7 +489,7 @@ steps:
         from_secret: github_token
       file_exists: overwrite
       files:
-        - fury-kubernetes-networking-${DRONE_TAG}.tar.gz
+        - fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz
       prerelease: false
       overwrite: true
       title: "Release ${DRONE_TAG}"
