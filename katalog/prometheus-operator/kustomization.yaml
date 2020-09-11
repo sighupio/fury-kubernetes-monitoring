@@ -4,6 +4,10 @@
 
 namespace: monitoring
 
+images:
+  - name: quay.io/coreos/prometheus-operator
+    newTag: v0.42.0
+
 resources: 
   - deploy.yml
   - rbac.yml
@@ -12,4 +16,7 @@ resources:
   - crd-prometheus.yml
   - crd-alertmanager.yml
   - crd-servicemonitor.yml
+  - crd-thanosruler.yml
+  - crd-probes.yml
+  - crd-podmonitor.yml
   - sm.yml
