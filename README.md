@@ -1,13 +1,13 @@
 # Fury Kubernetes Monitoring
 
 This repository contains all components necessary to deploy monitoring tools on
-top of Kubernetes. We use [Prometheus](https://prometheus.io/), a very popular open source monitoring and
+top of Kubernetes. We use [Prometheus](https://prometheus.io/), a very popular open-source monitoring and
 alerting toolkit for cloud-native applications. You can monitor both cluster
 itself and applications deployed on cluster via Prometheus. Alertmanager which
-makes part of Prometheus stack, handles alerts sent by Prometheus server and let
+makes part of Prometheus stack, handles alerts sent by Prometheus server and lets
 you manage alerts flexibly and route them through receiver integrations such as
 email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes
-Monitoring stack, you're going to have full control on your cluster. On
+Monitoring stack, you're going to have full control over your cluster. On
 Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus
 instances and to manage service monitoring and alerts. This repository contains
 a package to deploy Prometheus Operator and other packages to deploy Prometheus
@@ -17,21 +17,21 @@ running to be able to deploy them.
 
 ## Monitoring Packages
 
-Following packages are included in Fury Kubernetes Monitoring katalog. All
+The following packages are included in Fury Kubernetes Monitoring katalog. All
 resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.37.0**
+  manage Prometheus and related resources. Version: **0.42.0**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
-  deployed with Prometheus Operator's CRD. Version: **2.16.0**
+  deployed with Prometheus Operator's CRD. Version: **2.20.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
-  [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.20.0**
+  [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.21.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
-  collected by Prometheus. Version: **6.6.2**
-- [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alertings.
-  Version: **2.0.0**
+  collected by Prometheus. Version: **7.1.5**
+- [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
+  Version: **3.0.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
   metrics from AKS
 - [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
@@ -39,42 +39,43 @@ namespace in your Kubernetes cluster.
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.5**
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.7**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
-  metrics exposed by \*NIX kernels. Version: **0.18.1**
+  metrics exposed by \*NIX kernels. Version: **1.0.1**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
   kubelet and exposition through [Metrics API](https://github.com/kubernetes/metrics).
-  Version: **0.3.6**
+  Version: **0.3.7**
 
 You can click on each package to see its documentation.
 
 ## Requirements
 
-All packages in this repository have following dependencies, for package
+All packages in this repository have the following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
-- [Kubernetes](https://kubernetes.io) >= `v1.14.0`
+- [Kubernetes](https://kubernetes.io) >= `v1.16.0`
 - [Furyctl](https://github.com/sighupio/furyctl) package manager to download
   Fury packages >= [`v0.2.2`](https://github.com/sighupio/furyctl/releases/tag/v0.2.2)
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v3.3.0`
 
 ## Compatibility
 
-| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |
-| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |
-| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |
-| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
+| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |
+| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |
+| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
+| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
+| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
+| v1.10.0                             |                    |                    |                    |                    |                    |                    |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -197,7 +198,7 @@ Kubernetes components:
 
 If you need to customize our packages you can do it with `kustomize`. It lets
 you create customized Kubernetes resources based on other Kubernetes resource
-files, leaving the original YAML untouched and usable as is. To learn how to
+files, leaving the original YAML untouched and usable as-is. To learn how to
 create you customization layer with it please see the `kustomize`
 [repository](https://github.com/kubernetes-sigs/kustomize).
 
@@ -211,4 +212,4 @@ go to [examples](examples) directory.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](LICENSE)
