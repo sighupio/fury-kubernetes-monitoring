@@ -4,6 +4,9 @@
 
 namespace: monitoring
 
+bases:
+  - dashboards
+
 images:
 - name: quay.io/coreos/kube-state-metrics
   newTag: v1.9.7
