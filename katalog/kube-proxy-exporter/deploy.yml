@@ -1,0 +1,65 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kube-proxy-exporter
+  labels:
+    k8s-app: kube-proxy-exporter
+    k8s-proxied-app: kube-proxy
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kube-proxy-exporter
+      k8s-proxied-app: kube-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-proxy-exporter
+        k8s-proxied-app: kube-proxy
+    spec:
+      tolerations:
+      - operator: Exists
+      serviceAccountName: kube-proxy-exporter
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+      hostNetwork: true
+      hostPID: true
+      containers:
+      - name: kube-proxy-exporter
+        image: kube-rbac-proxy
+        args:
+        - "--secure-listen-address=0.0.0.0:18443"
+        - "--upstream=http://127.0.0.1:10249/"
+        - "--logtostderr"
+        - "--v=10"
+        ports:
+        - containerPort: 18443
+          name: https
+        resources:
+          limits:
+            cpu: 20m
+            memory: 40Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: kube-proxy-exporter
+    k8s-proxied-app: kube-proxy
+  name: kube-proxy-exporter
+spec:
+  ports:
+  - name: https
+    port: 18443
+    targetPort: https
+  selector:
+    k8s-app: kube-proxy-exporter
+    k8s-proxied-app: kube-proxy
