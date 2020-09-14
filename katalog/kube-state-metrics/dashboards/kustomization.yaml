@@ -1,0 +1,28 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generatorOptions:
+  labels:
+    grafana-sighup-dashboard: default
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: k8s-cluster-resources-grafana-dashboards
+    files:
+      - grafana-dashboard-k8s-resources-cluster.json
+      - grafana-dashboard-k8s-resources-namespace.json
+      - grafana-dashboard-k8s-resources-node.json
+  - name: k8s-workloads-resources-grafana-dashboards
+    files:
+      - grafana-dashboard-k8s-resources-workload.json
+      - grafana-dashboard-k8s-resources-workloads-namespace.json
+  - name: k8s-containers-resources-grafana-dashboards
+    files:
+      - grafana-dashboard-k8s-resources-pod.json
+      - grafana-dashboard-pods.json
+      - grafana-dashboard-statefulset.json
