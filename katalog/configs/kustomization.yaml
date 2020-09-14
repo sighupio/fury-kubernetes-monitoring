@@ -6,12 +6,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-generatorOptions:
-  labels:
-    grafana-sighup-dashboard: default
-  disableNameSuffixHash: true
-
-configMapGenerator:
-  - name: grafana-dashboard
-    files:
-      - grafana.json
+bases:
+  - ./bases/default

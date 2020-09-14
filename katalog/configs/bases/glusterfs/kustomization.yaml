@@ -11,7 +11,9 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
+
 configMapGenerator:
-  - name: grafana-dashboard
+  - name: sighup-glusterfs-dashboard-definition
     files:
-      - grafana.json
+      - dashboards/gluster-nodes.json
+      - dashboards/gluster-utilisation.json

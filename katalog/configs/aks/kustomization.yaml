@@ -11,7 +11,6 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
-configMapGenerator:
-  - name: grafana-dashboard
-    files:
-      - grafana.json
+bases:
+  - ../bases/default
+  - ../bases/coredns

@@ -131,10 +131,10 @@ load ./helper
   [ "$status" -eq 0 ]
 }
 
-@test "Deploy kubeadm-sm" {
+@test "Deploy kubeadm config" {
   info
   deploy() {
-    apply katalog/kubeadm-sm
+    apply katalog/configs/kubeadm
   }
   run deploy
   [ "$status" -eq 0 ]
@@ -172,6 +172,25 @@ load ./helper
   info
   test() {
     kubectl get pods -l app=node-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 60 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Deploy kube-proxy-exporter" {
+  info
+  deploy() {
+    apply katalog/kube-proxy-exporter
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "kube-proxy-exporter is Running" {
+  info
+  test() {
+    kubectl get pods -l k8s-app=kube-proxy-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
   loop_it test 60 10
   status=${loop_it_result:?}
