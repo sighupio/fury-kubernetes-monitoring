@@ -11,7 +11,10 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
+resources:
+  - service-monitors/coredns.yml
+
 configMapGenerator:
-  - name: grafana-dashboard
+  - name: sighup-coredns-dashboard-definition
     files:
-      - grafana.json
+      - dashboards/coredns.json

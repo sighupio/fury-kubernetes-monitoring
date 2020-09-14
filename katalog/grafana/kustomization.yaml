@@ -5,8 +5,8 @@
 ---
 namespace: monitoring
 
-# bases:
-#   - dashboards
+bases:
+  - dashboards
 
 resources:
   - deploy.yml

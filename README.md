@@ -32,12 +32,16 @@ namespace in your Kubernetes cluster.
   collected by Prometheus. Version: **7.1.5**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
   Version: **3.0.0**
-- [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
+- [configs/aks](katalog/configs/aks): Service Monitor to collect Kubernetes components
   metrics from AKS
-- [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
+- [configs/gke](katalog/configs/gke): Service Monitor to collect Kubernetes components
   metrics from GKE
-- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
+- [configs/eks](katalog/configs/eks): Service Monitor to collect Kubernetes components
+  metrics from EKS
+- [configs/kubeadm](katalog/configs/kubeadm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-promise clusters.
+- [kube-proxy-exporter](katalog/kube-proxy-exporter): RBAC Proxy to expose kube-proxy metrics. Works in all
+environments *(managed and unmanaged Kubernetes clusters)*. **0.6.0**.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
   Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.7**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS

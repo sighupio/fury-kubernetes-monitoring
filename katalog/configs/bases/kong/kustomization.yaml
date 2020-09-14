@@ -11,7 +11,8 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
+
 configMapGenerator:
-  - name: grafana-dashboard
+  - name: sighup-kong-dashboard-definition
     files:
-      - grafana.json
+      - dashboards/kong.json
