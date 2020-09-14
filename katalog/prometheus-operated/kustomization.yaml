@@ -4,6 +4,9 @@
 
 namespace: monitoring
 
+bases:
+  - dashboards
+
 resources: 
   - deploy.yml
   - rbac.yml
