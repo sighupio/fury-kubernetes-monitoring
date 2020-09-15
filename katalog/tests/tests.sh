@@ -134,7 +134,7 @@ load ./helper
 @test "Deploy kubeadm config" {
   info
   deploy() {
-    apply katalog/configs/kubeadm
+    apply katalog/kubeadm-sm
   }
   run deploy
   [ "$status" -eq 0 ]
