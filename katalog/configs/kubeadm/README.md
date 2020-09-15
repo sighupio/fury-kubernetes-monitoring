@@ -19,7 +19,7 @@ Kubernetes.
 
 - Kubernetes >= `1.16.0`
 - Kustomize = `v3.3.0`
-- [prometheus-operator](../prometheus-operator)
+- [prometheus-operator](../../prometheus-operator)
 
 
 ## Configuration
@@ -82,4 +82,4 @@ The followings alerts are already defined for this package.
 
 ## License
 
-For license details please see [LICENSE](../../LICENSE)
+For license details please see [LICENSE](../../../LICENSE)

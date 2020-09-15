@@ -2,22 +2,22 @@
 
 This repository contains all components necessary to deploy monitoring tools on
 top of Kubernetes. We use [Prometheus](https://prometheus.io/), a very popular open-source monitoring and
-alerting toolkit for cloud-native applications. You can monitor both cluster
-itself and applications deployed on cluster via Prometheus. Alertmanager which
-makes part of Prometheus stack, handles alerts sent by Prometheus server and lets
+alerting toolkit for cloud-native applications. You can monitor both the cluster
+itself and applications deployed on the cluster via Prometheus. Alertmanager which
+makes part of the Prometheus stack, handles alerts sent by the Prometheus server and lets
 you manage alerts flexibly and route them through receiver integrations such as
-email, Slack or PagerDuty. Thanks to the components in the Fury Kubernetes
+email, Slack, or PagerDuty. Thanks to the components in the Fury Kubernetes
 Monitoring stack, you're going to have full control over your cluster. On
-Kubernetes we use Prometheus Operator to deploy, configure and manage Prometheus
+Kubernetes, we use Prometheus Operator to deploy, configure, and manage Prometheus
 instances and to manage service monitoring and alerts. This repository contains
 a package to deploy Prometheus Operator and other packages to deploy Prometheus
-instances, rules, alerts and exporters. Packages with `-operated` postfix are
+instances, rules, alerts, and exporters. Packages with `-operated` postfix are
 deployed via Operator's CRD, therefore you need Prometheus Operator up and
 running to be able to deploy them.
 
 ## Monitoring Packages
 
-The following packages are included in Fury Kubernetes Monitoring katalog. All
+The following packages are included in the Fury Kubernetes Monitoring katalog. All
 resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
@@ -32,14 +32,14 @@ namespace in your Kubernetes cluster.
   collected by Prometheus. Version: **7.1.5**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
   Version: **3.0.0**
-- [configs/aks](katalog/configs/aks): Service Monitor to collect Kubernetes components
+- [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
   metrics from AKS
-- [configs/gke](katalog/configs/gke): Service Monitor to collect Kubernetes components
+- [gke-sm](katalog/gke-sm): Service Monitor to collect Kubernetes components
   metrics from GKE
-- [configs/eks](katalog/configs/eks): Service Monitor to collect Kubernetes components
+- [eks-sm](katalog/eks-sm): Service Monitor to collect Kubernetes components
   metrics from EKS
-- [configs/kubeadm](katalog/configs/kubeadm): Service Monitors, Prometheus rules and
-  alerts for Kubernetes components of unmanaged/on-promise clusters.
+- [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
+  alerts for Kubernetes components of unmanaged/on-premise clusters.
 - [kube-proxy-exporter](katalog/kube-proxy-exporter): RBAC Proxy to expose kube-proxy metrics. Works in all
 environments *(managed and unmanaged Kubernetes clusters)*. **0.6.0**.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
@@ -79,7 +79,7 @@ specific dependencies please visit the single package's documentation:
 | v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
 | v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
 | v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
-| v1.10.0                             |                    |                    |                    |                    |                    |                    |
+| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -89,6 +89,8 @@ specific dependencies please visit the single package's documentation:
 
 - [kube-state-metrics](katalog/kube-state-metrics) is not able to scrape
     `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
+- :warning: : module version: `v1.10.0` and Kubernetes Version: `1.19.x`. It works as expected. Marked as warning
+because it is not officially supported by [SIGHUP](https://sighup.io).
 
 ## Deployment
 
@@ -181,21 +183,28 @@ Kubernetes components:
 
 ### On-premise or unmanaged cloud clusters
 
-- Add `monitoring/kubeadm-sm` to `Furyfile.yml`.
+- Add `monitoring/kubeadm-sm` and `monitoring/configs` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/kubeadm-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 ### Google Kubernetes Engine (GKE)
 
-- Add `monitoring/gke-sm` to `Furyfile.yml`.
+- Add `monitoring/gke-sm` and `monitoring/configs` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/gke-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
+### Elastic Kubernetes Service (EKS)
+
+- Add `monitoring/eks-sm` and `monitoring/configs` to `Furyfile.yml`.
+- Download package with `furyctl vendor`
+- Add `./vendor/katalog/monitoring/eks-sm` to `kustomization.yaml`.
+- Deploy package with `kustomize build . | kubectl apply -f -`
+
 ### Azure Kubernetes Service (AKS)
 
-- Add `monitoring/aks-sm` to `Furyfile.yml`.
+- Add `monitoring/aks-sm` and `monitoring/configs` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/aks-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
@@ -203,7 +212,7 @@ Kubernetes components:
 If you need to customize our packages you can do it with `kustomize`. It lets
 you create customized Kubernetes resources based on other Kubernetes resource
 files, leaving the original YAML untouched and usable as-is. To learn how to
-create you customization layer with it please see the `kustomize`
+create your customization layer with it please see the `kustomize`
 [repository](https://github.com/kubernetes-sigs/kustomize).
 
 For further details please refer to the single package directories in this
@@ -211,7 +220,7 @@ repository.
 
 ## Examples
 
-To see examples on how to customize Fury Kubernetes Monitoring packages please
+To see examples on how to customize Fury Kubernetes Monitoring packages, please
 go to [examples](examples) directory.
 
 ## License
