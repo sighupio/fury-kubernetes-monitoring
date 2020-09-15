@@ -1,7 +1,7 @@
 # EKS ServiceMonitor
 
 This package provides monitoring for Kubernetes components `kubelet` and
-`api-server` components on EKS.
+`api-server` on EKS.
 
 ## Requirements
 
