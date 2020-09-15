@@ -1,17 +1,17 @@
-# AKS ServiceMonitor
+# EKS ServiceMonitor
 
-This package provides monitoring for Kubernetes components `kubelet`, `coredns` and
-`api-server` components on AKS.
+This package provides monitoring for Kubernetes components `kubelet` and
+`api-server` components on EKS.
 
 ## Requirements
 
 - Kubernetes >= `1.16.0`
 - Kustomize >= `3.3.0`
-- [prometheus-operator](../prometheus-operator)
+- [prometheus-operator](../../prometheus-operator)
 
 ## Configuration
 
-Fury distribution AKS ServiceMonitor has the following configuration:
+Fury distribution EKS ServiceMonitor has following configuration:
 
 - `api-server` and `kubelet` metrics are scraped with `30s` intervals
 - `coredns` metrics are scraped with `15s` intervals
@@ -28,4 +28,4 @@ Fury distribution AKS ServiceMonitor has the following configuration:
 
 ## License
 
-For license details please see [LICENSE](../../LICENSE)
+For license details please see [LICENSE](../../../LICENSE)

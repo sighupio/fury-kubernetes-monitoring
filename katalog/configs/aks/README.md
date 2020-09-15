@@ -7,7 +7,7 @@ This package provides monitoring for Kubernetes components `kubelet`, `coredns` 
 
 - Kubernetes >= `1.16.0`
 - Kustomize >= `3.3.0`
-- [prometheus-operator](../prometheus-operator)
+- [prometheus-operator](../../prometheus-operator)
 
 ## Configuration
 
@@ -28,4 +28,4 @@ Fury distribution AKS ServiceMonitor has the following configuration:
 
 ## License
 
-For license details please see [LICENSE](../../LICENSE)
+For license details please see [LICENSE](../../../LICENSE)
