@@ -1,7 +1,7 @@
 # AKS ServiceMonitor
 
 This package provides monitoring for Kubernetes components `kubelet`, `coredns` and
-`api-server` components on AKS.
+`api-server` on AKS.
 
 ## Requirements
 

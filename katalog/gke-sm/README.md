@@ -1,7 +1,7 @@
 # GKE ServiceMonitor
 
 This package provides monitoring for Kubernetes components `kubelet` and
-`api-server` components on GKE.
+`api-server` on GKE.
 
 ## Requirements
 
