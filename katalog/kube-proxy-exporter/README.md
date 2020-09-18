@@ -3,6 +3,7 @@
 It is highly recommended to gather metrics from kube-proxy as it is a critical piece of any Kubernetes Cluster.
 Sometimes (especially in managed clusters) it is not possible to configure kube-proxy to expose metrics, this is why
 this package exists. Another reason to run this exporter instead of just exposing metrics from kube-proxy is the
+ability to run it independently of the environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
 
 
 ## Requirements
