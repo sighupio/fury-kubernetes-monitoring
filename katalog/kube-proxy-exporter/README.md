@@ -8,15 +8,15 @@ this package exists. Another reason to run this exporter instead of just exposin
 ## Requirements
 
 - Kubernetes >= `1.16.0`
-- Kustomize = `v3.0.X`
+- Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `quay.io/brancz/kube-rbac-proxy:v0.6.0`
+- kube-rbac-proxy image: `quay.io/coreos/kube-rbac-proxy:v0.5.0`
 - kube-rbac-proxy repository:
-  <https://github.com/brancz/kube-rbac-proxy>
+  <https://quay.io/repository/coreos/kube-rbac-proxy>
 
 
 ## Configuration
