@@ -7,8 +7,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: kube-proxy-exporter
-  name: kube-proxy-exporter
+    k8s-app: kube-proxy-metrics
+  name: kube-proxy-metrics
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
@@ -23,4 +23,4 @@ spec:
     - monitoring
   selector:
     matchLabels:
-      k8s-app: kube-proxy-exporter
+      k8s-app: kube-proxy-metrics

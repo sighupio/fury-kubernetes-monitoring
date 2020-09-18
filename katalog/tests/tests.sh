@@ -10,8 +10,8 @@ load ./helper
   info
   setup() {
     kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
-    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.6.0/katalog/cert-manager/cert-manager-controller/crd.yml
-    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.6.0"
+    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.8.0-rc5/katalog/cert-manager/cert-manager-controller/crd.yml
+    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.8.0-rc5"
   }
   loop_it setup 60 10
   status=${loop_it_result:?}
@@ -178,19 +178,19 @@ load ./helper
   [ "$status" -eq 0 ]
 }
 
-@test "Deploy kube-proxy-exporter" {
+@test "Deploy kube-proxy-metrics" {
   info
   deploy() {
-    apply katalog/kube-proxy-exporter
+    apply katalog/kube-proxy-metrics
   }
   run deploy
   [ "$status" -eq 0 ]
 }
 
-@test "kube-proxy-exporter is Running" {
+@test "kube-proxy-metrics is Running" {
   info
   test() {
-    kubectl get pods -l k8s-app=kube-proxy-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l k8s-app=kube-proxy-metrics -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
   loop_it test 60 10
   status=${loop_it_result:?}

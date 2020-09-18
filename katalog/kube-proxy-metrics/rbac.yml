@@ -5,24 +5,24 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: kube-proxy-exporter
+  name: kube-proxy-metrics
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: kube-proxy-exporter
+  name: kube-proxy-metrics
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: kube-proxy-exporter
+  name: kube-proxy-metrics
 subjects:
 - kind: ServiceAccount
-  name: kube-proxy-exporter
+  name: kube-proxy-metrics
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: kube-proxy-exporter
+  name: kube-proxy-metrics
 rules:
 - apiGroups: ["authentication.k8s.io"]
   resources:
