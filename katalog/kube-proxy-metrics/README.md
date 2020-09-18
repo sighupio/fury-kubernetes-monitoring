@@ -22,7 +22,7 @@ ability to run it independently of the environment, on-premise installed by kube
 
 ## Configuration
 
-Fury distribution kube-proxy-exporter is deployed with the following configuration:
+Fury distribution kube-proxy-metrics is deployed with the following configuration:
 
 - Resource limits are `20m` for CPU and `40Mi` for memory
 - Listens on port `18443`
@@ -33,7 +33,7 @@ Fury distribution kube-proxy-exporter is deployed with the following configurati
 
 ## Deployment
 
-You can deploy kube-proxy-exporter by running the following command in the root of
+You can deploy kube-proxy-metrics by running the following command in the root of
 the project:
 
 ```shell

@@ -40,7 +40,7 @@ namespace in your Kubernetes cluster.
   metrics from EKS
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-premise clusters.
-- [kube-proxy-exporter](katalog/kube-proxy-exporter): RBAC Proxy to expose kube-proxy metrics. Works in all
+- [kube-proxy-metrics](katalog/kube-proxy-metrics): RBAC Proxy to expose kube-proxy metrics. Works in all
 environments *(managed and unmanaged Kubernetes clusters)*. **0.6.0**.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
   Kubernetes objects such as Deployments, Nodes and Pods. Version: **1.9.7**
