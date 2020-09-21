@@ -4,7 +4,7 @@
 
 bases:
   - name: monitoring/prometheus-operated
-    version: v1.10.0-rc5
+    version: v1.10.0
   - name: monitoring/prometheus-operator
-    version: v1.10.0-rc5
+    version: v1.10.0
 
