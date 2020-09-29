@@ -657,6 +657,7 @@
                         "min": false,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": false
                     },
@@ -896,7 +897,7 @@
             "30d"
         ]
     },
-    "timezone": "",
+    "timezone": "UTC",
     "title": "Kubernetes / StatefulSets",
     "uid": "a31c1f46e6f727cb37c0d731a7245005",
     "version": 0

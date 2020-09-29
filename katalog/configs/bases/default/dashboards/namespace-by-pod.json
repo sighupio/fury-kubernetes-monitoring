@@ -349,6 +349,9 @@
             "id": 5,
             "lines": true,
             "linewidth": 1,
+            "links": [
+
+            ],
             "minSpan": 24,
             "nullPointMode": "null as zero",
             "renderer": "flot",
@@ -614,6 +617,7 @@
                 "min": false,
                 "rightSide": false,
                 "show": true,
+                "sideWidth": null,
                 "total": false,
                 "values": false
             },
@@ -713,6 +717,7 @@
                 "min": false,
                 "rightSide": false,
                 "show": true,
+                "sideWidth": null,
                 "total": false,
                 "values": false
             },
@@ -823,6 +828,7 @@
                         "min": false,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": false
                     },
@@ -922,6 +928,7 @@
                         "min": false,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": false
                     },
@@ -1041,6 +1048,7 @@
                         "min": false,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": false
                     },
@@ -1140,6 +1148,7 @@
                         "min": false,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": false
                     },
@@ -1223,7 +1232,7 @@
             "type": "row"
         }
     ],
-    "refresh": "30s",
+    "refresh": "10s",
     "rows": [
 
     ],
@@ -1393,7 +1402,7 @@
             "30d"
         ]
     },
-    "timezone": "",
+    "timezone": "UTC",
     "title": "Kubernetes / Networking / Namespace (Pods)",
     "uid": "8b7a8b326d7a6f1f04244066368c67af",
     "version": 0
