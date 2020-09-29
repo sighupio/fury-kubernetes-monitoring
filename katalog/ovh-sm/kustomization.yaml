@@ -2,9 +2,9 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-bases:
-  - name: monitoring/alertmanager-operated
-    version: v1.10.2
-  - name: monitoring/prometheus-operator
-    version: v1.10.2
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
+bases:
+  - ../configs/ovh

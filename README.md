@@ -38,6 +38,8 @@ namespace in your Kubernetes cluster.
   metrics from GKE
 - [eks-sm](katalog/eks-sm): Service Monitor to collect Kubernetes components
   metrics from EKS
+- [ovh-sm](katalog/ovh-sm): Service Monitor to collect Kubernetes components
+  metrics from OVH Kubernetes Service.
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-premise clusters.
 - [kube-proxy-metrics](katalog/kube-proxy-metrics): RBAC Proxy to expose kube-proxy metrics. Works in all
@@ -108,19 +110,19 @@ and Grafana using the following `Furyfile.yml` :
 ```yaml
 bases:
     - name: monitoring/prometheus-operator
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/prometheus-operated
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/alertmanager-operated
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/node-exporter
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/kube-state-metrics
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/grafana
-      version: v1.10.1
+      version: v1.10.2
     - name: monitoring/goldpinger
-      version: v1.10.1
+      version: v1.10.2
 ```
 
 and execute
@@ -182,6 +184,8 @@ Kubernetes components:
 - on-premise or unmanaged cloud clusters
 - Google Kubernetes Engine (GKE)
 - Azure Kubernetes Service (AKS)
+- Elastic Kubernetes Service (EKS)
+- OVH Kubernetes Service
 
 ### On-premise or unmanaged cloud clusters
 
@@ -209,6 +213,13 @@ Kubernetes components:
 - Add `monitoring/aks-sm` and `monitoring/configs` to `Furyfile.yml`.
 - Download package with `furyctl vendor`
 - Add `./vendor/katalog/monitoring/aks-sm` to `kustomization.yaml`.
+- Deploy package with `kustomize build . | kubectl apply -f -`
+
+### OVH Kubernetes Service
+
+- Add `monitoring/ovh-sm` and `monitoring/configs` to `Furyfile.yml`.
+- Download package with `furyctl vendor`
+- Add `./vendor/katalog/monitoring/ovh-sm` to `kustomization.yaml`.
 - Deploy package with `kustomize build . | kubectl apply -f -`
 
 If you need to customize our packages you can do it with `kustomize`. It lets
