@@ -18,7 +18,7 @@
     "links": [
 
     ],
-    "refresh": "",
+    "refresh": "10s",
     "rows": [
         {
             "collapse": false,
@@ -45,6 +45,7 @@
                         "min": true,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": true
                     },
@@ -240,6 +241,7 @@
                         "min": true,
                         "rightSide": false,
                         "show": true,
+                        "sideWidth": null,
                         "total": false,
                         "values": true
                     },
@@ -543,7 +545,7 @@
             "30d"
         ]
     },
-    "timezone": "",
+    "timezone": "UTC",
     "title": "Kubernetes / Persistent Volumes",
     "uid": "919b92a8e8041bd567af9edab12c840c",
     "version": 0
