@@ -27,6 +27,87 @@ steps:
   - name: lint
     image: quay.io/sighup/policeman
     pull: always
+    depends_on:
+      - clone
+
+  - name: render
+    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.18.8_3.3.0_2.4.1
+    pull: always
+    depends_on:
+      - clone
+    commands:
+      - kustomize build katalog/alertmanager-operated > alertmanager-operated.yml
+      - kustomize build katalog/goldpinger > goldpinger.yml
+      - kustomize build katalog/grafana > grafana.yml
+      - kustomize build katalog/kube-proxy-metrics > kube-proxy-metrics.yml
+      - kustomize build katalog/kube-state-metrics > kube-state-metrics.yml
+      - kustomize build katalog/kubeadm-sm > kubeadm-sm.yml
+      - kustomize build katalog/metrics-server > metrics-server.yml
+      - kustomize build katalog/node-exporter > node-exporter.yml
+      - kustomize build katalog/prometheus-operated > prometheus-operated.yml
+      - kustomize build katalog/prometheus-operator > prometheus-operator.yml
+      - kustomize build katalog/thanos/thanos > thanos.yml
+
+  - &deprek8ion
+    name: deprek8ion-alertmanager-operated
+    image: eu.gcr.io/swade1987/deprek8ion:1.1.31
+    pull: always
+    environment:
+      KUBERNETES_MANIFESTS: alertmanager-operated.yml
+    depends_on:
+      - render
+    commands:
+      - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
+
+  - <<: *deprek8ion
+    name: deprek8ion-goldpinger
+    environment:
+      KUBERNETES_MANIFESTS: goldpinger.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-grafana
+    environment:
+      KUBERNETES_MANIFESTS: grafana.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-kube-proxy-metrics
+    environment:
+      KUBERNETES_MANIFESTS: kube-proxy-metrics.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-kube-state-metrics
+    environment:
+      KUBERNETES_MANIFESTS: kube-state-metrics.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-kubeadm-sm
+    environment:
+      KUBERNETES_MANIFESTS: kubeadm-sm.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-metrics-server
+    environment:
+      KUBERNETES_MANIFESTS: metrics-server.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-node-exporter
+    environment:
+      KUBERNETES_MANIFESTS: node-exporter.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-prometheus-operated
+    environment:
+      KUBERNETES_MANIFESTS: prometheus-operated.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-prometheus-operator
+    environment:
+      KUBERNETES_MANIFESTS: prometheus-operator.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-thanos
+    environment:
+      KUBERNETES_MANIFESTS: thanos.yml
 
 ---
 kind: pipeline
