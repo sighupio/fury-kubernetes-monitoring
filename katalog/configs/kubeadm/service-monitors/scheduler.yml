@@ -10,8 +10,12 @@ metadata:
   name: kube-scheduler
 spec:
   endpoints:
-  - interval: 30s
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
     port: metrics
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true
   jobLabel: k8s-app
   namespaceSelector:
     matchNames:
@@ -29,7 +33,7 @@ metadata:
 spec:
   ports:
   - name: metrics
-    port: 10251
+    port: 10259
     protocol: TCP
   selector:
     component: kube-scheduler
