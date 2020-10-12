@@ -1533,26 +1533,6 @@ spec:
         short: 6h
   - name: kubernetes-system-apiserver
     rules:
-    - alert: KubeClientCertificateExpiration
-      annotations:
-        description: A client certificate used to authenticate to the apiserver is
-          expiring in less than 7.0 days.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
-        summary: Client certificate is about to expire.
-      expr: |
-        apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 604800
-      labels:
-        severity: warning
-    - alert: KubeClientCertificateExpiration
-      annotations:
-        description: A client certificate used to authenticate to the apiserver is
-          expiring in less than 24.0 hours.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
-        summary: Client certificate is about to expire.
-      expr: |
-        apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 86400
-      labels:
-        severity: critical
     - alert: AggregatedAPIErrors
       annotations:
         description: An aggregated API {{ $labels.name }}/{{ $labels.namespace }}
@@ -1728,31 +1708,6 @@ spec:
         summary: Target disappeared from Prometheus target discovery.
       expr: |
         absent(up{job="kubelet", metrics_path="/metrics"} == 1)
-      for: 15m
-      labels:
-        severity: critical
-  - name: kubernetes-system-scheduler
-    rules:
-    - alert: KubeSchedulerDown
-      annotations:
-        description: KubeScheduler has disappeared from Prometheus target discovery.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeschedulerdown
-        summary: Target disappeared from Prometheus target discovery.
-      expr: |
-        absent(up{job="kube-scheduler"} == 1)
-      for: 15m
-      labels:
-        severity: critical
-  - name: kubernetes-system-controller-manager
-    rules:
-    - alert: KubeControllerManagerDown
-      annotations:
-        description: KubeControllerManager has disappeared from Prometheus target
-          discovery.
-        runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubecontrollermanagerdown
-        summary: Target disappeared from Prometheus target discovery.
-      expr: |
-        absent(up{job="kube-controller-manager"} == 1)
       for: 15m
       labels:
         severity: critical
