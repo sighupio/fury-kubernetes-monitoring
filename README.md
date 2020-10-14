@@ -84,6 +84,7 @@ specific dependencies please visit the single package's documentation:
 | v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
 | v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
 | v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
+| v1.10.3                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
