@@ -2,13 +2,13 @@
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX
 kernels provided by node-exporter service. You can see a list of collectors
-enabled by default from project's
+enabled by default from the project's
 [repository](https://github.com/prometheus/node_exporter#collectors)
 
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize = `v3.0.x`
 - [prometheus-operator](../prometheus-operator)
 
@@ -16,12 +16,12 @@ enabled by default from project's
 ## Image repository and tag
 
 * node-exporter image: `quay.io/prometheus/node-exporter:v1.0.1`
-* node-exporter repository: <https://github.com/prometheus/node_exporter>
+* node-exporter repository: [https://github.com/prometheus/node_exporter](https://github.com/prometheus/node_exporter)
 
 
 ## Configuration
 
-Fury distribution node-exporter is deployed with following configuration:
+Fury distribution node-exporter is deployed with the following configuration:
 - Ignore filesystem mount points starting with `dev|proc|sys|var/lib/docker` (local to the container file system)
 - Ignore filesystem types `autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs`
 - Resource limits are `250m` for CPU and `180Mi` for memory
