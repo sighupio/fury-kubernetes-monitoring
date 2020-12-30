@@ -1,6 +1,6 @@
 # kube-proxy exporter
 
-It is highly recommended to gather metrics from kube-proxy as it is a critical piece of any Kubernetes Cluster.
+It is highly recommended gathering metrics from kube-proxy as it is a critical piece of any Kubernetes Cluster.
 Sometimes (especially in managed clusters) it is not possible to configure kube-proxy to expose metrics, this is why
 this package exists. Another reason to run this exporter instead of just exposing metrics from kube-proxy is the
 ability to run it independently of the environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
@@ -8,7 +8,7 @@ ability to run it independently of the environment, on-premise installed by kube
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
 
@@ -17,7 +17,7 @@ ability to run it independently of the environment, on-premise installed by kube
 
 - kube-rbac-proxy image: `quay.io/coreos/kube-rbac-proxy:v0.5.0`
 - kube-rbac-proxy repository:
-  <https://quay.io/repository/coreos/kube-rbac-proxy>
+  [https://quay.io/repository/coreos/kube-rbac-proxy](https://quay.io/repository/coreos/kube-rbac-proxy)
 
 
 ## Configuration
