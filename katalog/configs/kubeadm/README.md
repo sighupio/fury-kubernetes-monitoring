@@ -33,7 +33,7 @@ intervals:
 - kubelet: `30s`
 - kube-scheduler: `30s`
 - Dashboards shipped:
-  - `coredns`: CoreDNS
+  - `coredns`: CoreDNS < 1.7.0
   - `api-server`: Kubernetes / API server
   - `cluster-total`: Kubernetes / Networking / Cluster
   - `kubelet`: Kubernetes / Kubelet
