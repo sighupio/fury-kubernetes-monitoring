@@ -4,6 +4,6 @@
 
 bases:
   - name: monitoring/alertmanager-operated
-    version: v1.11.0-rc1
+    version: v1.11.0-rc2
   - name: monitoring/prometheus-operator
-    version: v1.11.0-rc1
+    version: v1.11.0-rc2
