@@ -22,14 +22,14 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.42.0**
+  manage Prometheus and related resources. Version: **0.44.1**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
-  deployed with Prometheus Operator's CRD. Version: **2.20.1**
+  deployed with Prometheus Operator's CRD. Version: **2.22.2**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
   [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.21.0**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
-  collected by Prometheus. Version: **7.1.5**
+  collected by Prometheus. Version: **7.3.6**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
   Version: **3.0.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
@@ -50,7 +50,7 @@ environments *(managed and unmanaged Kubernetes clusters)*. **0.6.0**.
   metrics exposed by \*NIX kernels. Version: **1.0.1**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
   kubelet and exposition through [Metrics API](https://github.com/kubernetes/metrics).
-  Version: **0.3.7**
+  Version: **0.4.1**
 
 You can click on each package to see its documentation.
 
@@ -59,32 +59,32 @@ You can click on each package to see its documentation.
 All packages in this repository have the following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
-- [Kubernetes](https://kubernetes.io) >= `v1.16.0`
+- [Kubernetes](https://kubernetes.io) >= `v1.17.0`
 - [Furyctl](https://github.com/sighupio/furyctl) package manager to download
   Fury packages >= [`v0.2.2`](https://github.com/sighupio/furyctl/releases/tag/v0.2.2)
 - [Kustomize](https://github.com/kubernetes-sigs/kustomize) = `v3.3.0`
 
 ## Compatibility
 
-| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |
-| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |
-| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |
-| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |
-| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
-| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |
-| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
-| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
-| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
-| v1.10.3                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
+| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |       1.20.X       |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
+| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |                    |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |
+| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |
+| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |
+| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
+| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
+| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
+| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
+| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
+| v1.11.0                             |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -94,7 +94,7 @@ specific dependencies please visit the single package's documentation:
 
 - [kube-state-metrics](katalog/kube-state-metrics) is not able to scrape
     `ValidatingWebhookConfiguration` in Kubernetes < 1.16.X.
-- :warning: : module version: `v1.10.0` and Kubernetes Version: `1.19.x`. It works as expected. Marked as warning
+- :warning: : module version: `v1.11.0` and Kubernetes Version: `1.20.x`. It works as expected. Marked as warning
 because it is not officially supported by [SIGHUP](https://sighup.io).
 
 ## Deployment
