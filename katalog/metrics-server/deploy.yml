@@ -12,6 +12,9 @@ spec:
   selector:
     matchLabels:
       app: metrics-server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -27,8 +30,10 @@ spec:
         image: k8s.gcr.io/metrics-server/metrics-server
         imagePullPolicy: Always
         args:
+        - --alsologtostderr
+        - --kubelet-use-node-status-port
         - --kubelet-insecure-tls
-        - --kubelet-preferred-address-types=InternalIP
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
         - --metric-resolution=30s
         - --secure-port=8443
         - --tls-cert-file=/certs/tls.crt
@@ -37,17 +42,19 @@ spec:
         - name: https
           containerPort: 8443
         livenessProbe:
+          failureThreshold: 3
           httpGet:
-            scheme: HTTPS
-            path: /healthz
+            path: /livez
             port: https
-          initialDelaySeconds: 30
-          timeoutSeconds: 30
+            scheme: HTTPS
+          periodSeconds: 10
         readinessProbe:
+          failureThreshold: 3
           httpGet:
-            scheme: HTTPS
-            path: /healthz
+            path: /readyz
             port: https
+            scheme: HTTPS
+          periodSeconds: 10
         resources:
           requests:
             cpu: 50m
@@ -56,6 +63,8 @@ spec:
             cpu: 100m
             memory: 100Mi
         securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
         volumeMounts:
