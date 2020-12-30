@@ -5,8 +5,8 @@
 namespace: monitoring
 
 images:
-  - name: quay.io/coreos/prometheus-operator
-    newTag: v0.42.0
+  - name: quay.io/prometheus-operator/prometheus-operator
+    newTag: v0.44.1
 
 resources: 
   - deploy.yml
