@@ -1,13 +1,13 @@
 # Prometheus Operator
 
 Operators are application-specific controllers for complex stateful
-applications. They are used to have more Kubernetes-native control over
+applications. They are used to having more Kubernetes-native control over
 applications. Prometheus Operator makes it easy to deploy and manage Prometheus
 instances. But also provides easy monitoring definitions for Kubernetes
 services. We can easily deploy Prometheus servers and use advanced options in
 the Prometheus CRD to let the Operator handle version upgrades, persistent
-volume claims and the discovery of Alertmanager instances. Thanks to Prometheus
-Operator you don't have to learn Prometheus specific configuration language to
+volume claims, and the discovery of Alertmanager instances. Thanks to Prometheus
+Operator you don't have to learn Prometheus-specific configuration language to
 monitor your services. Target discovery is achieved through ServiceMonitor CRD,
 target configurations are automatically generated based on Kubernetes label
 selectors.
@@ -38,14 +38,14 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize = `v3.0.X`
 
 
 ## Image repository and tag
 
-* Prometheus Operator image: `quay.io/coreos/prometheus-operator:v0.42.0`
-* Prometheus Operator repository: <https://github.com/coreos/prometheus-operator>
+* Prometheus Operator image: `quay.io/prometheus-operator/prometheus-operator:v0.44.1`
+* Prometheus Operator repository: [https://github.com/prometheus-operator/prometheus-operator](https://github.com/prometheus-operator/prometheus-operator)
 
 
 ## Configuration
@@ -81,4 +81,4 @@ documentation.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)
