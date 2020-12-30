@@ -1,8 +1,8 @@
 # Kube State Metrics
 
-This package provides kube-state-metrics service which listens Kubernetes API
+This package provides kube-state-metrics service which listens to Kubernetes API
 server and generates metrics about the state of Kubernetes objects like
-Deployments, Nodes or Pods.
+Deployments, Nodes, or Pods.
 
 From kube-state-metrics
 [repository](https://github.com/kubernetes/kube-state-metrics):
@@ -19,7 +19,7 @@ From kube-state-metrics
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize = `v3.0.X`
 - [prometheus-operator](../prometheus-operator)
 
