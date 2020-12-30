@@ -1,8 +1,8 @@
 # Thanos
 
-Thanos is an opensource Prometheus setup that allows to have 2 important features:
+Thanos is an opensource Prometheus setup that allows having 2 important features:
 
-1. high availability on Prometheus (setting more prometheus replicas)
+1. high availability on Prometheus (setting more Prometheus replicas)
 2. long term storage capacity relying on an external object storage
 
 This is the simplified diagram of a Thanos architecture:
@@ -16,7 +16,7 @@ This is the simplified diagram of a Thanos architecture:
 
 ## Setup in Fury Module
 
-We designed 2 different possible setup accordingly with the 2 features listed above:
+We designed 2 different possible setups accordingly with the 2 features listed above:
 
 ```bash
 thanos #this is the setup with only high-availability feature
@@ -25,11 +25,11 @@ thanos-components #this directory contains all the thanos components and is inte
 ```
 
 So, you'll need to add to your `bases` the `thanos` or `thanos-with-store` depending on your needs.
-Remember than `thanos-with-store` is a superset that include also the high availability feature.
+Remember that `thanos-with-store` is a superset that includes also the high availability feature.
 
 ## Caveats
 
-Due to the integration with prometheus you have to manually patch some resources in order to make Thanos work properly
+Due to the integration with Prometheus, you have to manually patch some resources to make Thanos work properly
 
 ### Prometheus CRD Patch
 
@@ -59,7 +59,7 @@ spec:
 
 ### Thanos discovery config file
 
-Depending of the number of replicas you choose in the prometheus section, you'll need to patch the configuration of the query component (see [here](thanos-components/thanos-query/store-sd.yaml)) accordingly in order to keep it aware of the existing services:
+Depending on the number of replicas you choose in the Prometheus section, you'll need to patch the configuration of the query component (see [here](thanos-components/thanos-query/store-sd.yaml)) accordingly to keep it aware of the existing services:
 
 Examples:
 
@@ -83,11 +83,11 @@ Examples:
       - prometheus-k8s-2.prometheus-operated:10901
 ```
 
-> Same example can be done for solution with store, is just to add to the previous examples the line (see [here](thanos-with-store/store-sd.yaml)) :
+> Same example can be done for a solution with store, is just to add to the previous examples the line (see [here](thanos-with-store/store-sd.yaml)) :
 
 `- thanos-store:10901`
 
-If you choose the `thanos-with-store` solution, you need also to add a secretConfigGenerator in your kustomization file with proper values:
+If you choose the `thanos-with-store` solution, you need also to add a `secretConfigGenerator` in your kustomization file with proper values:
 
 ```yml
 secretGenerator:
