@@ -172,7 +172,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     volumes:
       - name: shared
@@ -212,7 +212,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -259,7 +259,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     volumes:
       - name: shared
@@ -299,7 +299,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -346,7 +346,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     volumes:
       - name: shared
@@ -386,7 +386,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -433,7 +433,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     volumes:
       - name: shared
@@ -473,7 +473,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
     pull: always
     depends_on: [e2e]
     settings:
