@@ -172,7 +172,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     volumes:
       - name: shared
@@ -198,6 +198,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.17.11_3.3.0_2.4.1
@@ -212,7 +216,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -232,6 +236,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
     when:
       status:
         - success
@@ -259,7 +267,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     volumes:
       - name: shared
@@ -285,6 +293,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.18.8_3.3.0_2.4.1
@@ -299,7 +311,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -319,6 +331,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
     when:
       status:
         - success
@@ -346,7 +362,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     volumes:
       - name: shared
@@ -372,6 +388,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.19.4_3.3.0_2.4.1
@@ -386,7 +406,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -406,6 +426,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
     when:
       status:
         - success
@@ -433,7 +457,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     volumes:
       - name: shared
@@ -459,6 +483,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
   - name: e2e
     image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.20.0_3.3.0_2.4.1
@@ -473,7 +501,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.8.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.9.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -493,6 +521,10 @@ steps:
         from_secret: vsphere_password
       vsphere_user:
         from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
     when:
       status:
         - success
