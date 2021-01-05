@@ -8,9 +8,14 @@ bases:
   - dashboards
 
 images:
+  - name: alpine
+    newName: reg.sighup.io/sighupio/fury/alpine
+    newTag: "3"
   - name: quay.io/prometheus/node-exporter
+    newName: reg.sighup.io/sighupio/fury/prometheus/node-exporter
     newTag: v1.0.1
   - name: quay.io/coreos/kube-rbac-proxy
+    newName: reg.sighup.io/sighupio/fury/coreos/kube-rbac-proxy
     newTag: v0.5.0
 
 resources: 

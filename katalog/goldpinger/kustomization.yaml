@@ -13,5 +13,6 @@ resources:
   - sm.yml
 
 images:
-- name: docker.io/bloomberg/goldpinger
+- name: goldpinger
+  newName: reg.sighup.io/sighupio/fury/bloomberg/goldpinger
   newTag: v3.0.0

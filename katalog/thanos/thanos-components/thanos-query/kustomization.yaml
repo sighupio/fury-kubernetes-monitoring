@@ -13,7 +13,7 @@ resources:
 
 images:
   - name: thanos
-    newName: quay.io/thanos/thanos
+    newName: reg.sighup.io/sighupio/fury/thanos
     newTag: v0.12.2
 
 configMapGenerator:

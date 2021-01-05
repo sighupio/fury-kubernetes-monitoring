@@ -6,6 +6,7 @@ namespace: monitoring
 
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
+    newName: reg.sighup.io/sighupio/fury/prometheus-operator
     newTag: v0.44.1
 
 resources: 

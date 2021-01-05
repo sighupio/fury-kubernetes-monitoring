@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
       - name: machine-id
-        image: alpine:3
+        image: alpine
         command: ['/bin/sh', '-c']
         args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
         volumeMounts:
