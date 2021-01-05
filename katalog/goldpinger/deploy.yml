@@ -44,7 +44,7 @@ spec:
                   fieldPath: status.podIP
             - name: LABEL_SELECTOR
               value: k8s-app=goldpinger
-          image: "docker.io/bloomberg/goldpinger"
+          image: goldpinger
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false

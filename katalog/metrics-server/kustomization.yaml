@@ -12,4 +12,5 @@ resources:
 
 imageTags:
 - name: k8s.gcr.io/metrics-server/metrics-server
+  newName: reg.sighup.io/sighupio/fury/metrics-server
   newTag: v0.4.1
