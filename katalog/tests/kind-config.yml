@@ -36,3 +36,12 @@ nodes:
       extraArgs:
         "bind-address": "0.0.0.0"
 - role: worker
+
+containerdConfigPatches:
+- |-
+    [debug]
+      level = "debug"
+    [plugins."io.containerd.grpc.v1.cri".registry]
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+          endpoint = ["https://mirror.gcr.io", "https://registry-1.docker.io"]
