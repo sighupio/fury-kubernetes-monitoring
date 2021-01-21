@@ -56,8 +56,8 @@ The followings alerts are already defined for this package.
 |------|-------------|----------|:-----:|
 | KubeControllerManagerDown | This alert fires if Prometheus target discovery was not able to reach the kube-controller-manager in the last 15 minutes. | critical | 15m |
 | KubeSchedulerDown | This alert fires if Prometheus target discovery was not able to reach the kube-scheduler in the last 15 minutes. | critical | 15m |
-| KubeClientCertificateExpiration | This alert fires when the Kubernetes API client certificate is expiring in less than 7 days. | warning |  |
-| KubeClientCertificateExpiration | This alert fires when the Kubernetes API client certificate is expiring in less than 1 day. | critical |  |
+| KubeClientCertificateExpiration | This alert fires when the Kubernetes API client certificate is expiring in less than 30 days. | warning |  |
+| KubeClientCertificateExpiration | This alert fires when the Kubernetes API client certificate is expiring in less than 7 days. | critical |  |
 
 ### coredns
 
