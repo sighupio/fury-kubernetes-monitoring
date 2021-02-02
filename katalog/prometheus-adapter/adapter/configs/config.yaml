@@ -1,4 +1,15 @@
 rules:
+  - seriesQuery: '{__name__=~"^nginx_ingress_.*",namespace!=""}'
+    seriesFilters: []
+    resources:
+      template: <<.Resource>>
+      overrides:
+        exported_namespace:
+          resource: "namespace"
+    name:
+      matches: ""
+      as: ""
+    metricsQuery: sum(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)
   - seriesQuery: '{__name__=~"^container_.*",container!="POD",namespace!="",pod!=""}'
     seriesFilters: []
     resources:
