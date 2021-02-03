@@ -1756,7 +1756,7 @@ spec:
         runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeletclientcertificateexpiration
         summary: Kubelet client certificate is about to expire.
       expr: |
-        kubelet_certificate_manager_client_ttl_seconds < 604800
+        kubelet_certificate_manager_client_ttl_seconds < 2592000
       labels:
         severity: warning
     - alert: KubeletClientCertificateExpiration
@@ -1765,7 +1765,7 @@ spec:
         runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeletclientcertificateexpiration
         summary: Kubelet client certificate is about to expire.
       expr: |
-        kubelet_certificate_manager_client_ttl_seconds < 86400
+        kubelet_certificate_manager_client_ttl_seconds < 604800
       labels:
         severity: critical
     - alert: KubeletServerCertificateExpiration
@@ -1774,7 +1774,7 @@ spec:
         runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeletservercertificateexpiration
         summary: Kubelet server certificate is about to expire.
       expr: |
-        kubelet_certificate_manager_server_ttl_seconds < 604800
+        kubelet_certificate_manager_server_ttl_seconds < 2592000
       labels:
         severity: warning
     - alert: KubeletServerCertificateExpiration
@@ -1783,7 +1783,7 @@ spec:
         runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeletservercertificateexpiration
         summary: Kubelet server certificate is about to expire.
       expr: |
-        kubelet_certificate_manager_server_ttl_seconds < 86400
+        kubelet_certificate_manager_server_ttl_seconds < 604800
       labels:
         severity: critical
     - alert: KubeletClientCertificateRenewalErrors
