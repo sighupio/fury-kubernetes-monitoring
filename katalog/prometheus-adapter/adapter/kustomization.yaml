@@ -10,6 +10,7 @@ images:
     newTag: v0.8.2
 
 resources:
+  - apiservice.yml
   - deploy.yml
   - rbac.yml
 
