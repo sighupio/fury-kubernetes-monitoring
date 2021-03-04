@@ -62,7 +62,7 @@ spec:
           name: ldap-ldif
       containers:
       - name: ldap-server
-        image: reg.sighup.io/sighupio/fury/osixia/openldap:1.3.0
+        image: registry.sighup.io/fury/osixia/openldap:1.3.0
         command:
           - "sh"
           - "-c"

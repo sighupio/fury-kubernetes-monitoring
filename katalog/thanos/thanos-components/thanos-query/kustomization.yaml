@@ -16,7 +16,7 @@ resources:
 
 images:
   - name: thanos
-    newName: reg.sighup.io/sighupio/fury/thanos
+    newName: registry.sighup.io/fury/thanos
     newTag: v0.12.2
 
 configMapGenerator:
