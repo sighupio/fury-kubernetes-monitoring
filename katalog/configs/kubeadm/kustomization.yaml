@@ -13,11 +13,9 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
-bases:
+resources:
   - ../bases/default
   - ../bases/coredns
-
-resources:
   - service-monitors/etcd.yml
   - service-monitors/controller-manager.yml
   - service-monitors/scheduler.yml
