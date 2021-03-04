@@ -1,0 +1,19 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: prometheus-operator
+  name: prometheus-operator
+spec:
+  template:
+    spec:
+      containers:
+      - args:
+        - --kubelet-service=kube-system/kubelet
+        - --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.44.1
+        name: prometheus-operator

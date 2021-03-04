@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -44,7 +45,7 @@ spec:
       serviceAccountName: thanos-compact
       containers:
         - name: thanos-compact
-          image: thanos
+          image: quay.io/thanos/thanos:v0.12.2
           args:
             - compact
             - --log.level=info

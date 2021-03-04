@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -48,7 +49,7 @@ spec:
       serviceAccountName: thanos-store
       containers:
         - name: thanos-store
-          image: thanos
+          image: quay.io/thanos/thanos:v0.12.2
           args:
             - store
             - --log.level=info

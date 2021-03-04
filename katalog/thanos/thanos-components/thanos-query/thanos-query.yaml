@@ -46,7 +46,7 @@ spec:
       serviceAccountName: thanos-query
       containers:
         - name: thanos-query
-          image: thanos
+          image: quay.io/thanos/thanos:v0.12.2
           args:
             - query
             - --log.level=info

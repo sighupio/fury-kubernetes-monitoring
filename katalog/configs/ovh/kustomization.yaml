@@ -11,6 +11,6 @@ generatorOptions:
     grafana-sighup-dashboard: default
   disableNameSuffixHash: true
 
-bases:
+resources:
   - ../bases/default
   - ../bases/coredns

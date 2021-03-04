@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,8 +22,8 @@ spec:
       containers:
       - args:
         - --kubelet-service=kube-system/kubelet
-        - --prometheus-config-reloader=reg.sighup.io/sighupio/fury/prometheus-operator/prometheus-config-reloader:v0.44.1
-        image: quay.io/prometheus-operator/prometheus-operator
+        - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.44.1
+        image: quay.io/prometheus-operator/prometheus-operator:v0.44.1
         imagePullPolicy: Always
         name: prometheus-operator
         ports:

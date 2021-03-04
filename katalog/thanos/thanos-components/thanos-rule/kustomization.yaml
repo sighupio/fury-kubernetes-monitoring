@@ -11,11 +11,6 @@ resources:
   - thanos-rule.yaml
   - servicemonitor.yml
 
-images:
-  - name: thanos
-    newName: reg.sighup.io/sighupio/fury/thanos
-    newTag: v0.12.2
-
 configMapGenerator:
   # description: application alerts handled by thanos-rule
   # used-by: Thanos Rule

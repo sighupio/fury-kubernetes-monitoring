@@ -2,15 +2,15 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: kube-system
 
 resources:
-- apiservice.yml
-- deploy.yml
-- rbac.yml
-- tls.yml
+  - apiservice.yml
+  - deploy.yml
+  - rbac.yml
+  - tls.yml
 
-imageTags:
-- name: k8s.gcr.io/metrics-server/metrics-server
-  newName: reg.sighup.io/sighupio/fury/metrics-server
-  newTag: v0.4.1

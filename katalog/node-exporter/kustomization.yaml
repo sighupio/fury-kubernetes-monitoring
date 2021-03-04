@@ -2,23 +2,23 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: monitoring
 
-bases:
+resources:
   - dashboards
-
-images:
-  - name: alpine
-    newName: reg.sighup.io/sighupio/fury/alpine
-    newTag: "3"
-  - name: quay.io/prometheus/node-exporter
-    newName: reg.sighup.io/sighupio/fury/prometheus/node-exporter
-    newTag: v1.0.1
-  - name: quay.io/coreos/kube-rbac-proxy
-    newName: reg.sighup.io/sighupio/fury/coreos/kube-rbac-proxy
-    newTag: v0.5.0
-
-resources: 
   - deploy.yml
   - sm.yml
   - rbac.yml
+
+
+images:
+  - name: alpine
+    newName: registry.sighup.io/sighupio/fury/alpine
+  - name: quay.io/prometheus/node-exporter
+    newName: registry.sighup.io/sighupio/fury/prometheus/node-exporter
+  - name: quay.io/coreos/kube-rbac-proxy
+    newName: registry.sighup.io/sighupio/fury/coreos/kube-rbac-proxy

@@ -2,12 +2,11 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-namespace: monitoring
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
-images:
-  - name: quay.io/prometheus-operator/prometheus-operator
-    newName: reg.sighup.io/sighupio/fury/prometheus-operator
-    newTag: v0.44.1
+namespace: monitoring
 
 resources: 
   - deploy.yml

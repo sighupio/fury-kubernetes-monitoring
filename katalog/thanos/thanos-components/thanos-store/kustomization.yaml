@@ -13,11 +13,6 @@ resources:
   - servicemonitor.yml
   - prometheus-rule.yml
 
-images:
-  - name: thanos
-    newName: reg.sighup.io/sighupio/fury/thanos
-    newTag: v0.12.2
-
 secretGenerator:
   # description: config + credentials for access to object storage
   # used-by: Prometheus, Thanos Store, Thanos Compact

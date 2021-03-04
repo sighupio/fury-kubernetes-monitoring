@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -13,10 +14,6 @@ resources:
   - prometheus-headless.yml
   - prometheus-rule.yml
 
-images:
-  - name: thanos
-    newName: reg.sighup.io/sighupio/fury/thanos
-    newTag: v0.12.2
 
 configMapGenerator:
   # description: Discovery config of Prometheus instances to aggregate query

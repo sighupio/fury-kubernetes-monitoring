@@ -46,7 +46,7 @@ spec:
       serviceAccountName: thanos-rule
       containers:
         - name: thanos-rule
-          image: thanos
+          image: quay.io/thanos/thanos:v0.12.2
           args:
             - rule
             - --log.level=info
