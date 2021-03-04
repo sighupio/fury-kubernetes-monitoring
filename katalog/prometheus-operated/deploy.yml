@@ -14,7 +14,7 @@ spec:
     - name: alertmanager-main
       port: web
       namespace: monitoring
-  image: reg.sighup.io/sighupio/fury/prometheus:v2.22.2
+  image: registry.sighup.io/fury/prometheus:v2.22.2
   nodeSelector:
     kubernetes.io/os: linux
   podMonitorNamespaceSelector: {}

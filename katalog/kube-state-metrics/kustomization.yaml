@@ -9,7 +9,7 @@ bases:
 
 images:
 - name: quay.io/coreos/kube-state-metrics
-  newName: reg.sighup.io/sighupio/fury/coreos/kube-state-metrics
+  newName: registry.sighup.io/fury/coreos/kube-state-metrics
   newTag: v1.9.7
 
 resources:

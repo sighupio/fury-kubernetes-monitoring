@@ -9,7 +9,7 @@ bases:
 
 images:
 - name: kube-rbac-proxy
-  newName: reg.sighup.io/sighupio/fury/coreos/kube-rbac-proxy
+  newName: registry.sighup.io/fury/coreos/kube-rbac-proxy
   newTag: v0.5.0
 
 resources:
