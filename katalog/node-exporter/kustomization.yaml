@@ -17,8 +17,8 @@ resources:
 
 images:
   - name: alpine
-    newName: registry.sighup.io/sighupio/fury/alpine
+    newName: registry.sighup.io/fury/alpine
   - name: quay.io/prometheus/node-exporter
-    newName: registry.sighup.io/sighupio/fury/prometheus/node-exporter
+    newName: registry.sighup.io/fury/prometheus/node-exporter
   - name: quay.io/coreos/kube-rbac-proxy
-    newName: registry.sighup.io/sighupio/fury/coreos/kube-rbac-proxy
+    newName: registry.sighup.io/fury/coreos/kube-rbac-proxy
