@@ -1,0 +1,172 @@
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: x509-certificate-exporter-nodes
+  labels:
+    app: x509-certificate-exporter
+spec:
+  selector:
+    matchLabels:
+      app: x509-certificate-exporter
+  template:
+    metadata:
+      labels:
+        app: x509-certificate-exporter
+    spec:
+      serviceAccountName: x509-certificate-exporter-node
+      restartPolicy: Always
+      containers:
+        - name: x509-certificate-exporter
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 0
+            runAsUser: 0
+          image: docker.io/enix/x509-certificate-exporter:2.9.1
+          imagePullPolicy: IfNotPresent
+          args:
+            - --port=9793
+            - --trim-path-components=3
+            - --watch-file=/mnt/watch/file-1//var/lib/kubelet/pki/kubelet-client-current.pem
+            - --watch-file=/mnt/watch/file-2//etc/kubernetes/pki/apiserver.crt
+            - --watch-file=/mnt/watch/file-3//etc/etcd/pki/apiserver-etcd-client.crt
+            - --watch-file=/mnt/watch/file-4//etc/kubernetes/pki/apiserver-kubelet-client.crt
+            - --watch-file=/mnt/watch/file-5//etc/kubernetes/pki/ca.crt
+            - --watch-file=/mnt/watch/file-6//etc/kubernetes/pki/front-proxy-ca.crt
+            - --watch-file=/mnt/watch/file-7//etc/kubernetes/pki/front-proxy-client.crt
+            - --watch-file=/mnt/watch/file-8//etc/etcd/pki/etcd/ca.crt
+            - --watch-file=/mnt/watch/file-9//etc/etcd/pki/etcd/healthcheck-client.crt
+            - --watch-file=/mnt/watch/file-10//etc/etcd/pki/etcd/peer.crt
+            - --watch-file=/mnt/watch/file-11//etc/etcd/pki/etcd/server.crt
+            - --watch-kubeconf=/mnt/watch/kube-12//etc/kubernetes/admin.conf
+            - --watch-kubeconf=/mnt/watch/kube-13//etc/kubernetes/controller-manager.conf
+            - --watch-kubeconf=/mnt/watch/kube-14//etc/kubernetes/scheduler.conf
+          volumeMounts:
+            - name: file-1
+              mountPath: /mnt/watch/file-1//var/lib/kubelet/pki
+              #subPath: kubelet-client-current.pem
+              readOnly: true
+            - name: file-2
+              mountPath: /mnt/watch/file-2//etc/kubernetes/pki
+              #subPath: apiserver.crt
+              readOnly: true
+            - name: file-3
+              mountPath: /mnt/watch/file-3//etc/etcd/pki
+              #subPath: apiserver-etcd-client.crt
+              readOnly: true
+            - name: file-4
+              mountPath: /mnt/watch/file-4//etc/kubernetes/pki
+              #subPath: apiserver-kubelet-client.crt
+              readOnly: true
+            - name: file-5
+              mountPath: /mnt/watch/file-5//etc/kubernetes/pki
+              #subPath: ca.crt
+              readOnly: true
+            - name: file-6
+              mountPath: /mnt/watch/file-6//etc/kubernetes/pki
+              #subPath: front-proxy-ca.crt
+              readOnly: true
+            - name: file-7
+              mountPath: /mnt/watch/file-7//etc/kubernetes/pki
+              #subPath: front-proxy-client.crt
+              readOnly: true
+            - name: file-8
+              mountPath: /mnt/watch/file-8//etc/etcd/pki/etcd
+              #subPath: ca.crt
+              readOnly: true
+            - name: file-9
+              mountPath: /mnt/watch/file-9//etc/etcd/pki/etcd
+              #subPath: healthcheck-client.crt
+              readOnly: true
+            - name: file-10
+              mountPath: /mnt/watch/file-10//etc/etcd/pki/etcd
+              #subPath: peer.crt
+              readOnly: true
+            - name: file-11
+              mountPath: /mnt/watch/file-11//etc/etcd/pki/etcd
+              #subPath: server.crt
+              readOnly: true
+            - name: kube-12
+              mountPath: /mnt/watch/kube-12//etc/kubernetes
+              #subPath: admin.conf
+              readOnly: true
+            - name: kube-13
+              mountPath: /mnt/watch/kube-13//etc/kubernetes
+              #subPath: controller-manager.conf
+              readOnly: true
+            - name: kube-14
+              mountPath: /mnt/watch/kube-14//etc/kubernetes
+              #subPath: scheduler.conf
+              readOnly: true
+          ports:
+            - name: metrics
+              containerPort: 9793
+      hostNetwork: false
+      volumes:
+        - name: file-1
+          hostPath:
+            path: /var/lib/kubelet/pki
+            type: Directory
+        - name: file-2
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
+        - name: file-3
+          hostPath:
+            path: /etc/etcd/pki
+            type: Directory
+        - name: file-4
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
+        - name: file-5
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
+        - name: file-6
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
+        - name: file-7
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
+        - name: file-8
+          hostPath:
+            path: /etc/etcd/pki/etcd
+            type: Directory
+        - name: file-9
+          hostPath:
+            path: /etc/etcd/pki/etcd
+            type: Directory
+        - name: file-10
+          hostPath:
+            path: /etc/etcd/pki/etcd
+            type: Directory
+        - name: file-11
+          hostPath:
+            path: /etc/etcd/pki/etcd
+            type: Directory
+        - name: kube-12
+          hostPath:
+            path: /etc/kubernetes
+            type: Directory
+        - name: kube-13
+          hostPath:
+            path: /etc/kubernetes
+            type: Directory
+        - name: kube-14
+          hostPath:
+            path: /etc/kubernetes
+            type: Directory
+      tolerations:
+        - operator: Exists
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
