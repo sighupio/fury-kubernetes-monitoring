@@ -1,7 +1,7 @@
 # x509 Exporter
 
 This package provides monitoring for certificates.
-The original project is: https://github.com/enix/x509-certificate-exporter
+The original project is: [x509-certificate-exporter](https://github.com/enix/x509-certificate-exporter)
 
 
 ## Requirements
