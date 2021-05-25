@@ -3,17 +3,6 @@
 # license that can be found in the LICENSE file.
 
 rules:
-  - seriesQuery: '{__name__=~"^nginx_ingress_.*",namespace!=""}'
-    seriesFilters: []
-    resources:
-      template: <<.Resource>>
-      overrides:
-        exported_namespace:
-          resource: "namespace"
-    name:
-      matches: ""
-      as: ""
-    metricsQuery: sum(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)
   - seriesQuery: '{__name__=~"^nginx_ingress_controller_requests.*",namespace!=""}'
     seriesFilters: []
     resources:
