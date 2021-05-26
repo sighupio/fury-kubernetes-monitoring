@@ -29,7 +29,7 @@ spec:
             readOnlyRootFilesystem: true
             runAsGroup: 0
             runAsUser: 0
-          image: docker.io/enix/x509-certificate-exporter:2.9.1
+          image: docker.io/enix/x509-certificate-exporter
           imagePullPolicy: IfNotPresent
           args:
             - --port=9793

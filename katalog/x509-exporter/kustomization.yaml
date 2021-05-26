@@ -8,6 +8,11 @@ kind: Kustomization
 
 namespace: monitoring
 
+images:
+  - name: docker.io/enix/x509-certificate-exporter
+    newName: registry.sighup.io/fury/enix/x509-certificate-exporter
+    newTag: 2.9.1
+
 resources:
   - daemonset.yml
   - deployment.yml
