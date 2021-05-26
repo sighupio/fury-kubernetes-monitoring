@@ -13,7 +13,7 @@ The original project is: [x509-certificate-exporter](https://github.com/enix/x50
 
 ## Image repository and tag
 
-* TBD
+* Certificate exporter image: `docker.io/enix/x509-certificate-exporter:2.9.1`
 
 
 ## Deployment
