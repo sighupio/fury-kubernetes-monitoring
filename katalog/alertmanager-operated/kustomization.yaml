@@ -12,6 +12,7 @@ resources:
   - deploy.yml
   - rbac.yml
   - sm.yml
+  - rules.yml
 
 generatorOptions:
  disableNameSuffixHash: true
