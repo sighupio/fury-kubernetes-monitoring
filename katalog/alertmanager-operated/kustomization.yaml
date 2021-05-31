@@ -13,6 +13,7 @@ resources:
   - rbac.yml
   - sm.yml
   - rules.yml
+  - kube-prometheus-rules.yml
 
 generatorOptions:
  disableNameSuffixHash: true
