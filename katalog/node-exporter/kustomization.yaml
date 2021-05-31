@@ -25,3 +25,4 @@ resources:
   - deploy.yml
   - sm.yml
   - rbac.yml
+  - rules.yml
