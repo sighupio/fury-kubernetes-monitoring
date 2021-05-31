@@ -14,6 +14,7 @@ resources:
   - sm.yml
   - rules.yml
   - kube-prometheus-rules.yml
+  - kubernetes-monitoring-rules.yml
 
 generatorOptions:
  disableNameSuffixHash: true
