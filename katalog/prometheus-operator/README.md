@@ -38,13 +38,13 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.0.X`
 
 
 ## Image repository and tag
 
-* Prometheus Operator image: `quay.io/prometheus-operator/prometheus-operator:v0.44.1`
+* Prometheus Operator image: `quay.io/prometheus-operator/prometheus-operator:v0.48.0`
 * Prometheus Operator repository: [https://github.com/prometheus-operator/prometheus-operator](https://github.com/prometheus-operator/prometheus-operator)
 
 

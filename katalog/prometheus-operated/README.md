@@ -14,7 +14,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.0.X`
 - [prometheus-operator](../prometheus-operator)
 

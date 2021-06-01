@@ -15,7 +15,7 @@ spec:
     - name: alertmanager-main
       port: web
       namespace: monitoring
-  image: registry.sighup.io/fury/prometheus:v2.22.2
+  image: registry.sighup.io/fury/prometheus:v2.27.1
   nodeSelector:
     kubernetes.io/os: linux
   podMonitorNamespaceSelector: {}
@@ -51,7 +51,7 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  version: v2.22.2
+  version: v2.27.1
 ---
 apiVersion: v1
 kind: Service
@@ -65,6 +65,6 @@ spec:
     port: 9090
     targetPort: web
   selector:
-    app: prometheus
-    prometheus: k8s
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/instance: k8s
   sessionAffinity: ClientIP
