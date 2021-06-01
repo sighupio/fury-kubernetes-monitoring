@@ -32,16 +32,6 @@ rules:
   - list
   - watch
 - apiGroups:
-  - extensions
-  resources:
-  - daemonsets
-  - deployments
-  - replicasets
-  - ingresses
-  verbs:
-  - list
-  - watch
-- apiGroups:
   - apps
   resources:
   - statefulsets
@@ -112,6 +102,7 @@ rules:
   - networking.k8s.io
   resources:
   - networkpolicies
+  - ingresses
   verbs:
   - list
   - watch
