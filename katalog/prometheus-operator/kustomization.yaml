@@ -10,8 +10,8 @@ namespace: monitoring
 
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
-    newName: registry.sighup.io/fury/prometheus-operator
-    newTag: v0.44.1
+    newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
+    newTag: v0.48.0
 
 resources: 
   - deploy.yml
@@ -20,6 +20,7 @@ resources:
   - crd-rule.yml
   - crd-prometheus.yml
   - crd-alertmanager.yml
+  - crd-config-alertmanager.yml
   - crd-servicemonitor.yml
   - crd-thanosruler.yml
   - crd-probes.yml

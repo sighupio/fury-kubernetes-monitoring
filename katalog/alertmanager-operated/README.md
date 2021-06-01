@@ -12,14 +12,14 @@ with this package.
 
 ## Image repository and tag
 
-* Alertmanager image: `quay.io/prometheus/alertmanager:v0.21.0`
+* Alertmanager image: `quay.io/prometheus/alertmanager:v0.22.1`
 * Alertmanager repository: [https://github.com/prometheus/alertmanager](https://github.com/prometheus/alertmanager)
 * Alertmanager documentation: [https://prometheus.io/docs/alerting/alertmanager](https://prometheus.io/docs/alerting/alertmanager)
 
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize >= `v3`
 - [prometheus-operator](../prometheus-operator)
 

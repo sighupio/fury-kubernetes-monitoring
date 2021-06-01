@@ -14,5 +14,6 @@ spec:
   - interval: 30s
     port: web
   selector:
-    matchLabels:
-      prometheus: k8s
+    matchLabels: 
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: k8s

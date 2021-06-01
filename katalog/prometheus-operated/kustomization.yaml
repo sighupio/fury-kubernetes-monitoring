@@ -14,3 +14,5 @@ resources:
   - rbac.yml
   - rules.yml
   - sm.yml
+  - kube-prometheus-rules.yml
+  - kubernetes-monitoring-rules.yml
