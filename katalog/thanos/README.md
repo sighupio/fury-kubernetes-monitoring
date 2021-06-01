@@ -11,8 +11,8 @@ This is the simplified diagram of a Thanos architecture:
 
 ## Image repository and tag
 
-- Thanos components versions: `v0.12.2`
-- Thanos components image: `quay.io/thanos/thanos:v0.12.2`
+- Thanos components versions: `v0.20.2`
+- Thanos components image: `quay.io/thanos/thanos:v0.20.2`
 
 ## Setup in Fury Module
 
@@ -51,7 +51,7 @@ spec:
         k8s_cluster: <your cluster name>
     thanos:
         baseImage: thanosio/thanos
-        version: v0.12.2
+        version: v0.20.2
         objectStorageConfig:
             name: thanos
             key: config
