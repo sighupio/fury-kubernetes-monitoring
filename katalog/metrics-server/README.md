@@ -8,14 +8,14 @@ on each node.
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize >= `3.0.x`
-- cert-manager >= `0.11.0`
+- cert-manager >= `1.0.0`
 
 
 ## Image repository and tag
 
-* Metrics Server image: `gcr.io/google_containers/metrics-server-amd64:v0.4.1`
+* Metrics Server image: `gcr.io/google_containers/metrics-server-amd64:v0.5.0`
 * Metrics Server repo: [https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server)
 * Metrics Server documentation: [https://kubernetes.io/docs/tasks/debug-application-cluster/core-metrics-pipeline/](https://kubernetes.io/docs/tasks/debug-application-cluster/core-metrics-pipeline/)
 
