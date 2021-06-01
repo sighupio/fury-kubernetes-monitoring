@@ -120,19 +120,19 @@ and Grafana using the following `Furyfile.yml` :
 ```yaml
 bases:
     - name: monitoring/prometheus-operator
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/prometheus-operated
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/alertmanager-operated
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/node-exporter
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/kube-state-metrics
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/grafana
-      version: v1.11.1
+      version: v1.12.0
     - name: monitoring/goldpinger
-      version: v1.11.1
+      version: v1.12.0
 ```
 
 and execute
