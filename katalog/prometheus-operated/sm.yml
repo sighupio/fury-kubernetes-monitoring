@@ -1,4 +1,4 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -15,5 +15,4 @@ spec:
     port: web
   selector:
     matchLabels: 
-      app.kubernetes.io/name: prometheus
-      app.kubernetes.io/instance: k8s
+      prometheus: k8s
