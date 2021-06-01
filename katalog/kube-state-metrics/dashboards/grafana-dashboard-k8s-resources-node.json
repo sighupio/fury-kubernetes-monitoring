@@ -1,16 +1,12 @@
 {
     "annotations": {
-        "list": [
-
-        ]
+        "list": []
     },
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
-    "links": [
-
-    ],
+    "links": [],
     "refresh": "10s",
     "rows": [
         {
@@ -18,9 +14,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -38,17 +32,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": true,
@@ -63,9 +53,7 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "CPU Usage",
@@ -80,9 +68,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -116,9 +102,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -136,17 +120,13 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -161,9 +141,7 @@
                         {
                             "alias": "CPU Usage",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -171,18 +149,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #A",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "CPU Requests",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -190,18 +164,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #B",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "CPU Requests %",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -209,18 +179,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #C",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "percentunit"
                         },
                         {
                             "alias": "CPU Limits",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -228,18 +194,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #D",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "CPU Limits %",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -247,18 +209,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #E",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "percentunit"
                         },
                         {
                             "alias": "Pod",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -266,24 +224,18 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "pod",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "pattern": "/.*/",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "string",
                             "unit": "short"
                         }
@@ -299,7 +251,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(kube_pod_container_resource_requests{cluster=\"$cluster\", node=~\"$node\", resource=\"cpu\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -308,7 +260,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", node=~\"$node\"}) by (pod) / sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", node=~\"$node\"}) by (pod) / sum(kube_pod_container_resource_requests{cluster=\"$cluster\", node=~\"$node\", resource=\"cpu\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -317,7 +269,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(kube_pod_container_resource_limits{cluster=\"$cluster\", node=~\"$node\", resource=\"cpu\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -326,7 +278,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", node=~\"$node\"}) by (pod) / sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{cluster=\"$cluster\", node=~\"$node\"}) by (pod) / sum(kube_pod_container_resource_limits{cluster=\"$cluster\", node=~\"$node\", resource=\"cpu\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -335,9 +287,7 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "CPU Quota",
@@ -353,9 +303,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -389,9 +337,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -409,17 +355,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": true,
@@ -434,9 +376,7 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Memory Usage (w/o cache)",
@@ -451,9 +391,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -487,9 +425,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -507,17 +443,13 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -532,9 +464,7 @@
                         {
                             "alias": "Memory Usage",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -542,18 +472,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #A",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Memory Requests",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -561,18 +487,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #B",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Memory Requests %",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -580,18 +502,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #C",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "percentunit"
                         },
                         {
                             "alias": "Memory Limits",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -599,18 +517,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #D",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Memory Limits %",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -618,18 +532,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #E",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "percentunit"
                         },
                         {
                             "alias": "Memory Usage (RSS)",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -637,18 +547,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #F",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Memory Usage (Cache)",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -656,18 +562,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #G",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Memory Usage (Swap)",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -675,18 +577,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #H",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "bytes"
                         },
                         {
                             "alias": "Pod",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -694,24 +592,18 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "pod",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "pattern": "/.*/",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "string",
                             "unit": "short"
                         }
@@ -727,7 +619,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(kube_pod_container_resource_requests{cluster=\"$cluster\", node=~\"$node\", resource=\"memory\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -736,7 +628,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(node_namespace_pod_container:container_memory_working_set_bytes{cluster=\"$cluster\", node=~\"$node\",container!=\"\"}) by (pod) / sum(kube_pod_container_resource_requests_memory_bytes{node=~\"$node\"}) by (pod)",
+                            "expr": "sum(node_namespace_pod_container:container_memory_working_set_bytes{cluster=\"$cluster\", node=~\"$node\",container!=\"\"}) by (pod) / sum(kube_pod_container_resource_requests{cluster=\"$cluster\", node=~\"$node\", resource=\"memory\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -745,7 +637,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(kube_pod_container_resource_limits_memory_bytes{cluster=\"$cluster\", node=~\"$node\"}) by (pod)",
+                            "expr": "sum(kube_pod_container_resource_limits{cluster=\"$cluster\", node=~\"$node\", resource=\"memory\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -754,7 +646,7 @@
                             "step": 10
                         },
                         {
-                            "expr": "sum(node_namespace_pod_container:container_memory_working_set_bytes{cluster=\"$cluster\", node=~\"$node\",container!=\"\"}) by (pod) / sum(kube_pod_container_resource_limits_memory_bytes{node=~\"$node\"}) by (pod)",
+                            "expr": "sum(node_namespace_pod_container:container_memory_working_set_bytes{cluster=\"$cluster\", node=~\"$node\",container!=\"\"}) by (pod) / sum(kube_pod_container_resource_limits{cluster=\"$cluster\", node=~\"$node\", resource=\"memory\"}) by (pod)",
                             "format": "table",
                             "instant": true,
                             "intervalFactor": 2,
@@ -790,9 +682,7 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Memory Quota",
@@ -808,9 +698,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -855,9 +743,7 @@
                 "hide": 0,
                 "label": null,
                 "name": "datasource",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
@@ -875,17 +761,13 @@
                 "label": null,
                 "multi": false,
                 "name": "cluster",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(kube_pod_info, cluster)",
-                "refresh": 1,
+                "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
@@ -902,17 +784,13 @@
                 "label": null,
                 "multi": true,
                 "name": "node",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(kube_pod_info{cluster=\"$cluster\"}, node)",
-                "refresh": 1,
+                "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false

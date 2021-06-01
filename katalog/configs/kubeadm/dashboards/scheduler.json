@@ -1,23 +1,15 @@
 {
-    "__inputs": [
-
-    ],
-    "__requires": [
-
-    ],
+    "__inputs": [],
+    "__requires": [],
     "annotations": {
-        "list": [
-
-        ]
+        "list": []
     },
     "editable": false,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
     "id": null,
-    "links": [
-
-    ],
+    "links": [],
     "refresh": "10s",
     "rows": [
         {
@@ -42,14 +34,10 @@
                         "thresholdLabels": false,
                         "thresholdMarkers": true
                     },
-                    "gridPos": {
-
-                    },
+                    "gridPos": {},
                     "id": 2,
                     "interval": null,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "mappingType": 1,
                     "mappingTypes": [
                         {
@@ -85,7 +73,7 @@
                     "tableColumn": "",
                     "targets": [
                         {
-                            "expr": "sum(up{job=\"kube-scheduler\"})",
+                            "expr": "sum(up{cluster=\"$cluster\", job=\"kube-scheduler\"})",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "",
@@ -109,17 +97,14 @@
                     "valueName": "min"
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 3,
                     "legend": {
                         "alignAsTable": true,
@@ -135,55 +120,49 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 5,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum(rate(scheduler_e2e_scheduling_duration_seconds_count{job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_e2e_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} e2e",
                             "refId": "A"
                         },
                         {
-                            "expr": "sum(rate(scheduler_binding_duration_seconds_count{job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_binding_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} binding",
                             "refId": "B"
                         },
                         {
-                            "expr": "sum(rate(scheduler_scheduling_algorithm_duration_seconds_count{job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_scheduling_algorithm_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} scheduling algorithm",
                             "refId": "C"
                         },
                         {
-                            "expr": "sum(rate(scheduler_volume_scheduling_duration_seconds_count{job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_volume_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} volume",
                             "refId": "D"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Scheduling Rate",
@@ -198,9 +177,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -222,17 +199,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 4,
                     "legend": {
                         "alignAsTable": true,
@@ -248,55 +222,49 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 5,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_e2e_scheduling_duration_seconds_bucket{job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_e2e_scheduling_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} e2e",
                             "refId": "A"
                         },
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_binding_duration_seconds_bucket{job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_binding_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} binding",
                             "refId": "B"
                         },
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_scheduling_algorithm_duration_seconds_bucket{job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_scheduling_algorithm_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} scheduling algorithm",
                             "refId": "C"
                         },
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_volume_scheduling_duration_seconds_bucket{job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(scheduler_volume_scheduling_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\",instance=~\"$instance\"}[5m])) by (instance, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}} volume",
                             "refId": "D"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Scheduling latency 99th Quantile",
@@ -311,9 +279,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -348,17 +314,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 5,
                     "legend": {
                         "alignAsTable": false,
@@ -374,55 +337,49 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum(rate(rest_client_requests_total{job=\"kube-scheduler\", instance=~\"$instance\",code=~\"2..\"}[5m]))",
+                            "expr": "sum(rate(rest_client_requests_total{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\",code=~\"2..\"}[5m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "2xx",
                             "refId": "A"
                         },
                         {
-                            "expr": "sum(rate(rest_client_requests_total{job=\"kube-scheduler\", instance=~\"$instance\",code=~\"3..\"}[5m]))",
+                            "expr": "sum(rate(rest_client_requests_total{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\",code=~\"3..\"}[5m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "3xx",
                             "refId": "B"
                         },
                         {
-                            "expr": "sum(rate(rest_client_requests_total{job=\"kube-scheduler\", instance=~\"$instance\",code=~\"4..\"}[5m]))",
+                            "expr": "sum(rate(rest_client_requests_total{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\",code=~\"4..\"}[5m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "4xx",
                             "refId": "C"
                         },
                         {
-                            "expr": "sum(rate(rest_client_requests_total{job=\"kube-scheduler\", instance=~\"$instance\",code=~\"5..\"}[5m]))",
+                            "expr": "sum(rate(rest_client_requests_total{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\",code=~\"5..\"}[5m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "5xx",
                             "refId": "D"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Kube API Request Rate",
@@ -437,9 +394,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -461,17 +416,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 6,
                     "legend": {
                         "alignAsTable": false,
@@ -487,34 +439,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 8,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(rest_client_request_duration_seconds_bucket{job=\"kube-scheduler\", instance=~\"$instance\", verb=\"POST\"}[5m])) by (verb, url, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(rest_client_request_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\", verb=\"POST\"}[5m])) by (verb, url, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{verb}} {{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Post Request Latency 99th Quantile",
@@ -529,9 +475,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -566,17 +510,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 7,
                     "legend": {
                         "alignAsTable": true,
@@ -592,34 +533,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(rest_client_request_duration_seconds_bucket{job=\"kube-scheduler\", instance=~\"$instance\", verb=\"GET\"}[5m])) by (verb, url, le))",
+                            "expr": "histogram_quantile(0.99, sum(rate(rest_client_request_duration_seconds_bucket{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\", verb=\"GET\"}[5m])) by (verb, url, le))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{verb}} {{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Get Request Latency 99th Quantile",
@@ -634,9 +569,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -671,17 +604,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 8,
                     "legend": {
                         "alignAsTable": false,
@@ -697,34 +627,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "process_resident_memory_bytes{job=\"kube-scheduler\", instance=~\"$instance\"}",
+                            "expr": "process_resident_memory_bytes{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Memory",
@@ -739,9 +663,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -763,17 +685,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 9,
                     "legend": {
                         "alignAsTable": false,
@@ -789,34 +708,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "rate(process_cpu_seconds_total{job=\"kube-scheduler\", instance=~\"$instance\"}[5m])",
+                            "expr": "rate(process_cpu_seconds_total{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "CPU usage",
@@ -831,9 +744,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -855,17 +766,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 10,
                     "legend": {
                         "alignAsTable": false,
@@ -881,34 +789,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "go_goroutines{job=\"kube-scheduler\",instance=~\"$instance\"}",
+                            "expr": "go_goroutines{cluster=\"$cluster\", job=\"kube-scheduler\",instance=~\"$instance\"}",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{instance}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Goroutines",
@@ -923,9 +825,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -971,9 +871,7 @@
                 "hide": 0,
                 "label": null,
                 "name": "datasource",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
@@ -981,26 +879,40 @@
             },
             {
                 "allValue": null,
-                "current": {
-
-                },
+                "current": {},
+                "datasource": "$datasource",
+                "hide": 2,
+                "includeAll": false,
+                "label": "cluster",
+                "multi": false,
+                "name": "cluster",
+                "options": [],
+                "query": "label_values(kube_pod_info, cluster)",
+                "refresh": 2,
+                "regex": "",
+                "sort": 1,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {},
                 "datasource": "$datasource",
                 "hide": 0,
                 "includeAll": true,
                 "label": null,
                 "multi": false,
                 "name": "instance",
-                "options": [
-
-                ],
-                "query": "label_values(process_cpu_seconds_total{job=\"kube-scheduler\"}, instance)",
+                "options": [],
+                "query": "label_values(process_cpu_seconds_total{cluster=\"$cluster\", job=\"kube-scheduler\"}, instance)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
