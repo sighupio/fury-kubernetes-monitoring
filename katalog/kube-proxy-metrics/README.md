@@ -8,16 +8,16 @@ ability to run it independently of the environment, on-premise installed by kube
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `quay.io/coreos/kube-rbac-proxy:v0.5.0`
+- kube-rbac-proxy image: `quay.io/brancz/kube-rbac-proxy:v0.10.0`
 - kube-rbac-proxy repository:
-  [https://quay.io/repository/coreos/kube-rbac-proxy](https://quay.io/repository/coreos/kube-rbac-proxy)
+  [https://quay.io/repository/brancz/kube-rbac-proxy](https://quay.io/repository/brancz/kube-rbac-proxy)
 
 
 ## Configuration
