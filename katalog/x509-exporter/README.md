@@ -6,14 +6,14 @@ The original project is: [x509-certificate-exporter](https://github.com/enix/x50
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.0.x`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* Certificate exporter image: `docker.io/enix/x509-certificate-exporter:2.9.1`
+* Certificate exporter image: `docker.io/enix/x509-certificate-exporter:2.9.2`
 
 
 ## Deployment
