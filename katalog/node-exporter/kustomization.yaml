@@ -15,10 +15,10 @@ images:
     newTag: "3"
   - name: quay.io/prometheus/node-exporter
     newName: registry.sighup.io/fury/prometheus/node-exporter
-    newTag: v1.0.1
+    newTag: v1.1.2
   - name: quay.io/coreos/kube-rbac-proxy
-    newName: registry.sighup.io/fury/coreos/kube-rbac-proxy
-    newTag: v0.5.0
+    newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
+    newTag: v0.10.0
 
 resources:
   - dashboards
