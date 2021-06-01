@@ -44,7 +44,7 @@ architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
 
 ## Image repository and tag
 
-* Prometheus Operator image: `quay.io/prometheus-operator/prometheus-operator:v0.48.0`
+* Prometheus Operator image: `quay.io/prometheus-operator/prometheus-operator:v0.48.1`
 * Prometheus Operator repository: [https://github.com/prometheus-operator/prometheus-operator](https://github.com/prometheus-operator/prometheus-operator)
 
 

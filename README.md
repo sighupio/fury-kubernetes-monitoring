@@ -22,7 +22,7 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.48.0**
+  manage Prometheus and related resources. Version: **0.48.1**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
   deployed with Prometheus Operator's CRD. Version: **2.27.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
