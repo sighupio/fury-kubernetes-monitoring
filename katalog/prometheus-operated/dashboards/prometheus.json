@@ -1,26 +1,20 @@
 {
     "annotations": {
-        "list": [
-
-        ]
+        "list": []
     },
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
-    "links": [
-
-    ],
-    "refresh": "10s",
+    "links": [],
+    "refresh": "60s",
     "rows": [
         {
             "collapse": false,
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -38,17 +32,13 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -63,9 +53,7 @@
                         {
                             "alias": "Count",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -73,18 +61,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #A",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "hidden",
                             "unit": "short"
                         },
                         {
                             "alias": "Uptime",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -92,18 +76,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "Value #B",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "Instance",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -111,18 +91,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "instance",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "Job",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -130,18 +106,14 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "job",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "Version",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "link": false,
@@ -149,24 +121,18 @@
                             "linkTooltip": "Drill down",
                             "linkUrl": "",
                             "pattern": "version",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "number",
                             "unit": "short"
                         },
                         {
                             "alias": "",
                             "colorMode": null,
-                            "colors": [
-
-                            ],
+                            "colors": [],
                             "dateFormat": "YYYY-MM-DD HH:mm:ss",
                             "decimals": 2,
                             "pattern": "/.*/",
-                            "thresholds": [
-
-                            ],
+                            "thresholds": [],
                             "type": "string",
                             "unit": "short"
                         }
@@ -191,14 +157,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Prometheus Stats",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -209,9 +173,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -245,9 +207,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -265,17 +225,13 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -290,14 +246,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Target Sync",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -307,9 +261,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -331,9 +283,7 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -351,17 +301,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": true,
@@ -376,14 +322,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Targets",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -393,9 +337,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -429,9 +371,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -449,17 +389,13 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -474,14 +410,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Average Scrape Interval Duration",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -491,9 +425,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -515,9 +447,7 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -535,17 +465,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": true,
@@ -584,14 +510,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Scrape failures",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -601,9 +525,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -625,9 +547,7 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -645,17 +565,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": true,
@@ -670,14 +586,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Appended Samples",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -687,9 +601,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -723,9 +635,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -743,17 +653,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": true,
@@ -768,14 +674,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Head Series",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -785,9 +689,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -809,9 +711,7 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -829,17 +729,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": true,
@@ -854,14 +750,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Head Chunks",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -871,9 +765,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -907,9 +799,7 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -927,17 +817,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": true,
@@ -952,14 +838,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Query Rate",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -969,9 +853,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -993,9 +875,7 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -1013,17 +893,13 @@
                     },
                     "lines": true,
                     "linewidth": 0,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": true,
@@ -1038,14 +914,12 @@
                             "step": 10
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Stage Duration",
                     "tooltip": {
-                        "shared": true,
+                        "shared": false,
                         "sort": 0,
                         "value_type": "individual"
                     },
@@ -1055,9 +929,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1090,7 +962,7 @@
     "schemaVersion": 14,
     "style": "dark",
     "tags": [
-
+        "prometheus-mixin"
     ],
     "templating": {
         "list": [
@@ -1102,16 +974,14 @@
                 "hide": 0,
                 "label": null,
                 "name": "datasource",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
                 "type": "datasource"
             },
             {
-                "allValue": null,
+                "allValue": ".+",
                 "current": {
                     "selected": true,
                     "text": "All",
@@ -1123,23 +993,19 @@
                 "label": "job",
                 "multi": true,
                 "name": "job",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(prometheus_build_info, job)",
                 "refresh": 1,
                 "regex": "",
                 "sort": 2,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
             },
             {
-                "allValue": null,
+                "allValue": ".+",
                 "current": {
                     "selected": true,
                     "text": "All",
@@ -1151,17 +1017,13 @@
                 "label": "instance",
                 "multi": true,
                 "name": "instance",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(prometheus_build_info, instance)",
                 "refresh": 1,
                 "regex": "",
                 "sort": 2,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
@@ -1198,7 +1060,7 @@
         ]
     },
     "timezone": "utc",
-    "title": "Prometheus Overview",
+    "title": "Prometheus / Overview",
     "uid": "",
     "version": 0
 }

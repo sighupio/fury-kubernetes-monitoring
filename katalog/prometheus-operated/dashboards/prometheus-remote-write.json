@@ -1,41 +1,30 @@
 {
-    "__inputs": [
-
-    ],
-    "__requires": [
-
-    ],
+    "__inputs": [],
+    "__requires": [],
     "annotations": {
-        "list": [
-
-        ]
+        "list": []
     },
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
     "id": null,
-    "links": [
-
-    ],
-    "refresh": "",
+    "links": [],
+    "refresh": "60s",
     "rows": [
         {
             "collapse": false,
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 2,
                     "legend": {
                         "alignAsTable": false,
@@ -51,34 +40,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "(\n  prometheus_remote_storage_highest_timestamp_in_seconds{cluster=~\"$cluster\", instance=~\"$instance\"} \n-  \n  ignoring(remote_name, url) group_right(instance) prometheus_remote_storage_queue_highest_sent_timestamp_seconds{cluster=~\"$cluster\", instance=~\"$instance\"}\n)\n",
+                            "expr": "(\n  prometheus_remote_storage_highest_timestamp_in_seconds{cluster=~\"$cluster\", instance=~\"$instance\"} \n-  \n  ignoring(remote_name, url) group_right(instance) (prometheus_remote_storage_queue_highest_sent_timestamp_seconds{cluster=~\"$cluster\", instance=~\"$instance\"} != 0)\n)\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Highest Timestamp In vs. Highest Timestamp Sent",
@@ -93,9 +76,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -117,17 +98,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 3,
                     "legend": {
                         "alignAsTable": false,
@@ -143,34 +121,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "(\n  rate(prometheus_remote_storage_highest_timestamp_in_seconds{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])  \n- \n  ignoring (remote_name, url) group_right(instance) rate(prometheus_remote_storage_queue_highest_sent_timestamp_seconds{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n)\n",
+                            "expr": "clamp_min(\n  rate(prometheus_remote_storage_highest_timestamp_in_seconds{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])  \n- \n  ignoring (remote_name, url) group_right(instance) rate(prometheus_remote_storage_queue_highest_sent_timestamp_seconds{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n, 0)\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Rate[5m]",
@@ -185,9 +157,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -222,17 +192,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 4,
                     "legend": {
                         "alignAsTable": false,
@@ -248,34 +215,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "rate(\n  prometheus_remote_storage_samples_in_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n- \n  ignoring(remote_name, url) group_right(instance) rate(prometheus_remote_storage_succeeded_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n- \n  rate(prometheus_remote_storage_dropped_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n",
+                            "expr": "rate(\n  prometheus_remote_storage_samples_in_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])\n- \n  ignoring(remote_name, url) group_right(instance) (rate(prometheus_remote_storage_succeeded_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]) or rate(prometheus_remote_storage_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]))\n- \n  (rate(prometheus_remote_storage_dropped_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]) or rate(prometheus_remote_storage_samples_dropped_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Rate, in vs. succeeded or dropped [5m]",
@@ -290,9 +251,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -327,17 +286,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 5,
                     "legend": {
                         "alignAsTable": false,
@@ -353,9 +309,7 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "minSpan": 6,
                     "nullPointMode": "null",
                     "percentage": false,
@@ -363,9 +317,7 @@
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -379,9 +331,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Current Shards",
@@ -396,9 +346,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -420,17 +368,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 6,
                     "legend": {
                         "alignAsTable": false,
@@ -446,18 +391,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -471,9 +412,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Max Shards",
@@ -488,9 +427,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -512,17 +449,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 7,
                     "legend": {
                         "alignAsTable": false,
@@ -538,18 +472,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -563,9 +493,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Min Shards",
@@ -580,9 +508,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -604,17 +530,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 8,
                     "legend": {
                         "alignAsTable": false,
@@ -630,18 +553,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -655,9 +574,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Desired Shards",
@@ -672,9 +589,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -709,17 +624,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 9,
                     "legend": {
                         "alignAsTable": false,
@@ -735,18 +647,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -760,9 +668,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Shard Capacity",
@@ -777,9 +683,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -801,17 +705,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 10,
                     "legend": {
                         "alignAsTable": false,
@@ -827,34 +728,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "prometheus_remote_storage_pending_samples{cluster=~\"$cluster\", instance=~\"$instance\"}",
+                            "expr": "prometheus_remote_storage_pending_samples{cluster=~\"$cluster\", instance=~\"$instance\"} or prometheus_remote_storage_samples_pending{cluster=~\"$cluster\", instance=~\"$instance\"}",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Pending Samples",
@@ -869,9 +764,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -906,17 +799,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 11,
                     "legend": {
                         "alignAsTable": false,
@@ -932,18 +822,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -957,9 +843,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "TSDB Current Segment",
@@ -974,9 +858,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -998,17 +880,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 12,
                     "legend": {
                         "alignAsTable": false,
@@ -1024,18 +903,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -1049,9 +924,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Remote Write Current Segment",
@@ -1066,9 +939,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1103,17 +974,14 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 13,
                     "legend": {
                         "alignAsTable": false,
@@ -1129,34 +997,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "rate(prometheus_remote_storage_dropped_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
+                            "expr": "rate(prometheus_remote_storage_dropped_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]) or rate(prometheus_remote_storage_samples_dropped_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Dropped Samples",
@@ -1171,9 +1033,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1195,17 +1055,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 14,
                     "legend": {
                         "alignAsTable": false,
@@ -1221,34 +1078,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "rate(prometheus_remote_storage_failed_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
+                            "expr": "rate(prometheus_remote_storage_failed_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]) or rate(prometheus_remote_storage_samples_failed_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Failed Samples",
@@ -1263,9 +1114,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1287,17 +1136,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 15,
                     "legend": {
                         "alignAsTable": false,
@@ -1313,34 +1159,28 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "rate(prometheus_remote_storage_retried_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
+                            "expr": "rate(prometheus_remote_storage_retried_samples_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m]) or rate(prometheus_remote_storage_samples_retried_total{cluster=~\"$cluster\", instance=~\"$instance\"}[5m])",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{cluster}}:{{instance}} {{remote_name}}:{{url}}",
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Retried Samples",
@@ -1355,9 +1195,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1379,17 +1217,14 @@
                     ]
                 },
                 {
-                    "aliasColors": {
-
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "gridPos": {
-
-                    },
+                    "fillGradient": 0,
+                    "gridPos": {},
                     "id": 16,
                     "legend": {
                         "alignAsTable": false,
@@ -1405,18 +1240,14 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [
-
-                    ],
+                    "links": [],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [
-
-                    ],
+                    "seriesOverrides": [],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
@@ -1430,9 +1261,7 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [
-
-                    ],
+                    "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Enqueue Retries",
@@ -1447,9 +1276,7 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": [
-
-                        ]
+                        "values": []
                     },
                     "yaxes": [
                         {
@@ -1483,7 +1310,7 @@
     "schemaVersion": 14,
     "style": "dark",
     "tags": [
-
+        "prometheus-mixin"
     ],
     "templating": {
         "list": [
@@ -1491,9 +1318,7 @@
                 "hide": 0,
                 "label": null,
                 "name": "datasource",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
@@ -1519,17 +1344,13 @@
                 "label": null,
                 "multi": false,
                 "name": "instance",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(prometheus_build_info, instance)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
@@ -1554,43 +1375,33 @@
                 "label": null,
                 "multi": false,
                 "name": "cluster",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(kube_pod_container_info{image=~\".*prometheus.*\"}, cluster)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
             },
             {
                 "allValue": null,
-                "current": {
-
-                },
+                "current": {},
                 "datasource": "$datasource",
                 "hide": 0,
                 "includeAll": true,
                 "label": null,
                 "multi": false,
                 "name": "url",
-                "options": [
-
-                ],
+                "options": [],
                 "query": "label_values(prometheus_remote_storage_shards{cluster=~\"$cluster\", instance=~\"$instance\"}, url)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [
-
-                ],
+                "tags": [],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
@@ -1627,6 +1438,6 @@
         ]
     },
     "timezone": "browser",
-    "title": "Prometheus Remote Write",
+    "title": "Prometheus / Remote Write",
     "version": 0
 }
