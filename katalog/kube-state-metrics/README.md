@@ -19,14 +19,14 @@ From kube-state-metrics
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.0.X`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v1.9.7`
+* kube-state-metrics image: `quay.io/coreos/kube-state-metrics:v2.0.0`
 * kube-state-metrics repository:
   <https://github.com/kubernetes/kube-state-metrics>
 

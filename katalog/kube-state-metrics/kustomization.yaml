@@ -9,9 +9,9 @@ kind: Kustomization
 namespace: monitoring
 
 images:
-- name: quay.io/coreos/kube-state-metrics
-  newName: registry.sighup.io/fury/coreos/kube-state-metrics
-  newTag: v1.9.7
+- name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
+  newName: registry.sighup.io/fury/kube-state-metrics/kube-state-metrics
+  newTag: v2.0.0
 
 resources:
   - dashboards

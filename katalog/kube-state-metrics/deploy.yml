@@ -25,7 +25,7 @@ spec:
         runAsUser: 65534
       containers:
       - name: kube-state-metrics
-        image: quay.io/coreos/kube-state-metrics
+        image: k8s.gcr.io/kube-state-metrics/kube-state-metrics
         ports:
         - name: http-metrics
           containerPort: 8080
