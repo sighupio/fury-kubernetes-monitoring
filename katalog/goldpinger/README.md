@@ -3,16 +3,16 @@
 **Goldpinger** makes calls between its instances for visibility and alerting. It runs as a `DaemonSet` on `Kubernetes`
 and produces `Prometheus` metrics that can be scraped, visualized and alerted on.
 
-*Source:* [bloomberg/goldpinger](https://github.com/bloomberg/goldpinger/tree/2.0.0).
+*Source:* [bloomberg/goldpinger](https://github.com/bloomberg/goldpinger/tree/v3.2.0).
 
 ## Image repository and tag
 
-- goldpinger image: `docker.io/bloomberg/goldpinger:v3.0.0`.
+- goldpinger image: `docker.io/bloomberg/goldpinger:v3.2.0`.
 - goldpinger repository: [https://github.com/bloomberg/goldpinger](https://github.com/bloomberg/goldpinger).
 
 ## Requirements
 
-- Tested with Kubernetes >= `1.14.X`.
+- Tested with Kubernetes >= `1.18.X`.
 - Tested with Kustomize = `v3.0.X`.
 - [Service monitor](sm.yml) also requires [prometheus-operator](../prometheus-operator).
 
