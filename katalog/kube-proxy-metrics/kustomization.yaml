@@ -10,8 +10,8 @@ namespace: monitoring
 
 images:
 - name: kube-rbac-proxy
-  newName: registry.sighup.io/fury/coreos/kube-rbac-proxy
-  newTag: v0.5.0
+  newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
+  newTag: v0.10.0
 
 resources:
   - dashboards

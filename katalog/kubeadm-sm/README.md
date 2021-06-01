@@ -17,7 +17,7 @@ Kubernetes.
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize = `v3.3.0`
 - [prometheus-operator](../prometheus-operator)
 
