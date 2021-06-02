@@ -12,7 +12,7 @@ with this package.
 
 ## Image repository and tag
 
-* Alertmanager image: `quay.io/prometheus/alertmanager:v0.22.1`
+* Alertmanager image: `quay.io/prometheus/alertmanager:v0.22.2`
 * Alertmanager repository: [https://github.com/prometheus/alertmanager](https://github.com/prometheus/alertmanager)
 * Alertmanager documentation: [https://prometheus.io/docs/alerting/alertmanager](https://prometheus.io/docs/alerting/alertmanager)
 

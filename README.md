@@ -27,7 +27,7 @@ namespace in your Kubernetes cluster.
   deployed with Prometheus Operator's CRD. Version: **2.27.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
-  [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.22.1**
+  [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.22.2**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
   collected by Prometheus. Version: **7.5.7**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
