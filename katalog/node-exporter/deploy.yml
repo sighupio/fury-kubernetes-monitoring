@@ -90,6 +90,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
+        runAsGroup: 65534
       serviceAccountName: node-exporter
       tolerations:
       - operator: Exists
