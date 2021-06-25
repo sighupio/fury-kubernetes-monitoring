@@ -30,7 +30,11 @@ Fury distribution Grafana is deployed with the following configuration:
 
 ## Add new dashboards
 
-You can create a Configmap in your project with a JSON of a grafana dashboard and then labeling it with the label key = "grafana-sighup-dashboard", the value of the label is up to you (for mental healthiness should be better than the value respects some sort of reference with the project to with the dashboard is related). Labeling it, the sidecar k8s-sidecar will take care of it and inject it into a shared volume where grafana does a lookup and discover it. Look at the [dashboards](dashboards) folder kustomization.yml for an example.
+You can create a Configmap in your project with a JSON of a grafana dashboard and then labeling it with the label
+key = "grafana-sighup-dashboard", the value of the label is up to you (for mental healthiness should be better than
+the value respects some sort of reference with the project to with the dashboard is related). Labeling it, the sidecar
+k8s-sidecar will take care of it and inject it into a shared volume where grafana does a lookup and discover it.
+Look at the [dashboards](dashboards) folder kustomization.yml for an example.
 
 ## Deployment
 
