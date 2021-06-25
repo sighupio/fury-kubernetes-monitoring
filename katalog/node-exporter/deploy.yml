@@ -89,8 +89,8 @@ spec:
         kubernetes.io/os: linux
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
+        runAsUser: 65532
+        runAsGroup: 65532
       serviceAccountName: node-exporter
       tolerations:
       - operator: Exists

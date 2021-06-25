@@ -26,8 +26,8 @@ spec:
       serviceAccountName: kube-proxy-metrics
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
+        runAsUser: 65532
+        runAsGroup: 65532
       hostNetwork: true
       containers:
       - name: kube-proxy-metrics
