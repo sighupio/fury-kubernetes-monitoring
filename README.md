@@ -94,6 +94,7 @@ specific dependencies please visit the single package's documentation:
 | v1.12.0                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 | v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 | v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v1.12.3                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -122,19 +123,19 @@ and Grafana using the following `Furyfile.yml` :
 ```yaml
 bases:
     - name: monitoring/prometheus-operator
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/prometheus-operated
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/alertmanager-operated
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/node-exporter
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/kube-state-metrics
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/grafana
-      version: v1.12.2
+      version: v1.12.3
     - name: monitoring/goldpinger
-      version: v1.12.2
+      version: v1.12.3
 ```
 
 and execute
