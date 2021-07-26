@@ -4,4 +4,4 @@
 
 bases:
   - name: monitoring/grafana
-    version: v1.12.2
+    version: v1.12.3
