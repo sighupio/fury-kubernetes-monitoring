@@ -17,17 +17,19 @@ spec:
     - alert: KubePodCrashLooping
       annotations:
         description: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is restarting {{ printf "%.2f" $value }} times / 10 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubepodcrashlooping
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepodcrashlooping
         summary: Pod is crash looping.
       expr: |
-        rate(kube_pod_container_status_restarts_total{job="kube-state-metrics"}[10m]) * 60 * 5 > 0
+        increase(kube_pod_container_status_restarts_total{job="kube-state-metrics"}[10m]) > 0
+        and
+        kube_pod_container_status_waiting{job="kube-state-metrics"} == 1
       for: 15m
       labels:
         severity: warning
     - alert: KubePodNotReady
       annotations:
         description: Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-ready state for longer than 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubepodnotready
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepodnotready
         summary: Pod has been in a non-ready state for more than 15 minutes.
       expr: |
         sum by (namespace, pod) (
@@ -43,7 +45,7 @@ spec:
     - alert: KubeDeploymentGenerationMismatch
       annotations:
         description: Deployment generation for {{ $labels.namespace }}/{{ $labels.deployment }} does not match, this indicates that the Deployment has failed but has not been rolled back.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubedeploymentgenerationmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedeploymentgenerationmismatch
         summary: Deployment generation mismatch due to possible roll-back
       expr: |
         kube_deployment_status_observed_generation{job="kube-state-metrics"}
@@ -55,12 +57,12 @@ spec:
     - alert: KubeDeploymentReplicasMismatch
       annotations:
         description: Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has not matched the expected number of replicas for longer than 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubedeploymentreplicasmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedeploymentreplicasmismatch
         summary: Deployment has not matched the expected number of replicas.
       expr: |
         (
           kube_deployment_spec_replicas{job="kube-state-metrics"}
-            !=
+            >
           kube_deployment_status_replicas_available{job="kube-state-metrics"}
         ) and (
           changes(kube_deployment_status_replicas_updated{job="kube-state-metrics"}[10m])
@@ -73,7 +75,7 @@ spec:
     - alert: KubeStatefulSetReplicasMismatch
       annotations:
         description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has not matched the expected number of replicas for longer than 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubestatefulsetreplicasmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubestatefulsetreplicasmismatch
         summary: Deployment has not matched the expected number of replicas.
       expr: |
         (
@@ -91,7 +93,7 @@ spec:
     - alert: KubeStatefulSetGenerationMismatch
       annotations:
         description: StatefulSet generation for {{ $labels.namespace }}/{{ $labels.statefulset }} does not match, this indicates that the StatefulSet has failed but has not been rolled back.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubestatefulsetgenerationmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubestatefulsetgenerationmismatch
         summary: StatefulSet generation mismatch due to possible roll-back
       expr: |
         kube_statefulset_status_observed_generation{job="kube-state-metrics"}
@@ -103,7 +105,7 @@ spec:
     - alert: KubeStatefulSetUpdateNotRolledOut
       annotations:
         description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} update has not been rolled out.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubestatefulsetupdatenotrolledout
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubestatefulsetupdatenotrolledout
         summary: StatefulSet update has not been rolled out.
       expr: |
         (
@@ -129,7 +131,7 @@ spec:
     - alert: KubeDaemonSetRolloutStuck
       annotations:
         description: DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} has not finished or progressed for at least 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubedaemonsetrolloutstuck
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedaemonsetrolloutstuck
         summary: DaemonSet rollout is stuck.
       expr: |
         (
@@ -161,7 +163,7 @@ spec:
     - alert: KubeContainerWaiting
       annotations:
         description: Pod {{ $labels.namespace }}/{{ $labels.pod }} container {{ $labels.container}} has been in waiting state for longer than 1 hour.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubecontainerwaiting
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecontainerwaiting
         summary: Pod container waiting longer than 1 hour
       expr: |
         sum by (namespace, pod, container) (kube_pod_container_status_waiting_reason{job="kube-state-metrics"}) > 0
@@ -171,7 +173,7 @@ spec:
     - alert: KubeDaemonSetNotScheduled
       annotations:
         description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are not scheduled.'
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubedaemonsetnotscheduled
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedaemonsetnotscheduled
         summary: DaemonSet pods are not scheduled.
       expr: |
         kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
@@ -183,7 +185,7 @@ spec:
     - alert: KubeDaemonSetMisScheduled
       annotations:
         description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are running where they are not supposed to run.'
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubedaemonsetmisscheduled
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubedaemonsetmisscheduled
         summary: DaemonSet pods are misscheduled.
       expr: |
         kube_daemonset_status_number_misscheduled{job="kube-state-metrics"} > 0
@@ -193,7 +195,7 @@ spec:
     - alert: KubeJobCompletion
       annotations:
         description: Job {{ $labels.namespace }}/{{ $labels.job_name }} is taking more than 12 hours to complete.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubejobcompletion
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubejobcompletion
         summary: Job did not complete in time
       expr: |
         kube_job_spec_completions{job="kube-state-metrics"} - kube_job_status_succeeded{job="kube-state-metrics"}  > 0
@@ -203,7 +205,7 @@ spec:
     - alert: KubeJobFailed
       annotations:
         description: Job {{ $labels.namespace }}/{{ $labels.job_name }} failed to complete. Removing failed job after investigation should clear this alert.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubejobfailed
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubejobfailed
         summary: Job failed to complete.
       expr: |
         kube_job_failed{job="kube-state-metrics"}  > 0
@@ -212,35 +214,35 @@ spec:
         severity: warning
     - alert: KubeHpaReplicasMismatch
       annotations:
-        description: HPA {{ $labels.namespace }}/{{ $labels.hpa }} has not matched the desired number of replicas for longer than 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubehpareplicasmismatch
+        description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has not matched the desired number of replicas for longer than 15 minutes.
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubehpareplicasmismatch
         summary: HPA has not matched descired number of replicas.
       expr: |
-        (kube_hpa_status_desired_replicas{job="kube-state-metrics"}
+        (kube_horizontalpodautoscaler_status_desired_replicas{job="kube-state-metrics"}
           !=
-        kube_hpa_status_current_replicas{job="kube-state-metrics"})
+        kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"})
           and
-        (kube_hpa_status_current_replicas{job="kube-state-metrics"}
+        (kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
           >
-        kube_hpa_spec_min_replicas{job="kube-state-metrics"})
+        kube_horizontalpodautoscaler_spec_min_replicas{job="kube-state-metrics"})
           and
-        (kube_hpa_status_current_replicas{job="kube-state-metrics"}
+        (kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
           <
-        kube_hpa_spec_max_replicas{job="kube-state-metrics"})
+        kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"})
           and
-        changes(kube_hpa_status_current_replicas{job="kube-state-metrics"}[15m]) == 0
+        changes(kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}[15m]) == 0
       for: 15m
       labels:
         severity: warning
     - alert: KubeHpaMaxedOut
       annotations:
-        description: HPA {{ $labels.namespace }}/{{ $labels.hpa }} has been running at max replicas for longer than 15 minutes.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubehpamaxedout
+        description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has been running at max replicas for longer than 15 minutes.
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubehpamaxedout
         summary: HPA is running at max replicas
       expr: |
-        kube_hpa_status_current_replicas{job="kube-state-metrics"}
+        kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
           ==
-        kube_hpa_spec_max_replicas{job="kube-state-metrics"}
+        kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"}
       for: 15m
       labels:
         severity: warning
@@ -248,38 +250,32 @@ spec:
     rules:
     - alert: KubeCPUOvercommit
       annotations:
-        description: Cluster has overcommitted CPU resource requests for Pods and cannot tolerate node failure.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubecpuovercommit
+        description: Cluster has overcommitted CPU resource requests for Pods by {{ $value }} CPU shares and cannot tolerate node failure.
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecpuovercommit
         summary: Cluster has overcommitted CPU resource requests.
       expr: |
-        sum(namespace_cpu:kube_pod_container_resource_requests:sum{})
-          /
-        sum(kube_node_status_allocatable{resource="cpu"})
-          >
-        ((count(kube_node_status_allocatable{resource="cpu"}) > 1) - 1) / count(kube_node_status_allocatable{resource="cpu"})
-      for: 5m
+        sum(namespace_cpu:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="cpu"}) - max(kube_node_status_allocatable{resource="cpu"})) > 0
+        and
+        (sum(kube_node_status_allocatable{resource="cpu"}) - max(kube_node_status_allocatable{resource="cpu"})) > 0
+      for: 10m
       labels:
         severity: warning
     - alert: KubeMemoryOvercommit
       annotations:
-        description: Cluster has overcommitted memory resource requests for Pods and cannot tolerate node failure.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubememoryovercommit
+        description: Cluster has overcommitted memory resource requests for Pods by {{ $value }} bytes and cannot tolerate node failure.
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubememoryovercommit
         summary: Cluster has overcommitted memory resource requests.
       expr: |
-        sum(namespace_memory:kube_pod_container_resource_requests:sum{})
-          /
-        sum(kube_node_status_allocatable{resource="memory"})
-          >
-        ((count(kube_node_status_allocatable{resource="memory"}) > 1) - 1)
-          /
-        count(kube_node_status_allocatable{resource="memory"})
-      for: 5m
+        sum(namespace_memory:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="memory"}) - max(kube_node_status_allocatable{resource="memory"})) > 0
+        and
+        (sum(kube_node_status_allocatable{resource="memory"}) - max(kube_node_status_allocatable{resource="memory"})) > 0
+      for: 10m
       labels:
         severity: warning
     - alert: KubeCPUQuotaOvercommit
       annotations:
         description: Cluster has overcommitted CPU resource requests for Namespaces.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubecpuquotaovercommit
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecpuquotaovercommit
         summary: Cluster has overcommitted CPU resource requests.
       expr: |
         sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="cpu"})
@@ -292,7 +288,7 @@ spec:
     - alert: KubeMemoryQuotaOvercommit
       annotations:
         description: Cluster has overcommitted memory resource requests for Namespaces.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubememoryquotaovercommit
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubememoryquotaovercommit
         summary: Cluster has overcommitted memory resource requests.
       expr: |
         sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="memory"})
@@ -305,7 +301,7 @@ spec:
     - alert: KubeQuotaAlmostFull
       annotations:
         description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubequotaalmostfull
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubequotaalmostfull
         summary: Namespace quota is going to be full.
       expr: |
         kube_resourcequota{job="kube-state-metrics", type="used"}
@@ -318,7 +314,7 @@ spec:
     - alert: KubeQuotaFullyUsed
       annotations:
         description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubequotafullyused
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubequotafullyused
         summary: Namespace quota is fully used.
       expr: |
         kube_resourcequota{job="kube-state-metrics", type="used"}
@@ -331,7 +327,7 @@ spec:
     - alert: KubeQuotaExceeded
       annotations:
         description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubequotaexceeded
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubequotaexceeded
         summary: Namespace quota has exceeded the limits.
       expr: |
         kube_resourcequota{job="kube-state-metrics", type="used"}
@@ -344,7 +340,7 @@ spec:
     - alert: CPUThrottlingHigh
       annotations:
         description: '{{ $value | humanizePercentage }} throttling of CPU in namespace {{ $labels.namespace }} for container {{ $labels.container }} in pod {{ $labels.pod }}.'
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/cputhrottlinghigh
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/cputhrottlinghigh
         summary: Processes experience elevated CPU throttling.
       expr: |
         sum(increase(container_cpu_cfs_throttled_periods_total{container!="", }[5m])) by (container, pod, namespace)
@@ -359,20 +355,23 @@ spec:
     - alert: KubePersistentVolumeFillingUp
       annotations:
         description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is only {{ $value | humanizePercentage }} free.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubepersistentvolumefillingup
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepersistentvolumefillingup
         summary: PersistentVolume is filling up.
       expr: |
-        kubelet_volume_stats_available_bytes{job="kubelet", metrics_path="/metrics"}
-          /
-        kubelet_volume_stats_capacity_bytes{job="kubelet", metrics_path="/metrics"}
-          < 0.03
+        (
+          kubelet_volume_stats_available_bytes{job="kubelet", metrics_path="/metrics"}
+            /
+          kubelet_volume_stats_capacity_bytes{job="kubelet", metrics_path="/metrics"}
+        ) < 0.03
+        and
+        kubelet_volume_stats_used_bytes{job="kubelet", metrics_path="/metrics"} > 0
       for: 1m
       labels:
         severity: critical
     - alert: KubePersistentVolumeFillingUp
       annotations:
         description: Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is expected to fill up within four days. Currently {{ $value | humanizePercentage }} is available.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubepersistentvolumefillingup
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepersistentvolumefillingup
         summary: PersistentVolume is filling up.
       expr: |
         (
@@ -381,6 +380,8 @@ spec:
           kubelet_volume_stats_capacity_bytes{job="kubelet", metrics_path="/metrics"}
         ) < 0.15
         and
+        kubelet_volume_stats_used_bytes{job="kubelet", metrics_path="/metrics"} > 0
+        and
         predict_linear(kubelet_volume_stats_available_bytes{job="kubelet", metrics_path="/metrics"}[6h], 4 * 24 * 3600) < 0
       for: 1h
       labels:
@@ -388,7 +389,7 @@ spec:
     - alert: KubePersistentVolumeErrors
       annotations:
         description: The persistent volume {{ $labels.persistentvolume }} has status {{ $labels.phase }}.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubepersistentvolumeerrors
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepersistentvolumeerrors
         summary: PersistentVolume is having issues with provisioning.
       expr: |
         kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
@@ -400,7 +401,7 @@ spec:
     - alert: KubeVersionMismatch
       annotations:
         description: There are {{ $value }} different semantic versions of Kubernetes components running.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeversionmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeversionmismatch
         summary: Different semantic versions of Kubernetes components running.
       expr: |
         count(count by (git_version) (label_replace(kubernetes_build_info{job!~"kube-dns|coredns"},"git_version","$1","git_version","(v[0-9]*.[0-9]*).*"))) > 1
@@ -410,12 +411,12 @@ spec:
     - alert: KubeClientErrors
       annotations:
         description: Kubernetes API server client '{{ $labels.job }}/{{ $labels.instance }}' is experiencing {{ $value | humanizePercentage }} errors.'
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeclienterrors
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeclienterrors
         summary: Kubernetes API server client is experiencing errors.
       expr: |
-        (sum(rate(rest_client_requests_total{code=~"5.."}[5m])) by (instance, job)
+        (sum(rate(rest_client_requests_total{code=~"5.."}[5m])) by (instance, job, namespace)
           /
-        sum(rate(rest_client_requests_total[5m])) by (instance, job))
+        sum(rate(rest_client_requests_total[5m])) by (instance, job, namespace))
         > 0.01
       for: 15m
       labels:
@@ -425,7 +426,7 @@ spec:
     - alert: KubeAPIErrorBudgetBurn
       annotations:
         description: The API server is burning too much error budget.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeapierrorbudgetburn
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeapierrorbudgetburn
         summary: The API server is burning too much error budget.
       expr: |
         sum(apiserver_request:burnrate1h) > (14.40 * 0.01000)
@@ -439,7 +440,7 @@ spec:
     - alert: KubeAPIErrorBudgetBurn
       annotations:
         description: The API server is burning too much error budget.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeapierrorbudgetburn
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeapierrorbudgetburn
         summary: The API server is burning too much error budget.
       expr: |
         sum(apiserver_request:burnrate6h) > (6.00 * 0.01000)
@@ -453,7 +454,7 @@ spec:
     - alert: KubeAPIErrorBudgetBurn
       annotations:
         description: The API server is burning too much error budget.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeapierrorbudgetburn
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeapierrorbudgetburn
         summary: The API server is burning too much error budget.
       expr: |
         sum(apiserver_request:burnrate1d) > (3.00 * 0.01000)
@@ -467,7 +468,7 @@ spec:
     - alert: KubeAPIErrorBudgetBurn
       annotations:
         description: The API server is burning too much error budget.
-        runbook_url: https://github.com/prometheus-operator/kube-prometheus/wiki/kubeapierrorbudgetburn
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeapierrorbudgetburn
         summary: The API server is burning too much error budget.
       expr: |
         sum(apiserver_request:burnrate3d) > (1.00 * 0.01000)
