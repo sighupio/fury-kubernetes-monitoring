@@ -43,7 +43,7 @@ spec:
     - alert: KubeStateMetricsShardingMismatch
       annotations:
         description: kube-state-metrics pods are running with different --total-shards configuration, some Kubernetes objects may be exposed multiple times or not exposed at all.
-        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kube-state-metrics/kubestatemetricsshardingmismatch
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kube-state-metrics/kubestatemetricsshardsmissing
         summary: kube-state-metrics sharding is misconfigured.
       expr: |
         stdvar (kube_state_metrics_total_shards{job="kube-state-metrics"}) != 0

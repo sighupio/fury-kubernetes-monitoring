@@ -12,13 +12,13 @@ spec:
   template:
     spec:
       containers:
-      - image: grafana/grafana:5.3.4
+      - image: grafana/grafana:8.1.2
         name: grafana
         env:
           - name: GF_DEFAULT_INSTANCE_NAME
             value: "grafana"
           - name: GF_AUTH_ANONYMOUS_ORG_ROLE
             value: "Viewer"
-   
+
 
 

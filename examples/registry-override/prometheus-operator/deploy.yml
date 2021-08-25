@@ -15,5 +15,5 @@ spec:
       containers:
       - args:
         - --kubelet-service=kube-system/kubelet
-        - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.44.1
+        - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.50.0
         name: prometheus-operator

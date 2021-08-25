@@ -10,8 +10,8 @@ load ./helper
   info
   setup() {
     kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
-    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.8.0/katalog/cert-manager/cert-manager-controller/crd.yml
-    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.8.0"
+    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.11.0-rc/katalog/cert-manager/cert-manager-controller/crd.yml
+    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.11.0-rc"
   }
   loop_it setup 60 10
   status=${loop_it_result:?}
