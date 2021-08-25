@@ -173,7 +173,8 @@ platform:
 trigger:
   ref:
     include:
-      - refs/tags/master
+      - refs/heads/master
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -269,7 +270,8 @@ platform:
 trigger:
   ref:
     include:
-      - refs/tags/master
+      - refs/heads/master
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -364,7 +366,8 @@ platform:
 trigger:
   ref:
     include:
-      - refs/tags/master
+      - refs/heads/master
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -460,7 +463,8 @@ platform:
 trigger:
   ref:
     include:
-      - refs/tags/master
+      - refs/heads/master
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
