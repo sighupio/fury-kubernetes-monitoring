@@ -19,7 +19,7 @@ load ./helper
 @test "Applying cert-manager CRDs" {
   info
   setup() {
-    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.11.0-rc2/katalog/cert-manager/cert-manager-controller/crd.yml
+    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.11.0-rc3/katalog/cert-manager/cert-manager-controller/crd.yml
   }
   loop_it setup 60 10
   status=${loop_it_result:?}
@@ -29,7 +29,7 @@ load ./helper
 @test "Applying cert-manager" {
   info
   setup() {
-    apply "github.com/sighupio/fury-kubernetes-ingress/katalog/cert-manager?ref=v1.11.0-rc2"
+    apply "github.com/sighupio/fury-kubernetes-ingress/katalog/cert-manager?ref=v1.11.0-rc3"
   }
   loop_it setup 60 10
   status=${loop_it_result:?}

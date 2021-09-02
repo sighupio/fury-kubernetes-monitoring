@@ -32,6 +32,8 @@ steps:
       VALIDATE_KUBERNETES_KUBEVAL: "false"
       # We use a lot of copy paste in our code, is intended. So it important to don't use this linter
       VALIDATE_JSCPD: "false"
+      VALIDATE_YAML: "false"
+      VALIDATE_TERRAFORM_TFLINT: "false"
     depends_on:
       - clone
 
