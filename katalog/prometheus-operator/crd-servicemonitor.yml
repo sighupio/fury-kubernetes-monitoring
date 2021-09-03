@@ -134,6 +134,77 @@ spec:
                             type: string
                         type: object
                       type: array
+                    oauth2:
+                      description: OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.
+                      properties:
+                        clientId:
+                          description: The secret or configmap containing the OAuth2 client id
+                          properties:
+                            configMap:
+                              description: ConfigMap containing data to use for the targets.
+                              properties:
+                                key:
+                                  description: The key to select.
+                                  type: string
+                                name:
+                                  description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?'
+                                  type: string
+                                optional:
+                                  description: Specify whether the ConfigMap or its key must be defined
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
+                            secret:
+                              description: Secret containing data to use for the targets.
+                              properties:
+                                key:
+                                  description: The key of the secret to select from.  Must be a valid secret key.
+                                  type: string
+                                name:
+                                  description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?'
+                                  type: string
+                                optional:
+                                  description: Specify whether the Secret or its key must be defined
+                                  type: boolean
+                              required:
+                              - key
+                              type: object
+                          type: object
+                        clientSecret:
+                          description: The secret containing the OAuth2 client secret
+                          properties:
+                            key:
+                              description: The key of the secret to select from.  Must be a valid secret key.
+                              type: string
+                            name:
+                              description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?'
+                              type: string
+                            optional:
+                              description: Specify whether the Secret or its key must be defined
+                              type: boolean
+                          required:
+                          - key
+                          type: object
+                        endpointParams:
+                          additionalProperties:
+                            type: string
+                          description: Parameters to append to the token URL
+                          type: object
+                        scopes:
+                          description: OAuth2 scopes used for the token request
+                          items:
+                            type: string
+                          type: array
+                        tokenUrl:
+                          description: The URL to fetch the token from
+                          minLength: 1
+                          type: string
+                      required:
+                      - clientId
+                      - clientSecret
+                      - tokenUrl
+                      type: object
                     params:
                       additionalProperties:
                         items:
@@ -298,10 +369,10 @@ spec:
                   type: object
                 type: array
               jobLabel:
-                description: The label to use to retrieve the job name from.
+                description: "Chooses the label of the Kubernetes `Endpoints`. Its value will be used for the `job`-label's value of the created metrics. \n Default & fallback value: the name of the respective Kubernetes `Endpoint`."
                 type: string
               namespaceSelector:
-                description: Selector to select which namespaces the Endpoints objects are discovered from.
+                description: Selector to select which namespaces the Kubernetes Endpoints objects are discovered from.
                 properties:
                   any:
                     description: Boolean describing whether all namespaces are selected in contrast to a list restricting them.
@@ -313,7 +384,7 @@ spec:
                     type: array
                 type: object
               podTargetLabels:
-                description: PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
+                description: PodTargetLabels transfers labels on the Kubernetes `Pod` onto the created metrics.
                 items:
                   type: string
                 type: array
@@ -352,7 +423,7 @@ spec:
                     type: object
                 type: object
               targetLabels:
-                description: TargetLabels transfers labels on the Kubernetes Service onto the target.
+                description: TargetLabels transfers labels from the Kubernetes `Service` onto the created metrics. All labels set in `selector.matchLabels` are automatically transferred.
                 items:
                   type: string
                 type: array

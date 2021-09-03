@@ -11,9 +11,9 @@ namespace: monitoring
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.48.1
+    newTag: v0.50.0
 
-resources: 
+resources:
   - deploy.yml
   - rbac.yml
   - ns.yml

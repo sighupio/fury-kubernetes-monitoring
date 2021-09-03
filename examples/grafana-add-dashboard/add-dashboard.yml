@@ -12,7 +12,7 @@ spec:
   template:
     spec:
       containers:
-      - image: grafana/grafana:5.3.4
+      - image: grafana/grafana:8.1.2
         name: grafana
         volumeMounts:
         - mountPath: /grafana-dashboard-definitions/0/sighup

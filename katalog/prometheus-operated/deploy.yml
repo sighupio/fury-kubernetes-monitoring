@@ -15,7 +15,7 @@ spec:
     - name: alertmanager-main
       port: web
       namespace: monitoring
-  image: registry.sighup.io/fury/prometheus:v2.27.1
+  image: registry.sighup.io/fury/prometheus:v2.28.1
   nodeSelector:
     kubernetes.io/os: linux
   podMonitorNamespaceSelector: {}
@@ -31,10 +31,7 @@ spec:
       cpu: 2000m
       memory: 2Gi
   retention: 30d
-  ruleSelector:
-    matchLabels:
-      prometheus: k8s
-      role: alert-rules
+  ruleSelector: {}
   ruleNamespaceSelector: {}
   securityContext:
     fsGroup: 2000
@@ -51,7 +48,7 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  version: v2.27.1
+  version: v2.28.1
 ---
 apiVersion: v1
 kind: Service

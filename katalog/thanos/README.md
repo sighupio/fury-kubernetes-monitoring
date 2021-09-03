@@ -11,8 +11,8 @@ This is the simplified diagram of a Thanos architecture:
 
 ## Image repository and tag
 
-- Thanos components versions: `v0.20.2`
-- Thanos components image: `quay.io/thanos/thanos:v0.20.2`
+- Thanos components versions: `v0.22.0`
+- Thanos components image: `quay.io/thanos/thanos:v0.22.0`
 
 ## Setup in Fury Module
 
