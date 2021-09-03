@@ -944,7 +944,7 @@ spec:
       labels:
         verb: write
       record: apiserver_request:burnrate6h
-    - name: kube-apiserver-histogram.rules
+  - name: kube-apiserver-histogram.rules
     rules:
     - expr: |
         histogram_quantile(0.99, sum by (cluster, le, resource) (rate(apiserver_request_duration_seconds_bucket{job="apiserver",verb=~"LIST|GET"}[5m]))) > 0
