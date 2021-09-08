@@ -13,6 +13,8 @@ resources:
   - rbac.yml
   - sm.yml
   - rules.yml
+  - pdb.yml
+  - dashboards
 
 generatorOptions:
  disableNameSuffixHash: true
@@ -20,6 +22,6 @@ generatorOptions:
 secretGenerator:
 - name: alertmanager-main
   namespace: monitoring
-  files: 
+  files:
     - alertmanager.yaml=alertmanager.yaml
     - alertmanager.tmpl=alertmanager.tmpl

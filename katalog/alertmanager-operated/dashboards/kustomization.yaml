@@ -8,12 +8,12 @@ kind: Kustomization
 
 namespace: monitoring
 
-resources:
-  - dashboards
-  - deploy.yml
-  - rbac.yml
-  - rules.yml
-  - sm.yml
-  - pdb.yml
-  - kube-prometheus-rules.yml
-  - kubernetes-monitoring-rules.yml
+generatorOptions:
+  labels:
+    grafana-sighup-dashboard: default
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: alertmanager-grafana-dashboards
+    files:
+      - alertmanager.json
