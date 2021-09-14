@@ -100,7 +100,7 @@
           "lineColor": "rgb(31, 120, 193)",
           "show": false
         },
-        "tableColumn": "{container=\"grafana\", endpoint=\"http\", instance=\"10.244.1.8:3000\", job=\"grafana\", namespace=\"monitoring\", pod=\"grafana-59c4c76457-vfmpv\", service=\"grafana\"}",
+        "tableColumn": "",
         "targets": [
           {
             "expr": "process_start_time_seconds{pod=\"$pod\"} * 1000",
@@ -189,7 +189,7 @@
           "lineColor": "rgb(31, 120, 193)",
           "show": false
         },
-        "tableColumn": "grafana_stat_total_orgs{container=\"grafana\", endpoint=\"http\", instance=\"10.244.1.8:3000\", job=\"grafana\", namespace=\"monitoring\", pod=\"grafana-59c4c76457-vfmpv\", service=\"grafana\"}",
+        "tableColumn": "",
         "targets": [
           {
             "expr": "grafana_stat_total_orgs{pod=\"$pod\"}",
@@ -278,7 +278,7 @@
           "lineColor": "rgb(31, 120, 193)",
           "show": false
         },
-        "tableColumn": "grafana_stat_total_users{container=\"grafana\", endpoint=\"http\", instance=\"10.244.1.8:3000\", job=\"grafana\", namespace=\"monitoring\", pod=\"grafana-59c4c76457-vfmpv\", service=\"grafana\"}",
+        "tableColumn": "",
         "targets": [
           {
             "expr": "grafana_stat_total_users{pod=\"$pod\"}",
@@ -367,7 +367,7 @@
           "lineColor": "rgb(31, 120, 193)",
           "show": false
         },
-        "tableColumn": "grafana_stat_totals_dashboard{container=\"grafana\", endpoint=\"http\", instance=\"10.244.1.8:3000\", job=\"grafana\", namespace=\"monitoring\", pod=\"grafana-59c4c76457-vfmpv\", service=\"grafana\"}",
+        "tableColumn": "",
         "targets": [
           {
             "expr": "grafana_stat_totals_dashboard{pod=\"$pod\"}",

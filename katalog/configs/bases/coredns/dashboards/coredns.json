@@ -84,7 +84,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(coredns_dns_request_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum(rate(coredns_dns_requests_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -166,7 +166,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(coredns_dns_response_rcode_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum(rate(coredns_dns_responses_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -329,7 +329,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(coredns_panic_count_total{job=\"coredns\",instance=~\"$instance\"})",
+          "expr": "sum(coredns_panics_total{job=\"coredns\",instance=~\"$instance\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -408,7 +408,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod,proto) (irate(coredns_dns_request_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum by (instance,pod,proto) (irate(coredns_dns_requests_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -496,7 +496,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod,zone) (irate(coredns_dns_request_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum by (instance,pod,zone) (irate(coredns_dns_requests_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1293,7 +1293,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod) (irate(coredns_dns_response_rcode_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum by (instance,pod) (irate(coredns_dns_responses_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1381,7 +1381,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod,rcode) (irate(coredns_dns_response_rcode_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum by (instance,pod,rcode) (irate(coredns_dns_responses_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1793,7 +1793,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod,type) (coredns_cache_size{job=\"coredns\",instance=~\"$instance\"})",
+          "expr": "sum by (instance,pod,type) (coredns_cache_entries{job=\"coredns\",instance=~\"$instance\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
