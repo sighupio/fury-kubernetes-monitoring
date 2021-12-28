@@ -26,7 +26,7 @@ load ./helper
     info
     setup_ldap(){
         kubectl create ns demo-ldap
-        kubectl create configmap ldap-ldif --from-file=sighup.io.ldif=katalog/tests/grafana-ldap-auth/ldap-server/sighup.io-groups.ldif -n demo-ldap --dry-run -o yaml | kubectl apply -f -
+        kubectl create configmap ldap-ldif --from-file=sighup.io.ldif=katalog/tests/grafana-ldap-auth/ldap-server/sighup.io-groups.ldif -n demo-ldap --dry-run=client -o yaml | kubectl apply -f -
         kubectl apply -f katalog/tests/grafana-ldap-auth/ldap-server/ldap-server.yaml -n demo-ldap
     }
     run setup_ldap
