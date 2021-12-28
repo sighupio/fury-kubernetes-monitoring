@@ -8,7 +8,7 @@ ability to run it independently of the environment, on-premise installed by kube
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
 

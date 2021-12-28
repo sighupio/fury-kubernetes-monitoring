@@ -17,7 +17,7 @@ resources:
 images:
   - name: thanos
     newName: registry.sighup.io/fury/thanos
-    newTag: v0.22.0
+    newTag: v0.24.0
 
 configMapGenerator:
   # description: Discovery config of Prometheus instances to aggregate query

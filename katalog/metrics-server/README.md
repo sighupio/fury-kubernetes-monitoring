@@ -8,7 +8,7 @@ on each node.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize >= `3.0.x`
 - cert-manager >= `1.0.0`
 

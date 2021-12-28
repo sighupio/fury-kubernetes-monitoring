@@ -5,7 +5,7 @@ This package provides monitoring for Kubernetes components `kubelet`, `coredns` 
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize >= `3.3.0`
 - [prometheus-operator](../prometheus-operator)
 

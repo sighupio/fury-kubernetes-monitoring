@@ -10,7 +10,7 @@ metadata:
     alertmanager: main
   name: main
 spec:
-  image: registry.sighup.io/fury/prometheus/alertmanager:v0.22.2
+  image: registry.sighup.io/fury/prometheus/alertmanager:v0.23.0
   nodeSelector:
     kubernetes.io/os: linux
   replicas: 3

@@ -17,4 +17,4 @@ resources:
 images:
 - name: goldpinger
   newName: registry.sighup.io/fury/bloomberg/goldpinger
-  newTag: v3.2.0
+  newTag: v3.3.0
