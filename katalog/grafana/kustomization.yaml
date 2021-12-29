@@ -6,6 +6,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+commonLabels:
+  module.kfd.sighup.io/name: "monitoring"
+  module.kfd.sighup.io/version: "v1.13.0"
+  module.kfd.sighup.io/component: "grafana"
+  kfd.sighup.io/source: "kustomize"
+
 namespace: monitoring
 
 resources:
