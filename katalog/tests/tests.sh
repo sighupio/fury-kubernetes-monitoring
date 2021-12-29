@@ -96,7 +96,7 @@ load ./helper
 @test "alertmanager-operated is Running" {
   info
   test() {
-    kubectl get pods -l app=alertmanager -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l alertmanager=main -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
   loop_it test 60 10
   status=${loop_it_result:?}
