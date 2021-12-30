@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-config
+stringData:
+  grafana.ini: |
+    [date_formats]
+    default_timezone = UTC
+type: Opaque

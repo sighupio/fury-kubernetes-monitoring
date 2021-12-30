@@ -278,9 +278,9 @@ spec:
         runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecpuquotaovercommit
         summary: Cluster has overcommitted CPU resource requests.
       expr: |
-        sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="cpu"})
-          /
-        sum(kube_node_status_allocatable{resource="cpu"})
+          sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(cpu|requests.cpu)"}))
+            /
+          sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})
           > 1.5
       for: 5m
       labels:
@@ -291,9 +291,9 @@ spec:
         runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubememoryquotaovercommit
         summary: Cluster has overcommitted memory resource requests.
       expr: |
-        sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="memory"})
-          /
-        sum(kube_node_status_allocatable{resource="memory",job="kube-state-metrics"})
+          sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(memory|requests.memory)"}))
+            /
+          sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})
           > 1.5
       for: 5m
       labels:
@@ -352,6 +352,10 @@ spec:
         ) < 0.03
         and
         kubelet_volume_stats_used_bytes{job="kubelet", metrics_path="/metrics"} > 0
+        unless on(namespace, persistentvolumeclaim)
+        kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
+        unless on(namespace, persistentvolumeclaim)
+        kube_persistentvolumeclaim_labels{label_excluded_from_alerts="true"} == 1
       for: 1m
       labels:
         severity: critical
@@ -370,6 +374,10 @@ spec:
         kubelet_volume_stats_used_bytes{job="kubelet", metrics_path="/metrics"} > 0
         and
         predict_linear(kubelet_volume_stats_available_bytes{job="kubelet", metrics_path="/metrics"}[6h], 4 * 24 * 3600) < 0
+        unless on(namespace, persistentvolumeclaim)
+        kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
+        unless on(namespace, persistentvolumeclaim)
+        kube_persistentvolumeclaim_labels{label_excluded_from_alerts="true"} == 1
       for: 1h
       labels:
         severity: warning
@@ -499,9 +507,9 @@ spec:
         severity: critical
     - alert: KubeAPITerminatedRequests
       annotations:
-        description: The apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
+        description: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
         runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubeapiterminatedrequests
-        summary: The apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
+        summary: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
       expr: |
         sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m]))  / (  sum(rate(apiserver_request_total{job="apiserver"}[10m])) + sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m])) ) > 0.20
       for: 5m
