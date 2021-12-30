@@ -179,7 +179,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
-      - refs/heads/upgrade_images
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -278,7 +278,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
-      - refs/heads/upgrade_images
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -378,7 +378,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
-      - refs/heads/upgrade_images
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
@@ -478,7 +478,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
-      - refs/heads/upgrade_images
+      - refs/heads/sync_kube_prom
       - refs/tags/**
 
 steps:
