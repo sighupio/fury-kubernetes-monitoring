@@ -8,6 +8,11 @@ kind: Kustomization
 
 namespace: monitoring
 
+commonLabels:
+  module.kfd.sighup.io/name: "monitoring"
+  module.kfd.sighup.io/version: "v1.13.0"
+  module.kfd.sighup.io/component: "node-exporter"
+  kfd.sighup.io/source: "kustomize"
 
 images:
   - name: alpine

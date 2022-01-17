@@ -8,6 +8,12 @@ kind: Kustomization
 
 namespace: monitoring
 
+commonLabels:
+  module.kfd.sighup.io/name: "monitoring"
+  module.kfd.sighup.io/version: "v1.13.0"
+  module.kfd.sighup.io/component: "prometheus-operated"
+  kfd.sighup.io/source: "kustomize"
+
 resources:
   - dashboards
   - deploy.yml
