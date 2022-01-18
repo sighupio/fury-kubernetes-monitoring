@@ -849,7 +849,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
-      "description": "This graph gives an overview  on  the proxy requests volume on a given pod receiving DNS requests on a 2 minutes time window.",
+      "description": "This graph gives an overview  on  the forward requests volume on a given pod receiving DNS requests on a 2 minutes time window.",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -881,7 +881,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (instance,pod,proto) (irate(coredns_proxy_request_count_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
+          "expr": "sum by (instance,pod,proto) (irate(coredns_forward_requests_total{job=\"coredns\",instance=~\"$instance\"}[2m]))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -892,7 +892,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Proxy Requests Volume",
+      "title": "Forward Requests Volume",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -935,7 +935,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
-      "description": "This graph gives an overview of the 99th percentile requests latency for a given pod proxying DNS requests.",
+      "description": "This graph gives an overview of the 99th percentile requests latency for a given pod forwarding DNS requests.",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -967,14 +967,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, sum by (le,instance,pod,proto) (rate(coredns_proxy_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (le,instance,pod,proto) (rate(coredns_forward_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ pod }}/{{ proto }} p99",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.90, sum by (le,instance,pod,proto) (rate(coredns_proxy_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
+          "expr": "histogram_quantile(0.90, sum by (le,instance,pod,proto) (rate(coredns_forward_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 2,
@@ -982,7 +982,7 @@
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.50, sum by (le,instance,pod,proto) (rate(coredns_proxy_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
+          "expr": "histogram_quantile(0.50, sum by (le,instance,pod,proto) (rate(coredns_forward_request_duration_seconds_bucket{job=\"coredns\",instance=~\"$instance\"}[2m])))",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 2,
@@ -993,7 +993,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Proxy Requests 99th Percentile Requests Duration",
+      "title": "Forward Requests 99th Percentile Requests Duration",
       "tooltip": {
         "shared": true,
         "sort": 0,
