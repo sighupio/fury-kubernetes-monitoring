@@ -562,6 +562,7 @@ volumes:
 
 ---
 kind: pipeline
+type: docker
 name: release
 
 depends_on:
