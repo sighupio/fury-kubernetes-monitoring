@@ -17,7 +17,7 @@ commonLabels:
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.50.0
+    newTag: v0.53.1
 
 resources:
   - deploy.yml

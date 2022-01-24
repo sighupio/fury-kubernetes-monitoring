@@ -19,7 +19,7 @@ with this package.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize >= `v3`
 - [prometheus-operator](../prometheus-operator)
 

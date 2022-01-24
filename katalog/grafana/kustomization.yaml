@@ -22,10 +22,10 @@ resources:
 images:
   - name: grafana/grafana
     newName: registry.sighup.io/fury/grafana/grafana
-    newTag: 8.1.2
+    newTag: 8.3.3
   - name: kiwigrid/k8s-sidecar
     newName: registry.sighup.io/fury/kiwigrid/k8s-sidecar
-    newTag: 1.12.3
+    newTag: 1.15.0
 
 configMapGenerator:
   - name: grafana-dashboards

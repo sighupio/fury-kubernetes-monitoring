@@ -17,7 +17,7 @@ commonLabels:
 images:
   - name: docker.io/enix/x509-certificate-exporter
     newName: registry.sighup.io/fury/enix/x509-certificate-exporter
-    newTag: 2.11.0
+    newTag: 2.12.1
 
 resources:
   - daemonset.yml

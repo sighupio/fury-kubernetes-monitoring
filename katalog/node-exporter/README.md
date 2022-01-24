@@ -8,14 +8,14 @@ enabled by default from the project's
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize = `v3.0.x`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* node-exporter image: `quay.io/prometheus/node-exporter:v1.2.2`
+* node-exporter image: `quay.io/prometheus/node-exporter:v1.3.1`
 * node-exporter repository: [https://github.com/prometheus/node_exporter](https://github.com/prometheus/node_exporter)
 
 
