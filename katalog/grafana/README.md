@@ -1,5 +1,7 @@
 # Grafana
 
+<!-- <KFD-DOCS> -->
+
 Grafana is an open-source data visualization and graph composer platform for
 numeric time-series data with Prometheus integration.
 
@@ -15,7 +17,7 @@ numeric time-series data with Prometheus integration.
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize = `v3.5.3`
+- Kustomize = `v3.3.x`
 
 ## Configuration
 
@@ -30,10 +32,12 @@ Fury distribution Grafana is deployed with the following configuration:
 
 ## Add new dashboards
 
-You can create a Configmap in your project with a JSON of a grafana dashboard and then labeling it with the label
-key = "grafana-sighup-dashboard", the value of the label is up to you (for mental healthiness should be better than
-the value respects some sort of reference with the project to with the dashboard is related). Labeling it, the sidecar
-k8s-sidecar will take care of it and inject it into a shared volume where grafana does a lookup and discover it.
+You can create a Configmap in your project with a JSON of a grafana dashboard
+and then labeling it with the label key `grafana-sighup-dashboard`, the value
+of the label is up to you (for mental healthiness should be better than the
+value respects some sort of reference with the project to with the dashboard is
+related). Labeling it, the sidecar k8s-sidecar will take care of it and inject
+it into a shared volume where grafana does a lookup and discover it.
 Look at the [dashboards](dashboards) folder kustomization.yml for an example.
 
 ## Deployment
@@ -52,12 +56,15 @@ You can access Grafana Dashboard by port-forwarding on port `3000`:
 kubectl port-forward svc/grafana 3000:3000 --namespace monitoring
 ```
 
-Grafana will be available on [http://127.0.0.1:3000](http://127.0.0.1:3000) from your browser.
+Grafana will be available on [http://127.0.0.1:3000](http://127.0.0.1:3000) from
+your browser.
 
 ### Adding/Removing Dashboards
 
 To learn how to add or remove dashboards to Grafana please see the
 [examples](../../examples) folder.
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

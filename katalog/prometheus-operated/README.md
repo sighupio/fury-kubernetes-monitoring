@@ -1,5 +1,7 @@
 # Prometheus Operated
 
+<!-- <KFD-DOCS> -->
+ 
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined
 by [Prometheus Operator](../prometheus-operator).
 
@@ -11,30 +13,27 @@ also possible to integrate it with third-party time-series analytics tools like
 Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 [Grafana](../grafana) package's documentation.
 
-
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize = `v3.0.X`
+- Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
-
 
 ## Image repository and tag
 
-* Prometheus image: `quay.io/prometheus/prometheus:v2.32.1`
-* Prometheus repository: <https://github.com/prometheus/prometheus>
-* Prometheus documentation: <https://prometheus.io/docs/introduction/overview>
-
+* Prometheus image: `registry.sighup.io/prometheus/prometheus:v2.32.1`
+* Prometheus repository: [Prometheus on Github][prom-gh]
+* Prometheus documentation: [Prometheus Homepage][prom-doc]
 
 ## Configuration
 
 Fury distribution Prometheus is deployed with the following configuration:
+
 - Replica number: `1`
 - Retention for `30` days
 - Requires `150Gi` storage(with default storage type of Provider)
 - Listens on port `9090`
 - Alert manager endpoint set to `alertmanager-main`
-
 
 ## Deployment
 
@@ -48,7 +47,6 @@ kustomize build | kubectl apply -f -
 To learn how to customize it for your needs please see the
 [examples](../../examples) folder.
 
-
 ### Accessing Prometheus UI
 
 You can access to Prometheus expression browser by port-forwarding on port 9090:
@@ -60,7 +58,6 @@ kubectl port-forward svc/prometheus-k8s 9090:9090 --namespace monitoring
 Now if you go to <http://127.0.0.1:9090> on your browser you can execute queries
 and visualize query results.
 
-
 ### Service Monitoring
 
 Target discovery is achieved via ServiceMonitor CRD, to learn more about
@@ -68,8 +65,7 @@ ServiceMonitor please follow Prometheus Operator's
 [documentation](https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/running-exporters.md).
 
 To learn how to create ServiceMonitor resources for your services please see the
-[example](../../examples/serviceMonitor).
-
+[example][example].
 
 ### Prometheus Rules and Alerts
 
@@ -81,7 +77,6 @@ and Prometheus
 
 To learn how to define alert rules for your services please see the
 [example](../../examples/prometheus-rules).
-
 
 ## Alerts
 
@@ -186,6 +181,13 @@ The followings alerts are already defined for this package.
 | KubeMemOvercommit | This alert fires if the hard limit of memory resources quota in the last 5 minutes is more than 150% of the available resources, i.e. the hard limit is set too high. | warning | 5m |
 | KubeQuotaExceeded | This alert fires if a given resource was used for more than 90% of the corresponding hard quota in the last 15 minutes. | warning | 15m |
 
+<!-- Links -->
+
+[prom-gh]: https://github.com/prometheus/prometheus
+[prom-doc]: https://prometheus.io/docs/introduction/overview
+[example]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/serviceMonitor
+
+<!-- </KFD-DOCS> -->
 
 ## License
 
