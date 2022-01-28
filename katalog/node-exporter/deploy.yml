@@ -15,6 +15,8 @@ spec:
       app: node-exporter
   template:
     metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: node-exporter
       labels:
         app: node-exporter
     spec:
@@ -37,7 +39,7 @@ spec:
         - --path.rootfs=/host/root
         - --no-collector.wifi
         - --no-collector.hwmon
-        - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var/lib/docker/.+)($|/)
+        - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|run/k3s/containerd/.+|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
         - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$
         - --collector.textfile.directory=/var/lib/node_exporter
         image: quay.io/prometheus/node-exporter

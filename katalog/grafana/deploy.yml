@@ -74,6 +74,9 @@ spec:
               name: grafana-datasources
             - mountPath: /etc/grafana/provisioning/dashboards
               name: grafana-dashboards
+            - mountPath: /etc/grafana
+              name: grafana-config
+              readOnly: false
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -93,6 +96,9 @@ spec:
         - name: grafana-dashboards
           configMap:
             name: grafana-dashboards
+        - name: grafana-config
+          secret:
+            secretName: grafana-config
 ---
 apiVersion: v1
 kind: Service

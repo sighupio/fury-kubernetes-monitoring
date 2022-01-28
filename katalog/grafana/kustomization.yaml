@@ -18,6 +18,7 @@ resources:
   - dashboards
   - deploy.yml
   - rbac.yml
+  - grafana-config.yml
 
 images:
   - name: grafana/grafana
