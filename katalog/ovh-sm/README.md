@@ -1,5 +1,7 @@
 # OVH ServiceMonitor
 
+<!-- <KFD-DOCS> -->
+
 This package provides monitoring for Kubernetes components `kubelet` and
 `api-server` on OVH Kubernetes Service.
 
@@ -25,6 +27,8 @@ Fury distribution OVH ServiceMonitor has following configuration:
   - `persistent-volumes-usage`: Kubernetes / Persistent Volumes
   - `pod-total`: Kubernetes / Networking / Pod
   - `workload-total`: Kubernetes / Networking / Workload
+
+<!-- </KFD-DOCS> -->
 
 ## License
 
