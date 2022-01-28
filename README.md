@@ -16,26 +16,26 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 
 ## Overview
 
-This module is designed so as to give you full control and visibility over your
+This module is designed to give you full control and visibility over your
 cluster operations. Metrics from the cluster and the applications are collected
 and clean analytics are offered via a visualization platform, [Grafana][grafana-link].
 
 The centerpiece of this module is the [`prometheus-operator`], which offers the
 easy deployment of the following as controllers:
 
-- [Prometheus][promethus-link]: An open-source monitoring and alerting toolkit for cloud-native applications
+- [Prometheus][prometheus-link]: An open-source monitoring and alerting toolkit for cloud-native applications
 - [Alertmanager][alertmanager-link]: Manages alerts sent by the Prometheus server and route them through receiver integrations such as email, Slack, or PagerDuty
-- [ServiceMonitor][servicemonitor-link]: Declaratively specifies how groups of services should be monitored, by automatically generates Prometheus scrape configuration based on the definition
+- [ServiceMonitor][servicemonitor-link]: Declaratively specifies how groups of services should be monitored, by automatically generating Prometheus scrape configuration based on the definition
 
 Since the export of certain metrics can be heavily cloud-provider specific, we
 provide a bunch of cloud-provider specific configuration. The setups we
-currently support includes:
+currently support include:
 
 - Google Kubernetes Engine (GKE)
 - Azure Kubernetes Service (AKS)
 - Elastic Kubernetes Service (EKS)
 - OVH Kubernetes Service
-- on-premise or unmanaged cloud clusters
+- on-premises or self-managed cloud clusters
 
 Most of the components in this module are deployed in namespace `monitoring`, unless the
 functionality requires a permission that forces it to be deployed in the
@@ -57,20 +57,20 @@ Kubernetes Fury Monitoring provides the following packages:
 | [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Service Monitor for hardware and OS metrics exposed by \*NIX kernels                                        |
 | [metrics-server](katalog/metrics-server)               | `0.5.2`  | Resource metrics collection from kubelet and exposition through [Metrics API][metric-api]                   |
 | [Thanos](katalog/thanos)                               | `0.24.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
-| [x509-exporter](katalog/x509-exporter)                 | `2.12.1` | Provides monitoring for certification                                                                       |
+| [x509-exporter](katalog/x509-exporter)                 | `2.12.1` | Provides monitoring for certificates                                                                        |
 
 ### Integration with cloud providers
 
 One of the following components can be used to enable service monitoring in each
 cloud environment:
 
-| Component                        | Description                                                                                              |
-|----------------------------------|----------------------------------------------------------------------------------------------------------|
-| [aks-sm](katalog/aks-sm)         | Service Monitor to collect Kubernetes components metrics from AKS                                        |
-| [gke-sm](katalog/gke-sm)         | Service Monitor to collect Kubernetes components metrics from GKE                                        |
-| [eks-sm](katalog/eks-sm)         | Service Monitor to collect Kubernetes components metrics from EKS                                        |
-| [ovh-sm](katalog/ovh-sm)         | Service Monitor to collect Kubernetes components metrics from OVH Kubernetes Service                     |
-| [kubeadm-sm](katalog/kubeadm-sm) | Service Monitors, Prometheus rules and alerts for Kubernetes components of unmanaged/on-premise clusters |
+| Component                        | Description                                                                                                     |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| [aks-sm](katalog/aks-sm)         | Service Monitor to collect Kubernetes components metrics from AKS                                               |
+| [gke-sm](katalog/gke-sm)         | Service Monitor to collect Kubernetes components metrics from GKE                                               |
+| [eks-sm](katalog/eks-sm)         | Service Monitor to collect Kubernetes components metrics from EKS                                               |
+| [ovh-sm](katalog/ovh-sm)         | Service Monitor to collect Kubernetes components metrics from OVH Kubernetes Service                            |
+| [kubeadm-sm](katalog/kubeadm-sm) | Service Monitors, Prometheus rules and alerts for Kubernetes components of self-managed or on-premises clusters |
 
 Please refer the individual package documentation for further details.
 
@@ -83,7 +83,7 @@ Please refer the individual package documentation for further details.
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
 | `1.23.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
 
-Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
+Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
 ## Usage
 
@@ -151,7 +151,7 @@ based on the cloud provider for service monitoring:
     version: v1.14.0
 ```
 
-- ServiceMonitor for on-premise/self-managed cluster
+- ServiceMonitor for on-premises and for self-managed cluster
 
 ```yaml
   ...
@@ -208,7 +208,7 @@ service provider as follows:
 
 ```
 
-- For On-premise/self-hosted
+- For On-premises and for self-managed
 
 ``` yaml
   ...
@@ -232,9 +232,9 @@ go to [examples](examples) directory.
 [kube-prometheus-link]: https://github.com/prometheus-operator/kube-prometheus
 [prometheus-link]: https://github.com/prometheus/prometheus
 [alertmanager-link]: https://github.com/prometheus/alertmanager
-[servicemonitori-link]: https://github.com/prometheus-operator/prometheus-operator#customresourcedefinitions
+[servicemonitor-link]: https://github.com/prometheus-operator/prometheus-operator#customresourcedefinitions
 [grafana-link]: https://grafana.com/
-[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-monitoring/docs/COMPATIBILITY_MATRIX.md
+[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-logging/blob/master/docs/COMPATIBILITY_MATRIX.md
 [kfd-repo]: https://github.com/sighupio/fury-distribution
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize

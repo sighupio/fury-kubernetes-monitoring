@@ -1,7 +1,7 @@
 # Prometheus Operated
 
 <!-- <KFD-DOCS> -->
- 
+
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined
 by [Prometheus Operator](../prometheus-operator).
 
