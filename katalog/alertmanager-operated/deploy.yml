@@ -25,6 +25,12 @@ spec:
     fsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
+  podMetadata:
+    labels:
+      module.kfd.sighup.io/name: "monitoring"
+      module.kfd.sighup.io/version: "v1.13.0"
+      module.kfd.sighup.io/component: "alertmanager-operated"
+      kfd.sighup.io/source: "kustomize"
   serviceAccountName: alertmanager-main
   version: v0.23.0
 ---
