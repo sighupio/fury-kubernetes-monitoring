@@ -18,12 +18,6 @@ spec:
   image: registry.sighup.io/fury/prometheus:v2.32.1
   nodeSelector:
     kubernetes.io/os: linux
-  podMetadata:
-    labels:
-      module.kfd.sighup.io/name: "monitoring"
-      module.kfd.sighup.io/version: "v1.13.0"
-      module.kfd.sighup.io/component: "prometheus-operated"
-      kfd.sighup.io/source: "kustomize"
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
   probeNamespaceSelector: {}

@@ -1,0 +1,4 @@
+commonLabels:
+  - path: spec/podMetadata/labels
+    create: true
+    kind: Prometheus
