@@ -14,6 +14,9 @@ commonLabels:
   module.kfd.sighup.io/component: "prometheus-operated"
   kfd.sighup.io/source: "kustomize"
 
+configurations:
+  - configuration.yaml
+
 resources:
   - dashboards
   - deploy.yml
