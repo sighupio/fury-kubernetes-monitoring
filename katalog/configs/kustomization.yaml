@@ -8,7 +8,7 @@ kind: Kustomization
 
 commonLabels:
   module.kfd.sighup.io/name: "monitoring"
-  module.kfd.sighup.io/version: "v1.13.0"
+  module.kfd.sighup.io/version: "v1.14.1"
   module.kfd.sighup.io/component: "configs"
   kfd.sighup.io/source: "kustomize"
 
