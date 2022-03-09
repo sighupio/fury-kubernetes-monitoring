@@ -1,4 +1,4 @@
-# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -141,27 +141,27 @@ steps:
         - push
         - tag
 
----
-kind: pipeline
-name: render-examples
+# ---
+# kind: pipeline
+# name: render-examples
 
-depends_on:
-  - policeman
+# depends_on:
+#   - policeman
 
-platform:
-  os: linux
-  arch: amd64
+# platform:
+#   os: linux
+#   arch: amd64
 
-steps:
-  - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
-    pull: always
-    depends_on: [clone]
-    commands:
-      - bats -t examples/tests.sh
-    when:
-      event:
-        - tag
+# steps:
+#   - name: examples
+#     image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
+#     pull: always
+#     depends_on: [clone]
+#     commands:
+#       - bats -t examples/tests.sh
+#     when:
+#       event:
+#         - tag
 
 ---
 kind: pipeline
