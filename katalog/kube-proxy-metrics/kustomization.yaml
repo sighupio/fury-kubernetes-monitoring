@@ -8,12 +8,6 @@ kind: Kustomization
 
 namespace: monitoring
 
-commonLabels:
-  module.kfd.sighup.io/name: "monitoring"
-  module.kfd.sighup.io/version: "v1.14.1"
-  module.kfd.sighup.io/component: "kube-proxy-metrics"
-  kfd.sighup.io/source: "kustomize"
-
 images:
 - name: kube-rbac-proxy
   newName: registry.sighup.io/fury/brancz/kube-rbac-proxy

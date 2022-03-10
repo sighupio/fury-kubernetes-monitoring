@@ -23,7 +23,7 @@
 | v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
 | v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
 | v1.13.0                             |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
-| v1.14.0                             |                    |                    |                    |                    |                    |                    | :warning: | :warning: | :warning: | :warning: |
+| v1.14.0                             |                    |                    |                    |                    |                    |                    |        :x:         |        :x:         |        :x:         |    :x:    |
 | v1.14.1                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
@@ -40,6 +40,4 @@ because it is not officially supported by [SIGHUP](https://sighup.io).
 because it is not officially supported by [SIGHUP](https://sighup.io).
 - :warning: : module version: `v1.13.0` and Kubernetes Version: `1.22.x`. It works as expected. Marked as warning
 because it is not officially supported by [SIGHUP](https://sighup.io).
-- :warning: : module version: `v1.14.0` has a known issue where Prometheus Service is not working as expected. See [Issue #83](https://github.com/sighupio/fury-kubernetes-monitoring/issues/83).
-
-
+- :x: module version `v1.14.0` has a known bug breaking upgrades. Please do not use.
