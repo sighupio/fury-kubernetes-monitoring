@@ -36,6 +36,7 @@ steps:
       VALIDATE_TERRAFORM_TFLINT: "false"
       # hadolint already validated dockerfiles
       VALIDATE_DOCKERFILE: "false"
+      VALIDATE_NATURAL_LANGUAGE: "false"
     depends_on:
       - clone
 
