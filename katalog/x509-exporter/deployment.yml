@@ -42,7 +42,7 @@ spec:
           args:
             - --watch-kube-secrets
             - --secret-type=kubernetes.io/tls:tls.crt
-            - --port=9793
+            - --listen-address=:9793
           ports:
             - name: metrics
               containerPort: 9793
