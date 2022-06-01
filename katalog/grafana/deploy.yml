@@ -42,6 +42,37 @@ spec:
           volumeMounts:
             - name: grafana-shared-dashboards
               mountPath: /tmp/dashboards
+        - name: datasource-sidecar
+          image: kiwigrid/k8s-sidecar
+          env:
+            - name: LABEL
+              value: "grafana-sighup-datasource"
+            - name: FOLDER
+              value: /tmp/datasource
+            - name: RESOURCE
+              # configmap and secret
+              value: both
+            - name: NAMESPACE
+              value: "ALL"
+            - name: REQ_URL
+              value: http://localhost:3000/api/admin/provisioning/datasources/reload
+            - name: REQ_METHOD
+              value: POST
+              # dummy username and password, required by reload API
+            - name: REQ_USERNAME
+              value: admin
+            - name: REQ_PASSWORD
+              value: admin
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          volumeMounts:
+            - name: grafana-shared-datasources
+              mountPath: /tmp/datasource
         - image: grafana/grafana
           name: grafana
           env:
@@ -71,7 +102,7 @@ spec:
             - mountPath: /var/lib/grafana
               name: grafana-storage
             - mountPath: /etc/grafana/provisioning/datasources
-              name: grafana-datasources
+              name: grafana-shared-datasources
             - mountPath: /etc/grafana/provisioning/dashboards
               name: grafana-dashboards
             - mountPath: /etc/grafana
@@ -90,9 +121,8 @@ spec:
           emptyDir: {}
         - name: grafana-storage
           emptyDir: {}
-        - name: grafana-datasources
-          secret:
-            secretName: grafana-datasources
+        - name: grafana-shared-datasources
+          emptyDir: {}
         - name: grafana-dashboards
           configMap:
             name: grafana-dashboards

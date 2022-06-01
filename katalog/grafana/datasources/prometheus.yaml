@@ -3,10 +3,12 @@
 # license that can be found in the LICENSE file.
 
 apiVersion: 1
-providers:
-  - folder: ""
-    name: "0"
-    options:
-      path: "/grafana-dashboard-definitions/0"
+datasources:
+  - access: prometheus
+    editable: false
+    name: prometheus
     orgId: 1
-    type: "file"
+    type: prometheus
+    url: http://prometheus-k8s.monitoring.svc:9090
+    version: 1
+
