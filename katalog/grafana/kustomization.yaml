@@ -10,6 +10,7 @@ namespace: monitoring
 
 resources:
   - dashboards
+  - datasources
   - deploy.yml
   - rbac.yml
   - grafana-config.yml
@@ -27,7 +28,4 @@ configMapGenerator:
     files:
       - dashboards.yaml
 
-secretGenerator:
-  - name: grafana-datasources
-    files:
-      - prometheus.yaml=prometheus.yaml
+
