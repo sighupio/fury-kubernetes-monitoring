@@ -31,7 +31,8 @@ Fury distribution Prometheus is deployed with the following configuration:
 
 - Replica number: `1`
 - Retention for `30` days
-- Requires `150Gi` storage(with default storage type of Provider)
+- Retention Storage `120 Gb` (80% of the default 150)
+- Requires `150Gi` storage (with default storage type of Provider)
 - Listens on port `9090`
 - Alert manager endpoint set to `alertmanager-main`
 
