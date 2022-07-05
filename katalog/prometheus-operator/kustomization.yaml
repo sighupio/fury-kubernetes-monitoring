@@ -11,7 +11,35 @@ namespace: monitoring
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.53.1
+    newTag: v0.57.0
+  - name: quay.io/brancz/kube-rbac-proxy
+    newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
+    newTag: v0.12.0
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: prometheus-operator
+    namespace: monitoring
+  spec:
+    template:
+      spec:
+        securityContext:
+          runAsGroup: 65534
+
+patchesJSON6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: prometheus-operator
+      namespace: monitoring
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args/1
+        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.57.0
 
 resources:
   - clusterRole.yaml
@@ -27,5 +55,6 @@ resources:
   - deployment.yaml
   - namespace.yaml
   - prometheusRule.yaml
+  - service.yaml
   - serviceAccount.yaml
   - serviceMonitor.yaml

@@ -1,11 +1,11 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.57.0
   name: prometheus-operator
 rules:
 - apiGroups:
@@ -16,6 +16,7 @@ rules:
   - alertmanagerconfigs
   - prometheuses
   - prometheuses/finalizers
+  - prometheuses/status
   - thanosrulers
   - thanosrulers/finalizers
   - servicemonitors
