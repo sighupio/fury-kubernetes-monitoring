@@ -14,15 +14,18 @@ images:
     newTag: v0.53.1
 
 resources:
-  - deploy.yml
-  - rbac.yml
-  - ns.yml
-  - crd-rule.yml
-  - crd-prometheus.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
   - crd-alertmanager.yml
   - crd-config-alertmanager.yml
+  - crd-podmonitor.yml
+  - crd-probes.yml
+  - crd-prometheus.yml
+  - crd-rule.yml
   - crd-servicemonitor.yml
   - crd-thanosruler.yml
-  - crd-probes.yml
-  - crd-podmonitor.yml
-  - sm.yml
+  - deployment.yaml
+  - namespace.yaml
+  - prometheusRule.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
