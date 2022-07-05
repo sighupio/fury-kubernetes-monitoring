@@ -11,9 +11,13 @@ namespace: monitoring
 resources:
   - dashboards
   - datasources
-  - deploy.yml
-  - rbac.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - deployment.yaml
   - grafana-config.yml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
 
 images:
   - name: grafana/grafana
@@ -27,5 +31,3 @@ configMapGenerator:
   - name: grafana-dashboards
     files:
       - dashboards.yaml
-
-
