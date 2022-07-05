@@ -15,7 +15,12 @@ images:
 
 resources:
   - dashboards
-  - deploy.yml
-  - rbac.yml
-  - sm.yml
-  - rules.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - deployment.yaml
+  - prometheusRule.yaml
+  - role.yaml
+  - roleBinding.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
