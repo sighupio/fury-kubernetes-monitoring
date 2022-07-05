@@ -1,31 +1,40 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
----
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   labels:
-    prometheus: k8s
+    app.kubernetes.io/component: prometheus
+    app.kubernetes.io/instance: k8s
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 2.36.1
   name: k8s
+  namespace: monitoring
 spec:
   alerting:
     alertmanagers:
-    - name: alertmanager-main
-      port: web
+    - apiVersion: v2
+      name: alertmanager-main
       namespace: monitoring
-  image: registry.sighup.io/fury/prometheus:v2.32.1
+      port: web
+  enableFeatures: []
+  externalLabels: {}
+  image: quay.io/prometheus/prometheus:v2.36.1
   nodeSelector:
     kubernetes.io/os: linux
+  podMetadata:
+    labels:
+      app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: k8s
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/part-of: kube-prometheus
+      app.kubernetes.io/version: 2.36.1
   podMonitorNamespaceSelector: {}
   podMonitorSelector: {}
   probeNamespaceSelector: {}
   probeSelector: {}
-  replicas: 1
+  replicas: 2
   resources:
     requests:
-      cpu: 500m
       memory: 400Mi
     limits:
       cpu: 2000m
@@ -34,38 +43,12 @@ spec:
   retentionSize: 120GB
   ruleSelector: {}
   ruleNamespaceSelector: {}
+  ruleSelector: {}
   securityContext:
     fsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
-  storage:
-    volumeClaimTemplate:
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 150Gi
   serviceAccountName: prometheus-k8s
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
-  version: v2.28.1
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    prometheus: k8s
-  name: prometheus-k8s
-spec:
-  ports:
-  - name: web
-    port: 9090
-    targetPort: web
-  - name: reloader-web
-    port: 8080
-    targetPort: reloader-web
-  selector:
-    app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: k8s
-  sessionAffinity: ClientIP
+  version: 2.36.1
