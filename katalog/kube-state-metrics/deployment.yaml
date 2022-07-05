@@ -51,21 +51,3 @@ spec:
           requests:
             cpu: 100m
             memory: 150Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kube-state-metrics
-  labels:
-    app: kube-state-metrics
-spec:
-  clusterIP: None
-  ports:
-  - name: http-metrics
-    port: 8080
-    targetPort: http-metrics
-  - name: telemetry
-    port: 8081
-    targetPort: telemetry
-  selector:
-    app: kube-state-metrics
