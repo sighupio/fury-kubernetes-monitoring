@@ -8,7 +8,6 @@ kind: Kustomization
 
 namespace: monitoring
 
-
 images:
   - name: alpine
     newName: registry.sighup.io/fury/alpine
@@ -22,7 +21,10 @@ images:
 
 resources:
   - dashboards
-  - deploy.yml
-  - sm.yml
-  - rbac.yml
-  - rules.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - daemonset.yaml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
