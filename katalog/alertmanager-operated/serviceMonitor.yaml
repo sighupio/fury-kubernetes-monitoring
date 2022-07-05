@@ -1,14 +1,14 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
----
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: alertmanager
-  name: alertmanager
+    app.kubernetes.io/component: alert-router
+    app.kubernetes.io/instance: main
+    app.kubernetes.io/name: alertmanager
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.24.0
+  name: alertmanager-main
+  namespace: monitoring
 spec:
   endpoints:
   - interval: 30s
@@ -17,4 +17,7 @@ spec:
     port: reloader-web
   selector:
     matchLabels:
-      alertmanager: main
+      app.kubernetes.io/component: alert-router
+      app.kubernetes.io/instance: main
+      app.kubernetes.io/name: alertmanager
+      app.kubernetes.io/part-of: kube-prometheus

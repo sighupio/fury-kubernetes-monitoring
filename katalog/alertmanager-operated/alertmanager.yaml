@@ -1,29 +1,36 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
----
 apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
 metadata:
   labels:
-    alertmanager: main
+    app.kubernetes.io/component: alert-router
+    app.kubernetes.io/instance: main
+    app.kubernetes.io/name: alertmanager
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.24.0
   name: main
+  namespace: monitoring
 spec:
-  image: registry.sighup.io/fury/prometheus/alertmanager:v0.23.0
+  image: quay.io/prometheus/alertmanager:v0.24.0
   nodeSelector:
     kubernetes.io/os: linux
+  podMetadata:
+    labels:
+      app.kubernetes.io/component: alert-router
+      app.kubernetes.io/instance: main
+      app.kubernetes.io/name: alertmanager
+      app.kubernetes.io/part-of: kube-prometheus
+      app.kubernetes.io/version: 0.24.0
   replicas: 3
   resources:
     limits:
-      cpu: 500m
-      memory: 512Mi
+      cpu: 100m
+      memory: 100Mi
     requests:
-      cpu: 150m
-      memory: 150Mi
+      cpu: 4m
+      memory: 100Mi
   securityContext:
     fsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
   serviceAccountName: alertmanager-main
-  version: v0.23.0
+  version: 0.24.0

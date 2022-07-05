@@ -8,10 +8,20 @@ kind: Kustomization
 
 namespace: monitoring
 
+patchesStrategicMerge:
+- |-
+  apiVersion: monitoring.coreos.com/v1
+  kind: Alertmanager
+  metadata:
+    name: main
+    namespace: monitoring
+  spec:
+    image: registry.sighup.io/fury/prometheus/alertmanager:v0.24.0
+    replicas: 1
+
 resources:
   - dashboards
   - alertmanager.yaml
-  - podDisruptionBudget.yaml
   - prometheusRule.yaml
   - service.yaml
   - serviceAccount.yaml
