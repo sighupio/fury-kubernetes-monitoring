@@ -9,12 +9,13 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - deploy.yml
-  - rbac.yml
-  - sm.yml
-  - rules.yml
-  - pdb.yml
   - dashboards
+  - alertmanager.yaml
+  - podDisruptionBudget.yaml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
 
 generatorOptions:
  disableNameSuffixHash: true
