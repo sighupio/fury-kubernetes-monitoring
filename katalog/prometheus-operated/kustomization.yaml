@@ -10,10 +10,14 @@ namespace: monitoring
 
 resources:
   - dashboards
-  - deploy.yml
-  - rbac.yml
-  - rules.yml
-  - sm.yml
-  - pdb.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
   - kube-prometheus-rules.yml
   - kubernetes-monitoring-rules.yml
+  - podDisruptionBudget.yaml
+  - prometheus.yaml
+  - prometheusRule.yaml
+  - role.yaml
+  - roleBinding.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
