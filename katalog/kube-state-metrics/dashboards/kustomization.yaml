@@ -14,15 +14,15 @@ generatorOptions:
 configMapGenerator:
   - name: k8s-cluster-resources-grafana-dashboards
     files:
-      - grafana-dashboard-k8s-resources-cluster.json
-      - grafana-dashboard-k8s-resources-namespace.json
-      - grafana-dashboard-k8s-resources-node.json
+      - k8s-resources-cluster.json
+      - k8s-resources-namespace.json
+      - k8s-resources-node.json
   - name: k8s-workloads-resources-grafana-dashboards
     files:
-      - grafana-dashboard-k8s-resources-workload.json
-      - grafana-dashboard-k8s-resources-workloads-namespace.json
+      - k8s-resources-workload.json
+      - k8s-resources-workloads-namespace.json
   - name: k8s-containers-resources-grafana-dashboards
     files:
-      - grafana-dashboard-k8s-resources-pod.json
-      - grafana-dashboard-pods.json
-      - grafana-dashboard-statefulset.json
+      - k8s-resources-pod.json
+      - pods.json
+      - statefulset.json
