@@ -1,15 +1,23 @@
 {
-    "__inputs": [],
-    "__requires": [],
+    "__inputs": [
+
+    ],
+    "__requires": [
+
+    ],
     "annotations": {
-        "list": []
+        "list": [
+
+        ]
     },
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
     "id": null,
-    "links": [],
+    "links": [
+
+    ],
     "refresh": "60s",
     "rows": [
         {
@@ -17,14 +25,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 2,
                     "legend": {
                         "alignAsTable": false,
@@ -40,14 +52,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -61,7 +77,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Highest Timestamp In vs. Highest Timestamp Sent",
@@ -76,7 +94,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -98,14 +118,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 3,
                     "legend": {
                         "alignAsTable": false,
@@ -121,14 +145,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -142,7 +170,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Rate[5m]",
@@ -157,7 +187,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -192,14 +224,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 4,
                     "legend": {
                         "alignAsTable": false,
@@ -215,14 +251,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -236,7 +276,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Rate, in vs. succeeded or dropped [5m]",
@@ -251,7 +293,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -286,14 +330,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 5,
                     "legend": {
                         "alignAsTable": false,
@@ -309,7 +357,9 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "minSpan": 6,
                     "nullPointMode": "null",
                     "percentage": false,
@@ -317,7 +367,9 @@
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 12,
                     "stack": false,
@@ -331,7 +383,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Current Shards",
@@ -346,7 +400,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -368,14 +424,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 6,
                     "legend": {
                         "alignAsTable": false,
@@ -391,14 +451,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -412,7 +476,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Max Shards",
@@ -427,7 +493,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -449,14 +517,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 7,
                     "legend": {
                         "alignAsTable": false,
@@ -472,14 +544,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -493,7 +569,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Min Shards",
@@ -508,7 +586,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -530,14 +610,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 8,
                     "legend": {
                         "alignAsTable": false,
@@ -553,14 +637,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 4,
                     "stack": false,
@@ -574,7 +662,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Desired Shards",
@@ -589,7 +679,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -624,14 +716,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 9,
                     "legend": {
                         "alignAsTable": false,
@@ -647,14 +743,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -668,7 +768,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Shard Capacity",
@@ -683,7 +785,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -705,14 +809,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 10,
                     "legend": {
                         "alignAsTable": false,
@@ -728,14 +836,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -749,7 +861,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Pending Samples",
@@ -764,7 +878,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -799,14 +915,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 11,
                     "legend": {
                         "alignAsTable": false,
@@ -822,14 +942,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -843,7 +967,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "TSDB Current Segment",
@@ -858,7 +984,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -880,14 +1008,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 12,
                     "legend": {
                         "alignAsTable": false,
@@ -903,14 +1035,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 6,
                     "stack": false,
@@ -924,7 +1060,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Remote Write Current Segment",
@@ -939,7 +1077,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -974,14 +1114,18 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 13,
                     "legend": {
                         "alignAsTable": false,
@@ -997,14 +1141,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
@@ -1018,7 +1166,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Dropped Samples",
@@ -1033,7 +1183,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -1055,14 +1207,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 14,
                     "legend": {
                         "alignAsTable": false,
@@ -1078,14 +1234,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
@@ -1099,7 +1259,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Failed Samples",
@@ -1114,7 +1276,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -1136,14 +1300,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 15,
                     "legend": {
                         "alignAsTable": false,
@@ -1159,14 +1327,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
@@ -1180,7 +1352,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Retried Samples",
@@ -1195,7 +1369,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -1217,14 +1393,18 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 16,
                     "legend": {
                         "alignAsTable": false,
@@ -1240,14 +1420,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 3,
                     "stack": false,
@@ -1261,7 +1445,9 @@
                             "refId": "A"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Enqueue Retries",
@@ -1276,7 +1462,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -1318,7 +1506,9 @@
                 "hide": 0,
                 "label": null,
                 "name": "datasource",
-                "options": [],
+                "options": [
+
+                ],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
@@ -1343,14 +1533,18 @@
                 "includeAll": true,
                 "label": null,
                 "multi": false,
-                "name": "instance",
-                "options": [],
-                "query": "label_values(prometheus_build_info, instance)",
+                "name": "cluster",
+                "options": [
+
+                ],
+                "query": "label_values(kube_pod_container_info{image=~\".*prometheus.*\"}, cluster)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
@@ -1374,34 +1568,44 @@
                 "includeAll": true,
                 "label": null,
                 "multi": false,
-                "name": "cluster",
-                "options": [],
-                "query": "label_values(kube_pod_container_info{image=~\".*prometheus.*\"}, cluster)",
+                "name": "instance",
+                "options": [
+
+                ],
+                "query": "label_values(prometheus_build_info{cluster=~\"$cluster\"}, instance)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
             },
             {
                 "allValue": null,
-                "current": {},
+                "current": {
+
+                },
                 "datasource": "$datasource",
                 "hide": 0,
                 "includeAll": true,
                 "label": null,
                 "multi": false,
                 "name": "url",
-                "options": [],
+                "options": [
+
+                ],
                 "query": "label_values(prometheus_remote_storage_shards{cluster=~\"$cluster\", instance=~\"$instance\"}, url)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 0,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
