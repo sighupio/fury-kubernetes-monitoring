@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+        - name: grafana
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-storage
+              readOnly: false
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-datasources
+              readOnly: false
+            - mountPath: /etc/grafana/provisioning/dashboards
+              name: grafana-dashboards
+              readOnly: false
+            - mountPath: /tmp
+              name: tmp-plugins
+              readOnly: false
+            - mountPath: /etc/grafana
+              name: grafana-config
+              readOnly: false
+            - $patch: replace
+      volumes:
+        - name: grafana-storage
+          emptyDir:
+            medium: Memory
+        - name: grafana-shared-dashboards
+          emptyDir:
+            medium: Memory
+        - name: grafana-shared-datasources
+          emptyDir:
+            medium: Memory
+        - name: grafana-dashboards
+          configMap:
+            name: grafana-dashboards
+        - name: grafana-config
+          secret:
+            secretName: grafana-config
+        - name: tmp-plugins
+          emptyDir:
+            medium: Memory
+        - $patch: replace

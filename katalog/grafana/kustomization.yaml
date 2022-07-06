@@ -8,26 +8,30 @@ kind: Kustomization
 
 namespace: monitoring
 
+images:
+  - name: grafana/grafana
+    newName: registry.sighup.io/fury/grafana/grafana
+    newTag: 8.5.5
+  - name: kiwigrid/k8s-sidecar
+    newName: registry.sighup.io/fury/kiwigrid/k8s-sidecar
+    newTag: 1.19.2
+
+patchesStrategicMerge:
+  - patches/grafana-dashboard-sidecar.yml
+  - patches/grafana-datasource-sidecar.yml
+  - patches/grafana-env.yaml
+  - patches/grafana-security-context.yml
+  - patches/grafana-volumes.yaml
+
 resources:
   - dashboards
   - datasources
   - clusterRole.yaml
   - clusterRoleBinding.yaml
+  - config.yaml
+  - dashboardSources.yaml
   - deployment.yaml
-  - grafana-config.yml
+  - prometheusRule.yaml
   - service.yaml
   - serviceAccount.yaml
   - serviceMonitor.yaml
-
-images:
-  - name: grafana/grafana
-    newName: registry.sighup.io/fury/grafana/grafana
-    newTag: 8.3.3
-  - name: kiwigrid/k8s-sidecar
-    newName: registry.sighup.io/fury/kiwigrid/k8s-sidecar
-    newTag: 1.15.0
-
-configMapGenerator:
-  - name: grafana-dashboards
-    files:
-      - dashboards.yaml

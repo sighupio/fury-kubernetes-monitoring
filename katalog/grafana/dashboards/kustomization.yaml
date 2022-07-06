@@ -16,4 +16,4 @@ generatorOptions:
 configMapGenerator:
   - name: grafana-dashboard
     files:
-      - grafana.json
+      - grafana-overview.json
