@@ -16,4 +16,4 @@ generatorOptions:
 configMapGenerator:
   - name: alertmanager-grafana-dashboards
     files:
-      - alertmanager.json
+      - alertmanager-overview.json
