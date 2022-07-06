@@ -4,11 +4,10 @@
 
 apiVersion: 1
 datasources:
-  - access: prometheus
+  - access: proxy
     editable: false
     name: prometheus
     orgId: 1
     type: prometheus
     url: http://prometheus-k8s.monitoring.svc:9090
     version: 1
-
