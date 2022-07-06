@@ -1,48 +1,41 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
----
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: node-exporter
+    app.kubernetes.io/component: exporter
+    app.kubernetes.io/name: node-exporter
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 1.3.1
   name: node-exporter
+  namespace: monitoring
 spec:
   selector:
     matchLabels:
-      app: node-exporter
+      app.kubernetes.io/component: exporter
+      app.kubernetes.io/name: node-exporter
+      app.kubernetes.io/part-of: kube-prometheus
   template:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-container: node-exporter
       labels:
-        app: node-exporter
+        app.kubernetes.io/component: exporter
+        app.kubernetes.io/name: node-exporter
+        app.kubernetes.io/part-of: kube-prometheus
+        app.kubernetes.io/version: 1.3.1
     spec:
-      initContainers:
-      - name: machine-id
-        image: alpine
-        command: ['/bin/sh', '-c']
-        args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
-        volumeMounts:
-        - name: textfile-collector
-          mountPath: /var/lib/node_exporter
-        - name: root
-          mountPath: /host/root
-          readOnly: true
+      automountServiceAccountToken: true
       containers:
       - args:
         - --web.listen-address=127.0.0.1:9100
-        - --path.procfs=/host/proc
         - --path.sysfs=/host/sys
         - --path.rootfs=/host/root
         - --no-collector.wifi
         - --no-collector.hwmon
         - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|run/k3s/containerd/.+|var/lib/docker/.+|var/lib/kubelet/pods/.+)($|/)
-        - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|cgroup|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)$
-        - --collector.textfile.directory=/var/lib/node_exporter
-        image: quay.io/prometheus/node-exporter
+        - --collector.netclass.ignored-devices=^(veth.*|[a-f0-9]{15})$
+        - --collector.netdev.device-exclude=^(veth.*|[a-f0-9]{15})$
+        image: quay.io/prometheus/node-exporter:v1.3.1
         name: node-exporter
         resources:
           limits:
@@ -51,13 +44,19 @@ spec:
           requests:
             cpu: 102m
             memory: 180Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+            - SYS_TIME
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
         volumeMounts:
-        - mountPath: /var/lib/node_exporter
-          name: textfile-collector
-        - mountPath: /host/proc
-          name: proc
         - mountPath: /host/sys
+          mountPropagation: HostToContainer
           name: sys
+          readOnly: true
         - mountPath: /host/root
           mountPropagation: HostToContainer
           name: root
@@ -65,14 +64,14 @@ spec:
       - args:
         - --logtostderr
         - --secure-listen-address=[$(IP)]:9100
-        - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+        - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
         - --upstream=http://127.0.0.1:9100/
         env:
         - name: IP
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        image: quay.io/coreos/kube-rbac-proxy
+        image: quay.io/brancz/kube-rbac-proxy:v0.12.0
         name: kube-rbac-proxy
         ports:
         - containerPort: 9100
@@ -85,26 +84,34 @@ spec:
           requests:
             cpu: 10m
             memory: 20Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsGroup: 65532
+          runAsNonRoot: true
+          runAsUser: 65532
       hostNetwork: true
       hostPID: true
       nodeSelector:
         kubernetes.io/os: linux
+      priorityClassName: system-cluster-critical
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65532
-        runAsGroup: 65532
+        runAsUser: 65534
       serviceAccountName: node-exporter
       tolerations:
       - operator: Exists
       volumes:
-      - emptyDir: {}
-        name: textfile-collector
-      - hostPath:
-          path: /proc
-        name: proc
       - hostPath:
           path: /sys
         name: sys
       - hostPath:
           path: /
         name: root
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 10%
+    type: RollingUpdate
