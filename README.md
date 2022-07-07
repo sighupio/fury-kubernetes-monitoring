@@ -34,7 +34,6 @@ currently support include:
 - Google Kubernetes Engine (GKE)
 - Azure Kubernetes Service (AKS)
 - Elastic Kubernetes Service (EKS)
-- OVH Kubernetes Service
 - on-premises or self-managed cloud clusters
 
 Most of the components in this module are deployed in namespace `monitoring`, unless the
@@ -69,7 +68,6 @@ cloud environment:
 | [aks-sm](katalog/aks-sm)         | Service Monitor to collect Kubernetes components metrics from AKS                                               |
 | [gke-sm](katalog/gke-sm)         | Service Monitor to collect Kubernetes components metrics from GKE                                               |
 | [eks-sm](katalog/eks-sm)         | Service Monitor to collect Kubernetes components metrics from EKS                                               |
-| [ovh-sm](katalog/ovh-sm)         | Service Monitor to collect Kubernetes components metrics from OVH Kubernetes Service                            |
 | [kubeadm-sm](katalog/kubeadm-sm) | Service Monitors, Prometheus rules and alerts for Kubernetes components of self-managed or on-premises clusters |
 
 Please refer the individual package documentation for further details.
@@ -140,14 +138,6 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/gke-sm
-    version: v1.14.2
-```
-
-- ServiceMonitor for OVH cluster
-
-```yaml
-  ...
-  - name: monitoring/ovh-sm
     version: v1.14.2
 ```
 
