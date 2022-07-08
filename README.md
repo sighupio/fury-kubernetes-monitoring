@@ -54,7 +54,6 @@ Kubernetes Fury Monitoring provides the following packages:
 | [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.11.0` | RBAC Proxy to expose kube-proxy metrics for all cloud environments                                          |
 | [kube-state-metrics](katalog/kube-state-metrics)       | `2.3.0`  | Service Monitor for Kubernetes objects such as Deployments, Nodes and Pods                                  |
 | [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Service Monitor for hardware and OS metrics exposed by \*NIX kernels                                        |
-| [metrics-server](katalog/metrics-server)               | `0.5.2`  | Resource metrics collection from kubelet and exposition through [Metrics API][metric-api]                   |
 | [Thanos](katalog/thanos)                               | `0.24.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
 | [x509-exporter](katalog/x509-exporter)                 | `2.12.1` | Provides monitoring for certificates                                                                        |
 
