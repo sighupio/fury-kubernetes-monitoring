@@ -21,10 +21,6 @@ spec:
       serviceAccountName: goldpinger
       tolerations:
         - operator: Exists
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        fsGroup: 2000
       containers:
         - name: goldpinger
           env:
@@ -37,6 +33,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            # display nodename in UI
+            - name: DISPLAY_NODENAME
+              value: "true"
             # podIP is used to select a randomized subset of nodes to ping.
             - name: POD_IP
               valueFrom:
@@ -48,7 +47,13 @@ spec:
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
             readOnlyRootFilesystem: true
+            runAsGroup: 65534
+            runAsNonRoot: true
+            runAsUser: 65534
           resources:
             limits:
               memory: 80Mi
