@@ -22,7 +22,15 @@ spec:
           annotations:
             summary: Increasing read errors for x509-certificate-exporter
             description: Over the last 15 minutes, this x509-certificate-exporter instance has experienced errors reading certificate files or querying the Kubernetes API. This could be caused by a misconfiguration if triggered when the exporter starts.
-        - alert: X509CertificateRenewal
+        - alert: 'CertificateError'
+          expr: x509_cert_error > 0
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: Certificate cannot be decoded
+            description: Certificate could not be decoded {{if $labels.secret_name }}in Kubernetes secret "{{ $labels.secret_namespace }}/{{ $labels.secret_name }}"{{else}}at location "{{ $labels.filepath }}"{{end}}
+        - alert: CertificateRenewal
           expr: ((x509_cert_not_after - time()) / 86400) < 28
           for: 15m
           labels:
@@ -30,7 +38,7 @@ spec:
           annotations:
             summary: Certificate should be renewed
             description: Certificate for "{{ $labels.subject_CN }}" should be renewed {{if $labels.secret_name }}in Kubernets secret "{{ $labels.secret_namespace }}/{{ $labels.secret_name }}"{{else}}at location "{{ $labels.filepath }}"{{end}}
-        - alert: X509CertificateExpiration
+        - alert: CertificateExpiration
           expr: ((x509_cert_not_after - time()) / 86400) < 14
           for: 15m
           labels:

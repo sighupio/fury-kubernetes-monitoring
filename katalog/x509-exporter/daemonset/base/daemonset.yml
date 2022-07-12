@@ -4,7 +4,7 @@
 
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: x509-certificate-exporter
   labels:
@@ -13,14 +13,13 @@ spec:
   selector:
     matchLabels:
       app: x509-certificate-exporter
-  replicas: 1
   template:
     metadata:
       labels:
         app: x509-certificate-exporter
     spec:
+      serviceAccountName: x509-certificate-exporter-node
       restartPolicy: Always
-      serviceAccountName: x509-certificate-exporter
       containers:
         - name: x509-certificate-exporter
           securityContext:
@@ -28,21 +27,13 @@ spec:
               drop:
                 - ALL
             readOnlyRootFilesystem: true
-            runAsGroup: 65534
-            runAsUser: 65534
-          resources:
-            limits:
-              cpu: 200m
-              memory: 100Mi
-            requests:
-              cpu: 10m
-              memory: 20Mi
+            runAsGroup: 0
+            runAsUser: 0
           image: docker.io/enix/x509-certificate-exporter
           imagePullPolicy: IfNotPresent
           args:
-            - --watch-kube-secrets
-            - --secret-type=kubernetes.io/tls:tls.crt
             - --listen-address=:9793
+            - --trim-path-components=2
           ports:
             - name: metrics
               containerPort: 9793
