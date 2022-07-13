@@ -20,15 +20,6 @@ patchesStrategicMerge:
   spec:
     template:
       spec:
-        affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: node-role.kubernetes.io/control-plane
-                    operator: DoesNotExists
-                  - key: node-role.kubernetes.io/master
-                    operator: DoesNotExists
         containers:
           - name: x509-certificate-exporter
             volumeMounts:
