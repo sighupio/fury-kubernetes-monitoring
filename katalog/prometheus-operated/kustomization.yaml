@@ -25,7 +25,7 @@ patchesStrategicMerge:
         cpu: 2000m
         memory: 2Gi
     retention: 30d
-    retentionSize: 120G
+    retentionSize: 120GiB
     storage:
       volumeClaimTemplate:
         spec:
