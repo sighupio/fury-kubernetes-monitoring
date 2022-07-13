@@ -87,7 +87,8 @@ resources:
   - kubernetes-monitoring-rules.yml
   - prometheus.yaml
   - prometheusRule.yaml
-  - roleConfig.yaml
   - roleBindingConfig.yaml
+  - roleConfig.yaml
+  - service.yaml
   - serviceAccount.yaml
   - serviceMonitor.yaml
