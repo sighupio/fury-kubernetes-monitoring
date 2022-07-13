@@ -13,10 +13,10 @@ spec:
               name: grafana-storage
               readOnly: false
             - mountPath: /etc/grafana/provisioning/datasources
-              name: grafana-datasources
+              name: grafana-shared-datasources
               readOnly: false
             - mountPath: /etc/grafana/provisioning/dashboards
-              name: grafana-dashboards
+              name: grafana-shared-dashboards
               readOnly: false
             - mountPath: /tmp
               name: tmp-plugins
@@ -35,9 +35,6 @@ spec:
         - name: grafana-shared-datasources
           emptyDir:
             medium: Memory
-        - name: grafana-dashboards
-          configMap:
-            name: grafana-dashboards
         - name: grafana-config
           secret:
             secretName: grafana-config
