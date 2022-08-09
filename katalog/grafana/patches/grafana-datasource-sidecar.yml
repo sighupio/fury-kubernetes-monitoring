@@ -43,5 +43,5 @@ spec:
                 - ALL
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: grafana-shared-datasources
+            - name: grafana-datasources-provisioning
               mountPath: /tmp/datasource

@@ -34,5 +34,5 @@ spec:
                 - ALL
             readOnlyRootFilesystem: true
           volumeMounts:
-              - name: grafana-shared-dashboards
+              - name: grafana-dashboards
                 mountPath: /tmp/dashboards

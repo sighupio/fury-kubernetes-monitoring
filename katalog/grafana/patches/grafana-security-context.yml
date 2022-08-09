@@ -6,5 +6,6 @@ metadata:
 spec:
   template:
     spec:
-       securityContext:
-         runAsGroup: 65534
+      automountServiceAccountToken: true
+      securityContext:
+        runAsGroup: 65534
