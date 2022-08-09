@@ -47,12 +47,10 @@ steps:
       - clone
     commands:
       - kustomize build katalog/alertmanager-operated > alertmanager-operated.yml
-      - kustomize build katalog/goldpinger > goldpinger.yml
       - kustomize build katalog/grafana > grafana.yml
       - kustomize build katalog/kube-proxy-metrics > kube-proxy-metrics.yml
       - kustomize build katalog/kube-state-metrics > kube-state-metrics.yml
       - kustomize build katalog/kubeadm-sm > kubeadm-sm.yml
-      - kustomize build katalog/metrics-server > metrics-server.yml
       - kustomize build katalog/node-exporter > node-exporter.yml
       - kustomize build katalog/prometheus-operated > prometheus-operated.yml
       - kustomize build katalog/prometheus-operator > prometheus-operator.yml
@@ -68,11 +66,6 @@ steps:
       - render
     commands:
       - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
-
-  - <<: *deprek8ion
-    name: deprek8ion-goldpinger
-    environment:
-      KUBERNETES_MANIFESTS: goldpinger.yml
 
   - <<: *deprek8ion
     name: deprek8ion-grafana
@@ -93,11 +86,6 @@ steps:
     name: deprek8ion-kubeadm-sm
     environment:
       KUBERNETES_MANIFESTS: kubeadm-sm.yml
-
-  - <<: *deprek8ion
-    name: deprek8ion-metrics-server
-    environment:
-      KUBERNETES_MANIFESTS: metrics-server.yml
 
   - <<: *deprek8ion
     name: deprek8ion-node-exporter
