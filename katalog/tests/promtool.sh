@@ -10,8 +10,11 @@ set -u
 set -o pipefail
 
 # Check prometheus rules
-find . -name 'rules.yml' | \
+grep -ril "kind: PrometheusRule" . | \
+grep -v "$0" | \
+grep -v "kustomization.yaml" | \
+grep -v "crds" | \
 while read -r rules_file; do
   echo "------------- CHECKING PROMETHEUS RULES IN $rules_file ---------"
-  yq r "$rules_file" spec | promtool check rules /dev/stdin
+  yq '.spec' "$rules_file" | promtool check rules /dev/stdin
 done
