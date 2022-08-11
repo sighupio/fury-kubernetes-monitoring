@@ -120,7 +120,7 @@ platform:
 
 steps:
   - name: prom-rules
-    image: quay.io/sighup/prom-rules:3.11_v0.2.2_2.16.0_2.3.0
+    image: quay.io/sighup/prom-rules:3.16_v0.7.0_2.36.1_4.27.2
     pull: always
     depends_on: [clone]
     commands:
