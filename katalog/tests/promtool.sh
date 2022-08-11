@@ -16,5 +16,5 @@ grep -v "kustomization.yaml" | \
 grep -v "crds" | \
 while read -r rules_file; do
   echo "------------- CHECKING PROMETHEUS RULES IN $rules_file ---------"
-  yq '.spec' "$rules_file" | promtool check rules /dev/stdin
+  yq '.spec' "$rules_file" | promtool check rules --lint="none" /dev/stdin
 done
