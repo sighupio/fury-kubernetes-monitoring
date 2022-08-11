@@ -46,15 +46,21 @@ steps:
     depends_on:
       - clone
     commands:
+      - kustomize build katalog/aks-sm > aks-sm.yml
       - kustomize build katalog/alertmanager-operated > alertmanager-operated.yml
+      - kustomize build katalog/blackbox-exporter > blackbox-exporter.yml
+      - kustomize build katalog/eks-sm > eks-sm.yml
+      - kustomize build katalog/gke-sm > gke-sm.yml
       - kustomize build katalog/grafana > grafana.yml
       - kustomize build katalog/kube-proxy-metrics > kube-proxy-metrics.yml
       - kustomize build katalog/kube-state-metrics > kube-state-metrics.yml
       - kustomize build katalog/kubeadm-sm > kubeadm-sm.yml
       - kustomize build katalog/node-exporter > node-exporter.yml
+      - kustomize build katalog/prometheus-adapter > prometheus-adapter.yml
       - kustomize build katalog/prometheus-operated > prometheus-operated.yml
       - kustomize build katalog/prometheus-operator > prometheus-operator.yml
       - kustomize build katalog/thanos/thanos > thanos.yml
+      - kustomize build katalog/x509-exporter > x509-exporter.yml
 
   - &deprek8ion
     name: deprek8ion-alertmanager-operated
@@ -66,6 +72,26 @@ steps:
       - render
     commands:
       - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
+
+  - <<: *deprek8ion
+    name: deprek8ion-aks-sm
+    environment:
+      KUBERNETES_MANIFESTS: aks-sm.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-blackbox-exportera
+    environment:
+      KUBERNETES_MANIFESTS: blackbox-exporter.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-eks-sm
+    environment:
+      KUBERNETES_MANIFESTS: eks-sm.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-gke-sm
+    environment:
+      KUBERNETES_MANIFESTS: gke-sm.yml
 
   - <<: *deprek8ion
     name: deprek8ion-grafana
@@ -93,6 +119,11 @@ steps:
       KUBERNETES_MANIFESTS: node-exporter.yml
 
   - <<: *deprek8ion
+    name: deprek8ion-prometheus-adapter
+    environment:
+      KUBERNETES_MANIFESTS: prometheus-adapter.yml
+
+  - <<: *deprek8ion
     name: deprek8ion-prometheus-operated
     environment:
       KUBERNETES_MANIFESTS: prometheus-operated.yml
@@ -106,6 +137,11 @@ steps:
     name: deprek8ion-thanos
     environment:
       KUBERNETES_MANIFESTS: thanos.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-x509-exporter
+    environment:
+      KUBERNETES_MANIFESTS: x509-exporter.yml
 
 ---
 kind: pipeline
