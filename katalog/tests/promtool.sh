@@ -4,7 +4,7 @@
 # license that can be found in the LICENSE file.
 
 
-# set -x
+set -x
 set -e
 set -u
 set -o pipefail
