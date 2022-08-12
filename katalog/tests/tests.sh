@@ -9,39 +9,9 @@ load ./helper
 @test "Applying ServiceMonitor CRDs" {
   info
   setup() {
-    kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
+    kubectl apply --server-side -f katalog/prometheus-operator/crds/0servicemonitorCustomResourceDefinition.yaml
   }
   loop_it setup 60 10
-  status=${loop_it_result:?}
-  [ "$status" -eq 0 ]
-}
-
-@test "Applying cert-manager CRDs" {
-  info
-  setup() {
-    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.11.0-rc3/katalog/cert-manager/cert-manager-controller/crd.yml
-  }
-  loop_it setup 60 10
-  status=${loop_it_result:?}
-  [ "$status" -eq 0 ]
-}
-
-@test "Applying cert-manager" {
-  info
-  setup() {
-    apply "github.com/sighupio/fury-kubernetes-ingress/katalog/cert-manager?ref=v1.11.0-rc3"
-  }
-  loop_it setup 60 10
-  status=${loop_it_result:?}
-  [ "$status" -eq 0 ]
-}
-
-@test "cert-manager is Running" {
-  info
-  test() {
-    kubectl get pods -l app=cert-manager -o json -n cert-manager | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
-  }
-  loop_it test 60 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -103,25 +73,6 @@ load ./helper
   [ "$status" -eq 0 ]
 }
 
-@test "Deploy goldpinger" {
-  info
-  deploy() {
-    apply katalog/goldpinger
-  }
-  run deploy
-  [ "$status" -eq 0 ]
-}
-
-@test "goldpinger is Running" {
-  info
-  test() {
-    kubectl get pods -l k8s-app=goldpinger -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
-  }
-  loop_it test 60 10
-  status=${loop_it_result:?}
-  [ "$status" -eq 0 ]
-}
-
 @test "Deploy grafana" {
   info
   deploy() {
@@ -166,25 +117,6 @@ load ./helper
     apply katalog/kubeadm-sm
   }
   run deploy
-  [ "$status" -eq 0 ]
-}
-
-@test "Deploy metrics-server" {
-  info
-  deploy() {
-    apply katalog/metrics-server
-  }
-  loop_it deploy 60 10
-  [ "$status" -eq 0 ]
-}
-
-@test "metrics-server is Running" {
-  info
-  test() {
-    kubectl get pods -l app=metrics-server -o json -n kube-system | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
-  }
-  loop_it test 60 10
-  status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
 
