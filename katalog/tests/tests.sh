@@ -6,10 +6,11 @@
 
 load ./helper
 
-@test "Applying ServiceMonitor CRDs" {
+@test "Applying PrometheusRule and ServiceMonitor CRDs" {
   info
   setup() {
     kubectl apply --server-side -f katalog/prometheus-operator/crds/0servicemonitorCustomResourceDefinition.yaml
+    kubectl apply --server-side -f katalog/prometheus-operator/crds/0prometheusruleCustomResourceDefinition.yaml
   }
   loop_it setup 60 10
   status=${loop_it_result:?}
@@ -28,9 +29,9 @@ load ./helper
 @test "prometheus-operator is Running" {
   info
   test() {
-    kubectl get pods -l k8s-app=prometheus-operator -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app.kubernetes.io/name=prometheus-operator -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -49,7 +50,7 @@ load ./helper
   test() {
     kubectl get pods -l app.kubernetes.io/name=prometheus -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -66,9 +67,28 @@ load ./helper
 @test "alertmanager-operated is Running" {
   info
   test() {
-    kubectl get pods -l alertmanager=main -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app.kubernetes.io/name=alertmanager -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Deploy blackbox-exporter" {
+  info
+  deploy() {
+    apply katalog/blackbox-exporter
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "blackbox-exporter is Running" {
+  info
+  test() {
+    kubectl get pods -l app.kubernetes.io/name=blackbox-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -85,9 +105,9 @@ load ./helper
 @test "grafana is Running" {
   info
   test() {
-    kubectl get pods -l app=grafana -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app.kubernetes.io/name=grafana -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -104,9 +124,9 @@ load ./helper
 @test "kube-state-metrics is Running" {
   info
   test() {
-    kubectl get pods -l app=kube-state-metrics -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app.kubernetes.io/name=kube-state-metrics -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -132,9 +152,28 @@ load ./helper
 @test "node-exporter is Running" {
   info
   test() {
-    kubectl get pods -l app=node-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+    kubectl get pods -l app.kubernetes.io/name=node-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Deploy prometheus-adapter" {
+  info
+  deploy() {
+    apply katalog/prometheus-adapter
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "prometheus-adapter is Running" {
+  info
+  test() {
+    kubectl get pods -l app.kubernetes.io/name=prometheus-adapter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
@@ -153,7 +192,7 @@ load ./helper
   test() {
     kubectl get pods -l k8s-app=kube-proxy-metrics -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
   }
-  loop_it test 60 10
+  loop_it test 10 10
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
