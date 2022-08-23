@@ -196,3 +196,23 @@ load ./helper
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
+
+@test "Deploy x509-exporter" {
+  info
+  deploy() {
+    apply katalog/x509-exporter
+    kubectl patch ds x509-certificate-exporter-control-plane -n monitoring --patch-file katalog/tests/x509-exporter/volume-patch.yml
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "x509-exporter is Running" {
+  info
+  test() {
+    kubectl get pods -l app=x509-certificate-exporter -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 10 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
