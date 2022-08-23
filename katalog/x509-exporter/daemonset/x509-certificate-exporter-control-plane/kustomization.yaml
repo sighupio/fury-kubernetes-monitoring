@@ -39,6 +39,10 @@ patchesStrategicMerge:
               - name: etc-kubernetes
                 mountPath: /mnt/watch//etc/kubernetes
                 readOnly: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+            effect: NoSchedule
         volumes:
           - name: etc-etcd-pki
             hostPath:
