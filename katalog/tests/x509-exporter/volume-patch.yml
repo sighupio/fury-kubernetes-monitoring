@@ -1,0 +1,8 @@
+spec:
+  template:
+    spec:
+      volumes:
+        - name: etc-etcd-pki
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: Directory
