@@ -50,7 +50,6 @@ Kubernetes Fury Monitoring provides the following packages:
 | [prometheus-operated](katalog/prometheus-operated)     | `2.32.1` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
 | [alertmanager-operated](katalog/alertmanager-operated) | `0.23.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
 | [grafana](katalog/grafana)                             | `8.3.3`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
-| [goldpinger](katalog/goldfinger)                       | `3.3.0`  | **Goldpinger** makes calls between its instances for visibility and alerting                                |
 | [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.11.0` | RBAC Proxy to expose kube-proxy metrics for all cloud environments                                          |
 | [kube-state-metrics](katalog/kube-state-metrics)       | `2.3.0`  | Service Monitor for Kubernetes objects such as Deployments, Nodes and Pods                                  |
 | [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Service Monitor for hardware and OS metrics exposed by \*NIX kernels                                        |
