@@ -46,27 +46,29 @@ Kubernetes Fury Monitoring provides the following packages:
 
 | Package                                                | Version  | Description                                                                                                 |
 |--------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------|
-| [prometheus-operator](katalog/prometheus-operator)     | `0.53.1` | Operator to deploy and manage Prometheus and related resources                                              |
-| [prometheus-operated](katalog/prometheus-operated)     | `2.32.1` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
-| [alertmanager-operated](katalog/alertmanager-operated) | `0.23.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
-| [grafana](katalog/grafana)                             | `8.3.3`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
-| [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.11.0` | RBAC Proxy to expose kube-proxy metrics for all cloud environments                                          |
-| [kube-state-metrics](katalog/kube-state-metrics)       | `2.3.0`  | Service Monitor for Kubernetes objects such as Deployments, Nodes and Pods                                  |
-| [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Service Monitor for hardware and OS metrics exposed by \*NIX kernels                                        |
-| [Thanos](katalog/thanos)                               | `0.24.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
-| [x509-exporter](katalog/x509-exporter)                 | `2.12.1` | Provides monitoring for certificates                                                                        |
+| [prometheus-operator](katalog/prometheus-operator)     | `0.57.0` | Operator to deploy and manage Prometheus and related resources                                              |
+| [prometheus-operated](katalog/prometheus-operated)     | `2.36.1` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
+| [alertmanager-operated](katalog/alertmanager-operated) | `0.24.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
+| [blackbox-exporter](katalog/blackbox-exporter)         | `0.24.0` | Prometheus exporter that allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.    |
+| [grafana](katalog/grafana)                             | `8.5.5`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
+| [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.12.0` | RBAC proxy to securely expose kube-proxy metrics                                                            |
+| [kube-state-metrics](katalog/kube-state-metrics)       | `2.5.0`  | Service that generates metrics from Kubernetes API objects                                                  |
+| [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
+| [prometheus-adapter](katalog/prometheus-adapter)       | `0.9.1`  | Kubernetes resource metrics, custom metrics, and external metrics APIs implementation.                      |
+| [thanos](katalog/thanos)                               | `0.24.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
+| [x509-exporter](katalog/x509-exporter)                 | `3.2.0`  | Provides monitoring for certificates                                                                        |
 
 ### Integration with cloud providers
 
 One of the following components can be used to enable service monitoring in each
 cloud environment:
 
-| Component                        | Description                                                                                                     |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| [aks-sm](katalog/aks-sm)         | Service Monitor to collect Kubernetes components metrics from AKS                                               |
-| [gke-sm](katalog/gke-sm)         | Service Monitor to collect Kubernetes components metrics from GKE                                               |
-| [eks-sm](katalog/eks-sm)         | Service Monitor to collect Kubernetes components metrics from EKS                                               |
-| [kubeadm-sm](katalog/kubeadm-sm) | Service Monitors, Prometheus rules and alerts for Kubernetes components of self-managed or on-premises clusters |
+| Component                        | Description                                                                                                    |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------|
+| [aks-sm](katalog/aks-sm)         | ServiceMonitor to collect Kubernetes components metrics from AKS                                               |
+| [gke-sm](katalog/gke-sm)         | ServiceMonitor to collect Kubernetes components metrics from GKE                                               |
+| [eks-sm](katalog/eks-sm)         | ServiceMonitor to collect Kubernetes components metrics from EKS                                               |
+| [kubeadm-sm](katalog/kubeadm-sm) | ServiceMonitors, Prometheus rules and alerts for Kubernetes components of self-managed or on-premises clusters |
 
 Please refer the individual package documentation for further details.
 
@@ -74,10 +76,10 @@ Please refer the individual package documentation for further details.
 
 | Kubernetes Version |   Compatibility    |                        Notes                        |
 | ------------------ | :----------------: | --------------------------------------------------- |
-| `1.20.x`           | :white_check_mark: | No known issues                                     |
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
-| `1.23.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
+| `1.24.x`           | :white_check_mark: | No known issues                                     |
+| `1.24.x`           | :white_check_mark: | No known issues                                     |
 
 Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
@@ -95,21 +97,20 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
 ```yaml
+versions:
+ monitoring: v2.0.0
+
 bases:
     - name: monitoring/prometheus-operator
-      version: v1.14.2
     - name: monitoring/prometheus-operated
-      version: v1.14.2
     - name: monitoring/alertmanager-operated
-      version: v1.14.2
-    - name: monitoring/node-exporter
-      version: v1.14.2
+    - name: monitoring/blackbox-exporter
+    - name: monitoring/kube-proxy-metrics
     - name: monitoring/kube-state-metrics
-      version: v1.14.2
     - name: monitoring/grafana
-      version: v1.14.2
-    - name: monitoring/goldpinger
-      version: v1.14.2
+    - name: monitoring/node-exporter
+    - name: monitoring/prometheus-adapter
+    - name: monitoring/x509-exporter
 ```
 
 Along with the primary components, include one of the following components,
@@ -120,7 +121,6 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/eks-sm
-    version: v1.14.2
 ```
 
 - ServiceMonitor for Azure AKS cluster
@@ -128,7 +128,6 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/aks-sm
-    version: v1.14.2
 ```
 
 - ServiceMonitor for GCP GKE cluster
@@ -136,15 +135,13 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/gke-sm
-    version: v1.14.2
 ```
 
-- ServiceMonitor for on-premises and for self-managed cluster
+- ServiceMonitor for on-premises and self-managed cluster
 
 ```yaml
   ...
   - name: monitoring/kubeadm-sm
-    version: v1.14.2
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -152,8 +149,6 @@ based on the cloud provider for service monitoring:
 2. Execute `furyctl vendor -H` to download the packages
 
 3. Inspect the download packages under `./vendor/katalog/monitoring`.
-
-4. Define a `kustomization.yaml` that includes the `./vendor/katalog/monitoring` directory as resource.
 
 To deploy the packages to your cluster, define a `kustomization.yaml` with the
 following content:
@@ -163,13 +158,16 @@ bases:
     - ./vendor/katalog/monitoring/prometheus-operator
     - ./vendor/katalog/monitoring/prometheus-operated
     - ./vendor/katalog/monitoring/alertmanager-operated
-    - ./vendor/katalog/monitoring/node-exporter
+    - ./vendor/katalog/monitoring/blackbox-exporter
+    - ./vendor/katalog/monitoring/kube-proxy-metrics
     - ./vendor/katalog/monitoring/kube-state-metrics
     - ./vendor/katalog/monitoring/grafana
-    - ./vendor/katalog/monitoring/goldpinger
+    - ./vendor/katalog/monitoring/node-exporter
+    - ./vendor/katalog/monitoring/prometheus-adapter
+    - ./vendor/katalog/monitoring/x509-exporter
 ```
 
-Include in the `kustomization` also the servicemonitor package specific to each
+Include in the `kustomization` also the ServiceMonitor package specific to each
 service provider as follows:
 
 - For AWS EKS
@@ -196,7 +194,7 @@ service provider as follows:
 
 ```
 
-- For On-premises and for self-managed
+- For on-premises and for self-managed
 
 ``` yaml
   ...
@@ -207,7 +205,7 @@ service provider as follows:
 5. To deploy the packages to your cluster, execute:
 
 ```shell
-kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply -f - --server-side
 ```
 
 ## Examples
