@@ -1,0 +1,66 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  namespace: monitoring
+  name: deadmanswitch
+spec:
+  route:
+    matchers:
+      - name: alertname
+        matchType: "="
+        value: DeadMansSwitch
+    receiver: healthchecks
+  receivers:
+    - name: healthchecks
+      webhookConfigs:
+        - urlSecret:
+            name: healthchecks-webhook
+            key: url
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  namespace: monitoring
+  name: infra
+spec:
+  route:
+    matchers:
+      - name: namespace
+        matchType: "=~"
+        value: "ingress-nginx|monitoring|logging|gatekeeper-system|kube-system"
+      - name: alertname
+        matchType: "=~"
+        value: "TargetDown|NginxIngressCertificateExpiration|NginxIngressCertificateExpiration|NginxIngressLatencyTooHigh|NginxIngressFailedReload|NginxIngressFailureRate|NginxIngressDown"
+    groupBy:
+      - alertname
+    receiver: infra
+  receivers:
+    - name: infra
+      slackConfigs:
+        - apiURL:
+            name: infra-slack-webhook
+            key: url
+          sendResolved: true
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  namespace: monitoring
+  name: k8s
+spec:
+  route:
+    matchers:
+      - name: alertname
+        matchType: "=~"
+        value: "NodeNetworkInterfaceFlapping|NodeClockSkewDetected|KubeAPIDown|KubeletDown|KubeletTooManyPods|KubeNodeNotReady|KubeClientCertificateExpiration|NodeFileDescriptorLimit|NodeFilesystemAlmostOutOfFiles|NodeFilesystemAlmostOutOfSpace|NodeFilesystemFilesFillingUp|NodeFilesystemSpaceFillingUp|NodeRAIDDegraded|NodeRAIDDiskFailure||etcdInsufficientMembers|etcdMembersDown|etcdNoLeader|CoreDNSPanic|CoreDNSHealthRequestsLatency|KubeControllerManagerDown|KubeSchedulerDown|PrometheusRuleFailures|AlertmanagerClusterDown|AlertmanagerConfigInconsistent|AlertmanagerFailedReload"
+    groupBy:
+      - alertname
+    receiver: k8s
+  receivers:
+    - name: k8s
+      slackConfigs:
+        - apiURL:
+            name: k8s-slack-webhook
+            key: url
+          sendResolved: true

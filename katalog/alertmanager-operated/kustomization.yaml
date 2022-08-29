@@ -22,6 +22,7 @@ patchesStrategicMerge:
 resources:
   - dashboards
   - alertmanager.yaml
+  - alertmanagerconfig.yml
   - prometheusRule.yaml
   - service.yaml
   - serviceAccount.yaml
