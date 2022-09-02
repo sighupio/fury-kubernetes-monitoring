@@ -28,7 +28,7 @@ spec:
     matchers:
       - name: namespace
         matchType: "=~"
-        value: "ingress-nginx|monitoring|logging|gatekeeper-system|kube-system"
+        value: "cert-manager|gatekeeper-system|ingress-nginx|kube-system|logging|monitoring|pomerium"
       - name: alertname
         matchType: "=~"
         value: "TargetDown|NginxIngressCertificateExpiration|NginxIngressCertificateExpiration|NginxIngressLatencyTooHigh|NginxIngressFailedReload|NginxIngressFailureRate|NginxIngressDown"
