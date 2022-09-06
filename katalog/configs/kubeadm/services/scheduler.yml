@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: kube-scheduler
+spec:
+  ports:
+  - name: metrics
+    port: 10259
+    protocol: TCP
+  selector:
+    component: kube-scheduler

@@ -14,12 +14,15 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-  - ../bases/default
   - ../bases/coredns
-  - service-monitors/etcd.yml
-  - service-monitors/controller-manager.yml
-  - service-monitors/scheduler.yml
+  - ../bases/default
   - rules.yml
+  - service-monitors/controller-manager.yml
+  - service-monitors/etcd.yml
+  - service-monitors/scheduler.yml
+  - services/controller-manager.yml
+  - services/etcd.yml
+  - services/scheduler.yml
 
 configMapGenerator:
   - name: sighup-kubeadm-dashboard-definitions
