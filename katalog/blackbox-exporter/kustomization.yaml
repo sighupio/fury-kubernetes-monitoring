@@ -24,6 +24,7 @@ resources:
   - clusterRoleBinding.yaml
   - configuration.yaml
   - deployment.yaml
+  - prometheusRule.yml
   - service.yaml
   - serviceAccount.yaml
   - serviceMonitor.yaml
