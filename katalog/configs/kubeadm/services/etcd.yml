@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: etcd-metrics
+  name: etcd-metrics
+  namespace: kube-system
+spec:
+  ports:
+  - name: metrics
+    port: 2378
+    protocol: TCP
+  selector:
+    component: kube-apiserver
