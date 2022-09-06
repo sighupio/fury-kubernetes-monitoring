@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    role: alert-rules
+  name: blackbox-exporter-rules
+  namespace: monitoring
+spec:
+  groups:
+  - name: blackbox-exporter.rules
+    rules:
+    - alert: ProbeFailure
+      annotations:
+        description: "Probe on endpoint {{ $labels.instance }} failed."
+        summary: Probe failure
+      expr: probe_success == 0
+      for: 10m
+      labels:
+        severity: warning
