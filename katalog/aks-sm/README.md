@@ -7,8 +7,8 @@ This package provides monitoring for Kubernetes components `kubelet`, `coredns` 
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize >= `3.3.0`
+- Kubernetes >= `1.21.0`
+- Kustomize = `3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 ## Configuration
@@ -18,7 +18,7 @@ Fury distribution AKS ServiceMonitor has the following configuration:
 - `api-server` and `kubelet` metrics are scraped with `30s` intervals
 - `coredns` metrics are scraped with `15s` intervals
 - Dashboards shipped:
-  - `coredns`: CoreDNS < 1.7.0
+  - `coredns`: CoreDNS >= 1.8.0
   - `api-server`: Kubernetes / API server
   - `cluster-total`: Kubernetes / Networking / Cluster
   - `kubelet`: Kubernetes / Kubelet

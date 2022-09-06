@@ -39,19 +39,20 @@ illustrated in this image from Prometheus Operator repository:
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize = `v3.3.X`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 
 ## Image repository and tag
 
-* Prometheus Operator image: `registry.sighup.io/prometheus-operator/prometheus-operator:v0.53.1`
+* Prometheus Operator image: `registry.sighup.io/prometheus-operator/prometheus-operator:v0.57.1`
 * Prometheus Operator repository: [Prometheus Operator on Github][prom-op-github]
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.12.0`
+- kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration
 
 Fury distribution Prometheus Operator is deployed with the following configuration:
 - Replica number: `1`
-- Requires `50Gi` storage (with default storage provider)
 - Logging to stderr is enabled
 - Resource limits are `200m` for CPU and `200Mi` for memory
 - Listens on port `8080`
@@ -62,7 +63,7 @@ You can deploy Prometheus Operator by running the following command in the root 
 the project:
 
 ```shell
-kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f - --server-side
 ```
 
 ## Deploying Prometheus
@@ -78,6 +79,7 @@ documentation.
 <!-- Links -->
 
 [prom-op-github]: https://github.com/prometheus-operator/prometheus-operator
+[krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
 
 <!-- </KFD-DOCS> -->
 

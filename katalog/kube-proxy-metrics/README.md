@@ -11,14 +11,14 @@ environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize = `v3.3.X`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.11.0`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.12.0`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 
