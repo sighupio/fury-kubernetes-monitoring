@@ -4,4 +4,4 @@ build:
 	kustomize build .
 
 deploy:
-	kustomize build . | kubectl apply -f -
+	kustomize build . | kubectl apply -f - --server-side
