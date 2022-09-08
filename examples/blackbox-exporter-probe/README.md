@@ -7,7 +7,7 @@ about the Probe resource, see the Prometheus Operator API reference
 
 To deploy this example:
 
-```
+```shell
 furyctl vendor -H
 make deploy
 ```
