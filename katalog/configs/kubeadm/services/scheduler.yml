@@ -8,6 +8,7 @@ kind: Service
 metadata:
   labels:
     app.kubernetes.io/name: kube-scheduler
+  name: kube-scheduler
 spec:
   ports:
   - name: metrics
