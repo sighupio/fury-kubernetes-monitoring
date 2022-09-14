@@ -150,7 +150,7 @@ based on the cloud provider for service monitoring:
 
 3. Inspect the download packages under `./vendor/katalog/monitoring`.
 
-To deploy the packages to your cluster, define a `kustomization.yaml` with the
+4. To deploy the packages to your cluster, define a `kustomization.yaml` with the
 following content:
 
 ```yaml
@@ -194,7 +194,7 @@ service provider as follows:
 
 ```
 
-- For on-premises and for self-managed
+- For on-premises and self-managed
 
 ``` yaml
   ...
