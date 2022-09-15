@@ -19,7 +19,7 @@ with this package.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
+- Kubernetes >= `1.21.0`
 - Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
@@ -61,8 +61,8 @@ Links
 
 [am-gh]: https://github.com/prometheus/alertmanager
 [am-doc]: https://prometheus.io/docs/alerting/alertmanager
-[example]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/prometheus-alertmanager-externalUrl
-[example-2]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/alertmanger-configuration
+[example]: ../../examples/prometheus-alertmanager-externalUrl
+[example-2]: ../../examples/alertmanager-configuration
 
 <!-- </KFD-DOCS> -->
 
