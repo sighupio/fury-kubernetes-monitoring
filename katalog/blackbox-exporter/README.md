@@ -23,8 +23,7 @@ The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS
 
 ## Configuration
 
-Fury distribution Blackbox exporter is deployed with the following
-configuration:
+Blackbox exporter is deployed with the following configuration:
 - Resource limits are `20m` for CPU and `40Mi` for memory
 - Listens on port 9115
 - Metrics are scraped by Prometheus every 30s
@@ -36,15 +35,13 @@ configuration:
   - SSH (`ssh_banner`)
   - TCP (`tcp_connect`)
 
-To learn how to instruct Prometheus to check Blackbox exporter probes, please
-see the [examples](../../examples/blackbox-exporter-probe) folder.
+To learn how to instruct Prometheus to check Blackbox exporter probes, please see the [examples](../../examples/blackbox-exporter-probe) folder.
 
 ## Deployment
-You can deploy blackbox-exporter by running the following command in the root of
-the project:
+You can deploy blackbox-exporter by running the following command in the root of the project:
 
 ```shell
-kustomize build katalog/blackbox-exporter | kubectl apply -f -
+kustomize build katalog/blackbox-exporter | kubectl apply -f - --server-side
 ```
 
 <!-- Links -->
