@@ -67,7 +67,7 @@ your browser.
 ### Adding/Removing Dashboards
 
 To learn how to add or remove dashboards to Grafana please see the
-[examples](../../examples) folder.
+[examples](../../examples/grafana-add-dashboard) folder.
 
 <!-- </KFD-DOCS> -->
 
