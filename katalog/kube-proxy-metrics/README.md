@@ -1,13 +1,13 @@
-# kube-proxy exporter
+# kube-proxy Metrics Exporter
 
 <!-- <KFD-DOCS> -->
 
-It is highly recommended gathering metrics from kube-proxy as it is a critical
-piece of any Kubernetes Cluster. Sometimes (especially in managed clusters) it
-is not possible to configure kube-proxy to expose metrics, this is why this
-package exists. Another reason to run this exporter instead of just exposing
-metrics from kube-proxy is the ability to run it independently of the
-environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
+kube-proxy is a critical piece of any Kubernetes cluster, therefore it is highly
+recommended to gather its metrics. Sometimes (especially in managed clusters) it
+is not possible to configure kube-proxy to be reachable by Prometheus for
+metrics scraping, this is why this package exists. Furthermore, this package
+also adds an authorization layer based on Kubernetes RBAC to the metrics exposed
+by kube-proxy.
 
 ## Requirements
 
