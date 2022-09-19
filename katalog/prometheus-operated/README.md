@@ -46,7 +46,7 @@ kustomize build | kubectl apply -f -
 ```
 
 To learn how to customize it for your needs please see the
-[examples](../../examples) folder.
+[examples](../../examples/serviceMonitor) folder.
 
 ### Accessing Prometheus UI
 
