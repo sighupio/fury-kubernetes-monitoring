@@ -23,7 +23,7 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 
 * Prometheus image: `registry.sighup.io/prometheus/prometheus:v2.36.1`
 * Prometheus repository: [Prometheus on Github][prom-gh]
-* Prometheus documentation: [Prometheus Homepage][prom-doc]
+* Prometheus documentation: [Prometheus documentation site][prom-doc]
 
 ## Configuration
 
