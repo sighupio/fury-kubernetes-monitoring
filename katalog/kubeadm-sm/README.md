@@ -16,6 +16,11 @@ want to learn more about these components please follow the official
 [documentation](https://kubernetes.io/docs/concepts/overview/components/) of
 Kubernetes.
 
+> :warning: This package is guaranteed to work only on clusters created using
+> [`kubeadm`](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/),
+> for managed clusters please take a look at the [`aks-sm`](../aks-sm),
+> [`eks-sm`](../eks-sm) and [`gke-sm`](../gke-sm) packages.
+
 ## Requirements
 
 - Kubernetes >= `1.21.0`
