@@ -3,9 +3,9 @@
 <!-- <KFD-DOCS> -->
 
 The Prometheus adapter provides an implementation of Kubernetes
-[resource metrics](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/resource-metrics-api.md),
-[custom metrics](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/custom-metrics-api.md), and
-[external metrics](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/external-metrics-api.md) APIs.
+[resource metrics](https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/resource-metrics-api.md),
+[custom metrics](https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/custom-metrics-api.md), and
+[external metrics](https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/external-metrics-api.md) APIs.
 
 This adapter is therefore suitable for use with the autoscaling/v2 Horizontal Pod Autoscaler in Kubernetes 1.6+.
 It can also replace the [metrics server](https://github.com/kubernetes-incubator/metrics-server) on clusters that already run Prometheus and collect the appropriate metrics.
