@@ -24,10 +24,10 @@ patchesStrategicMerge:
           - name: x509-certificate-exporter
             volumeMounts:
               - name: etc-kubernetes
-                mountPath: /mnt/watch//etc/kubernetes
+                mountPath: /etc/kubernetes
                 readOnly: true
               - name: var-lib-kubelet-pki
-                mountPath: /mnt/watch//var/lib/kubelet/pki
+                mountPath: /var/lib/kubelet/pki
                 readOnly: true
         volumes:
           - name: etc-kubernetes
@@ -49,13 +49,13 @@ patchesJSON6902:
     patch: |-
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//var/lib/kubelet/pki/kubelet-client-current.pem
+        value: --watch-file=/var/lib/kubelet/pki/kubelet-client-current.pem
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//var/lib/kubelet/pki/kubelet.crt
+        value: --watch-file=/var/lib/kubelet/pki/kubelet.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-kubeconf=/mnt/watch//etc/kubernetes/kubelet.conf
+        value: --watch-kubeconf=/etc/kubernetes/kubelet.conf
 
 resources:
   - ../base

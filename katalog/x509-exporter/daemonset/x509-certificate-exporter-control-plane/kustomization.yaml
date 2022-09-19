@@ -34,10 +34,10 @@ patchesStrategicMerge:
           - name: x509-certificate-exporter
             volumeMounts:
               - name: etc-etcd-pki
-                mountPath: /mnt/watch//etc/etcd/pki
+                mountPath: /etc/etcd/pki
                 readOnly: true
               - name: etc-kubernetes
-                mountPath: /mnt/watch//etc/kubernetes
+                mountPath: /etc/kubernetes
                 readOnly: true
         tolerations:
           - key: node-role.kubernetes.io/master
@@ -63,40 +63,40 @@ patchesJSON6902:
     patch: |-
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/etcd/pki/apiserver-etcd-client.crt
+        value: --watch-file=/etc/etcd/pki/apiserver-etcd-client.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/etcd/pki/etcd/ca.crt
+        value: --watch-file=/etc/etcd/pki/etcd/ca.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/etcd/pki/etcd/healthcheck-client.crt
+        value: --watch-file=/etc/etcd/pki/etcd/healthcheck-client.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/etcd/pki/etcd/peer.crt
+        value: --watch-file=/etc/etcd/pki/etcd/peer.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/etcd/pki/etcd/server.crt
+        value: --watch-file=/etc/etcd/pki/etcd/server.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/kubernetes/pki/apiserver.crt
+        value: --watch-file=/etc/kubernetes/pki/apiserver.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/kubernetes/pki/ca.crt
+        value: --watch-file=/etc/kubernetes/pki/ca.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/kubernetes/pki/front-proxy-ca.crt
+        value: --watch-file=/etc/kubernetes/pki/front-proxy-ca.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-file=/mnt/watch//etc/kubernetes/pki/front-proxy-client.crt
+        value: --watch-file=/etc/kubernetes/pki/front-proxy-client.crt
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-kubeconf=/mnt/watch//etc/kubernetes/admin.conf
+        value: --watch-kubeconf=/etc/kubernetes/admin.conf
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-kubeconf=/mnt/watch//etc/kubernetes/controller-manager.conf
+        value: --watch-kubeconf=/etc/kubernetes/controller-manager.conf
       - op: add
         path: /spec/template/spec/containers/0/args/-
-        value: --watch-kubeconf=/mnt/watch//etc/kubernetes/scheduler.conf
+        value: --watch-kubeconf=/etc/kubernetes/scheduler.conf
 
 resources:
   - ../base
