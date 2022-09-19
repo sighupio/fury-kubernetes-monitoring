@@ -47,7 +47,7 @@ Look at the [datasources](datasources) folder `kustomization.yaml` for an exampl
 
 ## Deployment
 
-You can deploy Grafana by running the following command in the root of the project:
+You can deploy Grafana by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -

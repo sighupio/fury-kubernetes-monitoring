@@ -30,8 +30,7 @@ Fury distribution node-exporter is deployed with the following configuration:
 
 ## Deployment
 
-You can deploy node-exporter by running the following command in the root of the
-project:
+You can deploy node-exporter by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -

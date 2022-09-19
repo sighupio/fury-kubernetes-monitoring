@@ -19,7 +19,7 @@ The original project is: [x509-certificate-exporter](https://github.com/enix/x50
 
 ## Deployment
 
-You can deploy x509 exporter by running the following command in the root of the project:
+You can deploy x509 exporter by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -

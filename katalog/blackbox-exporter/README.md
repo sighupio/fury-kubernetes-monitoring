@@ -38,7 +38,7 @@ Blackbox exporter is deployed with the following configuration:
 To learn how to instruct Prometheus to check Blackbox exporter probes, please see the [examples](../../examples/blackbox-exporter-probe) folder.
 
 ## Deployment
-You can deploy blackbox-exporter by running the following command in the root of the project:
+You can deploy blackbox-exporter by running the following command:
 
 ```shell
 kustomize build katalog/blackbox-exporter | kubectl apply -f - --server-side

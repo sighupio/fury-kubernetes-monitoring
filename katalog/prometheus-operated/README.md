@@ -38,8 +38,7 @@ Fury distribution Prometheus is deployed with the following configuration:
 
 ## Deployment
 
-You can deploy Prometheus Operated by running the following command in the root of
-the project:
+You can deploy Prometheus Operated by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -

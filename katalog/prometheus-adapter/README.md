@@ -33,8 +33,7 @@ configuration:
 - Metrics are scraped from Prometheus every `1m`
 
 ## Deployment
-You can deploy prometheus-adapter by running the following command in the root
-of the project:
+You can deploy prometheus-adapter by running the following command:
 
 ```shell
 kustomize build katalog/prometheus-adapter | kubectl apply -f -

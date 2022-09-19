@@ -43,8 +43,7 @@ Fury distribution kube-state-metrics is deployed with the following configuratio
 
 ## Deployment
 
-You can deploy kube-state-metrics by running the following command in the root of
-the project:
+You can deploy kube-state-metrics by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -
