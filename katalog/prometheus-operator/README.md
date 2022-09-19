@@ -35,7 +35,7 @@ The Operator acts on the following custom resource definitions
 The operator takes care of Prometheus deployment and monitors Services as
 illustrated in this image from Prometheus Operator repository:
 
-![operator architecture](https://coreos.com/sites/default/files/inline-images/p1.png)
+![operator architecture](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/images/architecture.png)
 
 ## Requirements
 
@@ -59,8 +59,7 @@ Fury distribution Prometheus Operator is deployed with the following configurati
 
 ## Deployment
 
-You can deploy Prometheus Operator by running the following command in the root of
-the project:
+You can deploy Prometheus Operator by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f - --server-side
