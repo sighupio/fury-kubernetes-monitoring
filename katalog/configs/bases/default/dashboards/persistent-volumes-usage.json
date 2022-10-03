@@ -1,15 +1,23 @@
 {
-    "__inputs": [],
-    "__requires": [],
+    "__inputs": [
+
+    ],
+    "__requires": [
+
+    ],
     "annotations": {
-        "list": []
+        "list": [
+
+        ]
     },
     "editable": false,
     "gnetId": null,
     "graphTooltip": 0,
     "hideControls": false,
     "id": null,
-    "links": [],
+    "links": [
+
+    ],
     "refresh": "10s",
     "rows": [
         {
@@ -17,22 +25,27 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 2,
+                    "interval": "1m",
                     "legend": {
                         "alignAsTable": true,
                         "avg": true,
                         "current": true,
                         "max": true,
                         "min": true,
-                        "rightSide": false,
+                        "rightSide": true,
                         "show": true,
                         "sideWidth": null,
                         "total": false,
@@ -40,14 +53,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 9,
                     "stack": true,
@@ -68,7 +85,9 @@
                             "refId": "B"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Volume Space Usage",
@@ -83,7 +102,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -122,10 +143,18 @@
                         "thresholdLabels": false,
                         "thresholdMarkers": true
                     },
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 3,
-                    "interval": null,
-                    "links": [],
+                    "interval": "1m",
+                    "legend": {
+                        "alignAsTable": true,
+                        "rightSide": true
+                    },
+                    "links": [
+
+                    ],
                     "mappingType": 1,
                     "mappingTypes": [
                         {
@@ -198,22 +227,27 @@
             "collapsed": false,
             "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
                     "fillGradient": 0,
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 4,
+                    "interval": "1m",
                     "legend": {
                         "alignAsTable": true,
                         "avg": true,
                         "current": true,
                         "max": true,
                         "min": true,
-                        "rightSide": false,
+                        "rightSide": true,
                         "show": true,
                         "sideWidth": null,
                         "total": false,
@@ -221,14 +255,18 @@
                     },
                     "lines": true,
                     "linewidth": 1,
-                    "links": [],
+                    "links": [
+
+                    ],
                     "nullPointMode": "null",
                     "percentage": false,
                     "pointradius": 5,
                     "points": false,
                     "renderer": "flot",
                     "repeat": null,
-                    "seriesOverrides": [],
+                    "seriesOverrides": [
+
+                    ],
                     "spaceLength": 10,
                     "span": 9,
                     "stack": true,
@@ -249,7 +287,9 @@
                             "refId": "B"
                         }
                     ],
-                    "thresholds": [],
+                    "thresholds": [
+
+                    ],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Volume inodes Usage",
@@ -264,7 +304,9 @@
                         "mode": "time",
                         "name": null,
                         "show": true,
-                        "values": []
+                        "values": [
+
+                        ]
                     },
                     "yaxes": [
                         {
@@ -303,10 +345,18 @@
                         "thresholdLabels": false,
                         "thresholdMarkers": true
                     },
-                    "gridPos": {},
+                    "gridPos": {
+
+                    },
                     "id": 5,
-                    "interval": null,
-                    "links": [],
+                    "interval": "1m",
+                    "legend": {
+                        "alignAsTable": true,
+                        "rightSide": true
+                    },
+                    "links": [
+
+                    ],
                     "mappingType": 1,
                     "mappingTypes": [
                         {
@@ -388,9 +438,11 @@
                     "value": "default"
                 },
                 "hide": 0,
-                "label": null,
+                "label": "Data Source",
                 "name": "datasource",
-                "options": [],
+                "options": [
+
+                ],
                 "query": "prometheus",
                 "refresh": 1,
                 "regex": "",
@@ -398,60 +450,78 @@
             },
             {
                 "allValue": null,
-                "current": {},
+                "current": {
+
+                },
                 "datasource": "$datasource",
                 "hide": 2,
                 "includeAll": false,
                 "label": "cluster",
                 "multi": false,
                 "name": "cluster",
-                "options": [],
-                "query": "label_values(kubelet_volume_stats_capacity_bytes, cluster)",
+                "options": [
+
+                ],
+                "query": "label_values(kubelet_volume_stats_capacity_bytes{job=\"kubelet\", metrics_path=\"/metrics\"}, cluster)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
             },
             {
                 "allValue": null,
-                "current": {},
+                "current": {
+
+                },
                 "datasource": "$datasource",
                 "hide": 0,
                 "includeAll": false,
                 "label": "Namespace",
                 "multi": false,
                 "name": "namespace",
-                "options": [],
+                "options": [
+
+                ],
                 "query": "label_values(kubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\"}, namespace)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
             },
             {
                 "allValue": null,
-                "current": {},
+                "current": {
+
+                },
                 "datasource": "$datasource",
                 "hide": 0,
                 "includeAll": false,
                 "label": "PersistentVolumeClaim",
                 "multi": false,
                 "name": "volume",
-                "options": [],
+                "options": [
+
+                ],
                 "query": "label_values(kubelet_volume_stats_capacity_bytes{cluster=\"$cluster\", job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"$namespace\"}, persistentvolumeclaim)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 1,
                 "tagValuesQuery": "",
-                "tags": [],
+                "tags": [
+
+                ],
                 "tagsQuery": "",
                 "type": "query",
                 "useTags": false
