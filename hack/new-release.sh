@@ -3,7 +3,6 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-
 set -e
 set -u
 set -o pipefail
@@ -11,7 +10,7 @@ set -o pipefail
 UPSTREAM_REPO="https://github.com/prometheus-operator/kube-prometheus"
 
 if [ $# -ne 2 ]; then
-  echo "Usage: $(basename $0) <upstream_release> <fury_package>" 1>&2
+  echo "Usage: $(basename "$0") <upstream_release> <fury_package>" 1>&2
   echo "Where:" 1>&2
   echo "  - <upstream_release> must be a valid reference in the ${UPSTREAM_REPO} Git repository" 1>&2
   echo "  - <fury_package> must be one of:" 1>&2
@@ -34,7 +33,7 @@ UPSTREAM_RELEASE="${1}"
 FURY_MODULE="${2}"
 
 WORK_DIR="$(mktemp -d kube.prometheus.XXXXXX -p /tmp)"
-KATALOG_PATH="$(dirname $(readlink -e "${0}"))/../katalog"
+KATALOG_PATH="$(dirname "$(readlink -e "${0}")")/../katalog"
 
 function cleanup {
   echo "Deleting temporary working directory ${WORK_DIR}"
@@ -44,11 +43,9 @@ function cleanup {
 function populate_package {
   local prefix="${1}"
 
-  ls -1 "${WORK_DIR}"/manifests/"${prefix}"-*.yaml | \
+  find "${WORK_DIR}"/manifests -maxdepth 1 -name "${prefix}-*.yaml" | \
     tr "-" " " | \
-    while read package resource; do
-      # echo "package: ${package}"
-      # echo "resource: ${resource}"
+    while read -r package resource; do
       cp -af "${package}"-"${resource}" "${KATALOG_PATH}/${FURY_MODULE}/${resource}"
     done
 }
@@ -105,15 +102,15 @@ case "${FURY_MODULE}" in
 
     # Extract all the dashboards to single ConfigMap YAML files
     yq '.items[].metadata.name' < "${KATALOG_PATH}/${FURY_MODULE}/dashboardDefinitions.yaml" | \
-    while read d; do
+    while read -r d; do
       yq ".items[] | select (.metadata.name == \"${d}\")" < "${KATALOG_PATH}/${FURY_MODULE}/dashboardDefinitions.yaml" > "${KATALOG_PATH}/${FURY_MODULE}/dashboards/${d}.yaml"
     done
 
     # Extract JSON dashboard from ConfigMap YAML files
     find "${KATALOG_PATH}/${FURY_MODULE}/dashboards" -type f -name '*.yaml' | \
     grep -v kustomization.yaml | \
-    while read d; do
-      while read f; do
+    while read -r d; do
+      while read -r f; do
         yq ".data[\"${f}\"]" < "${d}" > "${KATALOG_PATH}/${FURY_MODULE}/dashboards/${f}"
         rm -f "${d}"
       done < <(yq '.data | keys | @tsv' < "${d}")
@@ -164,7 +161,7 @@ case "${FURY_MODULE}" in
 
     mv "${WORK_DIR}/manifests/kubernetesControlPlane-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml"
 
-    echo -e "\033[0;31m⚠: you have to remove from $(readlink -e ${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml) CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -e ${KATALOG_PATH}/configs/kubeadm/rules.yml)\033[0m"
+    echo -e "\033[0;31m⚠: you have to remove from $(readlink -e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
 
     rm -f roleBindingSpecificNamespaces.yaml roleSpecificNamespaces.yaml
     ;;
@@ -174,7 +171,7 @@ case "${FURY_MODULE}" in
     cp -af "${WORK_DIR}"/manifests/setup/0* ~/src/github.com/sighupio/fury-kubernetes-monitoring/katalog/prometheus-operator/crds
     ;;
   *)
-    echo "$(basename $0): error: unknown package ${FURY_MODULE}" 1>&2
+    echo "$(basename "$0"): error: unknown package ${FURY_MODULE}" 1>&2
     exit 1
     ;;
 esac
