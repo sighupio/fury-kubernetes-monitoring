@@ -40,12 +40,6 @@ spec:
   resources:
     requests:
       memory: 400Mi
-    limits:
-      cpu: 2000m
-      memory: 2Gi
-  retention: 30d
-  retentionSize: 120GB
-  ruleSelector: {}
   ruleNamespaceSelector: {}
   ruleSelector: {}
   securityContext:
