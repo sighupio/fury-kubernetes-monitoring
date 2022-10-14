@@ -13,6 +13,8 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 
 2. Check the differences introduced by pulling the upstream release and add the needed patches in `kustomization.yaml`
 
+3. Remove from `kubernetes-monitoring-rules.yml` the CPUThrottlingHigh alert and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to `configs/kubeadm/rules.yml`.
+
 3. Sync the new image to our registry in the [`monitoring` images.yaml file fury-distribution-container-image-sync repository](https://github.com/sighupio/fury-distribution-container-image-sync/blob/main/modules/monitoring/images.yml).
 
 4. Update the `kustomization.yaml` file with the new image.
