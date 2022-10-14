@@ -142,7 +142,7 @@ case "${FURY_MODULE}" in
     mv "${KATALOG_PATH}/${FURY_MODULE}/dashboards/workload-total.json" "${KATALOG_PATH}/configs/bases/default/dashboards"
 
     rm -f "${KATALOG_PATH}/${FURY_MODULE}/dashboardDefinitions.yaml" \
-      "${KATALOG_PATH}/${FURY_MODULE}/dashboardDatasources.yaml" \
+      "${KATALOG_PATH}/${FURY_MODULE}/dashboardDatasources.yaml"
     ;;
   "kube-state-metrics")
     populate_package "kubeStateMetrics"
@@ -163,7 +163,8 @@ case "${FURY_MODULE}" in
 
     echo -e "\033[0;31m⚠: you have to remove from $(readlink -e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
 
-    rm -f roleBindingSpecificNamespaces.yaml roleSpecificNamespaces.yaml
+    rm -f "${KATALOG_PATH}/${FURY_MODULE}/roleBindingSpecificNamespaces.yaml" \
+      "${KATALOG_PATH}/${FURY_MODULE}/roleSpecificNamespaces.yaml"
     ;;
   "prometheus-operator")
     populate_package "prometheusOperator"
