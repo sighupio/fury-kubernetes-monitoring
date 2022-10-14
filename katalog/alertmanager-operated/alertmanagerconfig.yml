@@ -32,10 +32,10 @@ spec:
     matchers:
       - name: namespace
         matchType: "=~"
-        value: "cert-manager|gatekeeper-system|ingress-nginx|kube-system|logging|monitoring|pomerium"
+        value: "calico-api|calico-system|cert-manager|gatekeeper-system|ingress-nginx|kube-system|logging|monitoring|pomerium|tigera-operator|vmware-system-csi"
       - name: alertname
         matchType: "=~"
-        value: "TargetDown|NginxIngressCertificateExpiration|NginxIngressCertificateExpiration|NginxIngressLatencyTooHigh|NginxIngressFailedReload|NginxIngressFailureRate|NginxIngressDown"
+        value: "TargetDown|KubePersistentVolumeFillingUp|NginxIngressCertificateExpiration|NginxIngressLatencyTooHigh|NginxIngressFailedReload|NginxIngressFailureRate|NginxIngressDown"
     groupBy:
       - alertname
     receiver: infra
@@ -57,7 +57,7 @@ spec:
     matchers:
       - name: alertname
         matchType: "=~"
-        value: "NodeNetworkInterfaceFlapping|NodeClockSkewDetected|KubeAPIDown|KubeletDown|KubeletTooManyPods|KubeNodeNotReady|KubeClientCertificateExpiration|NodeFileDescriptorLimit|NodeFilesystemAlmostOutOfFiles|NodeFilesystemAlmostOutOfSpace|NodeFilesystemFilesFillingUp|NodeFilesystemSpaceFillingUp|NodeRAIDDegraded|NodeRAIDDiskFailure||etcdInsufficientMembers|etcdMembersDown|etcdNoLeader|CoreDNSPanic|CoreDNSHealthRequestsLatency|KubeControllerManagerDown|KubeSchedulerDown|PrometheusRuleFailures|AlertmanagerClusterDown|AlertmanagerConfigInconsistent|AlertmanagerFailedReload"
+        value: "NodeNetworkInterfaceFlapping|NodeClockSkewDetected|KubeAPIDown|KubeletDown|KubeletTooManyPods|KubeNodeNotReady|KubeClientCertificateExpiration|NodeFileDescriptorLimit|NodeFilesystemAlmostOutOfFiles|NodeFilesystemAlmostOutOfSpace|NodeFilesystemFilesFillingUp|NodeFilesystemSpaceFillingUp|NodeRAIDDegraded|NodeRAIDDiskFailure|etcdInsufficientMembers|etcdMembersDown|etcdNoLeader|CoreDNSPanic|CoreDNSHealthRequestsLatency|KubeControllerManagerDown|KubeSchedulerDown|PrometheusRuleFailures|AlertmanagerClusterDown|AlertmanagerConfigInconsistent|AlertmanagerFailedReload|X509CertificateExpiration|X509CertificateRenewal"
     groupBy:
       - alertname
     receiver: k8s
