@@ -4,7 +4,8 @@
 
 {{ define "__text" }}{{ range .Alerts }}
 *Alert:* {{ .Labels.alertname }} - `{{ .Labels.severity }}`
-*Description:* {{ .Annotations.message }}
+*Description:* {{ .Annotations.description }}
+*Runbook*: {{ .Annotations.runbook_url }}
 *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
 *Details:*
 {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`

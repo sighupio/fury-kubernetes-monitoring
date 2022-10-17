@@ -56,7 +56,7 @@ spec:
     rules:
     - alert: EtcdInsufficientMembers
       annotations:
-        message: 'If one more etcd member goes down the cluster will be
+        description: 'If one more etcd member goes down the cluster will be
           unavailable.'
         doc: "This alert fires if less than half of Etcd cluster members were
           online in the last 3 minutes."
@@ -67,7 +67,7 @@ spec:
         severity: critical
     - alert: EtcdNoLeader
       annotations:
-        message: 'Etcd member {{ $labels.instance }} has no leader.'
+        description: 'Etcd member {{ $labels.instance }} has no leader.'
         doc: "This alert fires if the Etcd cluster had no leader in the last
           minute."
       expr: |
@@ -77,7 +77,7 @@ spec:
         severity: critical
     - alert: EtcdHighNumberOfLeaderChanges
       annotations:
-        message: 'Etcd instance {{ $labels.instance }} has seen {{ $value }}
+        description: 'Etcd instance {{ $labels.instance }} has seen {{ $value }}
           leader changes within the last hour.'
         doc: "This alert fires if the Etcd cluster changed leader more than 3
           times in the last hour."
@@ -87,7 +87,7 @@ spec:
         severity: warning
     # - alert: EtcdHighNumberOfFailedGRPCRequests
     #   annotations:
-    #     message: '{{ $value | printf "%.2f" }}% of requests for {{ $labels.grpc_method }} failed on etcd instance {{ $labels.instance }}'
+    #     description: '{{ $value | printf "%.2f" }}% of requests for {{ $labels.grpc_method }} failed on etcd instance {{ $labels.instance }}'
     #   expr: |
     #     100 * (sum(rate(grpc_server_handled_total{grpc_code!="OK",job="etcd-metrics"}[5m])) by (grpc_service, grpc_method, instance)
     #       /
@@ -97,7 +97,7 @@ spec:
     #     severity: warning
     # - alert: EtcdHighNumberOfFailedGRPCRequests
     #   annotations:
-    #     message: '{{ $value | printf "%.2f" }}% of requests for {{ $labels.grpc_method }} failed on etcd instance {{ $labels.instance }}'
+    #     description: '{{ $value | printf "%.2f" }}% of requests for {{ $labels.grpc_method }} failed on etcd instance {{ $labels.instance }}'
     #   expr: |
     #     100 * (sum(rate(grpc_server_handled_total{grpc_code!="OK",job="etcd-metrics"}[5m])) by (grpc_service, grpc_method, instance)
     #       /
@@ -107,7 +107,7 @@ spec:
     #     severity: critical
     # - alert: EtcdGRPCRequestsSlow
     #   annotations:
-    #     message: on etcd instance {{ $labels.instance }} gRPC requests to {{ $labels.grpc_method
+    #     description: on etcd instance {{ $labels.instance }} gRPC requests to {{ $labels.grpc_method
     #       }} are slow
     #   expr: |
     #     histogram_quantile(0.99, sum(rate(grpc_server_handling_seconds_bucket{job="etcd-metrics",grpc_type="unary"}[5m])) by (grpc_service, grpc_method, le)) > 0.15
@@ -116,7 +116,7 @@ spec:
     #     severity: critical
     # - alert: EtcdMemberCommunicationSlow
     #   annotations:
-    #     message: etcd instance {{ $labels.instance }} member communication with {{ $labels.To }} is slow
+    #     description: etcd instance {{ $labels.instance }} member communication with {{ $labels.To }} is slow
     #   expr: |
     #     histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_bucket[5m])) > 0.15
     #   for: 10m
@@ -124,7 +124,7 @@ spec:
     #     severity: warning
     - alert: EtcdHighNumberOfFailedProposals
       annotations:
-        message: 'Etcd instance {{ $labels.instance }} has seen {{ $value }}
+        description: 'Etcd instance {{ $labels.instance }} has seen {{ $value }}
           proposal failures within the last hour.'
         doc: "This alert fires if there were more than 5 proposal failure in the
           last hour."
@@ -134,7 +134,7 @@ spec:
         severity: warning
     - alert: EtcdHighFsyncDurations
       annotations:
-        message: 'Etcd instance {{ $labels.instance }} WAL fsync latency too
+        description: 'Etcd instance {{ $labels.instance }} WAL fsync latency too
           high, current latency is {{ $value | printf "%.2f" }}.'
         doc: "This alert fires if the WAL fsync 99th percentile latency was
           higher than 0.5s in the last 10 minutes."
@@ -145,7 +145,7 @@ spec:
         severity: warning
     - alert: EtcdHighCommitDurations
       annotations:
-        message: 'Etcd instance {{ $labels.instance }} commit latency too high,
+        description: 'Etcd instance {{ $labels.instance }} commit latency too high,
           current latency is {{ $value | printf "%.2f" }}.'
         doc: "This alert fires if the backend commit 99th percentile latency was
           higher than 0.25s in the last 10 minutes."
@@ -158,7 +158,7 @@ spec:
     rules:
       - alert: CoreDNSPanic
         annotations:
-          messages: 'CoreDNS instance {{ $labels.instance }} panic count
+          description: 'CoreDNS instance {{ $labels.instance }} panic count
             increased by {{ $value }}.'
           doc: "This alert fires if CoreDNS total panic count increased by at
             least 1 in the last 10 minutes."
@@ -168,7 +168,7 @@ spec:
           severity: critical
       - alert: CoreDNSRequestsLatency
         annotations:
-          message: 'CoreDNS instance {{ $labels.instance }} requests latency too
+          description: 'CoreDNS instance {{ $labels.instance }} requests latency too
             high, current latency is {{ $value | printf "%.2f" }}.'
           doc: "This alert fires if CoreDNS 99th percentile requests latency was
             higher than 100ms in the last 10 minutes."
@@ -179,7 +179,7 @@ spec:
           severity: warning
       - alert: CoreDNSHealthRequestsLatency
         annotations:
-          message: 'CoreDNS instance {{ $labels.instance }} health requests
+          description: 'CoreDNS instance {{ $labels.instance }} health requests
             latency too high, current latency is {{ $value | printf "%.2f" }}.'
           doc: "This alert fires if CoreDNS 99th percentile health requests
             latency was higher than 10ms in the last 10 minutes."
@@ -190,8 +190,7 @@ spec:
           severity: warning
       - alert: CoreDNSForwardRequestsLatency
         annotations:
-          message: 'CoreDNS instance {{ $labels.instance }} forward requests
-            latency too high, current latency is {{ $value | printf "%.2f" }}.'
+          description: 'CoreDNS instance {{ $labels.instance }} forward requests latency too high, current latency is {{ $value | printf "%.2f" }}.'
           doc: "This alert fires if CoreDNS 99th percentile forward requests
             latency was higher than 500ms in the last 10 minutes."
         expr: |
