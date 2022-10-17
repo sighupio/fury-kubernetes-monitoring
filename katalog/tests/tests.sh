@@ -6,15 +6,44 @@
 
 load ./helper
 
-@test "Applying prometheus-operator, cert-manager CRDs and cert-manager" {
+@test "Applying ServiceMonitor CRDs" {
   info
   setup() {
     kubectl apply -f katalog/prometheus-operator/crd-servicemonitor.yml
-    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.8.0/katalog/cert-manager/cert-manager-controller/crd.yml
-    apply "github.com/sighupio/fury-kubernetes-ingress.git//katalog/cert-manager/?ref=v1.8.0"
   }
   loop_it setup 60 10
   status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Applying cert-manager CRDs" {
+  info
+  setup() {
+    kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-ingress/v1.11.0-rc3/katalog/cert-manager/cert-manager-controller/crd.yml
+  }
+  loop_it setup 60 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Applying cert-manager" {
+  info
+  setup() {
+    apply "github.com/sighupio/fury-kubernetes-ingress/katalog/cert-manager?ref=v1.11.0-rc3"
+  }
+  loop_it setup 60 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "cert-manager is Running" {
+  info
+  test() {
+    kubectl get pods -l app=cert-manager -o json -n cert-manager | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 60 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
 }
 
 @test "Deploy prometheus-operator" {
@@ -145,7 +174,7 @@ load ./helper
   deploy() {
     apply katalog/metrics-server
   }
-  run deploy
+  loop_it deploy 60 10
   [ "$status" -eq 0 ]
 }
 

@@ -11,7 +11,7 @@ namespace: monitoring
 images:
   - name: docker.io/enix/x509-certificate-exporter
     newName: registry.sighup.io/fury/enix/x509-certificate-exporter
-    newTag: 2.9.2
+    newTag: 2.11.0
 
 resources:
   - daemonset.yml

@@ -10,4 +10,4 @@ metadata:
     prometheus: k8s
   name: k8s
 spec:
-  image: quay.io/prometheus/prometheus:v2.22.2
+  image: quay.io/prometheus/prometheus:v2.29.1

@@ -134,31 +134,31 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum(rate(scheduler_e2e_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_e2e_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (cluster, instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "{{instance}} e2e",
+                            "legendFormat": "{{cluster}} {{instance}} e2e",
                             "refId": "A"
                         },
                         {
-                            "expr": "sum(rate(scheduler_binding_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_binding_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (cluster, instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "{{instance}} binding",
+                            "legendFormat": "{{cluster}} {{instance}} binding",
                             "refId": "B"
                         },
                         {
-                            "expr": "sum(rate(scheduler_scheduling_algorithm_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_scheduling_algorithm_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (cluster, instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "{{instance}} scheduling algorithm",
+                            "legendFormat": "{{cluster}} {{instance}} scheduling algorithm",
                             "refId": "C"
                         },
                         {
-                            "expr": "sum(rate(scheduler_volume_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (instance)",
+                            "expr": "sum(rate(scheduler_volume_scheduling_duration_seconds_count{cluster=\"$cluster\", job=\"kube-scheduler\", instance=~\"$instance\"}[5m])) by (cluster, instance)",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "{{instance}} volume",
+                            "legendFormat": "{{cluster}} {{instance}} volume",
                             "refId": "D"
                         }
                     ],
@@ -887,7 +887,7 @@
                 "multi": false,
                 "name": "cluster",
                 "options": [],
-                "query": "label_values(kube_pod_info, cluster)",
+                "query": "label_values(up{job=\"kube-scheduler\"}, cluster)",
                 "refresh": 2,
                 "regex": "",
                 "sort": 1,

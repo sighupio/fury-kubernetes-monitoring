@@ -8,13 +8,12 @@ kind: Kustomization
 
 namespace: monitoring
 
-images:
-- name: kube-rbac-proxy
-  newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
-  newTag: v0.11.0
+generatorOptions:
+  labels:
+    grafana-sighup-dashboard: default
+  disableNameSuffixHash: true
 
-resources:
-  - dashboards
-  - deploy.yml
-  - rbac.yml
-  - sm.yml
+configMapGenerator:
+  - name: alertmanager-grafana-dashboards
+    files:
+      - alertmanager.json

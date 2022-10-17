@@ -15,7 +15,7 @@ ability to run it independently of the environment, on-premise installed by kube
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `quay.io/brancz/kube-rbac-proxy:v0.10.0`
+- kube-rbac-proxy image: `quay.io/brancz/kube-rbac-proxy:v0.11.0`
 - kube-rbac-proxy repository:
   [https://quay.io/repository/brancz/kube-rbac-proxy](https://quay.io/repository/brancz/kube-rbac-proxy)
 

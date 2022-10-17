@@ -22,14 +22,14 @@ resources in these repositories are going to be deployed in `monitoring`
 namespace in your Kubernetes cluster.
 
 - [prometheus-operator](katalog/prometheus-operator): Operator to deploy and
-  manage Prometheus and related resources. Version: **0.48.1**
+  manage Prometheus and related resources. Version: **0.50.0**
 - [prometheus-operated](katalog/prometheus-operated): Prometheus instance
-  deployed with Prometheus Operator's CRD. Version: **2.27.1**
+  deployed with Prometheus Operator's CRD. Version: **2.29.1**
 - [alertmanager-operated](katalog/alertmanager-operated): Alertmanager instance
   deployed with Prometheus Operator's CRD, pay attention to change the
   [config](katalog/alertmanager-operated/secret.yml) as needed. Version: **0.22.2**
 - [grafana](katalog/grafana): Grafana deployment to query and visualize metrics
-  collected by Prometheus. Version: **7.5.7**
+  collected by Prometheus. Version: **8.1.2**
 - [goldpinger](katalog/goldpinger): **Goldpinger** makes calls between its instances for visibility and alerting.
   Version: **3.2.0**
 - [aks-sm](katalog/aks-sm): Service Monitor to collect Kubernetes components
@@ -43,20 +43,20 @@ namespace in your Kubernetes cluster.
 - [kubeadm-sm](katalog/kubeadm-sm): Service Monitors, Prometheus rules and
   alerts for Kubernetes components of unmanaged/on-premise clusters.
 - [kube-proxy-metrics](katalog/kube-proxy-metrics): RBAC Proxy to expose kube-proxy metrics. Works in all
-environments *(managed and unmanaged Kubernetes clusters)*. **0.10.0**.
+environments *(managed and unmanaged Kubernetes clusters)*. **0.11.0**.
 - [kube-state-metrics](katalog/kube-state-metrics): Service Monitor for
-  Kubernetes objects such as Deployments, Nodes and Pods. Version: **2.0.0**
+  Kubernetes objects such as Deployments, Nodes and Pods. Version: **2.2.0**
 - [node-exporter](katalog/node-exporter): Service Monitor for hardware and OS
-  metrics exposed by \*NIX kernels. Version: **1.1.2**
+  metrics exposed by \*NIX kernels. Version: **1.2.2**
 - [metrics-server](katalog/metrics-server): Resource metrics collection from
   kubelet and exposition through [Metrics API](https://github.com/kubernetes/metrics).
   Version: **0.5.0**
 - [Thanos](katalog/thanos): Thanos is an opensource Prometheus setup that allows having 2 important features:
   - High availability on Prometheus *(setting multiple Prometheus replicas)*.
   - Long term storage capacity relying on an external object storage.
-  Version: **v0.20.2**
+  Version: **v0.22.0**
 - [x509-exporter](katalog/x509-exporter): Provides monitoring for certificates.
-  [Upstream Project](://github.com/enix/x509-certificate-exporter). Version: **2.9.2**
+  [Upstream Project](://github.com/enix/x509-certificate-exporter).  Version: **2.11.0**
 
 You can click on each package to see its documentation.
 
@@ -72,28 +72,29 @@ specific dependencies please visit the single package's documentation:
 
 ## Compatibility
 
-| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |       1.20.X       |  1.21.X   |
-| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :-------: |
-| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |                    |           |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |           |
-| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |           |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |           |
-| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |           |
-| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |           |
-| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |           |
-| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |           |
-| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |           |
-| v1.11.0                             |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |           |
-| v1.12.0                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
-| v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
-| v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| Module Version / Kubernetes Version | 1.14.X             | 1.15.X             | 1.16.X             | 1.17.X             | 1.18.X             | 1.19.X             | 1.20.X             | 1.21.X             | 1.22.X    |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :-------:          | :---:     |
+| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |                    |                    |           |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: | :x:                |                    |                    |                    |                    |                    |           |
+| v1.2.0                              | :white_check_mark: | :white_check_mark: | :x:                |                    |                    |                    |                    |                    |           |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.4.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.4.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.5.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.6.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.6.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.7.0                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.7.1                              | :warning:          | :warning:          | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
+| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
+| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
+| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
+| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
+| v1.11.0                             |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
+| v1.12.0                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
+| v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
+| v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
+| v1.13.0                             |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -106,6 +107,8 @@ specific dependencies please visit the single package's documentation:
 - :warning: : module version: `v1.11.0` and Kubernetes Version: `1.20.x`. It works as expected. Marked as warning
 because it is not officially supported by [SIGHUP](https://sighup.io).
 - :warning: : module version: `v1.12.0` and Kubernetes Version: `1.21.x`. It works as expected. Marked as warning
+because it is not officially supported by [SIGHUP](https://sighup.io).
+- :warning: : module version: `v1.13.0` and Kubernetes Version: `1.22.x`. It works as expected. Marked as warning
 because it is not officially supported by [SIGHUP](https://sighup.io).
 
 ## Deployment
