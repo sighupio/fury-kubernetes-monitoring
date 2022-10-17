@@ -1,5 +1,7 @@
 # Thanos
 
+<!-- <KFD-DOCS> -->
+
 Thanos is an opensource Prometheus setup that allows having 2 important features:
 
 1. high availability on Prometheus (setting more Prometheus replicas)
@@ -11,8 +13,8 @@ This is the simplified diagram of a Thanos architecture:
 
 ## Image repository and tag
 
-- Thanos components versions: `v0.22.0`
-- Thanos components image: `quay.io/thanos/thanos:v0.22.0`
+- Thanos components versions: `v0.24.0`
+- Thanos components image: `registry.sighup.io/fury/thanos/thanos:v0.24.0`
 
 ## Setup in Fury Module
 
@@ -129,3 +131,5 @@ spec:
                         serviceName: thanos-query
                         servicePort: http
 ```
+
+<!-- </KFD-DOCS> -->

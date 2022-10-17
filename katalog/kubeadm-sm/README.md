@@ -1,5 +1,7 @@
 # Kubeadm ServiceMonitor
 
+<!-- <KFD-DOCS> -->
+
 This package provides monitoring for the following Kubernetes components:
 
 - kubelet
@@ -14,13 +16,11 @@ want to learn more about these components please follow the official
 [documentation](https://kubernetes.io/docs/concepts/overview/components/) of
 Kubernetes.
 
-
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize = `v3.3.0`
 - [prometheus-operator](../prometheus-operator)
-
 
 ## Configuration
 
@@ -79,6 +79,7 @@ The followings alerts are already defined for this package.
 | EtcdHighFsyncDurations | This alert fires if the WAL fsync 99th percentile latency was higher than 0.5s in the last 10 minutes. | warning | 10m |
 | EtcdHighCommitDurations | This alert fires if the backend commit 99th percentile latency was higher than 0.25s in the last 10 minutes. | warning | 10m |
 
+<!-- </KFD-DOCS> -->
 
 ## License
 

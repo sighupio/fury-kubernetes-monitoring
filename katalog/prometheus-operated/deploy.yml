@@ -15,7 +15,7 @@ spec:
     - name: alertmanager-main
       port: web
       namespace: monitoring
-  image: registry.sighup.io/fury/prometheus:v2.28.1
+  image: registry.sighup.io/fury/prometheus:v2.32.1
   nodeSelector:
     kubernetes.io/os: linux
   podMonitorNamespaceSelector: {}
@@ -61,6 +61,9 @@ spec:
   - name: web
     port: 9090
     targetPort: web
+  - name: reloader-web
+    port: 8080
+    targetPort: reloader-web
   selector:
     app.kubernetes.io/name: prometheus
     app.kubernetes.io/instance: k8s

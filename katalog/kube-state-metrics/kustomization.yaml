@@ -11,7 +11,7 @@ namespace: monitoring
 images:
 - name: k8s.gcr.io/kube-state-metrics/kube-state-metrics
   newName: registry.sighup.io/fury/kube-state-metrics/kube-state-metrics
-  newTag: v2.2.0
+  newTag: v2.3.0
 
 resources:
   - dashboards

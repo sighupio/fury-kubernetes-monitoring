@@ -32,7 +32,7 @@ spec:
           image: docker.io/enix/x509-certificate-exporter
           imagePullPolicy: IfNotPresent
           args:
-            - --port=9793
+            - --listen-address=:9793
             - --trim-path-components=3
             - --watch-file=/mnt/watch/file-1//var/lib/kubelet/pki/kubelet-client-current.pem
             - --watch-file=/mnt/watch/file-2//etc/kubernetes/pki/apiserver.crt

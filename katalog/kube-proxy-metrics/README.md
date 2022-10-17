@@ -1,23 +1,25 @@
 # kube-proxy exporter
 
-It is highly recommended gathering metrics from kube-proxy as it is a critical piece of any Kubernetes Cluster.
-Sometimes (especially in managed clusters) it is not possible to configure kube-proxy to expose metrics, this is why
-this package exists. Another reason to run this exporter instead of just exposing metrics from kube-proxy is the
-ability to run it independently of the environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
+<!-- <KFD-DOCS> -->
 
+It is highly recommended gathering metrics from kube-proxy as it is a critical
+piece of any Kubernetes Cluster. Sometimes (especially in managed clusters) it
+is not possible to configure kube-proxy to expose metrics, this is why this
+package exists. Another reason to run this exporter instead of just exposing
+metrics from kube-proxy is the ability to run it independently of the
+environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.20.0`
 - Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `quay.io/brancz/kube-rbac-proxy:v0.11.0`
-- kube-rbac-proxy repository:
-  [https://quay.io/repository/brancz/kube-rbac-proxy](https://quay.io/repository/brancz/kube-rbac-proxy)
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.11.0`
+- kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 
 ## Configuration
@@ -40,6 +42,11 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
+<!-- Links -->
+
+[krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

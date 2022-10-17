@@ -1,5 +1,7 @@
 # Kube State Metrics
 
+<!-- <KFD-DOCS> -->
+
 This package provides kube-state-metrics service which listens to Kubernetes API
 server and generates metrics about the state of Kubernetes objects like
 Deployments, Nodes, or Pods.
@@ -19,17 +21,14 @@ From kube-state-metrics
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
-- Kustomize = `v3.0.X`
+- Kubernetes >= `1.20.0`
+- Kustomize = `v3.3.X`
 - [prometheus-operator](../prometheus-operator)
-
 
 ## Image repository and tag
 
-* kube-state-metrics image: `k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.2.0`
-* kube-state-metrics repository:
-  <https://github.com/kubernetes/kube-state-metrics>
-
+* kube-state-metrics image: `registry.sighup.io/fury/kube-state-metrics/kube-state-metrics:v2.2.0`
+* kube-state-metrics repository: [kube-state-metrics on GH][ksm-gh]
 
 ## Configuration
 
@@ -40,7 +39,6 @@ Fury distribution kube-state-metrics is deployed with the following configuratio
   port `8081`
 - Metrics are scraped by Prometheus with `30s` intervals
 
-
 ## Deployment
 
 You can deploy kube-state-metrics by running the following command in the root of
@@ -50,6 +48,11 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
+<!-- Links -->
+
+[ksm-gh]: https://github.com/kubernetes/kube-state-metrics
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

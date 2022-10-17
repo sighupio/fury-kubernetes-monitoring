@@ -1,4 +1,4 @@
-# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -34,11 +34,14 @@ steps:
       VALIDATE_JSCPD: "false"
       VALIDATE_YAML: "false"
       VALIDATE_TERRAFORM_TFLINT: "false"
+      # hadolint already validated dockerfiles
+      VALIDATE_DOCKERFILE: "false"
+      VALIDATE_NATURAL_LANGUAGE: "false"
     depends_on:
       - clone
 
   - name: render
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.19.11_3.8.7_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.20.7_3.8.7_2.4.1
     pull: always
     depends_on:
       - clone
@@ -139,123 +142,27 @@ steps:
         - push
         - tag
 
----
-kind: pipeline
-name: render-examples
+# ---
+# kind: pipeline
+# name: render-examples
 
-depends_on:
-  - policeman
+# depends_on:
+#   - policeman
 
-platform:
-  os: linux
-  arch: amd64
+# platform:
+#   os: linux
+#   arch: amd64
 
-steps:
-  - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
-    pull: always
-    depends_on: [clone]
-    commands:
-      - bats -t examples/tests.sh
-    when:
-      event:
-        - tag
-
----
-kind: pipeline
-name: e2e-kubernetes-1.19
-
-depends_on:
-  - policeman
-
-platform:
-  os: linux
-  arch: amd64
-
-trigger:
-  ref:
-    include:
-      - refs/heads/master
-      - refs/tags/**
-
-steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
-    pull: always
-    volumes:
-      - name: shared
-        path: /shared
-    depends_on: [clone]
-    settings:
-      action: custom-cluster-119
-      cluster_version: '1.19.11'
-      local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-119
-      instance_path: /shared
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-
-  - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.19.11_3.8.7_2.4.1
-    pull: always
-    volumes:
-      - name: shared
-        path: /shared
-    depends_on: [init]
-    commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-119
-      - bats -t katalog/tests/tests.sh
-      - bats -t katalog/tests/grafana-ldap.sh
-
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
-    pull: always
-    depends_on: [e2e]
-    settings:
-      action: destroy
-      pipeline_id: cluster-119
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-    when:
-      status:
-        - success
-        - failure
-
-volumes:
-  - name: shared
-    temp: {}
+# steps:
+#   - name: examples
+#     image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
+#     pull: always
+#     depends_on: [clone]
+#     commands:
+#       - bats -t examples/tests.sh
+#     when:
+#       event:
+#         - tag
 
 ---
 kind: pipeline
@@ -268,6 +175,9 @@ platform:
   os: linux
   arch: amd64
 
+node:
+  runner: internal
+
 trigger:
   ref:
     include:
@@ -276,7 +186,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     volumes:
       - name: shared
@@ -320,7 +230,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -363,6 +273,9 @@ platform:
   os: linux
   arch: amd64
 
+node:
+  runner: internal
+
 trigger:
   ref:
     include:
@@ -371,7 +284,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     volumes:
       - name: shared
@@ -415,7 +328,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -459,6 +372,9 @@ platform:
   os: linux
   arch: amd64
 
+node:
+  runner: internal
+
 trigger:
   ref:
     include:
@@ -467,7 +383,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     volumes:
       - name: shared
@@ -511,7 +427,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.12.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
     pull: always
     depends_on: [e2e]
     settings:
@@ -546,13 +462,113 @@ volumes:
 
 ---
 kind: pipeline
+name: e2e-kubernetes-1.23
+
+depends_on:
+  - policeman
+
+platform:
+  os: linux
+  arch: amd64
+
+node:
+  runner: internal
+
+trigger:
+  ref:
+    include:
+      - refs/heads/master
+      - refs/tags/**
+
+steps:
+  - name: init
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [clone]
+    settings:
+      action: custom-cluster-123
+      cluster_version: '1.23.0'
+      local_kind_config_path: katalog/tests/kind-config.yml
+      pipeline_id: cluster-123
+      instance_path: /shared
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+
+  - name: e2e
+    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.23.0_3.8.7_2.4.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [init]
+    commands:
+      - export KUBECONFIG=/shared/kube/kubeconfig-123
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
+
+  - name: destroy
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    pull: always
+    depends_on: [e2e]
+    settings:
+      action: destroy
+      pipeline_id: cluster-123
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+    when:
+      status:
+        - success
+        - failure
+
+volumes:
+  - name: shared
+    temp: {}
+
+---
+kind: pipeline
+type: docker
 name: release
 
 depends_on:
-  - e2e-kubernetes-1.19
   - e2e-kubernetes-1.20
   - e2e-kubernetes-1.21
   - e2e-kubernetes-1.22
+  - e2e-kubernetes-1.23
 
 platform:
   os: linux
@@ -564,6 +580,17 @@ trigger:
       - refs/tags/**
 
 steps:
+  - name: prepare-canonical-json
+    image: registry.sighup.io/poc/fury-repo-automations:v0.0.3
+    pull: always
+    depends_on: [ clone ]
+    commands:
+      - spock module-json -m=fury-kubernetes-monitoring -r=False -v=${DRONE_TAG}
+    when:
+      ref:
+        include:
+          - refs/tags/**
+
   - name: prepare-tar-gz
     image: alpine:latest
     pull: always
@@ -590,6 +617,7 @@ steps:
     image: plugins/github-release
     pull: always
     depends_on:
+      - prepare-canonical-json
       - prepare-tar-gz
       - prepare-release-notes
     settings:
@@ -598,6 +626,7 @@ steps:
       file_exists: overwrite
       files:
         - fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz
+        - fury-kubernetes-logging-canonical-definition-${DRONE_TAG}.json
       prerelease: true
       overwrite: true
       title: "Preview ${DRONE_TAG}"
@@ -614,6 +643,7 @@ steps:
     image: plugins/github-release
     pull: always
     depends_on:
+      - prepare-canonical-json
       - prepare-tar-gz
       - prepare-release-notes
     settings:
@@ -622,6 +652,7 @@ steps:
       file_exists: overwrite
       files:
         - fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz
+        - fury-kubernetes-logging-canonical-definition-${DRONE_TAG}.json
       prerelease: false
       overwrite: true
       title: "Release ${DRONE_TAG}"

@@ -15,7 +15,7 @@ images:
     newTag: "3"
   - name: quay.io/prometheus/node-exporter
     newName: registry.sighup.io/fury/prometheus/node-exporter
-    newTag: v1.2.2
+    newTag: v1.3.1
   - name: quay.io/coreos/kube-rbac-proxy
     newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
     newTag: v0.11.0
