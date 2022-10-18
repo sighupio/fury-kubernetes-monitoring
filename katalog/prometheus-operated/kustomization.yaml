@@ -8,12 +8,87 @@ kind: Kustomization
 
 namespace: monitoring
 
+patchesStrategicMerge:
+- |-
+  apiVersion: monitoring.coreos.com/v1
+  kind: Prometheus
+  metadata:
+    name: k8s
+    namespace: monitoring
+  spec:
+    image: registry.sighup.io/fury/prometheus/prometheus:v2.36.1
+    replicas: 1
+    resources:
+      requests:
+        cpu: 500m
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+    retention: 30d
+    retentionSize: 120GiB
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 150Gi
+
+patchesJSON6902:
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRole
+      name: prometheus-k8s
+      namespace: monitoring
+    patch: |-
+      - op: add
+        path: /rules/-
+        value:
+          apiGroups:
+            - ""
+          resources:
+            - services
+            - endpoints
+            - pods
+          verbs:
+            - get
+            - list
+            - watch
+      - op: add
+        path: /rules/-
+        value:
+          apiGroups:
+            - extensions
+          resources:
+            - ingresses
+          verbs:
+            - get
+            - list
+            - watch
+      - op: add
+        path: /rules/-
+        value:
+          apiGroups:
+            - networking.k8s.io
+          resources:
+            - ingresses
+          verbs:
+            - get
+            - list
+            - watch
+
 resources:
   - dashboards
-  - deploy.yml
-  - rbac.yml
-  - rules.yml
-  - sm.yml
-  - pdb.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
   - kube-prometheus-rules.yml
   - kubernetes-monitoring-rules.yml
+  - prometheus.yaml
+  - prometheusRule.yaml
+  - roleBindingConfig.yaml
+  - roleConfig.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml

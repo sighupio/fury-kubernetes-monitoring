@@ -16,4 +16,4 @@ generatorOptions:
 configMapGenerator:
   - name: kube-proxy-grafana-dashboard
     files:
-      - kube-proxy.json
+      - proxy.json

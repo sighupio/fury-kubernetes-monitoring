@@ -15,15 +15,15 @@ Grafana. Grafana integration is provided in Fury monitoring katalog, please see
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize = `v3.3.X`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 ## Image repository and tag
 
-* Prometheus image: `registry.sighup.io/prometheus/prometheus:v2.32.1`
+* Prometheus image: `registry.sighup.io/prometheus/prometheus:v2.36.1`
 * Prometheus repository: [Prometheus on Github][prom-gh]
-* Prometheus documentation: [Prometheus Homepage][prom-doc]
+* Prometheus documentation: [Prometheus documentation site][prom-doc]
 
 ## Configuration
 
@@ -34,19 +34,18 @@ Fury distribution Prometheus is deployed with the following configuration:
 - Retention Storage `120 Gb` (80% of the default 150)
 - Requires `150Gi` storage (with default storage type of Provider)
 - Listens on port `9090`
-- Alert manager endpoint set to `alertmanager-main`
+- Alertmanager endpoint set to `alertmanager-main`
 
 ## Deployment
 
-You can deploy Prometheus Operated by running the following command in the root of
-the project:
+You can deploy Prometheus Operated by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -
 ```
 
 To learn how to customize it for your needs please see the
-[examples](../../examples) folder.
+[examples](../../examples/serviceMonitor) folder.
 
 ### Accessing Prometheus UI
 

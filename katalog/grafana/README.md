@@ -7,7 +7,7 @@ numeric time-series data with Prometheus integration.
 
 ## Image repository and tag
 
-- Grafana image: `grafana/grafana:8.3.3`
+- Grafana image: `grafana/grafana:8.5.5`
 - Grafana repository: [https://github.com/grafana/grafana](https://github.com/grafana/grafana)
 - Grafana documentation: [https://docs.grafana.org](https://docs.grafana.org)
 - k8s-sidecar image: `kiwigrid/k8s-sidecar`
@@ -16,8 +16,8 @@ numeric time-series data with Prometheus integration.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize = `v3.3.x`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 
 ## Configuration
 
@@ -47,7 +47,7 @@ Look at the [datasources](datasources) folder `kustomization.yaml` for an exampl
 
 ## Deployment
 
-You can deploy Grafana by running the following command in the root of the project:
+You can deploy Grafana by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -
@@ -67,7 +67,7 @@ your browser.
 ### Adding/Removing Dashboards
 
 To learn how to add or remove dashboards to Grafana please see the
-[examples](../../examples) folder.
+[examples](../../examples/grafana-add-dashboard) folder.
 
 <!-- </KFD-DOCS> -->
 

@@ -1,0 +1,51 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+        - name: datasource-sidecar
+          image: kiwigrid/k8s-sidecar
+          env:
+            - name: LABEL
+              value: "grafana-sighup-datasource"
+            - name: FOLDER
+              value: /tmp/datasource
+            - name: RESOURCE
+              # configmap and secret
+              value: both
+            - name: NAMESPACE
+              value: "ALL"
+            - name: REQ_URL
+              value: http://localhost:3000/api/admin/provisioning/datasources/reload
+            - name: REQ_METHOD
+              value: POST
+              # dummy username and password, required by reload API
+            - name: REQ_USERNAME
+              value: admin
+            - name: REQ_PASSWORD
+              value: admin
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: grafana-datasources-provisioning
+              mountPath: /tmp/datasource

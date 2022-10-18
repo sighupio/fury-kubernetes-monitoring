@@ -11,18 +11,50 @@ namespace: monitoring
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.53.1
+    newTag: v0.57.0
+  - name: quay.io/brancz/kube-rbac-proxy
+    newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
+    newTag: v0.12.0
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: prometheus-operator
+    namespace: monitoring
+  spec:
+    template:
+      spec:
+        securityContext:
+          runAsGroup: 65534
+
+patchesJSON6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: prometheus-operator
+      namespace: monitoring
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/args/1
+        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.57.0
 
 resources:
-  - deploy.yml
-  - rbac.yml
-  - ns.yml
-  - crd-rule.yml
-  - crd-prometheus.yml
-  - crd-alertmanager.yml
-  - crd-config-alertmanager.yml
-  - crd-servicemonitor.yml
-  - crd-thanosruler.yml
-  - crd-probes.yml
-  - crd-podmonitor.yml
-  - sm.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - crds/0alertmanagerConfigCustomResourceDefinition.yaml
+  - crds/0alertmanagerCustomResourceDefinition.yaml
+  - crds/0podmonitorCustomResourceDefinition.yaml
+  - crds/0probeCustomResourceDefinition.yaml
+  - crds/0prometheusCustomResourceDefinition.yaml
+  - crds/0prometheusruleCustomResourceDefinition.yaml
+  - crds/0servicemonitorCustomResourceDefinition.yaml
+  - crds/0thanosrulerCustomResourceDefinition.yaml
+  - deployment.yaml
+  - namespace.yaml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml

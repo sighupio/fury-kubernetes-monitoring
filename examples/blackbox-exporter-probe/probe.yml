@@ -1,0 +1,22 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: sighup
+  namespace: monitoring
+spec:
+  jobName: sighup
+  interval: 60s
+  module: http_2xx
+  prober:
+    url: blackbox-exporter.monitoring.svc:19115
+    scheme: http
+    path: /probe
+  targets:
+    staticConfig:
+      static:
+      - http://sighup.io
+      - https://sighup.io

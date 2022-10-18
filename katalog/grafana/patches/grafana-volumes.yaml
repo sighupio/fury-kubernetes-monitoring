@@ -1,0 +1,51 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+        - name: grafana
+          volumeMounts:
+            - mountPath: /etc/grafana
+              name: grafana-config
+              readOnly: false
+            - mountPath: /grafana-dashboard-definitions/0
+              name: grafana-dashboards
+            - mountPath: /etc/grafana/provisioning/dashboards
+              name: grafana-dashboards-provisioning
+              readOnly: false
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-datasources-provisioning
+              readOnly: false
+            - mountPath: /var/lib/grafana
+              name: grafana-storage
+              readOnly: false
+            - mountPath: /tmp
+              name: tmp-plugins
+              readOnly: false
+            - $patch: replace
+      volumes:
+        - name: grafana-config
+          secret:
+            secretName: grafana-config
+        - name: grafana-dashboards
+          emptyDir: {}
+        - name: grafana-dashboards-provisioning
+          configMap:
+            name: grafana-dashboards
+        - name: grafana-datasources-provisioning
+          emptyDir: {}
+        - name: grafana-storage
+          emptyDir:
+            medium: Memory
+        - name: tmp-plugins
+          emptyDir:
+            medium: Memory
+        - $patch: replace

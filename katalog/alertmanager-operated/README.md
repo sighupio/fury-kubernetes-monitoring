@@ -19,8 +19,8 @@ with this package.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 ## Configuration
@@ -36,8 +36,7 @@ Fury distribution Alertmanager is deployed with the following configuration:
 Before deploying this, please take a look at how to configure the alertmanager [the
 right way][example-2].
 
-You can deploy Alertmanager by running the following command in the root of the
-project:
+You can deploy Alertmanager by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -
@@ -61,8 +60,8 @@ Links
 
 [am-gh]: https://github.com/prometheus/alertmanager
 [am-doc]: https://prometheus.io/docs/alerting/alertmanager
-[example]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/prometheus-alertmanager-externalUrl
-[example-2]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/alertmanger-configuration
+[example]: ../../examples/prometheus-alertmanager-externalUrl
+[example-2]: ../../examples/alertmanager-configuration
 
 <!-- </KFD-DOCS> -->
 

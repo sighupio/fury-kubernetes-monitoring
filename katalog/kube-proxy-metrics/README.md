@@ -1,24 +1,24 @@
-# kube-proxy exporter
+# kube-proxy Metrics Exporter
 
 <!-- <KFD-DOCS> -->
 
-It is highly recommended gathering metrics from kube-proxy as it is a critical
-piece of any Kubernetes Cluster. Sometimes (especially in managed clusters) it
-is not possible to configure kube-proxy to expose metrics, this is why this
-package exists. Another reason to run this exporter instead of just exposing
-metrics from kube-proxy is the ability to run it independently of the
-environment, on-premise installed by kubeadm or a managed Kubernetes Cluster.
+kube-proxy is a critical piece of any Kubernetes cluster, therefore it is highly
+recommended to gather its metrics. Sometimes (especially in managed clusters) it
+is not possible to configure kube-proxy to be reachable by Prometheus for
+metrics scraping, this is why this package exists. Furthermore, this package
+also adds an authorization layer based on Kubernetes RBAC to the metrics exposed
+by kube-proxy.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize = `v3.3.X`
+- Kubernetes >= `1.21.0`
+- Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.11.0`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.12.0`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 
@@ -35,8 +35,7 @@ Fury distribution kube-proxy-metrics is deployed with the following configuratio
 
 ## Deployment
 
-You can deploy kube-proxy-metrics by running the following command in the root of
-the project:
+You can deploy kube-proxy-metrics by running the following command:
 
 ```shell
 kustomize build | kubectl apply -f -

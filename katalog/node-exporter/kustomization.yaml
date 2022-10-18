@@ -8,7 +8,6 @@ kind: Kustomization
 
 namespace: monitoring
 
-
 images:
   - name: alpine
     newName: registry.sighup.io/fury/alpine
@@ -18,11 +17,61 @@ images:
     newTag: v1.3.1
   - name: quay.io/coreos/kube-rbac-proxy
     newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
-    newTag: v0.11.0
+    newTag: v0.12.0
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: DaemonSet
+  metadata:
+    name: node-exporter
+    namespace: monitoring
+  spec:
+    template:
+      spec:
+        initContainers:
+          - name: machine-id
+            image: alpine
+            command: ['/bin/sh', '-c']
+            args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
+            volumeMounts:
+              - name: textfile-collector
+                mountPath: /var/lib/node_exporter
+              - name: root
+                mountPath: /host/root
+                readOnly: true
+        volumes:
+        - name: textfile-collector
+          emptyDir:
+            medium: Memory
+
+patchesJSON6902:
+  - target:
+      group: monitoring.coreos.com
+      version: v1
+      kind: PrometheusRule
+      name: node-exporter-rules
+      namespace: monitoring
+    patch: |-
+      - op: add
+        path: /spec/groups/0/rules/-
+        value:
+          alert: NodeMachineIDCollision
+          annotations:
+            description: 'Machine ID {{ $labels.id }} is duplicated among {{ $value }} nodes.'
+            summary: Machine ID collision.
+          expr: |
+            count by (id) (systemd_machine_id) > 1
+          for: 5m
+          labels:
+            severity: critical
 
 resources:
   - dashboards
-  - deploy.yml
-  - sm.yml
-  - rbac.yml
-  - rules.yml
+  - clusterRole.yaml
+  - clusterRoleBinding.yaml
+  - daemonset.yaml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml

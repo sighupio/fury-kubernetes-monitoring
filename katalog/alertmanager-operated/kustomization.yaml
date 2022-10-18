@@ -8,13 +8,26 @@ kind: Kustomization
 
 namespace: monitoring
 
+patchesStrategicMerge:
+- |-
+  apiVersion: monitoring.coreos.com/v1
+  kind: Alertmanager
+  metadata:
+    name: main
+    namespace: monitoring
+  spec:
+    alertmanagerConfigSelector: {}
+    image: registry.sighup.io/fury/prometheus/alertmanager:v0.24.0
+    replicas: 1
+
 resources:
-  - deploy.yml
-  - rbac.yml
-  - sm.yml
-  - rules.yml
-  - pdb.yml
   - dashboards
+  - alertmanager.yaml
+  - alertmanagerconfig.yml
+  - prometheusRule.yaml
+  - service.yaml
+  - serviceAccount.yaml
+  - serviceMonitor.yaml
 
 generatorOptions:
  disableNameSuffixHash: true
@@ -23,5 +36,5 @@ secretGenerator:
 - name: alertmanager-main
   namespace: monitoring
   files:
-    - alertmanager.yaml=alertmanager.yaml
-    - alertmanager.tmpl=alertmanager.tmpl
+    - alertmanager.yaml=config/alertmanager.yaml
+    - alertmanager.tmpl=config/alertmanager.tmpl

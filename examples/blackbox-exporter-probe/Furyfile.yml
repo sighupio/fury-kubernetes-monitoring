@@ -1,0 +1,13 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+bases:
+  - name: monitoring/alertmanager-operated
+    version: v2.0.0
+  - name: monitoring/blackbox-exporter
+    version: v2.0.0
+  - name: monitoring/prometheus-operated
+    version: v2.0.0
+  - name: monitoring/prometheus-operator
+    version: v2.0.0

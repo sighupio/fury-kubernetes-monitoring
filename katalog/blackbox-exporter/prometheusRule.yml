@@ -1,0 +1,23 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    role: alert-rules
+  name: blackbox-exporter-rules
+  namespace: monitoring
+spec:
+  groups:
+  - name: blackbox-exporter.rules
+    rules:
+    - alert: ProbeFailure
+      annotations:
+        description: "Probe on endpoint {{ $labels.instance }} failed."
+        summary: Probe failure
+      expr: probe_success == 0
+      for: 10m
+      labels:
+        severity: warning

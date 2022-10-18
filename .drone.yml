@@ -32,7 +32,6 @@ steps:
       VALIDATE_KUBERNETES_KUBEVAL: "false"
       # We use a lot of copy paste in our code, is intended. So it important to don't use this linter
       VALIDATE_JSCPD: "false"
-      VALIDATE_YAML: "false"
       VALIDATE_TERRAFORM_TFLINT: "false"
       # hadolint already validated dockerfiles
       VALIDATE_DOCKERFILE: "false"
@@ -41,22 +40,26 @@ steps:
       - clone
 
   - name: render
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.20.7_3.8.7_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.21.12_3.8.7_4.21.1
     pull: always
     depends_on:
       - clone
     commands:
+      - kustomize build katalog/aks-sm > aks-sm.yml
       - kustomize build katalog/alertmanager-operated > alertmanager-operated.yml
-      - kustomize build katalog/goldpinger > goldpinger.yml
+      - kustomize build katalog/blackbox-exporter > blackbox-exporter.yml
+      - kustomize build katalog/eks-sm > eks-sm.yml
+      - kustomize build katalog/gke-sm > gke-sm.yml
       - kustomize build katalog/grafana > grafana.yml
       - kustomize build katalog/kube-proxy-metrics > kube-proxy-metrics.yml
       - kustomize build katalog/kube-state-metrics > kube-state-metrics.yml
       - kustomize build katalog/kubeadm-sm > kubeadm-sm.yml
-      - kustomize build katalog/metrics-server > metrics-server.yml
       - kustomize build katalog/node-exporter > node-exporter.yml
+      - kustomize build katalog/prometheus-adapter > prometheus-adapter.yml
       - kustomize build katalog/prometheus-operated > prometheus-operated.yml
       - kustomize build katalog/prometheus-operator > prometheus-operator.yml
       - kustomize build katalog/thanos/thanos > thanos.yml
+      - kustomize build katalog/x509-exporter > x509-exporter.yml
 
   - &deprek8ion
     name: deprek8ion-alertmanager-operated
@@ -70,9 +73,24 @@ steps:
       - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
 
   - <<: *deprek8ion
-    name: deprek8ion-goldpinger
+    name: deprek8ion-aks-sm
     environment:
-      KUBERNETES_MANIFESTS: goldpinger.yml
+      KUBERNETES_MANIFESTS: aks-sm.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-blackbox-exportera
+    environment:
+      KUBERNETES_MANIFESTS: blackbox-exporter.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-eks-sm
+    environment:
+      KUBERNETES_MANIFESTS: eks-sm.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-gke-sm
+    environment:
+      KUBERNETES_MANIFESTS: gke-sm.yml
 
   - <<: *deprek8ion
     name: deprek8ion-grafana
@@ -95,14 +113,14 @@ steps:
       KUBERNETES_MANIFESTS: kubeadm-sm.yml
 
   - <<: *deprek8ion
-    name: deprek8ion-metrics-server
-    environment:
-      KUBERNETES_MANIFESTS: metrics-server.yml
-
-  - <<: *deprek8ion
     name: deprek8ion-node-exporter
     environment:
       KUBERNETES_MANIFESTS: node-exporter.yml
+
+  - <<: *deprek8ion
+    name: deprek8ion-prometheus-adapter
+    environment:
+      KUBERNETES_MANIFESTS: prometheus-adapter.yml
 
   - <<: *deprek8ion
     name: deprek8ion-prometheus-operated
@@ -119,6 +137,11 @@ steps:
     environment:
       KUBERNETES_MANIFESTS: thanos.yml
 
+  - <<: *deprek8ion
+    name: deprek8ion-x509-exporter
+    environment:
+      KUBERNETES_MANIFESTS: x509-exporter.yml
+
 ---
 kind: pipeline
 name: check-prometheus-rules
@@ -132,7 +155,7 @@ platform:
 
 steps:
   - name: prom-rules
-    image: quay.io/sighup/prom-rules:3.11_v0.2.2_2.16.0_2.3.0
+    image: quay.io/sighup/prom-rules:3.16_2.36.1_4.27.2
     pull: always
     depends_on: [clone]
     commands:
@@ -166,104 +189,6 @@ steps:
 
 ---
 kind: pipeline
-name: e2e-kubernetes-1.20
-
-depends_on:
-  - policeman
-
-platform:
-  os: linux
-  arch: amd64
-
-node:
-  runner: internal
-
-trigger:
-  ref:
-    include:
-      - refs/heads/master
-      - refs/tags/**
-
-steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
-    pull: always
-    volumes:
-      - name: shared
-        path: /shared
-    depends_on: [clone]
-    settings:
-      action: custom-cluster-120
-      cluster_version: '1.20.7'
-      local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-120
-      instance_path: /shared
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-
-  - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.20.7_3.8.7_2.4.1
-    pull: always
-    volumes:
-      - name: shared
-        path: /shared
-    depends_on: [init]
-    commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-120
-      - bats -t katalog/tests/tests.sh
-      - bats -t katalog/tests/grafana-ldap.sh
-
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
-    pull: always
-    depends_on: [e2e]
-    settings:
-      action: destroy
-      pipeline_id: cluster-120
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-    when:
-      status:
-        - success
-        - failure
-
-volumes:
-  - name: shared
-    temp: {}
----
-kind: pipeline
 name: e2e-kubernetes-1.21
 
 depends_on:
@@ -284,7 +209,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     volumes:
       - name: shared
@@ -292,7 +217,7 @@ steps:
     depends_on: [clone]
     settings:
       action: custom-cluster-121
-      cluster_version: '1.21.1'
+      cluster_version: '1.21.12'
       local_kind_config_path: katalog/tests/kind-config.yml
       pipeline_id: cluster-121
       instance_path: /shared
@@ -316,7 +241,7 @@ steps:
         from_secret: dockerhub_password
 
   - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.21.1_3.8.7_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.21.12_3.8.7_4.21.1
     pull: always
     volumes:
       - name: shared
@@ -328,7 +253,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -383,7 +308,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     volumes:
       - name: shared
@@ -391,7 +316,7 @@ steps:
     depends_on: [clone]
     settings:
       action: custom-cluster-122
-      cluster_version: '1.22.0'
+      cluster_version: '1.22.9'
       local_kind_config_path: katalog/tests/kind-config.yml
       pipeline_id: cluster-122
       instance_path: /shared
@@ -415,7 +340,7 @@ steps:
         from_secret: dockerhub_password
 
   - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.22.0_3.8.7_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.22.9_3.8.7_4.21.1
     pull: always
     volumes:
       - name: shared
@@ -427,7 +352,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -482,7 +407,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     volumes:
       - name: shared
@@ -490,7 +415,7 @@ steps:
     depends_on: [clone]
     settings:
       action: custom-cluster-123
-      cluster_version: '1.23.0'
+      cluster_version: '1.23.6'
       local_kind_config_path: katalog/tests/kind-config.yml
       pipeline_id: cluster-123
       instance_path: /shared
@@ -514,7 +439,7 @@ steps:
         from_secret: dockerhub_password
 
   - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.23.0_3.8.7_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.23.6_3.8.7_4.21.1
     pull: always
     volumes:
       - name: shared
@@ -526,7 +451,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
     pull: always
     depends_on: [e2e]
     settings:
@@ -561,14 +486,112 @@ volumes:
 
 ---
 kind: pipeline
+name: e2e-kubernetes-1.24
+
+depends_on:
+  - policeman
+
+platform:
+  os: linux
+  arch: amd64
+
+node:
+  runner: internal
+
+trigger:
+  ref:
+    include:
+      - refs/heads/master
+      - refs/tags/**
+
+steps:
+  - name: init
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [clone]
+    settings:
+      action: custom-cluster-124
+      cluster_version: '1.24.0'
+      local_kind_config_path: katalog/tests/kind-config.yml
+      pipeline_id: cluster-123
+      instance_path: /shared
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+
+  - name: e2e
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.24.0_3.8.7_4.21.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [init]
+    commands:
+      - export KUBECONFIG=/shared/kube/kubeconfig-124
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
+
+  - name: destroy
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    depends_on: [e2e]
+    settings:
+      action: destroy
+      pipeline_id: cluster-124
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+    when:
+      status:
+        - success
+        - failure
+
+volumes:
+  - name: shared
+    temp: {}
+---
+kind: pipeline
 type: docker
 name: release
 
 depends_on:
-  - e2e-kubernetes-1.20
   - e2e-kubernetes-1.21
   - e2e-kubernetes-1.22
   - e2e-kubernetes-1.23
+  - e2e-kubernetes-1.24
 
 platform:
   os: linux

@@ -1,40 +1,27 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
----
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: kube-scheduler
+    app.kubernetes.io/name: kube-scheduler
+    app.kubernetes.io/part-of: kube-prometheus
   name: kube-scheduler
+  namespace: monitoring
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     interval: 30s
-    port: metrics
+    port: https-metrics
     scheme: https
     tlsConfig:
       insecureSkipVerify: true
-  jobLabel: k8s-app
+  jobLabel: app.kubernetes.io/name
   namespaceSelector:
     matchNames:
     - kube-system
   selector:
     matchLabels:
-      k8s-app: kube-scheduler
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    k8s-app: kube-scheduler
-  name: kube-scheduler
-spec:
-  ports:
-  - name: metrics
-    port: 10259
-    protocol: TCP
-  selector:
-    component: kube-scheduler
+      app.kubernetes.io/name: kube-scheduler

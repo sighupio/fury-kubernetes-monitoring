@@ -1,0 +1,42 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  template:
+    spec:
+      containers:
+        - name: dashboard-sidecar
+          image: kiwigrid/k8s-sidecar
+          env:
+            - name: LABEL
+              value: "grafana-sighup-dashboard"
+            - name: FOLDER
+              value: /tmp/dashboards
+            - name: RESOURCE
+              # configmap and secret
+              value: both
+            - name: NAMESPACE
+              value: "ALL"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+              - name: grafana-dashboards
+                mountPath: /tmp/dashboards

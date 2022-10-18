@@ -14,7 +14,7 @@ load ./helper
 @test "Wait for Grafana instance" {
     info
     test(){
-        status=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath="{.items[*].status.phase}")
+        status=$(kubectl get pods -n monitoring -l app.kubernetes.io/name=grafana -o jsonpath="{.items[*].status.phase}")
         if [ "${status}" != "Running" ]; then return 1; fi
     }
     loop_it test 30 2
@@ -62,7 +62,7 @@ load ./helper
 @test "Wait for Grafana instance restart" {
     info
     test(){
-        status=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath="{.items[*].status.phase}")
+        status=$(kubectl get pods -n monitoring -l app.kubernetes.io/name=grafana -o jsonpath="{.items[*].status.phase}")
         if [ "${status}" != "Running" ]; then return 1; fi
     }
     loop_it test 30 2
@@ -73,7 +73,7 @@ load ./helper
 @test "Test Angel LDAP user in Grafana" {
     info
     test(){
-        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
+        grafana_pod=$(kubectl get pods -n monitoring -l app.kubernetes.io/name=grafana -o jsonpath='{.items[*].metadata.name}')
         user_info=$(kubectl -n monitoring exec -it "${grafana_pod}" -- wget -qO- http://angel:angel@localhost:3000/api/user)
         isGrafanaAdmin=$(echo "${user_info}" | jq -r .isGrafanaAdmin)
         if [ "${isGrafanaAdmin}" != "false" ]; then return 1; fi
@@ -85,7 +85,7 @@ load ./helper
 @test "Test Jacopo LDAP user in Grafana" {
     info
     test(){
-        grafana_pod=$(kubectl get pods -n monitoring -l app=grafana -o jsonpath='{.items[*].metadata.name}')
+        grafana_pod=$(kubectl get pods -n monitoring -l app.kubernetes.io/name=grafana -o jsonpath='{.items[*].metadata.name}')
         user_info=$(kubectl -n monitoring exec -it "${grafana_pod}" -- wget -qO- http://jacopo:admin@localhost:3000/api/user)
         isGrafanaAdmin=$(echo "${user_info}" | jq -r .isGrafanaAdmin)
         if [ "${isGrafanaAdmin}" != "true" ]; then return 1; fi
