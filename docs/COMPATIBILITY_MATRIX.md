@@ -26,6 +26,7 @@
 | v1.14.0                             |                    |                    |                    |                    |                    |                    |        :x:         |        :x:         |        :x:         |    :x:    |
 | v1.14.1                             |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
 | v1.14.2                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v1.14.3                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
