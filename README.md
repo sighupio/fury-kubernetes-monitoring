@@ -3,7 +3,7 @@
     Kubernetes Fury Monitoring
 </h1>
 
-![Release](https://img.shields.io/badge/Latest%20Release-v1.14.2-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v1.14.3-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-monitoring?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -101,19 +101,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
     - name: monitoring/prometheus-operator
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/prometheus-operated
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/alertmanager-operated
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/node-exporter
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/kube-state-metrics
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/grafana
-      version: v1.14.2
+      version: v1.14.3
     - name: monitoring/goldpinger
-      version: v1.14.2
+      version: v1.14.3
 ```
 
 Along with the primary components, include one of the following components,
@@ -124,7 +124,7 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/eks-sm
-    version: v1.14.2
+    version: v1.14.3
 ```
 
 - ServiceMonitor for Azure AKS cluster
@@ -132,7 +132,7 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/aks-sm
-    version: v1.14.2
+    version: v1.14.3
 ```
 
 - ServiceMonitor for GCP GKE cluster
@@ -140,7 +140,7 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/gke-sm
-    version: v1.14.2
+    version: v1.14.3
 ```
 
 - ServiceMonitor for OVH cluster
@@ -148,7 +148,7 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/ovh-sm
-    version: v1.14.2
+    version: v1.14.3
 ```
 
 - ServiceMonitor for on-premises and for self-managed cluster
@@ -156,7 +156,7 @@ based on the cloud provider for service monitoring:
 ```yaml
   ...
   - name: monitoring/kubeadm-sm
-    version: v1.14.2
+    version: v1.14.3
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
