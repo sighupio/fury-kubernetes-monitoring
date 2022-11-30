@@ -11,7 +11,7 @@ metadata:
   name: kube-controller-manager
 spec:
   ports:
-  - name: metrics
+  - name: https-metrics
     port: 10257
     protocol: TCP
   selector:
