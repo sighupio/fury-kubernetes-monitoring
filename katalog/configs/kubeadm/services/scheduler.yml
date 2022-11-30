@@ -11,7 +11,7 @@ metadata:
   name: kube-scheduler
 spec:
   ports:
-  - name: metrics
+  - name: https-metrics
     port: 10259
     protocol: TCP
   selector:
