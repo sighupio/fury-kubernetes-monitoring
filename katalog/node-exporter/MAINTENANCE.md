@@ -16,3 +16,12 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 3. Sync the new image to our registry in the [`monitoring` images.yaml file fury-distribution-container-image-sync repository](https://github.com/sighupio/fury-distribution-container-image-sync/blob/main/modules/monitoring/images.yml).
 
 4. Update the `kustomization.yaml` file with the new image.
+
+## Customizations
+
+We added the `GOMAXPROCS=1` environment variable to limit the go rutines to 1 processor because node-exporter was getting throttled hard by Kubernetes when using all the host CPUs.
+
+This change will also be included in upstream later and then can be deleted. See:
+
+- <https://github.com/sighupio/fury-kubernetes-monitoring/issues/106>
+- <https://github.com/prometheus/node_exporter/pull/2530>
