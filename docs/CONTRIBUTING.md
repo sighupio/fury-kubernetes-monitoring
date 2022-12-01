@@ -72,7 +72,7 @@ patch release):
 ```bash
 $ make bump-patch
 Making a patch tag
-$ git push --tags origin master
+$ git push --tags origin main
 # This should trigger the drone pipeline to publish the new release with the release notes from the file created.
 ```
 
