@@ -19,7 +19,7 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 
 ## Customizations
 
-We added the `GOMAXPROCS=1` environment variable to limit the go rutines to 1 processor because node-exporter was getting throttled hard by Kubernetes when using all the host CPUs. The patch is done in the `kustomization.yaml` file.
+We added the `GOMAXPROCS=1` environment variable to limit the goroutines to 1 processor because node-exporter was getting hard throttled by Kubernetes when using all the host CPUs. The patch is done in the `kustomization.yaml` file.
 
 This change will also be included in upstream later and then can be deleted. See:
 
