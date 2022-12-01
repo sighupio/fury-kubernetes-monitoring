@@ -1,4 +1,4 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -20,30 +20,35 @@ images:
     newTag: v0.12.0
 
 patchesStrategicMerge:
-- |-
-  apiVersion: apps/v1
-  kind: DaemonSet
-  metadata:
-    name: node-exporter
-    namespace: monitoring
-  spec:
-    template:
-      spec:
-        initContainers:
-          - name: machine-id
-            image: alpine
-            command: ['/bin/sh', '-c']
-            args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
-            volumeMounts:
-              - name: textfile-collector
-                mountPath: /var/lib/node_exporter
-              - name: root
-                mountPath: /host/root
-                readOnly: true
-        volumes:
-        - name: textfile-collector
-          emptyDir:
-            medium: Memory
+  - |-
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      name: node-exporter
+      namespace: monitoring
+    spec:
+      template:
+        spec:
+          initContainers:
+            - name: machine-id
+              image: alpine
+              command: ['/bin/sh', '-c']
+              args: ['echo systemd_machine_id{id=\"$(cat /host/root/etc/machine-id)\"} 1 > /var/lib/node_exporter/machine_id.prom']
+              volumeMounts:
+                - name: textfile-collector
+                  mountPath: /var/lib/node_exporter
+                - name: root
+                  mountPath: /host/root
+                  readOnly: true
+          containers:
+            - name: node-exporter
+              env:
+                - name: "GOMAXPROCS"
+                  value: "1"
+          volumes:
+          - name: textfile-collector
+            emptyDir:
+              medium: Memory
 
 patchesJSON6902:
   - target:
