@@ -220,7 +220,7 @@ go to [examples](examples) directory.
 [alertmanager-link]: https://github.com/prometheus/alertmanager
 [servicemonitor-link]: https://github.com/prometheus-operator/prometheus-operator#customresourcedefinitions
 [grafana-link]: https://grafana.com/
-[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-monitoring/blob/master/docs/COMPATIBILITY_MATRIX.md
+[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-monitoring/blob/main/docs/COMPATIBILITY_MATRIX.md
 [kfd-repo]: https://github.com/sighupio/fury-distribution
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
