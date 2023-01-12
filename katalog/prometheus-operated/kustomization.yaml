@@ -41,7 +41,6 @@ patchesJSON6902:
       version: v1
       kind: ClusterRole
       name: prometheus-k8s
-      namespace: monitoring
     patch: |-
       - op: add
         path: /rules/-
