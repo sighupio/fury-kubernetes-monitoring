@@ -8,15 +8,15 @@ enabled by default from the project's [repository][ne-gh]
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
+- Kubernetes >= `1.23.0`
 - Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 
 ## Image repository and tag
 
-* node-exporter image: `registry.sighup.io/fury/prometheus/node-exporter:v1.3.1`
+* node-exporter image: `registry.sighup.io/fury/prometheus/node-exporter:v1.5.0`
 * node-exporter repository: [Node-Exporter on Github][ne-gh]
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.12.0`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.14.0`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration
