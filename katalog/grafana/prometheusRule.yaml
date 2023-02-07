@@ -20,7 +20,7 @@ spec:
     rules:
     - alert: GrafanaRequestsFailing
       annotations:
-        message: '{{ $labels.namespace }}/{{ $labels.job }}/{{ $labels.handler }}
+        description: '{{ $labels.namespace }}/{{ $labels.job }}/{{ $labels.handler }}
           is experiencing {{ $value | humanize }}% errors'
         runbook_url: https://runbooks.prometheus-operator.dev/runbooks/grafana/grafanarequestsfailing
       expr: |
