@@ -56,7 +56,7 @@ license-requirements: check-docker
 
 ## add-license: Add license headers in all files in the project
 add-license: license-requirements
-	@docker run --rm -v ${PWD}:/src -w /src ${PROJECTNAME}:local-license-requirements addlicense -c "SIGHUP s.r.l" -v -l bsd .
+	@docker run --rm -v ${PWD}:/src -w /src ${PROJECTNAME}:local-license-requirements addlicense -c "SIGHUP s.r.l" -v -l bsd -y "2017-present" .
 	@$(MAKE) clean-license-requirements
 
 ## check-license: Check license headers are in-place in all files in the project
