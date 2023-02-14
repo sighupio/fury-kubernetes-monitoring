@@ -1,7 +1,3 @@
-# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
 apiVersion: v1
 data:
   config.yaml: |-
@@ -68,6 +64,6 @@ metadata:
     app.kubernetes.io/component: metrics-adapter
     app.kubernetes.io/name: prometheus-adapter
     app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 0.9.1
+    app.kubernetes.io/version: 0.10.0
   name: adapter-config
   namespace: monitoring

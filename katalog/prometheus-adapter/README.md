@@ -14,14 +14,14 @@ It can also replace the [metrics server](https://github.com/kubernetes-incubator
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
+- Kubernetes >= `1.24.0`
 - Kustomize `= v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 - [prometheus-operated](../prometheus-operated)
 
 ## Image repository and tag
 
-- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.9.1`
+- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.10.0`
 - Prometheus adapter repository: [Prometheus adapter on GitHub][pa-gh]
 
 ## Configuration

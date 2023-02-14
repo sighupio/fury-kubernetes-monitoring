@@ -7,9 +7,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 images:
-  - name: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.9.1
+  - name: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.10.0
     newName: registry.sighup.io/fury/prometheus-adapter/prometheus-adapter
-    newTag: v0.9.1
+    newTag: v0.10.0
 
 patchesStrategicMerge:
 - |-
