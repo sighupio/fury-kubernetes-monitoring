@@ -12,7 +12,7 @@ steps:
     pull: always
     commands:
       - go get -u github.com/google/addlicense
-      - addlicense -c "SIGHUP s.r.l" -v -l bsd -y "2017-present" --check .
+      - addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
 ---
 name: policeman
 kind: pipeline
@@ -201,12 +201,12 @@ type: docker
 depends_on:
   - policeman
 
+node:
+  runner: internal
+
 platform:
   os: linux
   arch: amd64
-
-node:
-  runner: internal
 
 trigger:
   ref:
