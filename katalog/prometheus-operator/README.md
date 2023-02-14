@@ -39,14 +39,14 @@ illustrated in this image from Prometheus Operator repository:
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
+- Kubernetes >= `1.23.0`
 - Kustomize = `v3.5.3`
 
 ## Image repository and tag
 
-* Prometheus Operator image: `registry.sighup.io/prometheus-operator/prometheus-operator:v0.57.1`
+* Prometheus Operator image: `registry.sighup.io/prometheus-operator/prometheus-operator:v0.62.0`
 * Prometheus Operator repository: [Prometheus Operator on Github][prom-op-github]
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.12.0`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.14.0`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration
