@@ -1,12 +1,8 @@
-# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
-# Use of this source code is governed by a BSD-style
-# license that can be found in the LICENSE file.
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
   name: probes.monitoring.coreos.com
 spec:
@@ -65,6 +61,7 @@ spec:
                     required:
                     - key
                     type: object
+                    x-kubernetes-map-type: atomic
                   type:
                     description: Set the authentication type. Defaults to Bearer,
                       Basic will cause an error
@@ -93,6 +90,7 @@ spec:
                     required:
                     - key
                     type: object
+                    x-kubernetes-map-type: atomic
                   username:
                     description: The secret in the service monitor namespace that
                       contains the username for authentication.
@@ -112,6 +110,7 @@ spec:
                     required:
                     - key
                     type: object
+                    x-kubernetes-map-type: atomic
                 type: object
               bearerTokenSecret:
                 description: Secret to mount to read bearer token for scraping targets.
@@ -132,6 +131,7 @@ spec:
                 required:
                 - key
                 type: object
+                x-kubernetes-map-type: atomic
               interval:
                 description: Interval at which targets are probed using the configured
                   prober. If not specified Prometheus' global scrape interval is used.
@@ -167,15 +167,27 @@ spec:
                     action:
                       default: replace
                       description: Action to perform based on regex matching. Default
-                        is 'replace'
+                        is 'replace'. uppercase and lowercase actions require Prometheus
+                        >= 2.36.
                       enum:
                       - replace
+                      - Replace
                       - keep
+                      - Keep
                       - drop
+                      - Drop
                       - hashmod
+                      - HashMod
                       - labelmap
+                      - LabelMap
                       - labeldrop
+                      - LabelDrop
                       - labelkeep
+                      - LabelKeep
+                      - lowercase
+                      - Lowercase
+                      - uppercase
+                      - Uppercase
                       type: string
                     modulus:
                       description: Modulus to take of the hash of the source label
@@ -243,6 +255,7 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                       secret:
                         description: Secret containing data to use for the targets.
                         properties:
@@ -261,6 +274,7 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   clientSecret:
                     description: The secret containing the OAuth2 client secret
@@ -280,6 +294,7 @@ spec:
                     required:
                     - key
                     type: object
+                    x-kubernetes-map-type: atomic
                   endpointParams:
                     additionalProperties:
                       type: string
@@ -305,6 +320,7 @@ spec:
                   left empty.
                 properties:
                   path:
+                    default: /probe
                     description: Path to collect metrics from. Defaults to `/probe`.
                     type: string
                   proxyUrl:
@@ -372,15 +388,27 @@ spec:
                             action:
                               default: replace
                               description: Action to perform based on regex matching.
-                                Default is 'replace'
+                                Default is 'replace'. uppercase and lowercase actions
+                                require Prometheus >= 2.36.
                               enum:
                               - replace
+                              - Replace
                               - keep
+                              - Keep
                               - drop
+                              - Drop
                               - hashmod
+                              - HashMod
                               - labelmap
+                              - LabelMap
                               - labeldrop
+                              - LabelDrop
                               - labelkeep
+                              - LabelKeep
+                              - lowercase
+                              - Lowercase
+                              - uppercase
+                              - Uppercase
                               type: string
                             modulus:
                               description: Modulus to take of the hash of the source
@@ -464,6 +492,7 @@ spec:
                               only "value". The requirements are ANDed.
                             type: object
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   staticConfig:
                     description: 'staticConfig defines the static list of targets
@@ -488,15 +517,27 @@ spec:
                             action:
                               default: replace
                               description: Action to perform based on regex matching.
-                                Default is 'replace'
+                                Default is 'replace'. uppercase and lowercase actions
+                                require Prometheus >= 2.36.
                               enum:
                               - replace
+                              - Replace
                               - keep
+                              - Keep
                               - drop
+                              - Drop
                               - hashmod
+                              - HashMod
                               - labelmap
+                              - LabelMap
                               - labeldrop
+                              - LabelDrop
                               - labelkeep
+                              - LabelKeep
+                              - lowercase
+                              - Lowercase
+                              - uppercase
+                              - Uppercase
                               type: string
                             modulus:
                               description: Modulus to take of the hash of the source
@@ -546,7 +587,8 @@ spec:
                 description: TLS configuration to use when scraping the endpoint.
                 properties:
                   ca:
-                    description: Struct containing the CA cert to use for the targets.
+                    description: Certificate authority used when verifying server
+                      certificates.
                     properties:
                       configMap:
                         description: ConfigMap containing data to use for the targets.
@@ -565,6 +607,7 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                       secret:
                         description: Secret containing data to use for the targets.
                         properties:
@@ -583,9 +626,10 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   cert:
-                    description: Struct containing the client cert file for the targets.
+                    description: Client certificate to present when doing client-authentication.
                     properties:
                       configMap:
                         description: ConfigMap containing data to use for the targets.
@@ -604,6 +648,7 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                       secret:
                         description: Secret containing data to use for the targets.
                         properties:
@@ -622,6 +667,7 @@ spec:
                         required:
                         - key
                         type: object
+                        x-kubernetes-map-type: atomic
                     type: object
                   insecureSkipVerify:
                     description: Disable target certificate validation.
@@ -644,6 +690,7 @@ spec:
                     required:
                     - key
                     type: object
+                    x-kubernetes-map-type: atomic
                   serverName:
                     description: Used to verify the hostname for the targets.
                     type: string
@@ -654,9 +701,3 @@ spec:
         type: object
     served: true
     storage: true
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []
