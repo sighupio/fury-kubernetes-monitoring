@@ -327,7 +327,7 @@ steps:
       action: custom-cluster-124
       cluster_version: '1.24.0'
       local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-123
+      pipeline_id: cluster-124
       instance_path: /shared
       aws_default_region:
         from_secret: aws_region
@@ -457,7 +457,7 @@ steps:
         path: /shared
     depends_on: [init]
     commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-124
+      - export KUBECONFIG=/shared/kube/kubeconfig-125
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
