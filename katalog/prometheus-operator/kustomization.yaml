@@ -1,8 +1,7 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -11,10 +10,10 @@ namespace: monitoring
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.57.0
+    newTag: v0.62.0
   - name: quay.io/brancz/kube-rbac-proxy
     newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
-    newTag: v0.12.0
+    newTag: v0.14.0
 
 patchesStrategicMerge:
 - |-
@@ -39,7 +38,7 @@ patchesJSON6902:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/args/1
-        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.57.0
+        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.62.0
 
 resources:
   - clusterRole.yaml

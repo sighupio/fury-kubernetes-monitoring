@@ -1,4 +1,4 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -16,7 +16,7 @@ patchesStrategicMerge:
     name: k8s
     namespace: monitoring
   spec:
-    image: registry.sighup.io/fury/prometheus/prometheus:v2.36.1
+    image: registry.sighup.io/fury/prometheus/prometheus:v2.41.0
     replicas: 1
     resources:
       requests:
