@@ -1,4 +1,4 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -17,7 +17,7 @@ patchesStrategicMerge:
     namespace: monitoring
   spec:
     alertmanagerConfigSelector: {}
-    image: registry.sighup.io/fury/prometheus/alertmanager:v0.24.0
+    image: registry.sighup.io/fury/prometheus/alertmanager:v0.25.0
     replicas: 1
 
 resources:
