@@ -46,8 +46,8 @@ Kubernetes Fury Monitoring provides the following packages:
 
 | Package                                                | Version  | Description                                                                                                 |
 |--------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------|
-| [prometheus-operator](katalog/prometheus-operator)     | `0.62.0` | Operator to deploy and manage Prometheus and related resources                                              |
-| [prometheus-operated](katalog/prometheus-operated)     | `2.41.0` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
+| [prometheus-operator](katalog/prometheus-operator)     | `0.57.0` | Operator to deploy and manage Prometheus and related resources                                              |
+| [prometheus-operated](katalog/prometheus-operated)     | `2.36.1` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
 | [alertmanager-operated](katalog/alertmanager-operated) | `0.24.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
 | [blackbox-exporter](katalog/blackbox-exporter)         | `0.24.0` | Prometheus exporter that allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.    |
 | [grafana](katalog/grafana)                             | `8.5.5`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
