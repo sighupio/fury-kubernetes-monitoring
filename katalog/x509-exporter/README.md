@@ -15,7 +15,7 @@ The original project is: [x509-certificate-exporter](https://github.com/enix/x50
 
 ## Image repository and tag
 
-* Certificate exporter image: `registry.sighup.io/fury/enix/x509-certificate-exporter:3.6.0`
+* Certificate exporter image: `registry.sighup.io/fury/enix/x509-certificate-exporter:3.2.0`
 
 ## Deployment
 

@@ -56,7 +56,7 @@ Kubernetes Fury Monitoring provides the following packages:
 | [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
 | [prometheus-adapter](katalog/prometheus-adapter)       | `0.9.1`  | Kubernetes resource metrics, custom metrics, and external metrics APIs implementation.                      |
 | [thanos](katalog/thanos)                               | `0.24.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
-| [x509-exporter](katalog/x509-exporter)                 | `3.6.0`  | Provides monitoring for certificates                                                                        |
+| [x509-exporter](katalog/x509-exporter)                 | `3.2.0`  | Provides monitoring for certificates                                                                        |
 
 ### Integration with cloud providers
 
