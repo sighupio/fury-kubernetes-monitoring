@@ -15,8 +15,8 @@ spec:
         matchType: "="
         value: DeadMansSwitch
     receiver: healthchecks
-    repeatInterval: 50s
-    groupWait: 0s
+    repeatInterval: 30s
+    groupWait: 1m
     groupInterval: 1m
   receivers:
     - name: healthchecks
