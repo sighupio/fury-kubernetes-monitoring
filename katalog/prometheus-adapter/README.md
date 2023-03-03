@@ -14,7 +14,7 @@ It can also replace the [metrics server](https://github.com/kubernetes-incubator
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
+- Kubernetes >= `1.24.0`
 - Kustomize `= v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 - [prometheus-operated](../prometheus-operated)
