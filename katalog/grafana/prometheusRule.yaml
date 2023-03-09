@@ -31,6 +31,15 @@ spec:
       for: 5m
       labels:
         severity: warning
+    - alert: GrafanaNotReady
+      annotations:
+        description: 'Grafana container is not ready.'
+        summary: Grafana container is not ready.
+      expr: |
+        kube_pod_container_status_ready{job="kube-state-metrics",container="grafana",namespace="monitoring"} == 0
+      for: 15m
+      labels:
+        severity: warning
   - name: grafana_rules
     rules:
     - expr: |
