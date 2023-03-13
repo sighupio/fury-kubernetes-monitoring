@@ -24,12 +24,14 @@ It can also aggregate alerts from multiple Alertmanager instances.
 
 Fury distribution Karma is deployed with the following
 configuration:
+
 - Alertmanager URI: `http://alertmanager-main.monitoring.svc.cluster.local:9093`
 - Polling interval: `1m`
 
-All configuration options can be found [here](https://github.com/prymitive/karma/blob/main/docs/CONFIGURATION.md)
+All configuration options can be found [here](https://github.com/prymitive/karma/blob/v0.113/docs/CONFIGURATION.md)
 
 ## Deployment
+
 You can deploy karma by running the following command:
 
 ```shell
