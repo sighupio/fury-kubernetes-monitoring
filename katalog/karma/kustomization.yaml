@@ -9,7 +9,7 @@ kind: Kustomization
 namespace: monitoring
 
 images:
-  - name: karma
+  - name: ghcr.io/prymitive/karma
     newName: registry.sighup.io/fury/prymitive/karma/karma
     newTag: v0.113
 
