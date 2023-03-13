@@ -10,7 +10,7 @@ namespace: monitoring
 
 images:
   - name: karma
-    newName: registry.sighup.io/fury/karma/karma
+    newName: registry.sighup.io/fury/prymitive/karma/karma
     newTag: v0.113
 
 resources:

@@ -17,7 +17,7 @@ It can also aggregate alerts from multiple Alertmanager instances.
 
 ## Image repository and tag
 
-- Karma image: `registry.sighup.io/fury/karma/karma:v0.113`
+- Karma image: `registry.sighup.io/fury/prymitive/karma/karma:v0.113`
 - Karma repository: [Karma on GitHub][k-gh]
 
 ## Configuration
