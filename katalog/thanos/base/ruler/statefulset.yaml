@@ -1,0 +1,134 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: thanos-ruler
+  namespace: "monitoring"
+  labels:
+    app.kubernetes.io/name: thanos
+    app.kubernetes.io/version: 0.30.0
+    app.kubernetes.io/component: ruler
+spec:
+  replicas: 1
+  podManagementPolicy: OrderedReady
+  serviceName: thanos-ruler-headless
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: thanos
+      app.kubernetes.io/version: 0.30.0
+      app.kubernetes.io/component: ruler
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: thanos
+        app.kubernetes.io/version: 0.30.0
+        app.kubernetes.io/component: ruler
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux     
+      serviceAccount: thanos-ruler
+      automountServiceAccountToken: true
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: thanos
+                    app.kubernetes.io/version: 0.30.0 
+                    app.kubernetes.io/component: ruler
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+      securityContext:
+        fsGroup: 1001
+      containers:
+        - name: thanos-ruler
+          image: thanos
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1001
+          args:
+            - rule
+            - --log.level=$(LOG_LEVEL)
+            - --log.format=logfmt
+            - --grpc-address=0.0.0.0:10901
+            - --http-address=0.0.0.0:10902
+            - --data-dir=/data
+            - --eval-interval=1m
+            - --alertmanagers.url=$(ALERTMANAGER_URL)
+            - --query=$(THANOS_QUERY_URL)
+            - --label=replica="$(POD_NAME)"
+            - --label=ruler_cluster=""
+            - --alert.label-drop=replica
+            - --objstore.config-file=/etc/thanos/objstore.yml
+            - --rule-file=/conf/rules/*.yml
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: LOG_LEVEL
+              value: "info"
+            - name: ALERTMANAGER_URL
+              value: "dns+http://alertmanager.monitoring"
+            # external URL for rendering inside alerts
+            - name: THANOS_QUERY_URL
+              value: "dnssrv+_http._tcp.thanos-query.monitoring.svc.cluster.local"
+          ports:
+            - name: http
+              containerPort: 10902
+              protocol: TCP
+            - name: grpc
+              containerPort: 10901
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 30
+            httpGet:
+              path: /-/healthy
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 30
+            httpGet:
+              path: /-/ready
+              port: http
+              scheme: HTTP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 200Mi
+            limits:
+              memory: 500Mi
+          volumeMounts:
+            - name: ruler-config
+              mountPath: /var/thanos/rules
+            - name: objstore-config
+              mountPath: /etc/thanos
+            - name: data
+              mountPath: /var/thanos/data
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: ruler-config
+          configMap:
+            name: thanos-ruler-configmap
+        - name: objstore-config
+          secret:
+            secretName: thanos-objstore-secret
