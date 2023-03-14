@@ -15,6 +15,9 @@ spec:
         matchType: "="
         value: DeadMansSwitch
     receiver: healthchecks
+    repeatInterval: 30s
+    groupWait: 1m
+    groupInterval: 1m
   receivers:
     - name: healthchecks
       webhookConfigs:
