@@ -33,9 +33,10 @@ spec:
             - secretRef:
                 name: minio-monitoring
           command:
-            - /bin/sh
+            - /bin/bash
             - -c
             - |
+              set -e
               mc --config-dir=/config config host add monitoring http://minio-monitoring.monitoring.svc.cluster.local:9000 ${ROOT_USER} ${ROOT_PASSWORD}
               mc --config-dir=/config mb -p monitoring/thanos
           volumeMounts:
