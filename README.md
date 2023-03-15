@@ -51,6 +51,7 @@ Kubernetes Fury Monitoring provides the following packages:
 | [alertmanager-operated](katalog/alertmanager-operated) | `0.24.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
 | [blackbox-exporter](katalog/blackbox-exporter)         | `0.24.0` | Prometheus exporter that allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.    |
 | [grafana](katalog/grafana)                             | `8.5.5`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
+| [karma](katalog/karma)                                 | `0.113`  | Karma deployment to visualize alerts sent by AlertManager                                   |
 | [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.12.0` | RBAC proxy to securely expose kube-proxy metrics                                                            |
 | [kube-state-metrics](katalog/kube-state-metrics)       | `2.5.0`  | Service that generates metrics from Kubernetes API objects                                                  |
 | [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
