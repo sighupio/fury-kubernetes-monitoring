@@ -80,6 +80,8 @@ spec:
               value: "dnssrv+_grpc._tcp.thanos-store.monitoring.svc.cluster.local"
             - name: THANOS_RULER_URL
               value: "dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local"
+            # - name: PROMETHEUS_URL
+            #   value: "http://prometheus-k8s.monitoring.svc:9090/"
           ports:
             - name: http
               containerPort: 10902

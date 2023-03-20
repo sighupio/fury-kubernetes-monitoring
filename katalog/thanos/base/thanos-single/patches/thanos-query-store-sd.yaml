@@ -1,0 +1,17 @@
+- op: add 
+  path: /spec/template/spec/volumes
+  value:
+    - name: thanos-target
+      configMap:
+        name: thanos-target
+
+- op: add
+  path: /spec/template/spec/containers/0/volumeMounts
+  value:
+    - name: thanos-target
+      mountPath: /etc/thanos/
+
+- op: add 
+  path: /spec/template/spec/containers/0/args/-
+  value: "--store.sd-files=/etc/thanos/store-sd.yaml"
+

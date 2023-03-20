@@ -20,6 +20,20 @@ resources:
   - ../components/storage
   - ../components/thanos-sidecar-service.yaml
 
+patchesJson6902:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: thanos-query
+      namespace: monitoring
+    path: patches/thanos-query-store-sd.yaml
+
+configMapGenerator:
+  - name: thanos-target
+    files: 
+      - config/store-sd.yaml
+
 patchesStrategicMerge:
 - |-
   apiVersion: monitoring.coreos.com/v1

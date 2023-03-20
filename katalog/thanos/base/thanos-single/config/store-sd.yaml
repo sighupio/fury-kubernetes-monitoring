@@ -1,0 +1,3 @@
+- targets:
+  - prometheus-k8s-0.prometheus-operated.monitoring:10901
+  - thanos-store.monitoring:10901
