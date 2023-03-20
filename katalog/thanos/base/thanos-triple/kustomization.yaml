@@ -1,4 +1,4 @@
-# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.components
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -9,27 +9,16 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - ../../prometheus-operator 
-  - ../../prometheus-operated
-  - ../base/minio-ha
-  # - ../base/alert-rules
-  - ../base/compactor
-  - ../base/query
-  # - ../base/query-frontend
-  - ../base/ruler
-  - ../base/storage
-  - resources/thanos-sidecar-service.yaml
-  # - resources/thanosRuler.yaml
-
-generatorOptions:
- disableNameSuffixHash: true
-
-secretGenerator:
-- name: thanos-objstore-secret
-  namespace: monitoring
-  files:
-    - objstore.yml=config/objstore.yml
-
+  - ../../../prometheus-operator 
+  - ../../../prometheus-operated
+  - ../components/alert-rules
+  - ../components/compactor
+  - ../components/query
+  - ../components/datasources
+  - ../components/query-frontend
+  - ../components/ruler
+  - ../components/storage
+  - ../components/thanos-sidecar-service.yaml
 
 patchesStrategicMerge:
 - |-

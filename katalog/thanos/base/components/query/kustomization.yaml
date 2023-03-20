@@ -13,9 +13,11 @@ resources:
   - services.yaml
   - deployment.yaml
   - servicemonitor.yaml
+  # - datasources
 
 # patches:
-#   - datasources
+  # - datasources/prometheus
+
 
 images:
   - name: thanos

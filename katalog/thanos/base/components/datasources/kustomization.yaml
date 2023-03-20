@@ -15,7 +15,6 @@ generatorOptions:
 
 
 secretGenerator:
- - name: grafana-datasource-prometheus
-   behavior: merge
+ - name: grafana-datasource-thanos
    files:
-     - prometheus.yaml
+     - thanos.yaml

@@ -1,3 +1,4 @@
+
 # Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
@@ -8,19 +9,13 @@ kind: Kustomization
 
 namespace: monitoring
 
-resources:
-  - ../base/alert-rules
-  - ../base/compactator
-  - ../base/query
-  # - ../base/query-frontend
-  - ../base/ruler
-  - ../base/storage
-
 generatorOptions:
  disableNameSuffixHash: true
 
+
+## MinIO PATCH PROMETHEUS
 secretGenerator:
 - name: thanos-objstore-secret
   namespace: monitoring
   files:
-    - objstore.yml=config/objstore.yml
+    - objstore.yml=objstore.yml

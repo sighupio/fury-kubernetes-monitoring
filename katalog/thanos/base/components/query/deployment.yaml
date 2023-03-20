@@ -77,7 +77,7 @@ spec:
               value: "info"
             # external URL for rendering inside alerts
             - name: THANOS_STORAGE_URL
-              value: "dnssrv+_grpc._tcp.thanos-storage.monitoring.svc.cluster.local"
+              value: "dnssrv+_grpc._tcp.thanos-store.monitoring.svc.cluster.local"
             - name: THANOS_RULER_URL
               value: "dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local"
           ports:
