@@ -6,49 +6,68 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: thanos-storage
+  name: thanos-store
   namespace: "monitoring"
   labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: storegateway
+    app.kubernetes.io/component: object-store-gateway
+    app.kubernetes.io/instance: thanos-store
+    app.kubernetes.io/name: thanos-store
+    app.kubernetes.io/version: v0.30.2
 spec:
   replicas: 1
   podManagementPolicy: OrderedReady
-  serviceName: RELEASE-NAME-thanos-storegateway-headless
+  serviceName: thanos-store
   updateStrategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: thanos
-      app.kubernetes.io/version: 0.30.0
-      app.kubernetes.io/component: storegateway
+      app.kubernetes.io/component: object-store-gateway
+      app.kubernetes.io/instance: thanos-store
+      app.kubernetes.io/name: thanos-store
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: thanos
-        app.kubernetes.io/version: 0.30.0
-        app.kubernetes.io/component: storegateway
+        app.kubernetes.io/component: object-store-gateway
+        app.kubernetes.io/instance: thanos-store
+        app.kubernetes.io/name: thanos-store
+        app.kubernetes.io/version: v0.30.2
     spec:
       nodeSelector:
         kubernetes.io/os: linux     
-      serviceAccount: thanos-storage
+      serviceAccount: thanos-store
       automountServiceAccountToken: true
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/name: thanos
-                    app.kubernetes.io/version: 0.30.0
-                    app.kubernetes.io/component: storegateway
-                topologyKey: kubernetes.io/hostname
-              weight: 1   
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - thanos-store
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values:
+                  - thanos-store
+              namespaces:
+              - thanos
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+        # podAntiAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - podAffinityTerm:
+        #         labelSelector:
+        #           matchLabels:
+        #             app.kubernetes.io/name: thanos
+        #             app.kubernetes.io/version: 0.30.0
+        #             app.kubernetes.io/component: storegateway
+        #         topologyKey: kubernetes.io/hostname
+        #       weight: 1   
       securityContext:
         fsGroup: 1001
       containers:
-        - name: thanos-storage
+        - name: thanos-store
           image: thanos
           imagePullPolicy: "IfNotPresent"
           securityContext:
@@ -115,9 +134,13 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: data
+        labels:
+          app.kubernetes.io/component: object-store-gateway
+          app.kubernetes.io/instance: thanos-store
+          app.kubernetes.io/name: thanos-store
       spec:
         accessModes:
           - "ReadWriteOnce"
         resources:
           requests:
-            storage: "8Gi"
+            storage: "10Gi"

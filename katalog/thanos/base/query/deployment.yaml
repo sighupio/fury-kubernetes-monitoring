@@ -9,24 +9,26 @@ metadata:
   name: thanos-query
   namespace: "monitoring"
   labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: query
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
+    app.kubernetes.io/version: v0.30.2
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: thanos
-      app.kubernetes.io/instance: RELEASE-NAME
-      app.kubernetes.io/component: query
+      app.kubernetes.io/component: query-layer
+      app.kubernetes.io/instance: thanos-query
+      app.kubernetes.io/name: thanos-query
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: thanos
-        app.kubernetes.io/version: 0.30.0
-        app.kubernetes.io/component: query
+        app.kubernetes.io/component: query-layer
+        app.kubernetes.io/instance: thanos-query
+        app.kubernetes.io/name: thanos-query
+        app.kubernetes.io/version: v0.30.2
     spec:
       serviceAccount: thanos-query
       automountServiceAccountToken: true
@@ -35,13 +37,17 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/name: thanos
-                    app.kubernetes.io/component: query
-                topologyKey: kubernetes.io/hostname
-              weight: 1
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - thanos-query
+              namespaces:
+              - monitoring
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       securityContext:
         fsGroup: 1001
       containers:
@@ -55,13 +61,25 @@ spec:
             runAsUser: 1001
           args:
             - query
-            - --log.level=info
+            - --log.level=$(LOG_LEVEL)
             - --log.format=logfmt
             - --grpc-address=0.0.0.0:10901
             - --http-address=0.0.0.0:10902
             - --query.replica-label=replica
-            - --endpoint=dnssrv+_grpc._tcp.thanos-storage.monitoring.svc.cluster.local
-            - --endpoint=dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local
+            - --endpoint=$(THANOS_STORAGE_URL)
+            - --endpoint=$(THANOS_RULER_URL)
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: LOG_LEVEL
+              value: "info"
+            # external URL for rendering inside alerts
+            - name: THANOS_STORAGE_URL
+              value: "dnssrv+_grpc._tcp.thanos-storage.monitoring.svc.cluster.local"
+            - name: THANOS_RULER_URL
+              value: "dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local"
           ports:
             - name: http
               containerPort: 10902
@@ -90,7 +108,8 @@ spec:
               port: http
               scheme: HTTP
           resources:
-            limits: {}
-            requests: {}
-          volumeMounts:
-      volumes:
+            requests:
+              cpu: 50m
+              memory: 500Mi
+            limits:
+              memory: 1000Mi

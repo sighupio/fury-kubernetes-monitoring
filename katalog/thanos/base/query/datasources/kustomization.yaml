@@ -13,7 +13,9 @@ generatorOptions:
     grafana-sighup-datasource: default
   disableNameSuffixHash: true
 
+
 secretGenerator:
-  - name: grafana-datasource-prometheus
-    files:
-      - prometheus.yaml
+ - name: grafana-datasource-prometheus
+   behavior: merge
+   files:
+     - prometheus.yaml

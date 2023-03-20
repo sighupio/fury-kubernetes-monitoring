@@ -3,18 +3,9 @@
 # license that can be found in the LICENSE file.
 
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: thanos-component-absent
-  namespace: "monitoring"
-  labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: v0.30.2
-spec:
-  groups:
-  - name: thanos-component-absent
-    rules:
+groups:
+- name: thanos-rule
+  rules:
     - alert: ThanosCompactIsDown
       annotations:
         description: ThanosCompact has disappeared. Prometheus target for the component cannot be discovered.

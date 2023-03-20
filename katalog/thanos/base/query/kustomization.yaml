@@ -9,13 +9,15 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - datasources
   - serviceaccount.yaml
   - services.yaml
   - deployment.yaml
   - servicemonitor.yaml
 
+# patches:
+#   - datasources
+
 images:
   - name: thanos
     newName: registry.sighup.io/fury/thanos
-    newTag: v0.30.0
+    newTag: v0.30.2

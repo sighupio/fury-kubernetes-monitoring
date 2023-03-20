@@ -13,22 +13,11 @@ resources:
   - service.yaml
   - servicemonitor.yaml
   - statefulset.yaml
+  - pvc.yaml
+  - config
 
 images:
   - name: thanos
     newName: registry.sighup.io/fury/thanos
-    newTag: v0.30.0
+    newTag: v0.30.2
 
-
-# configMapGenerator:
-  # description: application alerts handled by thanos-rule
-  # used-by: Thanos Rule
-  # - name: alerts
-  #   files:
-  #     - prometheus-alerts.yaml=prometheus-alerts.yaml
-  # description: Discovery config for TQ instances used to evaluate alert rules
-  # used-by: Thanos Rule
-  # - name: thanos-rule
-  #   files:
-  #     # - query-sd-configmap.yaml=configmap.yaml
-  #     - query-sd-configmap.yaml

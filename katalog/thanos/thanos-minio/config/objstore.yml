@@ -1,6 +1,7 @@
 type: S3
 config:
   bucket: thanos
-  endpoint: http://minio-monitoring.monitoring.svc.cluster.local:9000
+  endpoint: minio-monitoring.monitoring.svc.cluster.local:9000
+  insecure: true
   access_key: minio
   secret_key: minio123

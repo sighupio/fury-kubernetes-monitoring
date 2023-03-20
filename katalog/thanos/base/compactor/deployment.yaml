@@ -9,24 +9,26 @@ metadata:
   name: thanos-compactor
   namespace: "monitoring"
   labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: compactor
+    app.kubernetes.io/component: database-compactor
+    app.kubernetes.io/instance: thanos-compact
+    app.kubernetes.io/name: thanos-compact
+    app.kubernetes.io/version: v0.30.2
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: thanos
-      app.kubernetes.io/version: 0.30.0
-      app.kubernetes.io/component: compactor
+      app.kubernetes.io/component: database-compactor
+      app.kubernetes.io/instance: thanos-compact
+      app.kubernetes.io/name: thanos-compact
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: thanos
-        app.kubernetes.io/version: 0.30.0
-        app.kubernetes.io/component: compactor
+        app.kubernetes.io/component: database-compactor
+        app.kubernetes.io/instance: thanos-compact
+        app.kubernetes.io/name: thanos-compact
+        app.kubernetes.io/version: v0.30.2
     spec:
       serviceAccount: thanos-compactor
       automountServiceAccountToken: true
@@ -35,13 +37,30 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/name: thanos
-                    app.kubernetes.io/component: compactor
-                topologyKey: kubernetes.io/hostname
-              weight: 1
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - thanos-compact
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values:
+                  - thanos-compact
+              namespaces:
+              - thanos
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+        # podAntiAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - podAffinityTerm:
+        #         labelSelector:
+        #           matchLabels:
+        #             app.kubernetes.io/name: thanos
+        #             app.kubernetes.io/component: compactor
+        #         topologyKey: kubernetes.io/hostname
+        #       weight: 1
       securityContext:
         fsGroup: 1001
       containers:
@@ -97,7 +116,7 @@ spec:
           volumeMounts:
             - name: objstore-config
               mountPath: /etc/thanos
-            - name: data
+            - name: thanos-data
               mountPath: /var/thanos/compact
       volumes:
         - name: objstore-config
@@ -105,4 +124,4 @@ spec:
             secretName: thanos-objstore-secret
         - name: thanos-data
           persistentVolumeClaim:
-            claimName: thanos-data
+            claimName: thanos-compactor

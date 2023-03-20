@@ -9,10 +9,11 @@ metadata:
   name: thanos-query
   namespace: "monitoring"
   labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: query
-  annotations:
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
+    app.kubernetes.io/version: v0.30.2
+  annotations: {}
 spec:
   type: ClusterIP
   ports:
@@ -22,9 +23,9 @@ spec:
       name: http
       nodePort: null
   selector:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: query
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
 # ---
 # apiVersion: v1
 # kind: Service
@@ -46,9 +47,10 @@ metadata:
   name: thanos-query-grpc
   namespace: "monitoring"
   labels:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: query
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
+    app.kubernetes.io/version: v0.30.2
   annotations:
 spec:
   type: ClusterIP
@@ -59,6 +61,6 @@ spec:
       name: grpc
       nodePort: null
   selector:
-    app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
-    app.kubernetes.io/component: query
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query

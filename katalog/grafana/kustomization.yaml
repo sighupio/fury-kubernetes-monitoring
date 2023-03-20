@@ -25,7 +25,7 @@ patchesStrategicMerge:
 
 resources:
   - dashboards
-  - datasources
+  # - datasources
   - clusterRole.yaml
   - clusterRoleBinding.yaml
   - config.yaml

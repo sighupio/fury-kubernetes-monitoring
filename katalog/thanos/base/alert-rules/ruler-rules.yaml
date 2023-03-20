@@ -10,7 +10,7 @@ metadata:
   namespace: "monitoring"
   labels:
     app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: 0.30.0
+    app.kubernetes.io/version: v0.30.2
 spec:
   groups:
   - name: thanos-rule

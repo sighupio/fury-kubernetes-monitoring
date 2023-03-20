@@ -17,13 +17,5 @@ resources:
 images:
   - name: thanos
     newName: registry.sighup.io/fury/thanos
-    newTag: v0.30.0
+    newTag: v0.30.2
 
-
-# secretGenerator:
-#   # description: config + credentials for access to object storage
-#   # used-by: Prometheus, Thanos Store, Thanos Compact
-#   - name: thanos-storage
-#     type: Opaque
-#     files:
-#       - config.yaml=thanos-storage-secret.yaml

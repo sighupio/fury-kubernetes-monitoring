@@ -9,13 +9,17 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
+  - ../../prometheus-operator 
+  - ../../prometheus-operated
   - ../base/minio-ha
   # - ../base/alert-rules
-  # - ../base/compactor
-  # - ../base/query
-  # # - ../base/query-frontend
-  # - ../base/ruler
-  # - ../base/storage
+  - ../base/compactor
+  - ../base/query
+  # - ../base/query-frontend
+  - ../base/ruler
+  - ../base/storage
+  - resources/thanos-sidecar-service.yaml
+  # - resources/thanosRuler.yaml
 
 generatorOptions:
  disableNameSuffixHash: true
@@ -27,11 +31,39 @@ secretGenerator:
     - objstore.yml=config/objstore.yml
 
 
-# configMapGenerator:
-#   # description: Discovery config of Prometheus instances to aggregate query
-#   #   results
-#   # used-by: Thanos Query
-#   - name: thanos-query
-#     behavior: replace
-#     files:
-#       - store-sd.yaml=store-sd.yaml
+patchesStrategicMerge:
+- |-
+  apiVersion: monitoring.coreos.com/v1
+  kind: Prometheus
+  metadata:
+    name: k8s
+    namespace: monitoring
+  spec:
+    image: registry.sighup.io/fury/prometheus/prometheus:v2.41.0
+    replicas: 1
+    resources:
+      requests:
+        cpu: 500m
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+    retention: 30d
+    externalUrl: "https://prometheus-example.example.com/"
+    externalLabels:
+        k8s_cluster: example_name
+    thanos:
+        image: registry.sighup.io/fury/thanos:v0.30.2
+        objectStorageConfig:
+          key: objstore.yml
+          name: thanos-objstore-secret
+    retentionSize: 120GiB
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 150Gi
+
+
