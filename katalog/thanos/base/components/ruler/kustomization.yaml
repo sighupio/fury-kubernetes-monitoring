@@ -18,5 +18,5 @@ resources:
 
 images:
   - name: thanos
-    newName: registry.sighup.io/fury/thanos
+    newName: registry.sighup.io/fury/thanos/thanos
     newTag: v0.30.2
