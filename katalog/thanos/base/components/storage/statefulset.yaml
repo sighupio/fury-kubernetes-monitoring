@@ -54,16 +54,6 @@ spec:
               - thanos
               topologyKey: kubernetes.io/hostname
             weight: 100
-        # podAntiAffinity:
-        #   preferredDuringSchedulingIgnoredDuringExecution:
-        #     - podAffinityTerm:
-        #         labelSelector:
-        #           matchLabels:
-        #             app.kubernetes.io/name: thanos
-        #             app.kubernetes.io/version: 0.30.0
-        #             app.kubernetes.io/component: storegateway
-        #         topologyKey: kubernetes.io/hostname
-        #       weight: 1   
       securityContext:
         fsGroup: 1001
       containers:
