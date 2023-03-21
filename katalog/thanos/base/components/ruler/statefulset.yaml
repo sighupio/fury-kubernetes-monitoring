@@ -71,7 +71,6 @@ spec:
             - --alertmanagers.url=$(ALERTMANAGER_URL)
             - --query=$(THANOS_QUERY_URL)
             - --label=replica="$(POD_NAME)"
-            # - --label=ruler_cluster=""
             - --alert.label-drop=replica
             - --objstore.config-file=/etc/thanos/objstore.yml
             - --rule-file=/etc/thanos/rules/*.yml
