@@ -9,28 +9,11 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - ../../../prometheus-operator 
-  - ../../../prometheus-operated
-  - ../components/alert-rules
-  - ../components/compactor
-  - ../components/query
-  - ../components/datasources
-  - ../components/query-frontend
-  - ../components/ruler
-  - ../components/storage
-  - ../components/prometheus-sidecar
-
-patchesJson6902:
-  - target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: thanos-query
-      namespace: monitoring
-    path: patches/thanos-query-store-sd.yaml
+ - ../thanos-single
 
 configMapGenerator:
   - name: thanos-target
+    behavior: replace
     files: 
       - config/store-sd.yaml
 
