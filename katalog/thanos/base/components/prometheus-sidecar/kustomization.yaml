@@ -11,4 +11,3 @@ namespace: monitoring
 resources:
   - thanos-sidecar-service.yaml
   - thanos-sidecar-serviceMonitor.yaml
-

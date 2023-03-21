@@ -15,4 +15,3 @@ resources:
   - replicate-rules.yaml
   - ruler-rules.yaml
   - storage-rules.yaml
-

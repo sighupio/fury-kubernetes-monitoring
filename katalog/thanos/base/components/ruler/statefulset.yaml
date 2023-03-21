@@ -140,15 +140,3 @@ spec:
         - name: objstore-config
           secret:
             secretName: thanos-objstore-secret
-  # volumeClaimTemplates:
-  # - metadata:
-  #     labels:
-  #       app.kubernetes.io/component: rule-evaluation-engine
-  #       app.kubernetes.io/instance: thanos-rule
-  #       app.kubernetes.io/name: thanos-rule
-  #     spec:
-  #       accessModes:
-  #         - "ReadWriteOnce"
-  #       resources:
-  #         requests:
-  #           storage: "8Gi"

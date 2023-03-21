@@ -18,4 +18,3 @@ images:
   - name: thanos
     newName: registry.sighup.io/fury/thanos
     newTag: v0.30.2
-

@@ -47,5 +47,3 @@ patchesStrategicMerge:
         objectStorageConfig:
           key: objstore.yml
           name: thanos-objstore-secret
-
-
