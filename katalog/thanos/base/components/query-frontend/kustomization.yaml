@@ -10,6 +10,7 @@ namespace: monitoring
 
 resources:
   - serviceaccount.yaml
+  - servicemonitor.yaml
   - service.yaml
   - deployment.yaml
 
