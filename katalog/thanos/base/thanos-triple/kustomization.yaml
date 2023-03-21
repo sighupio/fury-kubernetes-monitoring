@@ -18,7 +18,7 @@ resources:
   - ../components/query-frontend
   - ../components/ruler
   - ../components/storage
-  - ../components/thanos-sidecar-service.yaml
+  - ../components/prometheus-sidecar
 
 patchesJson6902:
   - target:
@@ -42,31 +42,10 @@ patchesStrategicMerge:
     name: k8s
     namespace: monitoring
   spec:
-    image: registry.sighup.io/fury/prometheus/prometheus:v2.41.0
-    replicas: 1
-    resources:
-      requests:
-        cpu: 500m
-      limits:
-        cpu: 2000m
-        memory: 2Gi
-    retention: 30d
-    externalUrl: "https://prometheus-example.example.com/"
-    externalLabels:
-        k8s_cluster: example_name
     thanos:
         image: registry.sighup.io/fury/thanos:v0.30.2
         objectStorageConfig:
           key: objstore.yml
           name: thanos-objstore-secret
-    retentionSize: 120GiB
-    storage:
-      volumeClaimTemplate:
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 150Gi
 
 

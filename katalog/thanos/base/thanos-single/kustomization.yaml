@@ -34,8 +34,6 @@ configMapGenerator:
     files: 
       - config/store-sd.yaml
 
-
-
 patchesStrategicMerge:
 - |-
   apiVersion: monitoring.coreos.com/v1
