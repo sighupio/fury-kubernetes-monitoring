@@ -1,0 +1,78 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-monitoring-buckets-setup
+  labels:
+    app: minio-monitoring-buckets-setup
+spec:
+  template:
+    metadata:
+      labels:
+        app: minio-monitoring-buckets-setup
+    spec:
+      serviceAccountName: wait-for-minio
+      restartPolicy: OnFailure
+      volumes:
+        - name: config
+          emptyDir: {}
+      initContainers:
+        - name: wait-for-minio
+          image: registry.sighup.io/fury/groundnuty/k8s-wait-for
+          imagePullPolicy: Always
+          args: ["pod", "-lapp=minio"]
+      containers:
+        - name: mc
+          image: registry.sighup.io/fury/minio/mc
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: minio-monitoring
+          command:
+            - /bin/bash
+            - -c
+            - |
+              set -e
+              mc --config-dir=/config config host add monitoring http://minio-monitoring.monitoring.svc.cluster.local:9000 ${ROOT_USER} ${ROOT_PASSWORD}
+              mc --config-dir=/config mb -p monitoring/thanos
+          volumeMounts:
+            - name: config
+              mountPath: "/config"
+# mc --config-dir=/config mb -p monitoring/loki
+# mc --config-dir=/config mb -p monitoring/errors
+# mc --config-dir=/config ilm add --expiry-days "7" monitoring/errors
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wait-for-minio
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: wait-for-minio
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: minio-setup:wait-for-minio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: wait-for-minio
+subjects:
+  - kind: ServiceAccount
+    name: wait-for-minio
+    namespace: monitoring

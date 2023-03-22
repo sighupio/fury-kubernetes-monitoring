@@ -80,6 +80,7 @@ patchesJSON6902:
 
 resources:
   - dashboards
+  - datasources
   - clusterRole.yaml
   - clusterRoleBinding.yaml
   - kube-prometheus-rules.yml
