@@ -82,8 +82,6 @@ metadata:
     annotations:
         forecastle.stakater.com/expose: "true"
         forecastle.stakater.com/icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQIi0w9WqMmkCcjgC03kxOFhkdeDuV2UIgKo9xfiugGSjRLxstEw"
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/ssl-redirect: "true"
     labels:
         app: thanos-query-frontend
 spec:
