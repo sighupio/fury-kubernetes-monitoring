@@ -16,3 +16,11 @@ export KUBE_PROMETHEUS_RELEASE=v0.12.0
 3. Sync the new image to our registry in the [`monitoring` images.yaml file fury-distribution-container-image-sync repository](https://github.com/sighupio/fury-distribution-container-image-sync/blob/main/modules/monitoring/images.yml).
 
 4. Update the `kustomization.yaml` file with the new image.
+
+5. Check that the `DeadMansSwitch` alerts in the current configuration have the following parameters and not the default ones:
+
+```yaml
+repeatInterval: 30s
+groupWait: 1m
+groupInterval: 1m
+```

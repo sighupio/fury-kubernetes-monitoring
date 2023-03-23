@@ -15,6 +15,11 @@ metadata:
   namespace: monitoring
 spec:
   image: quay.io/prometheus/alertmanager:v0.25.0
+  # We set the matcher strategy to None, because otherwise the Prometheus
+  # Operator will add a matcher to all routes checking for a namespace label
+  # with the namespace where alertmanager is running.
+  alertmanagerConfigMatcherStrategy:
+    type: None
   nodeSelector:
     kubernetes.io/os: linux
   podMetadata:
