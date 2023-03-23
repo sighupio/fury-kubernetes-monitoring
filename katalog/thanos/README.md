@@ -56,7 +56,7 @@ Before deploying this, please take a look at how to modify Thanos.
 You can deploy Thanos by running the following command:
 
 ```shell
-kustomize build | kubectl apply -f - --server-side --force-conflicts
+kustomize build | kubectl apply -f - --server-side
 ```
 
 ### Accessing Thanos frontend UI
