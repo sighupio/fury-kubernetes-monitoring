@@ -21,3 +21,7 @@ To prepare a new release of this package:
 3. Update the `kustomization.yaml` file with the new image.
 
 4. Verify if there are changes for the components in the `base/components` folder and test it with the new release.
+
+## Grafana Dashboards
+
+The included Grafana Dashboards in `thanos/base/components/dashboards/` are taken from here: <https://github.com/thanos-io/thanos/tree/main/examples/dashboards>

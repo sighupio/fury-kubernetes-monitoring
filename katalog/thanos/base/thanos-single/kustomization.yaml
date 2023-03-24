@@ -9,12 +9,13 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - ../../../prometheus-operator 
+  - ../../../prometheus-operator
   - ../../../prometheus-operated
   - ../components/alert-rules
   - ../components/compactor
   - ../components/query
   - ../components/datasources
+  - ../components/dashboards
   - ../components/query-frontend
   - ../components/ruler
   - ../components/storage
@@ -31,19 +32,19 @@ patchesJson6902:
 
 configMapGenerator:
   - name: thanos-target
-    files: 
+    files:
       - config/store-sd.yaml
 
 patchesStrategicMerge:
-- |-
-  apiVersion: monitoring.coreos.com/v1
-  kind: Prometheus
-  metadata:
-    name: k8s
-    namespace: monitoring
-  spec:
-    thanos:
-        image: registry.sighup.io/fury/thanos:v0.30.2
-        objectStorageConfig:
-          key: objstore.yml
-          name: thanos-objstore-secret
+  - |-
+    apiVersion: monitoring.coreos.com/v1
+    kind: Prometheus
+    metadata:
+      name: k8s
+      namespace: monitoring
+    spec:
+      thanos:
+          image: registry.sighup.io/fury/thanos:v0.30.2
+          objectStorageConfig:
+            key: objstore.yml
+            name: thanos-objstore-secret

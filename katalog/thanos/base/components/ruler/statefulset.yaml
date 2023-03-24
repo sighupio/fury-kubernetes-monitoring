@@ -33,7 +33,7 @@ spec:
         app.kubernetes.io/version: v0.30.2
     spec:
       nodeSelector:
-        kubernetes.io/os: linux     
+        kubernetes.io/os: linux
       serviceAccount: thanos-ruler
       automountServiceAccountToken: true
       affinity:
@@ -82,7 +82,7 @@ spec:
             - name: LOG_LEVEL
               value: "debug"
             - name: ALERTMANAGER_URL
-              value: "dns+http://alertmanager.monitoring:9093"
+              value: "dns+http://alertmanager-main.monitoring:9093"
             # external URL for rendering inside alerts
             - name: THANOS_QUERY_URL
               value: "dnssrv+_http._tcp.thanos-query.monitoring.svc.cluster.local"
