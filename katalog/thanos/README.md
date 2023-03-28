@@ -37,7 +37,7 @@ Depending on the number of replicas you choose in the Prometheus section, you mu
 - [target-single](base/thanos-single/config/store-sd.yaml)
 - [target-triple](base/thanos-triple/config/store-sd.yaml)
 
-With [MinIO](thanos-minio/base/minio-ha/README.md) you have an all-in-one solution including storage, instead with the module [s3](https://thanos.io/tip/thanos/storage.md/#s3) variant you can manage the storage on top a bucket. Please take a look at how modify the [`objectstore.yml`](thanos-s3/base/config/objectstore.yaml) like in follow to patch your credentials
+With [MinIO](thanos-minio/base/minio-ha/README.md) you have an all-in-one solution including storage, instead with the module [s3](https://thanos.io/tip/thanos/storage.md/#s3) variant, you can manage the storage on top a bucket. Please take a look at how to modify the [`objectstore.yml`](thanos-s3/base/config/objectstore.yaml) to patch your credentials in the correct way.
 
 ```yml
 # description: config + credentials for access to object storage
