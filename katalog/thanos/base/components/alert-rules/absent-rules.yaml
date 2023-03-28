@@ -35,16 +35,6 @@ spec:
       for: 5m
       labels:
         severity: critical
-    - alert: ThanosReceiveIsDown
-      annotations:
-        description: ThanosReceive has disappeared. Prometheus target for the component cannot be discovered.
-        runbook_url: https://github.com/thanos-io/thanos/tree/main/mixin/runbook.md#alert-name-thanosreceiveisdown
-        summary: Thanos component has disappeared.
-      expr: |
-        absent(up{job=~".*thanos-receive.*"} == 1)
-      for: 5m
-      labels:
-        severity: critical
     - alert: ThanosRuleIsDown
       annotations:
         description: ThanosRule has disappeared. Prometheus target for the component cannot be discovered.
