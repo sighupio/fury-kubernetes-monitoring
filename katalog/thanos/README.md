@@ -61,7 +61,7 @@ kustomize build | kubectl apply -f - --server-side
 
 ### Accessing Thanos frontend UI
 
-You can access the Thanos dashboard by port-forwarding the service `thanos-query-frontend` on port 9093:
+You can access the Thanos dashboard by port-forwarding the service `thanos-query-frontend` with:
 
 ```shell
 kubectl port-forward svc/thanos-query-frontend 9090:9090 --namespace monitoring
