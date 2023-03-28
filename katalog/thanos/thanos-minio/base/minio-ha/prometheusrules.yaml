@@ -16,7 +16,7 @@ spec:
     - name: minio.rules
       rules:
         - alert: MinioClusterDiskOffline
-          expr: minio_cluster_disk_offline_total > 0
+          expr: minio_cluster_disk_offline_total{job="minio-monitoring"} > 0
           for: 5m
           labels:
             severity: critical
@@ -24,7 +24,7 @@ spec:
             summary: Minio cluster disk offline (instance {{ $labels.instance }})
             description: "Minio cluster disk is offline\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
         - alert: MinioNodeDiskOffline
-          expr: minio_cluster_nodes_offline_total > 0
+          expr: minio_cluster_nodes_offline_total{job="minio-monitoring"} > 0
           for: 5m
           labels:
             severity: critical
@@ -32,7 +32,7 @@ spec:
             summary: Minio node disk offline (instance {{ $labels.instance }})
             description: "Minio cluster node disk is offline\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
         - alert: MinioDiskSpaceUsage
-          expr: disk_storage_available / disk_storage_total * 100 < 10
+          expr: disk_storage_available{job="minio-monitoring"} / disk_storage_total{job="minio-monitoring"} * 100 < 10
           for: 5m
           labels:
             severity: warning
