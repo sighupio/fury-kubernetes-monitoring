@@ -12,6 +12,7 @@ resources:
   - absent-rules.yaml
   - compaction-rules.yaml
   - query-rules.yaml
+  - sidecar-rules.yaml
   - replicate-rules.yaml
   - ruler-rules.yaml
   - storage-rules.yaml
