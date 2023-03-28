@@ -23,4 +23,4 @@ spec:
     port: 10902
     targetPort: 10902
   selector:
-    app: prometheus
+    prometheus: k8s
