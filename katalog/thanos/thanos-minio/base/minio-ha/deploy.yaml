@@ -1,0 +1,226 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+# Source: minio/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: "minio-sa"
+  namespace: "monitoring"
+---
+# Source: minio/templates/console-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-monitoring-console
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: minio-monitoring
+    heritage: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9001
+      protocol: TCP
+      targetPort: 9001
+  selector:
+    app: minio
+    release: minio-monitoring
+---
+# Source: minio/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-monitoring
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: minio-monitoring
+    heritage: Helm
+    monitoring: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: minio
+    release: minio-monitoring
+---
+# Source: minio/templates/statefulset.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-monitoring-svc
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: "minio-monitoring"
+    heritage: "Helm"
+spec:
+  publishNotReadyAddresses: true
+  clusterIP: None
+  ports:
+    - name: http
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: minio
+    release: minio-monitoring
+---
+# Source: minio/templates/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio-monitoring
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: minio-monitoring
+    heritage: Helm
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: "Parallel"
+  serviceName: minio-monitoring-svc
+  replicas: 3
+  selector:
+    matchLabels:
+      app: minio
+      release: minio-monitoring
+  template:
+    metadata:
+      name: minio-monitoring
+      labels:
+        app: minio
+        release: minio-monitoring
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "release"
+                      operator: In
+                      values:
+                        - minio-monitoring
+                topologyKey: "kubernetes.io/hostname"
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      serviceAccountName: minio-sa
+      containers:
+        - name: minio
+          image: registry.sighup.io/fury/minio
+          imagePullPolicy: IfNotPresent
+          command: [ "/bin/sh",
+            "-ce",
+            "/usr/bin/docker-entrypoint.sh minio server  http://minio-monitoring-{0...2}.minio-monitoring-svc.monitoring.svc.cluster.local/export-{0...1} -S /etc/minio/certs/ --address :9000 --console-address :9001" ]
+          volumeMounts:
+            - name: export-0
+              mountPath: /export-0
+            - name: export-1
+              mountPath: /export-1            
+          ports:
+            - name: http
+              containerPort: 9000
+            - name: http-console
+              containerPort: 9001
+          env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: minio-monitoring
+                  key: ROOT_USER
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: minio-monitoring
+                  key: ROOT_PASSWORD
+            - name: MINIO_PROMETHEUS_AUTH_TYPE
+              value: "public"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+      volumes:
+        - name: minio-user
+          secret:
+            secretName: minio-monitoring        
+  volumeClaimTemplates:
+    - metadata:
+        name: export-0
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 10Gi
+    - metadata:
+        name: export-1
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 10Gi
+---
+# Source: minio/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: minio-monitoring-cluster
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: minio-monitoring
+    heritage: Helm
+spec:
+  jobName: minio-monitoring
+  prober:
+    url: minio-monitoring.monitoring:9000
+    path: /minio/v2/metrics/cluster
+    scheme: http
+  targets:
+    staticConfig:
+      static:
+      - minio-monitoring.monitoring
+---
+# Source: minio/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: minio-monitoring
+  namespace: "monitoring"
+  labels:
+    app: minio
+    chart: minio-5.0.7
+    release: minio-monitoring
+    heritage: Helm
+spec:
+  endpoints:
+    - port: http
+      scheme: http
+      path: /minio/v2/metrics/node
+  namespaceSelector:
+    matchNames:
+      - "monitoring"
+  selector:
+    matchLabels:
+      app: minio
+      release: minio-monitoring
+      monitoring: "true"

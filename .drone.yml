@@ -60,7 +60,7 @@ steps:
       - kustomize build katalog/prometheus-adapter > prometheus-adapter.yml
       - kustomize build katalog/prometheus-operated > prometheus-operated.yml
       - kustomize build katalog/prometheus-operator > prometheus-operator.yml
-      - kustomize build katalog/thanos/thanos > thanos.yml
+      - kustomize build katalog/thanos/thanos-minio/single > thanos.yml
       - kustomize build katalog/x509-exporter > x509-exporter.yml
 
 
