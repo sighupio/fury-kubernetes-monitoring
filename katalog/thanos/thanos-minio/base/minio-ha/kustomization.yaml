@@ -11,6 +11,7 @@ namespace: monitoring
 resources:
   - deploy.yaml
   - initialize-minio-buckets.yaml
+  - prometheusrules.yaml
 
 images:
   - name: registry.sighup.io/fury/groundnuty/k8s-wait-for
