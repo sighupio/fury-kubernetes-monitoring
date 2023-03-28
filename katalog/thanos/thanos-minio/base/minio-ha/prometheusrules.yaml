@@ -1,0 +1,41 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: minio-monitoring-rules
+  namespace: monitoring
+spec:
+  groups:
+    - name: minio.rules
+      rules:
+        - alert: MinioMonitoringClusterDiskOffline
+          expr: minio_cluster_disk_offline_total{job="minio-monitoring"} > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Minio cluster disk offline (instance {{ $labels.instance }})
+            description: "Minio cluster disk is offline\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: MinioMonitoringNodeDiskOffline
+          expr: minio_cluster_nodes_offline_total{job="minio-monitoring"} > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Minio node disk offline (instance {{ $labels.instance }})
+            description: "Minio cluster node disk is offline\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        - alert: MinioMonitoringDiskSpaceUsage
+          expr: minio_cluster_capacity_usable_free_bytes{job="minio-monitoring"} / minio_cluster_capacity_usable_total_bytes{job="minio-monitoring"} * 100 < 10
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Minio disk space usage (instance {{ $labels.instance }})
+            description: "Minio available free space is low (< 10%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
