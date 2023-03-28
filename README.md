@@ -54,7 +54,7 @@ Kubernetes Fury Monitoring provides the following packages:
 | [karma](katalog/karma)                                 | `0.113`  | Karma deployment to visualize alerts sent by AlertManager                                                   |
 | [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.14.0` | RBAC proxy to securely expose kube-proxy metrics                                                            |
 | [kube-state-metrics](katalog/kube-state-metrics)       | `2.8.0`  | Service that generates metrics from Kubernetes API objects                                                  |
-| [node-exporter](katalog/node-exporter)                 | `1.3.1`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
+| [node-exporter](katalog/node-exporter)                 | `1.5.0`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
 | [prometheus-adapter](katalog/prometheus-adapter)       | `0.10.0` | Kubernetes resource metrics, custom metrics, and external metrics APIs implementation.                      |
 | [thanos](katalog/thanos)                               | `0.30.2` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
 | [x509-exporter](katalog/x509-exporter)                 | `3.6.0`  | Provides monitoring for certificates                                                                        |
