@@ -1,7 +1,9 @@
+<!-- markdownlint-disable MD033 -->
 <h1>
     <img src="https://github.com/sighupio/fury-distribution/blob/main/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
     Kubernetes Fury Monitoring
 </h1>
+<!-- markdownlint-enable MD033 -->
 
 ![Release](https://img.shields.io/badge/Latest%20Release-v2.1.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-monitoring?label=License)
@@ -28,7 +30,7 @@ easy deployment of the following as controllers:
 - [ServiceMonitor][servicemonitor-link]: Declaratively specifies how groups of services should be monitored, by automatically generating Prometheus scrape configuration based on the definition
 
 Since the export of certain metrics can be heavily cloud-provider specific, we
-provide a bunch of cloud-provider specific configuration. The setups we
+provide a bunch of cloud-provider specific configurations. The setups we
 currently support include:
 
 - Google Kubernetes Engine (GKE)
@@ -37,7 +39,7 @@ currently support include:
 - on-premises or self-managed cloud clusters
 
 Most of the components in this module are deployed in namespace `monitoring`, unless the
-functionality requires a permission that forces it to be deployed in the
+functionality requires permissions that force it to be deployed in the
 namespace `kube-system`.
 
 ## Packages
@@ -45,7 +47,7 @@ namespace `kube-system`.
 Kubernetes Fury Monitoring provides the following packages:
 
 | Package                                                | Version  | Description                                                                                                 |
-|--------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
 | [prometheus-operator](katalog/prometheus-operator)     | `0.62.0` | Operator to deploy and manage Prometheus and related resources                                              |
 | [prometheus-operated](katalog/prometheus-operated)     | `2.41.0` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
 | [alertmanager-operated](katalog/alertmanager-operated) | `0.25.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
@@ -65,20 +67,21 @@ One of the following components can be used to enable service monitoring in each
 cloud environment:
 
 | Component                        | Description                                                                                                    |
-|----------------------------------|----------------------------------------------------------------------------------------------------------------|
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | [aks-sm](katalog/aks-sm)         | ServiceMonitor to collect Kubernetes components metrics from AKS                                               |
 | [gke-sm](katalog/gke-sm)         | ServiceMonitor to collect Kubernetes components metrics from GKE                                               |
 | [eks-sm](katalog/eks-sm)         | ServiceMonitor to collect Kubernetes components metrics from EKS                                               |
 | [kubeadm-sm](katalog/kubeadm-sm) | ServiceMonitors, Prometheus rules and alerts for Kubernetes components of self-managed or on-premises clusters |
 
-Please refer the individual package documentation for further details.
+Please refer to the individual package documentation for further details.
 
 ## Compatibility
 
-| Kubernetes Version |   Compatibility    |                        Notes                        |
-| ------------------ | :----------------: | --------------------------------------------------- |
-| `1.24.x`           | :white_check_mark: | No known issues                                     |
-| `1.25.x`           | :white_check_mark: | No known issues                                     |
+| Kubernetes Version |   Compatibility    | Notes           |
+| ------------------ | :----------------: | --------------- |
+| `1.23.x`           | :white_check_mark: | No known issues |
+| `1.24.x`           | :white_check_mark: | No known issues |
+| `1.25.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
@@ -86,9 +89,9 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 ### Prerequisites
 
-|            Tool             |  Version  |                                                                          Description                                                                           |
+| Tool                        | Version   | Description                                                                                                                                                    |
 | --------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo]. |
+| [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
 | [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
 ## Deployment
@@ -113,7 +116,7 @@ bases:
 ```
 
 Along with the primary components, include one of the following components,
-based on the cloud provider for service monitoring:
+based on your cloud provider for service monitoring:
 
 - ServiceMonitor for AWS EKS cluster
 
@@ -209,8 +212,8 @@ kustomize build . | kubectl apply -f - --server-side
 
 ## Examples
 
-To see examples on how to customize Fury Kubernetes Monitoring packages, please
-go to [examples](examples) directory.
+To see examples of how to customize Fury Kubernetes Monitoring packages, please
+go to the [examples](examples) directory.
 
 <!-- Links -->
 
@@ -224,7 +227,6 @@ go to [examples](examples) directory.
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
 [kfd-docs]: https://docs.kubernetesfury.com/docs/distribution/
-[metrics-api]: https://github.com/kubernetes/metrics
 
 <!-- </KFD-DOCS> -->
 
@@ -236,7 +238,7 @@ Before contributing, please read first the [Contributing Guidelines](docs/CONTRI
 
 ### Reporting Issues
 
-In case you experience any problem with the module, please [open a new issue](https://github.com/sighupio/fury-kubernetes-networking/issues/new/choose).
+In case you experience any problems with the module, please [open a new issue](https://github.com/sighupio/fury-kubernetes-networking/issues/new/choose).
 
 ## License
 

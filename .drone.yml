@@ -63,10 +63,8 @@ steps:
       - kustomize build katalog/thanos/thanos-minio/single > thanos.yml
       - kustomize build katalog/x509-exporter > x509-exporter.yml
 
-
-
-  - &deprek8ion
-    name: check-deprecated-apis
+  - &check-deprecated-apis
+    name: check-deprecated-apis-alertmanager-operated
     image: us-docker.pkg.dev/fairwinds-ops/oss/pluto:v5
     pull: always
     depends_on:
@@ -77,73 +75,73 @@ steps:
     environment:
       KUBERNETES_MANIFESTS: alertmanager-operated.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-aks-sm
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-aks-sm
     environment:
       KUBERNETES_MANIFESTS: aks-sm.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-blackbox-exporter
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-blackbox-exporter
     environment:
       KUBERNETES_MANIFESTS: blackbox-exporter.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-eks-sm
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-eks-sm
     environment:
       KUBERNETES_MANIFESTS: eks-sm.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-gke-sm
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-gke-sm
     environment:
       KUBERNETES_MANIFESTS: gke-sm.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-grafana
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-grafana
     environment:
       KUBERNETES_MANIFESTS: grafana.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-kube-proxy-metrics
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-kube-proxy-metrics
     environment:
       KUBERNETES_MANIFESTS: kube-proxy-metrics.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-kube-state-metrics
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-kube-state-metrics
     environment:
       KUBERNETES_MANIFESTS: kube-state-metrics.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-kubeadm-sm
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-kubeadm-sm
     environment:
       KUBERNETES_MANIFESTS: kubeadm-sm.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-node-exporter
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-node-exporter
     environment:
       KUBERNETES_MANIFESTS: node-exporter.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-prometheus-adapter
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-prometheus-adapter
     environment:
       KUBERNETES_MANIFESTS: prometheus-adapter.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-prometheus-operated
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-prometheus-operated
     environment:
       KUBERNETES_MANIFESTS: prometheus-operated.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-prometheus-operator
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-prometheus-operator
     environment:
       KUBERNETES_MANIFESTS: prometheus-operator.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-thanos
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-thanos
     environment:
       KUBERNETES_MANIFESTS: thanos.yml
 
-  - <<: *deprek8ion
-    name: deprek8ion-x509-exporter
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-x509-exporter
     environment:
       KUBERNETES_MANIFESTS: x509-exporter.yml
 
@@ -171,27 +169,106 @@ steps:
         - push
         - tag
 
-# ---
-# kind: pipeline
-# name: render-examples
+---
+name: e2e-kubernetes-1.23
+kind: pipeline
+type: docker
 
-# depends_on:
-#   - policeman
+depends_on:
+  - policeman
 
-# platform:
-#   os: linux
-#   arch: amd64
+platform:
+  os: linux
+  arch: amd64
 
-# steps:
-#   - name: examples
-#     image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
-#     pull: always
-#     depends_on: [clone]
-#     commands:
-#       - bats -t examples/tests.sh
-#     when:
-#       event:
-#         - tag
+node:
+  runner: internal
+
+trigger:
+  ref:
+    include:
+      - refs/heads/main
+      - refs/heads/release-v*
+      - refs/tags/**
+
+steps:
+  - name: init
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [clone]
+    settings:
+      action: custom-cluster-123
+      cluster_version: "1.23.6"
+      local_kind_config_path: katalog/tests/kind-config.yml
+      pipeline_id: cluster-123
+      instance_path: /shared
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+
+  - name: e2e
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.23.6_3.8.7_4.21.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [init]
+    commands:
+      - export KUBECONFIG=/shared/kube/kubeconfig-123
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
+
+  - name: destroy
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    depends_on: [e2e]
+    settings:
+      action: destroy
+      pipeline_id: cluster-123
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+    when:
+      status:
+        - success
+        - failure
+
+volumes:
+  - name: shared
+    temp: {}
 
 ---
 name: e2e-kubernetes-1.24
@@ -225,7 +302,7 @@ steps:
     depends_on: [clone]
     settings:
       action: custom-cluster-124
-      cluster_version: '1.24.0'
+      cluster_version: "1.24.0"
       local_kind_config_path: katalog/tests/kind-config.yml
       pipeline_id: cluster-124
       instance_path: /shared
@@ -325,7 +402,7 @@ steps:
     depends_on: [clone]
     settings:
       action: custom-cluster-125
-      cluster_version: '1.25.3'
+      cluster_version: "1.25.3"
       local_kind_config_path: katalog/tests/kind-config.yml
       pipeline_id: cluster-125
       instance_path: /shared
@@ -416,7 +493,7 @@ steps:
   - name: prepare-canonical-json
     image: registry.sighup.io/poc/fury-repo-automations:v0.0.3
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     commands:
       - spock module-json -m=fury-kubernetes-monitoring -r=False -v=${DRONE_TAG}
     when:
@@ -427,7 +504,7 @@ steps:
   - name: prepare-tar-gz
     image: alpine:latest
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     commands:
       - tar -zcvf fury-kubernetes-monitoring-${DRONE_TAG}.tar.gz katalog/ LICENSE README.md
     when:
@@ -438,7 +515,7 @@ steps:
   - name: prepare-release-notes
     image: quay.io/sighup/fury-release-notes-plugin:3.7_2.8.4
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     settings:
       release_notes_file_path: release-notes.md
     when:
