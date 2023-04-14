@@ -7,7 +7,7 @@ numeric time-series data with Prometheus integration.
 
 ## Image repository and tag
 
-- Grafana image: `grafana/grafana:8.5.5`
+- Grafana image: `grafana/grafana:9.3.2`
 - Grafana repository: [https://github.com/grafana/grafana](https://github.com/grafana/grafana)
 - Grafana documentation: [https://docs.grafana.org](https://docs.grafana.org)
 - k8s-sidecar image: `kiwigrid/k8s-sidecar`
@@ -32,17 +32,22 @@ Fury distribution Grafana is deployed with the following configuration:
 
 ## Add new dashboards
 
-You can create a ConfigMap/Secret in your namespace with a JSON of a grafana dashboard
-and then labeling it with the label key `grafana-sighup-dashboard`, the value
-of the label is up to you. Labeling it, the sidecar k8s-sidecar will take care of it and inject
-it into a shared volume where grafana does a lookup and discover it.
-Look at the [dashboards](dashboards) folder `kustomization.yaml` for an example.
+Grafana will try to load automatically all the files inside configMaps that have the `grafana-sighup-dashboard` label from **all** namespaces.
+
+To add a custom dashboard to Grafana, follow the next steps:
+
+1. Create a configMap that includes the dashboard definition `json` file (you can include more than one json per configMap)
+2. Add the `grafana-sighup-dashboard` **label** to the configMap, the value is not important.
+3. If you want to put the dashboard(s) in a specific Grafana folder, for example `myfolder`, add the following **annotation** to the configMap: `grafana-folder: myfolder`.
+
+Look at the [dashboards](dashboards) folder `kustomization.yaml` for some examples.
 
 ## Add new datasource
 
 Additionally, you can create a ConfigMap/Secret in your namespace with a datasource definition then labeling it
 with the label key `grafana-sighup-datasource`, the value of the label is up to you. Labeling it, the sidecar k8s-sidecar
 will take care of it and inject it into a shared volume and send an API reload signal to grafana itself.
+
 Look at the [datasources](datasources) folder `kustomization.yaml` for an example.
 
 ## Deployment

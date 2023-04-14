@@ -19,6 +19,8 @@ spec:
               value: "grafana-sighup-dashboard"
             - name: FOLDER
               value: /tmp/dashboards
+            - name: FOLDER_ANNOTATION
+              value: "grafana-folder"
             - name: RESOURCE
               # configmap and secret
               value: both
@@ -38,5 +40,5 @@ spec:
                 - ALL
             readOnlyRootFilesystem: true
           volumeMounts:
-              - name: grafana-dashboards
-                mountPath: /tmp/dashboards
+            - name: grafana-dashboards
+              mountPath: /tmp/dashboards
