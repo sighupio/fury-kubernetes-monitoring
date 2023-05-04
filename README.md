@@ -94,7 +94,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 | [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
 | [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
-## Deployment
+### Deployment
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
@@ -210,7 +210,7 @@ service provider as follows:
 kustomize build . | kubectl apply -f - --server-side
 ```
 
-## Examples
+### Examples
 
 To see examples of how to customize Fury Kubernetes Monitoring packages, please
 go to the [examples](examples) directory.

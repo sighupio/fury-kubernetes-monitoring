@@ -11,6 +11,8 @@ namespace: kube-system
 generatorOptions:
   labels:
     grafana-sighup-dashboard: default
+  annotations:
+    grafana-folder: "Kubernetes Components"
   disableNameSuffixHash: true
 
 resources:

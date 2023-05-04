@@ -16,3 +16,8 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 3. Sync the new image to our registry in the [`monitoring` images.yaml file fury-distribution-container-image-sync repository](https://github.com/sighupio/fury-distribution-container-image-sync/blob/main/modules/monitoring/images.yml).
 
 4. Update the `kustomization.yaml` file with the new image.
+
+## Customizations
+
+- We've changed the json file inside grafana-dashboardSources, dropping the folder name and enbling the option to use subfolders.
+- Added `FOLDER_ANNOTATION` environment variable to the dashboards sidecar.

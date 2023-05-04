@@ -9,6 +9,8 @@ kind: Kustomization
 generatorOptions:
   labels:
     grafana-sighup-dashboard: default
+  annotations:
+    grafana-folder: "Monitoring"
   disableNameSuffixHash: true
 
 configMapGenerator:

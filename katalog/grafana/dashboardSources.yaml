@@ -4,16 +4,17 @@
 
 apiVersion: v1
 data:
-  dashboards.yaml: |-
+  general.yaml: |-
     {
         "apiVersion": 1,
         "providers": [
             {
-                "folder": "Default",
+                "folder": "",
                 "folderUid": "",
                 "name": "0",
                 "options": {
-                    "path": "/grafana-dashboard-definitions/0"
+                    "path": "/grafana-dashboard-definitions/",
+                    "foldersFromFilesStructure": true
                 },
                 "orgId": 1,
                 "type": "file"

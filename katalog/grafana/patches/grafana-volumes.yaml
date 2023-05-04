@@ -16,7 +16,7 @@ spec:
             - mountPath: /etc/grafana
               name: grafana-config
               readOnly: false
-            - mountPath: /grafana-dashboard-definitions/0
+            - mountPath: /grafana-dashboard-definitions/
               name: grafana-dashboards
             - mountPath: /etc/grafana/provisioning/dashboards
               name: grafana-dashboards-provisioning
