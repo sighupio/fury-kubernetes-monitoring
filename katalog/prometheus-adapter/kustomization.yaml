@@ -25,6 +25,7 @@ resources:
   - apiService.yaml
   - clusterRole.yaml
   - clusterRoleAggregatedMetricsReader.yaml
+  - clusterRoleBindingHpaController.yaml
   - clusterRoleBinding.yaml
   - clusterRoleBindingDelegator.yaml
   - clusterRoleServerResources.yaml
