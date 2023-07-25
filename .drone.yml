@@ -456,9 +456,6 @@ steps:
       - export KUBECONFIG=/shared/kube/kubeconfig-126
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
-      - kubectl get pods -A
-      - kubectl describe pod -n monitoring -l app.kubernetes.io/name=prometheus
-      - kubectl get events --sort-by='.lastTimestamp' -A
 
   - name: destroy
     image: quay.io/sighup/e2e-testing-drone-plugin:v1.26.3
