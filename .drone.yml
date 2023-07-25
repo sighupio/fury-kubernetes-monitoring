@@ -438,6 +438,7 @@ steps:
       - export KUBECONFIG=/shared/kube/kubeconfig-126
       - kubectl get nodes
       - kubectl set image --namespace kube-system daemonset.apps/kindnet kindnet-cni=docker.io/kindest/kindnetd:v20230511-dc714da8
+      - kubectl wait --for=condition=ready --timeout=15s -n kube-system pod -l app=kindnet
       - kubectl get pods -A
       - kubectl describe pod -n kube-system -l app=kindnet
       - kubectl get events --sort-by='.lastTimestamp' -A
