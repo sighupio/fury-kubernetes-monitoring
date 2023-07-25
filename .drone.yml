@@ -460,7 +460,9 @@ steps:
     volumes:
       - name: shared
         path: /shared
-    depends_on: [init]
+    depends_on: 
+    - init
+    - debug
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-126
       - bats -t katalog/tests/tests.sh
