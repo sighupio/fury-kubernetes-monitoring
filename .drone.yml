@@ -426,7 +426,7 @@ steps:
       dockerhub_password:
         from_secret: dockerhub_password
     commands:
-      - curl -LOs https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-amd64
+      - wget https://github.com/kubernetes-sigs/kind/releases/download/v0.19.0/kind-linux-amd64
       - chmod +x kind-linux-amd64
       - sudo mv kind-linux-amd64 /usr/local/bin/kind
       - ./entrypoint.sh
