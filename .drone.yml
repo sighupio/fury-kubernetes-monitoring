@@ -437,21 +437,21 @@ steps:
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-126
       - kubectl get nodes
-      - kubectl set image --namespace kube-system daemonset.apps/kindnet kindnet-cni=registry.sighup.io/fury/kindest/kindnetd:v20230330-48f316cd
-      - kubectl wait --for=condition=Ready nodes 126-control-plane --timeout=70s || true
-      - kubectl wait --for=condition=Ready nodes 126-worker --timeout=70s || true
-      - kubectl get nodes
+      # - kubectl set image --namespace kube-system daemonset.apps/kindnet kindnet-cni=registry.sighup.io/fury/kindest/kindnetd:v20230330-48f316cd
+      # - kubectl wait --for=condition=Ready nodes 126-control-plane --timeout=70s || true
+      # - kubectl wait --for=condition=Ready nodes 126-worker --timeout=70s || true
+      # - kubectl get nodes
       - kubectl get pods -A
-      - kubectl rollout restart deploy coredns -n kube-system
+      # - kubectl rollout restart deploy coredns -n kube-system
 #      - kubectl wait --for=condition=ready --timeout=70s -n kube-system pod -l k8s-app=kube-dns || true
-      - kubectl wait deployment -n kube-system coredns --for condition=Available=True --timeout=70s || true
-      - kubectl get pods -A
-      - kubectl set image --namespace local-path-storage deployment/local-path-provisioner local-path-provisioner=registry.sighup.io/fury/kindest/local-path-provisioner:v0.0.23-kind.0
-      - kubectl get pods -A
-#      - kubectl wait --for=condition=ready --timeout=70s -n local-path-storage pod -l app=local-path-provisioner || true
-      - kubectl wait deployment -n local-path-storage local-path-provisioner --for condition=Available=True --timeout=70s || true
-      - kubectl get pods -A
-      - kubectl describe pod -n local-path-storage -l app=local-path-provisioner
+#       - kubectl wait deployment -n kube-system coredns --for condition=Available=True --timeout=70s || true
+#       - kubectl get pods -A
+#       - kubectl set image --namespace local-path-storage deployment/local-path-provisioner local-path-provisioner=registry.sighup.io/fury/kindest/local-path-provisioner:v0.0.23-kind.0
+#       - kubectl get pods -A
+# #      - kubectl wait --for=condition=ready --timeout=70s -n local-path-storage pod -l app=local-path-provisioner || true
+#       - kubectl wait deployment -n local-path-storage local-path-provisioner --for condition=Available=True --timeout=70s || true
+#       - kubectl get pods -A
+#       - kubectl describe pod -n local-path-storage -l app=local-path-provisioner
 
   - name: e2e
     # KUBECTL 1.26.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
@@ -469,7 +469,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.26.3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.26.4-rc0
     pull: always
     depends_on: [e2e]
     settings:
