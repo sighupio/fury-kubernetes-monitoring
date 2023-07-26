@@ -469,7 +469,7 @@ steps:
       - bats -t katalog/tests/grafana-ldap.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.26.4-rc0
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.26.4
     pull: always
     depends_on: [e2e]
     settings:
