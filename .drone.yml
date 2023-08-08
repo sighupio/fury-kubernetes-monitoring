@@ -71,7 +71,7 @@ steps:
       - render
     commands:
       # we use --ignore-deprecations because we don't want the CI to fail when the API has not been removed yet.
-      - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.25.0
+      - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.26.0
     environment:
       KUBERNETES_MANIFESTS: alertmanager-operated.yml
 
@@ -169,207 +169,207 @@ steps:
         - push
         - tag
 
-# ---
-# name: e2e-kubernetes-1.24
-# kind: pipeline
-# type: docker
+---
+name: e2e-kubernetes-1.24
+kind: pipeline
+type: docker
 
-# depends_on:
-#   - policeman
+depends_on:
+  - policeman
 
-# node:
-#   runner: internal
+node:
+  runner: internal
 
-# platform:
-#   os: linux
-#   arch: amd64
+platform:
+  os: linux
+  arch: amd64
 
-# trigger:
-#   ref:
-#     include:
-#       - refs/heads/main
-#       - refs/heads/release-v*
-#       - refs/tags/**
+trigger:
+  ref:
+    include:
+      - refs/heads/main
+      - refs/heads/release-v*
+      - refs/tags/**
 
-# steps:
-#   - name: init
-#     image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
-#     pull: always
-#     volumes:
-#       - name: shared
-#         path: /shared
-#     depends_on: [clone]
-#     settings:
-#       action: custom-cluster-124
-#       cluster_version: "1.24.0"
-#       local_kind_config_path: katalog/tests/kind-config.yml
-#       pipeline_id: cluster-124
-#       instance_path: /shared
-#       aws_default_region:
-#         from_secret: aws_region
-#       aws_access_key_id:
-#         from_secret: aws_access_key_id
-#       aws_secret_access_key:
-#         from_secret: aws_secret_access_key
-#       terraform_tf_states_bucket_name:
-#         from_secret: terraform_tf_states_bucket_name
-#       vsphere_server:
-#         from_secret: vsphere_server
-#       vsphere_password:
-#         from_secret: vsphere_password
-#       vsphere_user:
-#         from_secret: vsphere_user
-#       dockerhub_username:
-#         from_secret: dockerhub_username
-#       dockerhub_password:
-#         from_secret: dockerhub_password
+steps:
+  - name: init
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [clone]
+    settings:
+      action: custom-cluster-124
+      cluster_version: "1.24.0"
+      local_kind_config_path: katalog/tests/kind-config.yml
+      pipeline_id: cluster-124
+      instance_path: /shared
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
-#   - name: e2e
-#     image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.24.0_3.8.7_4.21.1
-#     pull: always
-#     volumes:
-#       - name: shared
-#         path: /shared
-#     depends_on: [init]
-#     commands:
-#       - export KUBECONFIG=/shared/kube/kubeconfig-124
-#       - bats -t katalog/tests/tests.sh
-#       - bats -t katalog/tests/grafana-ldap.sh
+  - name: e2e
+    image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.24.0_3.8.7_4.21.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [init]
+    commands:
+      - export KUBECONFIG=/shared/kube/kubeconfig-124
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
 
-#   - name: destroy
-#     image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
-#     pull: always
-#     depends_on: [e2e]
-#     settings:
-#       action: destroy
-#       pipeline_id: cluster-124
-#       aws_default_region:
-#         from_secret: aws_region
-#       aws_access_key_id:
-#         from_secret: aws_access_key_id
-#       aws_secret_access_key:
-#         from_secret: aws_secret_access_key
-#       terraform_tf_states_bucket_name:
-#         from_secret: terraform_tf_states_bucket_name
-#       vsphere_server:
-#         from_secret: vsphere_server
-#       vsphere_password:
-#         from_secret: vsphere_password
-#       vsphere_user:
-#         from_secret: vsphere_user
-#       dockerhub_username:
-#         from_secret: dockerhub_username
-#       dockerhub_password:
-#         from_secret: dockerhub_password
-#     when:
-#       status:
-#         - success
-#         - failure
+  - name: destroy
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.24.1
+    pull: always
+    depends_on: [e2e]
+    settings:
+      action: destroy
+      pipeline_id: cluster-124
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+    when:
+      status:
+        - success
+        - failure
 
-# volumes:
-#   - name: shared
-#     temp: {}
-# ---
-# name: e2e-kubernetes-1.25
-# kind: pipeline
-# type: docker
+volumes:
+  - name: shared
+    temp: {}
+---
+name: e2e-kubernetes-1.25
+kind: pipeline
+type: docker
 
-# depends_on:
-#   - policeman
+depends_on:
+  - policeman
 
-# node:
-#   runner: internal
+node:
+  runner: internal
 
-# platform:
-#   os: linux
-#   arch: amd64
+platform:
+  os: linux
+  arch: amd64
 
-# trigger:
-#   ref:
-#     include:
-#       - refs/heads/main
-#       - refs/heads/release-v*
-#       - refs/tags/**
+trigger:
+  ref:
+    include:
+      - refs/heads/main
+      - refs/heads/release-v*
+      - refs/tags/**
 
-# steps:
-#   - name: init
-#     image: quay.io/sighup/e2e-testing-drone-plugin:v1.25.3
-#     pull: always
-#     volumes:
-#       - name: shared
-#         path: /shared
-#     depends_on: [clone]
-#     settings:
-#       action: custom-cluster-125
-#       cluster_version: "1.25.3"
-#       local_kind_config_path: katalog/tests/kind-config.yml
-#       pipeline_id: cluster-125
-#       instance_path: /shared
-#       aws_default_region:
-#         from_secret: aws_region
-#       aws_access_key_id:
-#         from_secret: aws_access_key_id
-#       aws_secret_access_key:
-#         from_secret: aws_secret_access_key
-#       terraform_tf_states_bucket_name:
-#         from_secret: terraform_tf_states_bucket_name
-#       vsphere_server:
-#         from_secret: vsphere_server
-#       vsphere_password:
-#         from_secret: vsphere_password
-#       vsphere_user:
-#         from_secret: vsphere_user
-#       dockerhub_username:
-#         from_secret: dockerhub_username
-#       dockerhub_password:
-#         from_secret: dockerhub_password
+steps:
+  - name: init
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.25.3
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [clone]
+    settings:
+      action: custom-cluster-125
+      cluster_version: "1.25.3"
+      local_kind_config_path: katalog/tests/kind-config.yml
+      pipeline_id: cluster-125
+      instance_path: /shared
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
 
-#   - name: e2e
-#     # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
-#     image: quay.io/sighup/e2e-testing:1.1.0_0.9.0_3.1.1_1.9.4_1.25.3_3.5.3_4.21.1
-#     pull: always
-#     volumes:
-#       - name: shared
-#         path: /shared
-#     depends_on: [init]
-#     commands:
-#       - export KUBECONFIG=/shared/kube/kubeconfig-125
-#       - bats -t katalog/tests/tests.sh
-#       - bats -t katalog/tests/grafana-ldap.sh
+  - name: e2e
+    # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
+    image: quay.io/sighup/e2e-testing:1.1.0_0.9.0_3.1.1_1.9.4_1.25.3_3.5.3_4.21.1
+    pull: always
+    volumes:
+      - name: shared
+        path: /shared
+    depends_on: [init]
+    commands:
+      - export KUBECONFIG=/shared/kube/kubeconfig-125
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
 
-#   - name: destroy
-#     image: quay.io/sighup/e2e-testing-drone-plugin:v1.25.3
-#     pull: always
-#     depends_on: [e2e]
-#     settings:
-#       action: destroy
-#       pipeline_id: cluster-125
-#       aws_default_region:
-#         from_secret: aws_region
-#       aws_access_key_id:
-#         from_secret: aws_access_key_id
-#       aws_secret_access_key:
-#         from_secret: aws_secret_access_key
-#       terraform_tf_states_bucket_name:
-#         from_secret: terraform_tf_states_bucket_name
-#       vsphere_server:
-#         from_secret: vsphere_server
-#       vsphere_password:
-#         from_secret: vsphere_password
-#       vsphere_user:
-#         from_secret: vsphere_user
-#       dockerhub_username:
-#         from_secret: dockerhub_username
-#       dockerhub_password:
-#         from_secret: dockerhub_password
-#     when:
-#       status:
-#         - success
-#         - failure
+  - name: destroy
+    image: quay.io/sighup/e2e-testing-drone-plugin:v1.25.3
+    pull: always
+    depends_on: [e2e]
+    settings:
+      action: destroy
+      pipeline_id: cluster-125
+      aws_default_region:
+        from_secret: aws_region
+      aws_access_key_id:
+        from_secret: aws_access_key_id
+      aws_secret_access_key:
+        from_secret: aws_secret_access_key
+      terraform_tf_states_bucket_name:
+        from_secret: terraform_tf_states_bucket_name
+      vsphere_server:
+        from_secret: vsphere_server
+      vsphere_password:
+        from_secret: vsphere_password
+      vsphere_user:
+        from_secret: vsphere_user
+      dockerhub_username:
+        from_secret: dockerhub_username
+      dockerhub_password:
+        from_secret: dockerhub_password
+    when:
+      status:
+        - success
+        - failure
 
-# volumes:
-#   - name: shared
-#     temp: {}
+volumes:
+  - name: shared
+    temp: {}
 
 ---
 name: e2e-kubernetes-1.26
@@ -425,33 +425,6 @@ steps:
         from_secret: dockerhub_username
       dockerhub_password:
         from_secret: dockerhub_password
-
-  - name: debug
-    # KUBECTL 1.26.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
-    image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
-    pull: always
-    volumes:
-      - name: shared
-        path: /shared
-    depends_on: [init]
-    commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-126
-      - kubectl get nodes
-      # - kubectl set image --namespace kube-system daemonset.apps/kindnet kindnet-cni=registry.sighup.io/fury/kindest/kindnetd:v20230330-48f316cd
-      # - kubectl wait --for=condition=Ready nodes 126-control-plane --timeout=70s || true
-      # - kubectl wait --for=condition=Ready nodes 126-worker --timeout=70s || true
-      # - kubectl get nodes
-      - kubectl get pods -A
-      # - kubectl rollout restart deploy coredns -n kube-system
-#      - kubectl wait --for=condition=ready --timeout=70s -n kube-system pod -l k8s-app=kube-dns || true
-#       - kubectl wait deployment -n kube-system coredns --for condition=Available=True --timeout=70s || true
-#       - kubectl get pods -A
-#       - kubectl set image --namespace local-path-storage deployment/local-path-provisioner local-path-provisioner=registry.sighup.io/fury/kindest/local-path-provisioner:v0.0.23-kind.0
-#       - kubectl get pods -A
-# #      - kubectl wait --for=condition=ready --timeout=70s -n local-path-storage pod -l app=local-path-provisioner || true
-#       - kubectl wait deployment -n local-path-storage local-path-provisioner --for condition=Available=True --timeout=70s || true
-#       - kubectl get pods -A
-#       - kubectl describe pod -n local-path-storage -l app=local-path-provisioner
 
   - name: e2e
     # KUBECTL 1.26.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
@@ -509,8 +482,8 @@ kind: pipeline
 type: docker
 
 depends_on:
-  # - e2e-kubernetes-1.24
-  # - e2e-kubernetes-1.25
+  - e2e-kubernetes-1.24
+  - e2e-kubernetes-1.25
   - e2e-kubernetes-1.26
 
 platform:
