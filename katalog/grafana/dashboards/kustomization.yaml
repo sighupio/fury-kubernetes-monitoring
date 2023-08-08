@@ -19,3 +19,6 @@ configMapGenerator:
   - name: grafana-dashboard
     files:
       - grafana-overview.json
+  - name: fury-dashboard
+    files:
+      - fury-cluster-overview.json
