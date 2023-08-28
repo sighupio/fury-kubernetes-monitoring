@@ -5,7 +5,7 @@
 | v1.14.2                             | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |                    |
 | v2.0.0                              |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
 | v2.0.1                              |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v2.1.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
+| v2.1.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v2.1.1                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
@@ -26,27 +26,27 @@ because it is not officially supported by [SIGHUP](https://sighup.io).
 
 ## Legacy versions
 
-| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |       1.20.X       |       1.21.X       |       1.22.X       |
-| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |                    |                    |                    |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |                    |                    |
-| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |                    |                    |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |                    |
-| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |
-| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |
-| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |                    |
-| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |                    |
-| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |                    |
-| v1.11.0                             |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |
-| v1.12.0                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
-| v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
-| v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |
-| v1.13.0                             |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
-| v1.14.0                             |                    |                    |                    |                    |                    |                    |        :x:         |        :x:         |        :x:         |
+| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |       1.20.X       |       1.21.X       |  1.22.X   |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :-------: |
+| v1.0.0                              |                    | :white_check_mark: |                    |                    |                    |                    |                    |                    |           |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |                    |           |
+| v1.2.0                              | :white_check_mark: | :white_check_mark: |        :x:         |                    |                    |                    |                    |                    |           |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.4.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.4.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.5.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.6.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.6.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.7.0                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.7.1                              |     :warning:      |     :warning:      | :white_check_mark: |                    |                    |                    |                    |                    |           |
+| v1.8.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
+| v1.9.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
+| v1.10.0                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |           |
+| v1.10.1                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |           |
+| v1.10.2                             |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |           |
+| v1.11.0                             |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |           |
+| v1.12.0                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |           |
+| v1.12.1                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |           |
+| v1.12.2                             |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |           |
+| v1.13.0                             |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v1.14.0                             |                    |                    |                    |                    |                    |                    |        :x:         |        :x:         |    :x:    |
