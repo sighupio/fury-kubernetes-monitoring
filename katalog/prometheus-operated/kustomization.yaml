@@ -23,7 +23,7 @@ patchesStrategicMerge:
         cpu: 500m
       limits:
         cpu: 2000m
-        memory: 2Gi
+        memory: 6Gi
     retention: 30d
     retentionSize: 120GiB
     storage:
