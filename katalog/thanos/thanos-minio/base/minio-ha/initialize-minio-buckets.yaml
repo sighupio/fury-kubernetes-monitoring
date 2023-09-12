@@ -42,9 +42,7 @@ spec:
           volumeMounts:
             - name: config
               mountPath: "/config"
-# mc --config-dir=/config mb -p monitoring/loki
-# mc --config-dir=/config mb -p monitoring/errors
-# mc --config-dir=/config ilm add --expiry-days "7" monitoring/errors
+# mc --config-dir=/config ilm add --expiry-days "7" monitoring/thanos
 ---
 apiVersion: v1
 kind: ServiceAccount
