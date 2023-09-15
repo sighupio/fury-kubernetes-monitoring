@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/component: object-store-gateway
     app.kubernetes.io/instance: thanos-store
     app.kubernetes.io/name: thanos-store
-    app.kubernetes.io/version: v0.30.2
+    app.kubernetes.io/version: v0.32.2
 spec:
   replicas: 1
   podManagementPolicy: OrderedReady
@@ -30,7 +30,7 @@ spec:
         app.kubernetes.io/component: object-store-gateway
         app.kubernetes.io/instance: thanos-store
         app.kubernetes.io/name: thanos-store
-        app.kubernetes.io/version: v0.30.2
+        app.kubernetes.io/version: v0.32.2
     spec:
       nodeSelector:
         kubernetes.io/os: linux     
