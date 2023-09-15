@@ -16,7 +16,7 @@ patchesStrategicMerge:
     name: k8s
     namespace: monitoring
   spec:
-    image: registry.sighup.io/fury/prometheus/prometheus:2.46.0
+    image: registry.sighup.io/fury/prometheus/prometheus:v2.46.0
     replicas: 1
     resources:
       requests:
