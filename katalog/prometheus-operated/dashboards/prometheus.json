@@ -178,8 +178,7 @@
                             "instant": true,
                             "intervalFactor": 2,
                             "legendFormat": "",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "max by (job, instance) (time() - process_start_time_seconds{job=~\"$job\", instance=~\"$instance\"})",
@@ -187,8 +186,7 @@
                             "instant": true,
                             "intervalFactor": 2,
                             "legendFormat": "",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         }
                     ],
                     "thresholds": [
@@ -286,8 +284,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{scrape_job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -372,8 +369,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Targets",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -470,8 +466,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{interval}} configured",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -556,40 +551,35 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "exceeded body size limit: {{job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum by (job) (rate(prometheus_target_scrapes_exceeded_sample_limit_total[1m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "exceeded sample limit: {{job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum by (job) (rate(prometheus_target_scrapes_sample_duplicate_timestamp_total[1m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "duplicate timestamp: {{job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum by (job) (rate(prometheus_target_scrapes_sample_out_of_bounds_total[1m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "out of bounds: {{job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum by (job) (rate(prometheus_target_scrapes_sample_out_of_order_total[1m]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "out of order: {{job}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -674,8 +664,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{job}} {{instance}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -772,8 +761,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{job}} {{instance}} head series",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -858,8 +846,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{job}} {{instance}} head chunks",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -956,8 +943,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{job}} {{instance}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
@@ -1042,8 +1028,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{slice}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [
