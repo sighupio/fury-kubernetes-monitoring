@@ -5,7 +5,7 @@
 </h1>
 <!-- markdownlint-enable MD033 -->
 
-![Release](https://img.shields.io/badge/Latest%20Release-v2.1.0-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.2.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-monitoring?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -48,17 +48,17 @@ Kubernetes Fury Monitoring provides the following packages:
 
 | Package                                                | Version  | Description                                                                                                 |
 | ------------------------------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
-| [prometheus-operator](katalog/prometheus-operator)     | `0.62.0` | Operator to deploy and manage Prometheus and related resources                                              |
-| [prometheus-operated](katalog/prometheus-operated)     | `2.41.0` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
-| [alertmanager-operated](katalog/alertmanager-operated) | `0.25.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
-| [blackbox-exporter](katalog/blackbox-exporter)         | `0.23.0` | Prometheus exporter that allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.    |
-| [grafana](katalog/grafana)                             | `9.3.2`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
+| [prometheus-operator](katalog/prometheus-operator)     | `0.67.1` | Operator to deploy and manage Prometheus and related resources                                              |
+| [prometheus-operated](katalog/prometheus-operated)     | `2.46.0` | Prometheus instance deployed with Prometheus Operator's CRD                                                 |
+| [alertmanager-operated](katalog/alertmanager-operated) | `0.26.0` | Alertmanager instance deployed with Prometheus Operator's CRD                                               |
+| [blackbox-exporter](katalog/blackbox-exporter)         | `0.24.0` | Prometheus exporter that allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.    |
+| [grafana](katalog/grafana)                             | `9.5.5`  | Grafana deployment to query and visualize metrics collected by Prometheus                                   |
 | [karma](katalog/karma)                                 | `0.113`  | Karma deployment to visualize alerts sent by AlertManager                                                   |
 | [kube-proxy-metrics](katalog/kube-proxy-metrics)       | `0.14.0` | RBAC proxy to securely expose kube-proxy metrics                                                            |
-| [kube-state-metrics](katalog/kube-state-metrics)       | `2.8.0`  | Service that generates metrics from Kubernetes API objects                                                  |
-| [node-exporter](katalog/node-exporter)                 | `1.5.0`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
-| [prometheus-adapter](katalog/prometheus-adapter)       | `0.10.0` | Kubernetes resource metrics, custom metrics, and external metrics APIs implementation.                      |
-| [thanos](katalog/thanos)                               | `0.30.2` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
+| [kube-state-metrics](katalog/kube-state-metrics)       | `2.9.2`  | Service that generates metrics from Kubernetes API objects                                                  |
+| [node-exporter](katalog/node-exporter)                 | `1.6.1`  | Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels                                    |
+| [prometheus-adapter](katalog/prometheus-adapter)       | `0.11.1` | Kubernetes resource metrics, custom metrics, and external metrics APIs implementation.                      |
+| [thanos](katalog/thanos)                               | `0.32.2` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store |
 | [x509-exporter](katalog/x509-exporter)                 | `3.6.0`  | Provides monitoring for certificates                                                                        |
 
 ### Integration with cloud providers
@@ -79,9 +79,8 @@ Please refer to the individual package documentation for further details.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.23.x`           | :white_check_mark: | No known issues |
-| `1.24.x`           | :white_check_mark: | No known issues |
 | `1.25.x`           | :white_check_mark: | No known issues |
+| `1.26.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
@@ -91,8 +90,8 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 | Tool                        | Version   | Description                                                                                                                                                    |
 | --------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
-| [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
+| [furyctl][furyctl-repo]     | `>=0.25.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
+| [kustomize][kustomize-repo] | `>=3.5.3` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
 ### Deployment
 
@@ -100,7 +99,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 ```yaml
 versions:
- monitoring: v2.1.0
+ monitoring: v2.2.0
 
 bases:
     - name: monitoring/prometheus-operator
@@ -148,7 +147,7 @@ based on your cloud provider for service monitoring:
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
 
-2. Execute `furyctl vendor -H` to download the packages
+2. Execute `furyctl legacy vendor -H` to download the packages
 
 3. Inspect the download packages under `./vendor/katalog/monitoring`.
 

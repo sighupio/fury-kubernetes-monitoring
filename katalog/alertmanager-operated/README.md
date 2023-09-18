@@ -13,13 +13,13 @@ with this package.
 
 ## Image repository and tag
 
-* Alertmanager image: `registry.sighup.io/prometheus/alertmanager:v0.24.2`
+* Alertmanager image: `registry.sighup.io/prometheus/alertmanager:v0.26.0`
 * Alertmanager repository: [Alertmanager on Github][am-gh]
 * Alertmanager documentation: [Alertmanager Homepage][am-doc]
 
 ## Requirements
 
-- Kubernetes >= `1.24.0`
+- Kubernetes >= `1.25.0`
 - Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 

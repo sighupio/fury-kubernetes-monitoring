@@ -14,21 +14,21 @@ It can also replace the [metrics server](https://github.com/kubernetes-incubator
 
 ## Requirements
 
-- Kubernetes >= `1.24.0`
+- Kubernetes >= `1.25.0`
 - Kustomize `= v3.5.3`
 - [prometheus-operator](../prometheus-operator)
 - [prometheus-operated](../prometheus-operated)
 
 ## Image repository and tag
 
-- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.9.1`
+- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.11.1`
 - Prometheus adapter repository: [Prometheus adapter on GitHub][pa-gh]
 
 ## Configuration
 
 Fury distribution Prometheus adapter is deployed with the following
 configuration:
-- Resource limits are `250m` for CPU and 180Mi for memory
+- Resource limits are `250m` for CPU and `1024Mi` for memory
 - Listens on port 6443
 - Metrics are scraped from Prometheus every `1m`
 

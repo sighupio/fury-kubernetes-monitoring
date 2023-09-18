@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/component: metrics-adapter
     app.kubernetes.io/name: prometheus-adapter
     app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 0.10.0
+    app.kubernetes.io/version: 0.11.1
   name: prometheus-adapter
   namespace: monitoring
 spec:
@@ -29,19 +29,18 @@ spec:
         app.kubernetes.io/component: metrics-adapter
         app.kubernetes.io/name: prometheus-adapter
         app.kubernetes.io/part-of: kube-prometheus
-        app.kubernetes.io/version: 0.10.0
+        app.kubernetes.io/version: 0.11.1
     spec:
       automountServiceAccountToken: true
       containers:
       - args:
         - --cert-dir=/var/run/serving-cert
         - --config=/etc/adapter/config.yaml
-        - --logtostderr=true
         - --metrics-relist-interval=1m
         - --prometheus-url=http://prometheus-k8s.monitoring.svc:9090/
         - --secure-port=6443
         - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA
-        image: k8s.gcr.io/prometheus-adapter/prometheus-adapter:v0.10.0
+        image: registry.k8s.io/prometheus-adapter/prometheus-adapter:v0.11.1
         livenessProbe:
           failureThreshold: 5
           httpGet:
@@ -65,16 +64,23 @@ spec:
         resources:
           limits:
             cpu: 250m
-            memory: 180Mi
+            memory: 1024Mi
           requests:
             cpu: 102m
-            memory: 180Mi
+            memory: 200Mi
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
           readOnlyRootFilesystem: true
+        startupProbe:
+          failureThreshold: 18
+          httpGet:
+            path: /livez
+            port: https
+            scheme: HTTPS
+          periodSeconds: 10
         volumeMounts:
         - mountPath: /tmp
           name: tmpfs
