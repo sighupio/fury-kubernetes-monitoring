@@ -10,10 +10,10 @@ namespace: monitoring
 images:
   - name: quay.io/prometheus-operator/prometheus-operator
     newName: registry.sighup.io/fury/prometheus-operator/prometheus-operator
-    newTag: v0.62.0
+    newTag: v0.67.1
   - name: quay.io/brancz/kube-rbac-proxy
     newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
-    newTag: v0.14.0
+    newTag: v0.14.2
 
 patchesStrategicMerge:
 - |-
@@ -38,7 +38,7 @@ patchesJSON6902:
     patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/args/1
-        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.62.0
+        value: --prometheus-config-reloader=registry.sighup.io/fury/prometheus-operator/prometheus-config-reloader:v0.67.1
 
 resources:
   - clusterRole.yaml
@@ -47,8 +47,10 @@ resources:
   - crds/0alertmanagerCustomResourceDefinition.yaml
   - crds/0podmonitorCustomResourceDefinition.yaml
   - crds/0probeCustomResourceDefinition.yaml
+  - crds/0prometheusagentCustomResourceDefinition.yaml
   - crds/0prometheusCustomResourceDefinition.yaml
   - crds/0prometheusruleCustomResourceDefinition.yaml
+  - crds/0scrapeconfigCustomResourceDefinition.yaml
   - crds/0servicemonitorCustomResourceDefinition.yaml
   - crds/0thanosrulerCustomResourceDefinition.yaml
   - deployment.yaml
