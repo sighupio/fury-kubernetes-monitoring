@@ -303,10 +303,10 @@ steps:
         path: /shared
     depends_on: [clone]
     settings:
-      action: custom-cluster-126
+      action: custom-cluster-127
       cluster_version: "1.27.1"
       local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-126
+      pipeline_id: cluster-127
       instance_path: /shared
       aws_default_region:
         from_secret: aws_region
