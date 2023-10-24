@@ -1,0 +1,3816 @@
+---
+# Source: mimir-distributed/templates/compactor/compactor-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-compactor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: compactor
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: compactor
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/distributor/distributor-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-distributor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: distributor
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/gateway/gateway-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: gateway
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/ingester/ingester-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-ingester
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: ingester
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/querier/querier-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-querier
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: querier
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: querier
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/query-frontend/query-frontend-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-query-frontend
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-frontend
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-frontend
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/query-scheduler/query-scheduler-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-query-scheduler
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-scheduler
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/store-gateway/store-gateway-pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mimir-distributed-store-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: store-gateway
+  maxUnavailable: 1
+---
+# Source: mimir-distributed/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mimir-distributed
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+---
+# Source: mimir-distributed/templates/gateway/nginx-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-distributed-gateway-nginx
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway-nginx
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+data:
+  nginx.conf: |
+    worker_processes  5;  ## Default: 1
+    error_log  /dev/stderr error;
+    pid        /tmp/nginx.pid;
+    worker_rlimit_nofile 8192;
+    
+    events {
+      worker_connections  4096;  ## Default: 1024
+    }
+    
+    http {
+      client_body_temp_path /tmp/client_temp;
+      proxy_temp_path       /tmp/proxy_temp_path;
+      fastcgi_temp_path     /tmp/fastcgi_temp;
+      uwsgi_temp_path       /tmp/uwsgi_temp;
+      scgi_temp_path        /tmp/scgi_temp;
+    
+      default_type application/octet-stream;
+      log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+            '"$request" $body_bytes_sent "$http_referer" '
+            '"$http_user_agent" "$http_x_forwarded_for"';
+      access_log   /dev/stderr  main;
+    
+      sendfile     on;
+      tcp_nopush   on;
+      resolver kube-dns.kube-system.svc.cluster.local;
+    
+      # Ensure that X-Scope-OrgID is always present, default to the no_auth_tenant for backwards compatibility when multi-tenancy was turned off.
+      map $http_x_scope_orgid $ensured_x_scope_orgid {
+        default $http_x_scope_orgid;
+        "" "anonymous";
+      }
+    
+      proxy_read_timeout 300;
+      server {
+        listen 8080;
+    
+        location = / {
+          return 200 'OK';
+          auth_basic off;
+        }
+    
+        location = /ready {
+          return 200 'OK';
+          auth_basic off;
+        }
+    
+        proxy_set_header X-Scope-OrgID $ensured_x_scope_orgid;
+    
+        # Distributor endpoints
+        location /distributor {
+          set $distributor mimir-distributed-distributor-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$distributor:8080$request_uri;
+        }
+        location = /api/v1/push {
+          set $distributor mimir-distributed-distributor-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$distributor:8080$request_uri;
+        }
+        location /otlp/v1/metrics {
+          set $distributor mimir-distributed-distributor-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$distributor:8080$request_uri;
+        }
+    
+        # Alertmanager endpoints
+        location /alertmanager {
+          set $alertmanager mimir-distributed-alertmanager-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$alertmanager:8080$request_uri;
+        }
+        location = /multitenant_alertmanager/status {
+          set $alertmanager mimir-distributed-alertmanager-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$alertmanager:8080$request_uri;
+        }
+        location = /api/v1/alerts {
+          set $alertmanager mimir-distributed-alertmanager-headless.monitoring.svc.cluster.local;
+          proxy_pass      http://$alertmanager:8080$request_uri;
+        }
+    
+        # Ruler endpoints
+        location /prometheus/config/v1/rules {
+          set $ruler mimir-distributed-ruler.monitoring.svc.cluster.local;
+          proxy_pass      http://$ruler:8080$request_uri;
+        }
+        location /prometheus/api/v1/rules {
+          set $ruler mimir-distributed-ruler.monitoring.svc.cluster.local;
+          proxy_pass      http://$ruler:8080$request_uri;
+        }
+    
+        location /prometheus/api/v1/alerts {
+          set $ruler mimir-distributed-ruler.monitoring.svc.cluster.local;
+          proxy_pass      http://$ruler:8080$request_uri;
+        }
+        location = /ruler/ring {
+          set $ruler mimir-distributed-ruler.monitoring.svc.cluster.local;
+          proxy_pass      http://$ruler:8080$request_uri;
+        }
+    
+        # Rest of /prometheus goes to the query frontend
+        location /prometheus {
+          set $query_frontend mimir-distributed-query-frontend.monitoring.svc.cluster.local;
+          proxy_pass      http://$query_frontend:8080$request_uri;
+        }
+    
+        # Buildinfo endpoint can go to any component
+        location = /api/v1/status/buildinfo {
+          set $query_frontend mimir-distributed-query-frontend.monitoring.svc.cluster.local;
+          proxy_pass      http://$query_frontend:8080$request_uri;
+        }
+    
+        # Compactor endpoint for uploading blocks
+        location /api/v1/upload/block/ {
+          set $compactor mimir-distributed-compactor.monitoring.svc.cluster.local;
+          proxy_pass      http://$compactor:8080$request_uri;
+        }
+      }
+    }
+
+---
+# Source: mimir-distributed/templates/runtime-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-distributed-runtime
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+data:
+  runtime.yaml: |
+    
+    {}
+---
+# Source: mimir-distributed/templates/compactor/compactor-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-compactor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: compactor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: compactor
+---
+# Source: mimir-distributed/templates/continuous_test/continuous-test-svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-continuous-test-headless
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: continuous-test
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: continuous-test
+---
+# Source: mimir-distributed/templates/distributor/distributor-svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-distributor-headless
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+    prometheus.io/service-monitor: "false"
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+---
+# Source: mimir-distributed/templates/distributor/distributor-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-distributor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+---
+# Source: mimir-distributed/templates/gateway/gateway-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 8080
+      protocol: TCP
+      name: legacy-http-metrics
+      targetPort: http-metrics
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway
+---
+# Source: mimir-distributed/templates/gossip-ring/gossip-ring-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-gossip-ring
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gossip-ring
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: gossip-ring
+      port: 7946
+      appProtocol: tcp
+      protocol: TCP
+      targetPort: 7946
+  publishNotReadyAddresses: true
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/part-of: memberlist
+---
+# Source: mimir-distributed/templates/ingester/ingester-svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-ingester-headless
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+    prometheus.io/service-monitor: "false"
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+---
+# Source: mimir-distributed/templates/ingester/ingester-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-ingester
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+---
+# Source: mimir-distributed/templates/querier/querier-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-querier
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: querier
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: querier
+---
+# Source: mimir-distributed/templates/query-frontend/query-frontend-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-query-frontend
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-frontend
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-frontend
+---
+# Source: mimir-distributed/templates/query-scheduler/query-scheduler-svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-query-scheduler-headless
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+    prometheus.io/service-monitor: "false"
+  annotations:
+    {}
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+---
+# Source: mimir-distributed/templates/query-scheduler/query-scheduler-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-query-scheduler
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+---
+# Source: mimir-distributed/templates/store-gateway/store-gateway-svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-store-gateway-headless
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+    prometheus.io/service-monitor: "false"
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+---
+# Source: mimir-distributed/templates/store-gateway/store-gateway-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mimir-distributed-store-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+    - port: 9095
+      protocol: TCP
+      name: grpc
+      targetPort: grpc
+  selector:
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+---
+# Source: mimir-distributed/templates/continuous_test/continuous-test-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    {}
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: continuous-test
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  name: mimir-distributed-continuous-test
+  namespace: "monitoring"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: continuous-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: continuous-test
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: continuous-test
+          image: grafana/mimir-continuous-test:2.10.3
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-server.metrics-port=8080"
+            - "-tests.write-read-series-test.num-series=1000"
+            - "-tests.write-read-series-test.max-query-age=48h"
+            - "-tests.write-endpoint=http://mimir-distributed-gateway.monitoring.svc:80"
+            - "-tests.read-endpoint=http://mimir-distributed-gateway.monitoring.svc:80/prometheus"
+            - "-tests.run-interval=5m"
+            - "-tests.tenant-id=mimir-continuous-test"
+          volumeMounts:
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 512Mi
+          securityContext:
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 30
+      volumes:
+---
+# Source: mimir-distributed/templates/distributor/distributor-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimir-distributed-distributor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: distributor
+  strategy:
+    rollingUpdate:
+      maxSurge: 15%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: distributor
+        app.kubernetes.io/part-of: memberlist
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: distributor
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=distributor"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/mimir
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: storage
+              mountPath: "/data"
+              subPath: 
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: memberlist
+              containerPort: 7946
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+            - name: "GOMAXPROCS"
+              value: "8"
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: distributor
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: storage
+          emptyDir: {}
+        - name: active-queries
+          emptyDir: {}
+---
+# Source: mimir-distributed/templates/gateway/gateway-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    {}
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  name: mimir-distributed-gateway
+  namespace: "monitoring"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: gateway
+  strategy:
+    rollingUpdate:
+      maxSurge: 15%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: gateway
+      annotations:
+        checksum/config: 6844d0e7c6003ebee01a7d9090c21f1ab6f9e2123878a5c4c045a34458011d5c
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: nginx
+          image: docker.io/nginxinc/nginx-unprivileged:1.24-alpine
+          imagePullPolicy: IfNotPresent
+          args:
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx
+            - name: tmp
+              mountPath: /tmp
+            - name: docker-entrypoint-d-override
+              mountPath: /docker-entrypoint.d
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: gateway
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: nginx-config
+          configMap:
+            name: mimir-distributed-gateway-nginx
+        - name: docker-entrypoint-d-override
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+---
+# Source: mimir-distributed/templates/querier/querier-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimir-distributed-querier
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: querier
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: querier
+  strategy:
+    rollingUpdate:
+      maxSurge: 15%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: querier
+        app.kubernetes.io/part-of: memberlist
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: querier
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=querier"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/mimir
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: storage
+              mountPath: "/data"
+              subPath: 
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: memberlist
+              containerPort: 7946
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+            - name: "GOMAXPROCS"
+              value: "5"
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: querier
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: storage
+          emptyDir: {}
+        - name: active-queries
+          emptyDir: {}
+---
+# Source: mimir-distributed/templates/query-frontend/query-frontend-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimir-distributed-query-frontend
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-frontend
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 15%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: query-frontend
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: query-frontend
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=query-frontend"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+          volumeMounts:
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: config
+              mountPath: /etc/mimir
+            - name: storage
+              mountPath: /data
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: query-frontend
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: storage
+          emptyDir: {}
+        - name: active-queries
+          emptyDir: {}
+---
+# Source: mimir-distributed/templates/query-scheduler/query-scheduler-dep.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mimir-distributed-query-scheduler
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-scheduler
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: query-scheduler
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      containers:
+        - name: query-scheduler
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=query-scheduler"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+            - "-server.grpc.keepalive.max-connection-age=2562047h" # 100000 days, effectively infinity
+            - "-server.grpc.keepalive.max-connection-age-grace=2562047h" # 100000 days, effectively infinity
+          volumeMounts:
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: config
+              mountPath: /etc/mimir
+            - name: storage
+              mountPath: /data
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: query-scheduler
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: storage
+          emptyDir: {}
+        - name: active-queries
+          emptyDir: {}
+---
+# Source: mimir-distributed/templates/gateway/gateway-v2-hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mimir-distributed-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: gateway
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mimir-distributed-gateway
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+---
+# Source: mimir-distributed/templates/compactor/compactor-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mimir-distributed-compactor
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: compactor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: compactor
+  updateStrategy:
+    type: RollingUpdate
+  serviceName: mimir-distributed-compactor
+  volumeClaimTemplates:
+    - metadata:
+        name: storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: "2Gi"
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: compactor
+        app.kubernetes.io/part-of: memberlist
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: compactor
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 240
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: active-queries
+          emptyDir: {}
+      containers:
+        - name: compactor
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=compactor"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/mimir
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: storage
+              mountPath: "/data"
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: memberlist
+              containerPort: 7946
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 60
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+---
+# Source: mimir-distributed/templates/ingester/ingester-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mimir-distributed-ingester
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  podManagementPolicy: Parallel
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: ingester
+  updateStrategy:
+    type: RollingUpdate
+  serviceName: mimir-distributed-ingester-headless
+  volumeClaimTemplates:
+    - metadata:
+        name: storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: "2Gi"
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: ingester
+        app.kubernetes.io/part-of: memberlist
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: ingester
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 240
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: active-queries
+          emptyDir: {}
+      containers:
+        - name: ingester
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=ingester"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+            - "-ingester.ring.instance-availability-zone=zone-default"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/mimir
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: storage
+              mountPath: "/data"
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: memberlist
+              containerPort: 7946
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 60
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+          envFrom:
+---
+# Source: mimir-distributed/templates/store-gateway/store-gateway-statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mimir-distributed-store-gateway
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    {}
+  namespace: "monitoring"
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: store-gateway
+  updateStrategy:
+    type: RollingUpdate
+  serviceName: mimir-distributed-store-gateway-headless
+  volumeClaimTemplates:
+    - metadata:
+        name: storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: "2Gi"
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: mimir-distributed-5.1.2
+        app.kubernetes.io/name: mimir
+        app.kubernetes.io/instance: mimir-distributed
+        app.kubernetes.io/version: "2.10.3"
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: store-gateway
+        app.kubernetes.io/part-of: memberlist
+      annotations:
+        checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
+      namespace: "monitoring"
+    spec:
+      serviceAccountName: mimir-distributed
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        []
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: mimir
+            app.kubernetes.io/instance: mimir-distributed
+            app.kubernetes.io/component: store-gateway
+      tolerations:
+        []
+      terminationGracePeriodSeconds: 240
+      volumes:
+        - name: config
+          configMap:
+            name: mimir-distributed-config
+            items:
+              - key: "mimir.yaml"
+                path: "mimir.yaml"
+        - name: runtime-config
+          configMap:
+            name: mimir-distributed-runtime
+        - name: active-queries
+          emptyDir: {}
+      containers:
+        - name: store-gateway
+          image: "grafana/mimir:2.10.3"
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-target=store-gateway"
+            - "-config.expand-env=true"
+            - "-config.file=/etc/mimir/mimir.yaml"
+          volumeMounts:
+            - name: config
+              mountPath: /etc/mimir
+            - name: runtime-config
+              mountPath: /var/mimir
+            - name: storage
+              mountPath: "/data"
+            - name: active-queries
+              mountPath: /active-query-tracker
+          ports:
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: memberlist
+              containerPort: 7946
+              protocol: TCP
+          livenessProbe:
+            null
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 60
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          env:
+            - name: "GOMAXPROCS"
+              value: "5"
+            - name: "GOMEMLIMIT"
+              value: "536870912"
+          envFrom:
+---
+# Source: mimir-distributed/templates/minio/create-bucket-job.yaml
+# Minio provides post-install hook to create bucket
+# however the hook won't be executed if helm install is run
+# with --wait flag. Hence this job is a workaround for that.
+# See https://github.com/grafana/mimir/issues/2464
+---
+# Source: mimir-distributed/templates/metamonitoring/mixin-alerts.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mimir-distributed-alerts
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  groups:
+  - name: mimir_alerts
+    rules:
+    - alert: MimirIngesterUnhealthy
+      annotations:
+        message: Mimir cluster {{ $labels.cluster }}/{{ $labels.namespace }} has {{
+          printf "%f" $value }} unhealthy ingester(s).
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterunhealthy
+      expr: |
+        min by (cluster, namespace) (cortex_ring_members{state="Unhealthy", name="ingester"}) > 0
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirRequestErrors
+      annotations:
+        message: |
+          The route {{ $labels.route }} in {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% errors.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrequesterrors
+      expr: |
+        100 * sum by (cluster, namespace, job, route) (rate(cortex_request_duration_seconds_count{status_code=~"5..",route!~"ready|debug_pprof"}[1m]))
+          /
+        sum by (cluster, namespace, job, route) (rate(cortex_request_duration_seconds_count{route!~"ready|debug_pprof"}[1m]))
+          > 1
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirRequestLatency
+      annotations:
+        message: |
+          {{ $labels.job }} {{ $labels.route }} is experiencing {{ printf "%.2f" $value }}s 99th percentile latency.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrequestlatency
+      expr: |
+        cluster_namespace_job_route:cortex_request_duration_seconds:99quantile{route!~"metrics|/frontend.Frontend/Process|ready|/schedulerpb.SchedulerForFrontend/FrontendLoop|/schedulerpb.SchedulerForQuerier/QuerierLoop|debug_pprof"}
+           >
+        2.5
+      for: 15m
+      labels:
+        severity: warning
+    - alert: MimirQueriesIncorrect
+      annotations:
+        message: |
+          The Mimir cluster {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% incorrect query results.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirqueriesincorrect
+      expr: |
+        100 * sum by (cluster, namespace) (rate(test_exporter_test_case_result_total{result="fail"}[5m]))
+          /
+        sum by (cluster, namespace) (rate(test_exporter_test_case_result_total[5m])) > 1
+      for: 15m
+      labels:
+        severity: warning
+    - alert: MimirInconsistentRuntimeConfig
+      annotations:
+        message: |
+          An inconsistent runtime config file is used across cluster {{ $labels.cluster }}/{{ $labels.namespace }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirinconsistentruntimeconfig
+      expr: |
+        count(count by(cluster, namespace, job, sha256) (cortex_runtime_config_hash)) without(sha256) > 1
+      for: 1h
+      labels:
+        severity: critical
+    - alert: MimirBadRuntimeConfig
+      annotations:
+        message: |
+          {{ $labels.job }} failed to reload runtime config.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirbadruntimeconfig
+      expr: |
+        # The metric value is reset to 0 on error while reloading the config at runtime.
+        cortex_runtime_config_last_reload_successful == 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirFrontendQueriesStuck
+      annotations:
+        message: |
+          There are {{ $value }} queued up queries in {{ $labels.cluster }}/{{ $labels.namespace }} {{ $labels.job }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirfrontendqueriesstuck
+      expr: |
+        sum by (cluster, namespace, job) (min_over_time(cortex_query_frontend_queue_length[1m])) > 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirSchedulerQueriesStuck
+      annotations:
+        message: |
+          There are {{ $value }} queued up queries in {{ $labels.cluster }}/{{ $labels.namespace }} {{ $labels.job }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirschedulerqueriesstuck
+      expr: |
+        sum by (cluster, namespace, job) (min_over_time(cortex_query_scheduler_queue_length[1m])) > 0
+      for: 7m
+      labels:
+        severity: critical
+    - alert: MimirCacheRequestErrors
+      annotations:
+        message: |
+          The cache {{ $labels.name }} used by Mimir {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% errors for {{ $labels.operation }} operation.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircacherequesterrors
+      expr: |
+        (
+          sum by(cluster, namespace, name, operation) (
+            rate(thanos_memcached_operation_failures_total[1m])
+            or
+            rate(thanos_cache_operation_failures_total[1m])
+          )
+          /
+          sum by(cluster, namespace, name, operation) (
+            rate(thanos_memcached_operations_total[1m])
+            or
+            rate(thanos_cache_operations_total[1m])
+          )
+        ) * 100 > 5
+      for: 5m
+      labels:
+        severity: warning
+    - alert: MimirIngesterRestarts
+      annotations:
+        message: Mimir {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has restarted {{ printf "%.2f" $value }} times in the last 30 mins.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterrestarts
+      expr: |
+        (
+          sum by(cluster, namespace, pod) (
+            increase(kube_pod_container_status_restarts_total{container=~"(ingester|mimir-write)"}[30m])
+          )
+          >= 2
+        )
+        and
+        (
+          count by(cluster, namespace, pod) (cortex_build_info) > 0
+        )
+      labels:
+        severity: warning
+    - alert: MimirKVStoreFailure
+      annotations:
+        message: |
+          Mimir {{ $labels.pod }} in  {{ $labels.cluster }}/{{ $labels.namespace }} is failing to talk to the KV store {{ $labels.kv_name }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirkvstorefailure
+      expr: |
+        (
+          sum by(cluster, namespace, pod, status_code, kv_name) (rate(cortex_kv_request_duration_seconds_count{status_code!~"2.+"}[1m]))
+          /
+          sum by(cluster, namespace, pod, status_code, kv_name) (rate(cortex_kv_request_duration_seconds_count[1m]))
+        )
+        # We want to get alerted only in case there's a constant failure.
+        == 1
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirMemoryMapAreasTooHigh
+      annotations:
+        message: '{{ $labels.job }}/{{ $labels.pod }} has a number of mmap-ed areas
+          close to the limit.'
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirmemorymapareastoohigh
+      expr: |
+        process_memory_map_areas{job=~".*/(ingester.*|cortex|mimir|mimir-write.*|store-gateway.*|cortex|mimir|mimir-backend.*)"} / process_memory_map_areas_limit{job=~".*/(ingester.*|cortex|mimir|mimir-write.*|store-gateway.*|cortex|mimir|mimir-backend.*)"} > 0.8
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirIngesterInstanceHasNoTenants
+      annotations:
+        message: Mimir ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has no tenants assigned.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterinstancehasnotenants
+      expr: |
+        (min by(cluster, namespace, pod) (cortex_ingester_memory_users) == 0)
+        and on (cluster, namespace)
+        # Only if there are more time-series than would be expected due to continuous testing load
+        (
+          sum by(cluster, namespace) (cortex_ingester_memory_series)
+          /
+          max by(cluster, namespace) (cortex_distributor_replication_factor)
+        ) > 100000
+      for: 1h
+      labels:
+        severity: warning
+    - alert: MimirRulerInstanceHasNoRuleGroups
+      annotations:
+        message: Mimir ruler {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has no rule groups assigned.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulerinstancehasnorulegroups
+      expr: |
+        # Alert on ruler instances in microservices mode that have no rule groups assigned,
+        min by(cluster, namespace, pod) (cortex_ruler_managers_total{pod=~"(.*mimir-)?ruler.*"}) == 0
+        # but only if other ruler instances of the same cell do have rule groups assigned
+        and on (cluster, namespace)
+        (max by(cluster, namespace) (cortex_ruler_managers_total) > 0)
+        # and there are more than two instances overall
+        and on (cluster, namespace)
+        (count by (cluster, namespace) (cortex_ruler_managers_total) > 2)
+      for: 1h
+      labels:
+        severity: warning
+    - alert: MimirIngestedDataTooFarInTheFuture
+      annotations:
+        message: Mimir ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has ingested samples with timestamps more than 1h in the future.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesteddatatoofarinthefuture
+      expr: |
+        max by(cluster, namespace, pod) (
+            cortex_ingester_tsdb_head_max_timestamp_seconds - time()
+            and
+            cortex_ingester_tsdb_head_max_timestamp_seconds > 0
+        ) > 60*60
+      for: 5m
+      labels:
+        severity: warning
+    - alert: MimirRingMembersMismatch
+      annotations:
+        message: |
+          Number of members in Mimir ingester hash ring does not match the expected number in {{ $labels.cluster }}/{{ $labels.namespace }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirringmembersmismatch
+      expr: |
+        (
+          avg by(cluster, namespace) (sum by(cluster, namespace, pod) (cortex_ring_members{name="ingester",job=~".*/(ingester.*|cortex|mimir|mimir-write.*)"}))
+          != sum by(cluster, namespace) (up{job=~".*/(ingester.*|cortex|mimir|mimir-write.*)"})
+        )
+        and
+        (
+          count by(cluster, namespace) (cortex_build_info) > 0
+        )
+      for: 15m
+      labels:
+        component: ingester
+        severity: warning
+  - name: mimir_instance_limits_alerts
+    rules:
+    - alert: MimirIngesterReachingSeriesLimit
+      annotations:
+        message: |
+          Ingester {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its series limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterreachingserieslimit
+      expr: |
+        (
+            (cortex_ingester_memory_series / ignoring(limit) cortex_ingester_instance_limits{limit="max_series"})
+            and ignoring (limit)
+            (cortex_ingester_instance_limits{limit="max_series"} > 0)
+        ) > 0.8
+      for: 3h
+      labels:
+        severity: warning
+    - alert: MimirIngesterReachingSeriesLimit
+      annotations:
+        message: |
+          Ingester {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its series limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterreachingserieslimit
+      expr: |
+        (
+            (cortex_ingester_memory_series / ignoring(limit) cortex_ingester_instance_limits{limit="max_series"})
+            and ignoring (limit)
+            (cortex_ingester_instance_limits{limit="max_series"} > 0)
+        ) > 0.9
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirIngesterReachingTenantsLimit
+      annotations:
+        message: |
+          Ingester {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its tenant limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterreachingtenantslimit
+      expr: |
+        (
+            (cortex_ingester_memory_users / ignoring(limit) cortex_ingester_instance_limits{limit="max_tenants"})
+            and ignoring (limit)
+            (cortex_ingester_instance_limits{limit="max_tenants"} > 0)
+        ) > 0.7
+      for: 5m
+      labels:
+        severity: warning
+    - alert: MimirIngesterReachingTenantsLimit
+      annotations:
+        message: |
+          Ingester {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its tenant limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterreachingtenantslimit
+      expr: |
+        (
+            (cortex_ingester_memory_users / ignoring(limit) cortex_ingester_instance_limits{limit="max_tenants"})
+            and ignoring (limit)
+            (cortex_ingester_instance_limits{limit="max_tenants"} > 0)
+        ) > 0.8
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirReachingTCPConnectionsLimit
+      annotations:
+        message: |
+          Mimir instance {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its TCP connections limit for {{ $labels.protocol }} protocol.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirreachingtcpconnectionslimit
+      expr: |
+        cortex_tcp_connections / cortex_tcp_connections_limit > 0.8 and
+        cortex_tcp_connections_limit > 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirDistributorReachingInflightPushRequestLimit
+      annotations:
+        message: |
+          Distributor {{ $labels.job }}/{{ $labels.pod }} has reached {{ $value | humanizePercentage }} of its inflight push request limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirdistributorreachinginflightpushrequestlimit
+      expr: |
+        (
+            (cortex_distributor_inflight_push_requests / ignoring(limit) cortex_distributor_instance_limits{limit="max_inflight_push_requests"})
+            and ignoring (limit)
+            (cortex_distributor_instance_limits{limit="max_inflight_push_requests"} > 0)
+        ) > 0.8
+      for: 5m
+      labels:
+        severity: critical
+  - name: mimir-rollout-alerts
+    rules:
+    - alert: MimirRolloutStuck
+      annotations:
+        message: |
+          The {{ $labels.rollout_group }} rollout is stuck in {{ $labels.cluster }}/{{ $labels.namespace }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrolloutstuck
+      expr: |
+        (
+          max without (revision) (
+            sum without(statefulset) (label_replace(kube_statefulset_status_current_revision, "rollout_group", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?"))
+              unless
+            sum without(statefulset) (label_replace(kube_statefulset_status_update_revision, "rollout_group", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?"))
+          )
+            *
+          (
+            sum without(statefulset) (label_replace(kube_statefulset_replicas, "rollout_group", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?"))
+              !=
+            sum without(statefulset) (label_replace(kube_statefulset_status_replicas_updated, "rollout_group", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?"))
+          )
+        ) and (
+          changes(sum without(statefulset) (label_replace(kube_statefulset_status_replicas_updated, "rollout_group", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?"))[15m:1m])
+            ==
+          0
+        )
+        * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+      for: 30m
+      labels:
+        severity: warning
+        workload_type: statefulset
+    - alert: MimirRolloutStuck
+      annotations:
+        message: |
+          The {{ $labels.rollout_group }} rollout is stuck in {{ $labels.cluster }}/{{ $labels.namespace }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrolloutstuck
+      expr: |
+        (
+          sum without(deployment) (label_replace(kube_deployment_spec_replicas, "rollout_group", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"))
+            !=
+          sum without(deployment) (label_replace(kube_deployment_status_replicas_updated, "rollout_group", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"))
+        ) and (
+          changes(sum without(deployment) (label_replace(kube_deployment_status_replicas_updated, "rollout_group", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"))[15m:1m])
+            ==
+          0
+        )
+        * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+      for: 30m
+      labels:
+        severity: warning
+        workload_type: deployment
+    - alert: RolloutOperatorNotReconciling
+      annotations:
+        message: |
+          Rollout operator is not reconciling the rollout group {{ $labels.rollout_group }} in {{ $labels.cluster }}/{{ $labels.namespace }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#rolloutoperatornotreconciling
+      expr: |
+        max by(cluster, namespace, rollout_group) (time() - rollout_operator_last_successful_group_reconcile_timestamp_seconds) > 600
+      for: 5m
+      labels:
+        severity: critical
+  - name: mimir-provisioning
+    rules:
+    - alert: MimirAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Instance {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is using too much memory.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirallocatingtoomuchmemory
+      expr: |
+        (
+          # We use RSS instead of working set memory because of the ingester's extensive usage of mmap.
+          # See: https://github.com/grafana/mimir/issues/2466
+          container_memory_rss{container=~"(ingester|mimir-write|mimir-backend)"}
+            /
+          ( container_spec_memory_limit_bytes{container=~"(ingester|mimir-write|mimir-backend)"} > 0 )
+        )
+        # Match only Mimir namespaces.
+        * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+        > 0.65
+      for: 15m
+      labels:
+        severity: warning
+    - alert: MimirAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Instance {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is using too much memory.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirallocatingtoomuchmemory
+      expr: |
+        (
+          # We use RSS instead of working set memory because of the ingester's extensive usage of mmap.
+          # See: https://github.com/grafana/mimir/issues/2466
+          container_memory_rss{container=~"(ingester|mimir-write|mimir-backend)"}
+            /
+          ( container_spec_memory_limit_bytes{container=~"(ingester|mimir-write|mimir-backend)"} > 0 )
+        )
+        # Match only Mimir namespaces.
+        * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+        > 0.8
+      for: 15m
+      labels:
+        severity: critical
+  - name: ruler_alerts
+    rules:
+    - alert: MimirRulerTooManyFailedPushes
+      annotations:
+        message: |
+          Mimir Ruler {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% write (push) errors.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulertoomanyfailedpushes
+      expr: |
+        100 * (
+        sum by (cluster, namespace, pod) (rate(cortex_ruler_write_requests_failed_total[1m]))
+          /
+        sum by (cluster, namespace, pod) (rate(cortex_ruler_write_requests_total[1m]))
+        ) > 1
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirRulerTooManyFailedQueries
+      annotations:
+        message: |
+          Mimir Ruler {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% errors while evaluating rules.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulertoomanyfailedqueries
+      expr: |
+        100 * (
+        sum by (cluster, namespace, pod) (rate(cortex_ruler_queries_failed_total[1m]))
+          /
+        sum by (cluster, namespace, pod) (rate(cortex_ruler_queries_total[1m]))
+        ) > 1
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirRulerMissedEvaluations
+      annotations:
+        message: |
+          Mimir Ruler {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is experiencing {{ printf "%.2f" $value }}% missed iterations for the rule group {{ $labels.rule_group }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulermissedevaluations
+      expr: |
+        100 * (
+        sum by (cluster, namespace, pod, rule_group) (rate(cortex_prometheus_rule_group_iterations_missed_total[1m]))
+          /
+        sum by (cluster, namespace, pod, rule_group) (rate(cortex_prometheus_rule_group_iterations_total[1m]))
+        ) > 1
+      for: 5m
+      labels:
+        severity: warning
+    - alert: MimirRulerFailedRingCheck
+      annotations:
+        message: |
+          Mimir Rulers in {{ $labels.cluster }}/{{ $labels.namespace }} are experiencing errors when checking the ring for rule group ownership.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulerfailedringcheck
+      expr: |
+        sum by (cluster, namespace, job) (rate(cortex_ruler_ring_check_errors_total[1m]))
+           > 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirRulerRemoteEvaluationFailing
+      annotations:
+        message: |
+          Mimir rulers in {{ $labels.cluster }}/{{ $labels.namespace }} are failing to perform {{ printf "%.2f" $value }}% of remote evaluations through the ruler-query-frontend.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirrulerremoteevaluationfailing
+      expr: |
+        100 * (
+        sum by (cluster, namespace) (rate(cortex_request_duration_seconds_count{route="/httpgrpc.HTTP/Handle", status_code=~"5..", job=~".*/(ruler-query-frontend.*)"}[5m]))
+          /
+        sum by (cluster, namespace) (rate(cortex_request_duration_seconds_count{route="/httpgrpc.HTTP/Handle", job=~".*/(ruler-query-frontend.*)"}[5m]))
+        ) > 1
+      for: 5m
+      labels:
+        severity: warning
+  - name: gossip_alerts
+    rules:
+    - alert: MimirGossipMembersMismatch
+      annotations:
+        message: Mimir instance {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} sees incorrect number of gossip members.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirgossipmembersmismatch
+      expr: |
+        avg by (cluster, namespace) (memberlist_client_cluster_members_count) != sum by (cluster, namespace) (up{job=~".+/(admin-api|alertmanager|compactor.*|distributor|ingester.*|querier.*|ruler|ruler-querier.*|store-gateway.*|cortex|mimir|mimir-write.*|mimir-read.*|mimir-backend.*)"})
+      for: 15m
+      labels:
+        severity: warning
+  - name: etcd_alerts
+    rules:
+    - alert: EtcdAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Too much memory being used by {{ $labels.namespace }}/{{ $labels.pod }} - bump memory limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#etcdallocatingtoomuchmemory
+      expr: |
+        (
+          container_memory_working_set_bytes{container="etcd"}
+            /
+          ( container_spec_memory_limit_bytes{container="etcd"} > 0 )
+        ) > 0.65
+      for: 15m
+      labels:
+        severity: warning
+    - alert: EtcdAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Too much memory being used by {{ $labels.namespace }}/{{ $labels.pod }} - bump memory limit.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#etcdallocatingtoomuchmemory
+      expr: |
+        (
+          container_memory_working_set_bytes{container="etcd"}
+            /
+          ( container_spec_memory_limit_bytes{container="etcd"} > 0 )
+        ) > 0.8
+      for: 15m
+      labels:
+        severity: critical
+  - name: alertmanager_alerts
+    rules:
+    - alert: MimirAlertmanagerSyncConfigsFailing
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} is failing to read tenant configurations from storage.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagersyncconfigsfailing
+      expr: |
+        rate(cortex_alertmanager_sync_configs_failed_total[5m]) > 0
+      for: 30m
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerRingCheckFailing
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} is unable to check tenants ownership via the ring.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerringcheckfailing
+      expr: |
+        rate(cortex_alertmanager_ring_check_errors_total[2m]) > 0
+      for: 10m
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerPartialStateMergeFailing
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} is failing to merge partial state changes received from a replica.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerpartialstatemergefailing
+      expr: |
+        rate(cortex_alertmanager_partial_state_merges_failed_total[2m]) > 0
+      for: 10m
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerReplicationFailing
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} is failing to replicating partial state to its replicas.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerreplicationfailing
+      expr: |
+        rate(cortex_alertmanager_state_replication_failed_total[2m]) > 0
+      for: 10m
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerPersistStateFailing
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} is unable to persist full state snaphots to remote storage.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerpersiststatefailing
+      expr: |
+        rate(cortex_alertmanager_state_persist_failed_total[15m]) > 0
+      for: 1h
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerInitialSyncFailed
+      annotations:
+        message: |
+          Mimir Alertmanager {{ $labels.job }}/{{ $labels.pod }} was unable to obtain some initial state when starting up.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerinitialsyncfailed
+      expr: |
+        increase(cortex_alertmanager_state_initial_sync_completed_total{outcome="failed"}[1m]) > 0
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Alertmanager {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is using too much memory.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerallocatingtoomuchmemory
+      expr: |
+        (container_memory_working_set_bytes{container="alertmanager"} / container_spec_memory_limit_bytes{container="alertmanager"}) > 0.80
+        and
+        (container_spec_memory_limit_bytes{container="alertmanager"} > 0)
+      for: 15m
+      labels:
+        severity: warning
+    - alert: MimirAlertmanagerAllocatingTooMuchMemory
+      annotations:
+        message: |
+          Alertmanager {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace }} is using too much memory.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerallocatingtoomuchmemory
+      expr: |
+        (container_memory_working_set_bytes{container="alertmanager"} / container_spec_memory_limit_bytes{container="alertmanager"}) > 0.90
+        and
+        (container_spec_memory_limit_bytes{container="alertmanager"} > 0)
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirAlertmanagerInstanceHasNoTenants
+      annotations:
+        message: Mimir alertmanager {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} owns no tenants.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiralertmanagerinstancehasnotenants
+      expr: |
+        # Alert on alertmanager instances in microservices mode that own no tenants,
+        min by(cluster, namespace, pod) (cortex_alertmanager_tenants_owned{pod=~"(.*mimir-)?alertmanager.*"}) == 0
+        # but only if other instances of the same cell do have tenants assigned.
+        and on (cluster, namespace)
+        max by(cluster, namespace) (cortex_alertmanager_tenants_owned) > 0
+      for: 1h
+      labels:
+        severity: warning
+  - name: mimir_blocks_alerts
+    rules:
+    - alert: MimirIngesterHasNotShippedBlocks
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not shipped any block in the last 4 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterhasnotshippedblocks
+      expr: |
+        (min by(cluster, namespace, pod) (time() - cortex_ingester_shipper_last_successful_upload_timestamp_seconds) > 60 * 60 * 4)
+        and
+        (max by(cluster, namespace, pod) (cortex_ingester_shipper_last_successful_upload_timestamp_seconds) > 0)
+        and
+        # Only if the ingester has ingested samples over the last 4h.
+        (max by(cluster, namespace, pod) (max_over_time(cluster_namespace_pod:cortex_ingester_ingested_samples_total:rate1m[4h])) > 0)
+        and
+        # Only if the ingester was ingesting samples 4h ago. This protects against the case where the ingester replica
+        # had ingested samples in the past, then no traffic was received for a long period and then it starts
+        # receiving samples again. Without this check, the alert would fire as soon as it gets back receiving
+        # samples, while the a block shipping is expected within the next 4h.
+        (max by(cluster, namespace, pod) (max_over_time(cluster_namespace_pod:cortex_ingester_ingested_samples_total:rate1m[1h] offset 4h)) > 0)
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirIngesterHasNotShippedBlocksSinceStart
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not shipped any block in the last 4 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterhasnotshippedblockssincestart
+      expr: |
+        (max by(cluster, namespace, pod) (cortex_ingester_shipper_last_successful_upload_timestamp_seconds) == 0)
+        and
+        (max by(cluster, namespace, pod) (max_over_time(cluster_namespace_pod:cortex_ingester_ingested_samples_total:rate1m[4h])) > 0)
+      for: 4h
+      labels:
+        severity: critical
+    - alert: MimirIngesterHasUnshippedBlocks
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has compacted a block {{ $value | humanizeDuration }} ago but it hasn't
+          been successfully uploaded to the storage yet.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringesterhasunshippedblocks
+      expr: |
+        (time() - cortex_ingester_oldest_unshipped_block_timestamp_seconds > 3600)
+        and
+        (cortex_ingester_oldest_unshipped_block_timestamp_seconds > 0)
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirIngesterTSDBHeadCompactionFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to compact TSDB head.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbheadcompactionfailed
+      expr: |
+        rate(cortex_ingester_tsdb_compactions_failed_total[5m]) > 0
+      for: 15m
+      labels:
+        severity: critical
+    - alert: MimirIngesterTSDBHeadTruncationFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to truncate TSDB head.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbheadtruncationfailed
+      expr: |
+        rate(cortex_ingester_tsdb_head_truncations_failed_total[5m]) > 0
+      labels:
+        severity: critical
+    - alert: MimirIngesterTSDBCheckpointCreationFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to create TSDB checkpoint.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbcheckpointcreationfailed
+      expr: |
+        rate(cortex_ingester_tsdb_checkpoint_creations_failed_total[5m]) > 0
+      labels:
+        severity: critical
+    - alert: MimirIngesterTSDBCheckpointDeletionFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to delete TSDB checkpoint.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbcheckpointdeletionfailed
+      expr: |
+        rate(cortex_ingester_tsdb_checkpoint_deletions_failed_total[5m]) > 0
+      labels:
+        severity: critical
+    - alert: MimirIngesterTSDBWALTruncationFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to truncate TSDB WAL.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbwaltruncationfailed
+      expr: |
+        rate(cortex_ingester_tsdb_wal_truncations_failed_total[5m]) > 0
+      labels:
+        severity: warning
+    - alert: MimirIngesterTSDBWALCorrupted
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} got a corrupted TSDB WAL.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbwalcorrupted
+      expr: |
+        # alert when there are more than one corruptions
+        count by (cluster, namespace) (rate(cortex_ingester_tsdb_wal_corruptions_total[5m]) > 0) > 1
+        and
+        # and there is only one zone
+        count by (cluster, namespace) (group by (cluster, namespace, job) (cortex_ingester_tsdb_wal_corruptions_total)) == 1
+      labels:
+        deployment: single-zone
+        severity: critical
+    - alert: MimirIngesterTSDBWALCorrupted
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} got a corrupted TSDB WAL.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbwalcorrupted
+      expr: |
+        # alert when there are more than one corruptions
+        count by (cluster, namespace) (sum by (cluster, namespace, job) (rate(cortex_ingester_tsdb_wal_corruptions_total[5m]) > 0)) > 1
+        and
+        # and there are multiple zones
+        count by (cluster, namespace) (group by (cluster, namespace, job) (cortex_ingester_tsdb_wal_corruptions_total)) > 1
+      labels:
+        deployment: multi-zone
+        severity: critical
+    - alert: MimirIngesterTSDBWALWritesFailed
+      annotations:
+        message: Mimir Ingester {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is failing to write to TSDB WAL.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimiringestertsdbwalwritesfailed
+      expr: |
+        rate(cortex_ingester_tsdb_wal_writes_failed_total[1m]) > 0
+      for: 3m
+      labels:
+        severity: critical
+    - alert: MimirQuerierHasNotScanTheBucket
+      annotations:
+        message: Mimir Querier {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not successfully scanned the bucket since {{ $value | humanizeDuration
+          }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirquerierhasnotscanthebucket
+      expr: |
+        (time() - cortex_querier_blocks_last_successful_scan_timestamp_seconds > 60 * 30)
+        and
+        cortex_querier_blocks_last_successful_scan_timestamp_seconds > 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirStoreGatewayHasNotSyncTheBucket
+      annotations:
+        message: Mimir store-gateway {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not successfully synched the bucket since {{ $value | humanizeDuration
+          }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirstoregatewayhasnotsyncthebucket
+      expr: |
+        (time() - cortex_bucket_stores_blocks_last_successful_sync_timestamp_seconds{component="store-gateway"} > 60 * 30)
+        and
+        cortex_bucket_stores_blocks_last_successful_sync_timestamp_seconds{component="store-gateway"} > 0
+      for: 5m
+      labels:
+        severity: critical
+    - alert: MimirStoreGatewayNoSyncedTenants
+      annotations:
+        message: Mimir store-gateway {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} is not syncing any blocks for any tenant.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirstoregatewaynosyncedtenants
+      expr: |
+        min by(cluster, namespace, pod) (cortex_bucket_stores_tenants_synced{component="store-gateway"}) == 0
+      for: 1h
+      labels:
+        severity: warning
+    - alert: MimirBucketIndexNotUpdated
+      annotations:
+        message: Mimir bucket index for tenant {{ $labels.user }} in {{ $labels.cluster
+          }}/{{ $labels.namespace }} has not been updated since {{ $value | humanizeDuration
+          }}.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirbucketindexnotupdated
+      expr: |
+        min by(cluster, namespace, user) (time() - cortex_bucket_index_last_successful_update_timestamp_seconds) > 7200
+      labels:
+        severity: critical
+  - name: mimir_compactor_alerts
+    rules:
+    - alert: MimirCompactorHasNotSuccessfullyCleanedUpBlocks
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not successfully cleaned up blocks in the last 6 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotsuccessfullycleanedupblocks
+      expr: |
+        # The "last successful run" metric is updated even if the compactor owns no tenants,
+        # so this alert correctly doesn't fire if compactor has nothing to do.
+        (time() - cortex_compactor_block_cleanup_last_successful_run_timestamp_seconds > 60 * 60 * 6)
+      for: 1h
+      labels:
+        severity: critical
+    - alert: MimirCompactorHasNotSuccessfullyRunCompaction
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not run compaction in the last 24 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotsuccessfullyruncompaction
+      expr: |
+        # The "last successful run" metric is updated even if the compactor owns no tenants,
+        # so this alert correctly doesn't fire if compactor has nothing to do.
+        (time() - cortex_compactor_last_successful_run_timestamp_seconds > 60 * 60 * 24)
+        and
+        (cortex_compactor_last_successful_run_timestamp_seconds > 0)
+      for: 1h
+      labels:
+        reason: in-last-24h
+        severity: critical
+    - alert: MimirCompactorHasNotSuccessfullyRunCompaction
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not run compaction in the last 24 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotsuccessfullyruncompaction
+      expr: |
+        # The "last successful run" metric is updated even if the compactor owns no tenants,
+        # so this alert correctly doesn't fire if compactor has nothing to do.
+        cortex_compactor_last_successful_run_timestamp_seconds == 0
+      for: 24h
+      labels:
+        reason: since-startup
+        severity: critical
+    - alert: MimirCompactorHasNotSuccessfullyRunCompaction
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} failed to run 2 consecutive compactions.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotsuccessfullyruncompaction
+      expr: |
+        increase(cortex_compactor_runs_failed_total{reason!="shutdown"}[2h]) >= 2
+      labels:
+        reason: consecutive-failures
+        severity: critical
+    - alert: MimirCompactorHasNotUploadedBlocks
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not uploaded any block in the last 24 hours.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotuploadedblocks
+      expr: |
+        (time() - (max by(cluster, namespace, pod) (thanos_objstore_bucket_last_successful_upload_time{component="compactor"})) > 60 * 60 * 24)
+        and
+        (max by(cluster, namespace, pod) (thanos_objstore_bucket_last_successful_upload_time{component="compactor"}) > 0)
+        and
+        # Only if some compactions have started. We don't want to fire this alert if the compactor has nothing to do
+        # (e.g. there are more replicas than required because running as part of mimir-backend).
+        (sum by(cluster, namespace, pod) (rate(cortex_compactor_group_compaction_runs_started_total[24h])) > 0)
+      for: 15m
+      labels:
+        severity: critical
+        time_period: 24h
+    - alert: MimirCompactorHasNotUploadedBlocks
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has not uploaded any block since its start.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorhasnotuploadedblocks
+      expr: |
+        (max by(cluster, namespace, pod) (thanos_objstore_bucket_last_successful_upload_time{component="compactor"}) == 0)
+        and
+        # Only if some compactions have started. We don't want to fire this alert if the compactor has nothing to do
+        # (e.g. there are more replicas than required because running as part of mimir-backend).
+        (sum by(cluster, namespace, pod) (rate(cortex_compactor_group_compaction_runs_started_total[24h])) > 0)
+      for: 24h
+      labels:
+        severity: critical
+        time_period: since-start
+    - alert: MimirCompactorSkippedBlocksWithOutOfOrderChunks
+      annotations:
+        message: Mimir Compactor {{ $labels.pod }} in {{ $labels.cluster }}/{{ $labels.namespace
+          }} has found and ignored blocks with out of order chunks.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircompactorskippedblockswithoutoforderchunks
+      expr: |
+        increase(cortex_compactor_blocks_marked_for_no_compaction_total{reason="block-index-out-of-order-chunk"}[5m]) > 0
+      for: 1m
+      labels:
+        severity: warning
+  - name: mimir_autoscaling
+    rules:
+    - alert: MimirAutoscalerNotActive
+      annotations:
+        message: The Horizontal Pod Autoscaler (HPA) {{ $labels.horizontalpodautoscaler
+          }} in {{ $labels.namespace }} is not active.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirautoscalernotactive
+      expr: |
+        (
+            kube_horizontalpodautoscaler_status_condition{condition="ScalingActive",status="false"}
+            # Match only Mimir namespaces.
+            * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+            # Add "metric" label.
+            + on(cluster, namespace, horizontalpodautoscaler) group_right label_replace(kube_horizontalpodautoscaler_spec_target_metric*0, "metric", "$1", "metric_name", "(.+)")
+            > 0
+        )
+        # Alert only if the scaling metric exists and is > 0. If the KEDA ScaledObject is configured to scale down 0,
+        # then HPA ScalingActive may be false when expected to run 0 replicas. In this case, the scaling metric exported
+        # by KEDA could not exist at all or being exposed with a value of 0.
+        and on (cluster, namespace, metric)
+        (label_replace(keda_metrics_adapter_scaler_metrics_value, "namespace", "$0", "exported_namespace", ".+") > 0)
+      for: 1h
+      labels:
+        severity: critical
+    - alert: MimirAutoscalerKedaFailing
+      annotations:
+        message: The Keda ScaledObject {{ $labels.scaledObject }} in {{ $labels.namespace
+          }} is experiencing errors.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimirautoscalerkedafailing
+      expr: |
+        (
+            # Find KEDA scalers reporting errors.
+            label_replace(rate(keda_metrics_adapter_scaler_errors[5m]), "namespace", "$1", "exported_namespace", "(.*)")
+            # Match only Mimir namespaces.
+            * on(cluster, namespace) group_left max by(cluster, namespace) (cortex_build_info)
+        )
+        > 0
+      for: 1h
+      labels:
+        severity: critical
+  - name: mimir_continuous_test
+    rules:
+    - alert: MimirContinuousTestNotRunningOnWrites
+      annotations:
+        message: Mimir continuous test {{ $labels.test }} in {{ $labels.cluster }}/{{
+          $labels.namespace }} is not effectively running because writes are failing.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircontinuoustestnotrunningonwrites
+      expr: |
+        sum by(cluster, namespace, test) (rate(mimir_continuous_test_writes_failed_total[5m])) > 0
+      for: 1h
+      labels:
+        severity: warning
+    - alert: MimirContinuousTestNotRunningOnReads
+      annotations:
+        message: Mimir continuous test {{ $labels.test }} in {{ $labels.cluster }}/{{
+          $labels.namespace }} is not effectively running because queries are failing.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircontinuoustestnotrunningonreads
+      expr: |
+        sum by(cluster, namespace, test) (rate(mimir_continuous_test_queries_failed_total[5m])) > 0
+      for: 1h
+      labels:
+        severity: warning
+    - alert: MimirContinuousTestFailed
+      annotations:
+        message: Mimir continuous test {{ $labels.test }} in {{ $labels.cluster }}/{{
+          $labels.namespace }} failed when asserting query results.
+        runbook_url: https://grafana.com/docs/mimir/latest/operators-guide/mimir-runbooks/#mimircontinuoustestfailed
+      expr: |
+        sum by(cluster, namespace, test) (rate(mimir_continuous_test_query_result_checks_failed_total[10m])) > 0
+      labels:
+        severity: warning
+---
+# Source: mimir-distributed/templates/metamonitoring/prometheusrule.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mimir-distributed-prometheus-rule
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  groups:
+    []
+---
+# Source: mimir-distributed/templates/metamonitoring/recording-rules.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: mimir-distributed-rules
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+  namespace: "monitoring"
+spec:
+  groups:
+  - name: mimir_api_1
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, job) / sum(rate(cortex_request_duration_seconds_count[1m]))
+        by (cluster, job)
+      record: cluster_job:cortex_request_duration_seconds:avg
+    - expr: sum(rate(cortex_request_duration_seconds_bucket[1m])) by (le, cluster, job)
+      record: cluster_job:cortex_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_request_duration_seconds_count:sum_rate
+  - name: mimir_api_2
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, route))
+      record: cluster_job_route:cortex_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, route))
+      record: cluster_job_route:cortex_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, job, route)
+        / sum(rate(cortex_request_duration_seconds_count[1m])) by (cluster, job, route)
+      record: cluster_job_route:cortex_request_duration_seconds:avg
+    - expr: sum(rate(cortex_request_duration_seconds_bucket[1m])) by (le, cluster, job,
+        route)
+      record: cluster_job_route:cortex_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, job, route)
+      record: cluster_job_route:cortex_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_count[1m])) by (cluster, job, route)
+      record: cluster_job_route:cortex_request_duration_seconds_count:sum_rate
+  - name: mimir_api_3
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, namespace, job, route))
+      record: cluster_namespace_job_route:cortex_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_request_duration_seconds_bucket[1m]))
+        by (le, cluster, namespace, job, route))
+      record: cluster_namespace_job_route:cortex_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, namespace,
+        job, route) / sum(rate(cortex_request_duration_seconds_count[1m])) by (cluster,
+        namespace, job, route)
+      record: cluster_namespace_job_route:cortex_request_duration_seconds:avg
+    - expr: sum(rate(cortex_request_duration_seconds_bucket[1m])) by (le, cluster, namespace,
+        job, route)
+      record: cluster_namespace_job_route:cortex_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_sum[1m])) by (cluster, namespace,
+        job, route)
+      record: cluster_namespace_job_route:cortex_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_request_duration_seconds_count[1m])) by (cluster, namespace,
+        job, route)
+      record: cluster_namespace_job_route:cortex_request_duration_seconds_count:sum_rate
+  - name: mimir_querier_api
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_querier_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_querier_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        job) / sum(rate(cortex_querier_request_duration_seconds_count[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_querier_request_duration_seconds:avg
+    - expr: sum(rate(cortex_querier_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job)
+      record: cluster_job:cortex_querier_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_querier_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_count[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_querier_request_duration_seconds_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, route))
+      record: cluster_job_route:cortex_querier_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, route))
+      record: cluster_job_route:cortex_querier_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        job, route) / sum(rate(cortex_querier_request_duration_seconds_count[1m])) by
+        (cluster, job, route)
+      record: cluster_job_route:cortex_querier_request_duration_seconds:avg
+    - expr: sum(rate(cortex_querier_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job, route)
+      record: cluster_job_route:cortex_querier_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        job, route)
+      record: cluster_job_route:cortex_querier_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_count[1m])) by (cluster,
+        job, route)
+      record: cluster_job_route:cortex_querier_request_duration_seconds_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, namespace, job, route))
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_querier_request_duration_seconds_bucket[1m]))
+        by (le, cluster, namespace, job, route))
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        namespace, job, route) / sum(rate(cortex_querier_request_duration_seconds_count[1m]))
+        by (cluster, namespace, job, route)
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds:avg
+    - expr: sum(rate(cortex_querier_request_duration_seconds_bucket[1m])) by (le, cluster,
+        namespace, job, route)
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_sum[1m])) by (cluster,
+        namespace, job, route)
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_querier_request_duration_seconds_count[1m])) by (cluster,
+        namespace, job, route)
+      record: cluster_namespace_job_route:cortex_querier_request_duration_seconds_count:sum_rate
+  - name: mimir_cache
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_memcache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, method))
+      record: cluster_job_method:cortex_memcache_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_memcache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, method))
+      record: cluster_job_method:cortex_memcache_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_memcache_request_duration_seconds_sum[1m])) by (cluster,
+        job, method) / sum(rate(cortex_memcache_request_duration_seconds_count[1m]))
+        by (cluster, job, method)
+      record: cluster_job_method:cortex_memcache_request_duration_seconds:avg
+    - expr: sum(rate(cortex_memcache_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job, method)
+      record: cluster_job_method:cortex_memcache_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_memcache_request_duration_seconds_sum[1m])) by (cluster,
+        job, method)
+      record: cluster_job_method:cortex_memcache_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_memcache_request_duration_seconds_count[1m])) by (cluster,
+        job, method)
+      record: cluster_job_method:cortex_memcache_request_duration_seconds_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_cache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_cache_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_cache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_cache_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_cache_request_duration_seconds_sum[1m])) by (cluster, job)
+        / sum(rate(cortex_cache_request_duration_seconds_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_cache_request_duration_seconds:avg
+    - expr: sum(rate(cortex_cache_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job)
+      record: cluster_job:cortex_cache_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_cache_request_duration_seconds_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_cache_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_cache_request_duration_seconds_count[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_cache_request_duration_seconds_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_cache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, method))
+      record: cluster_job_method:cortex_cache_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_cache_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job, method))
+      record: cluster_job_method:cortex_cache_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_cache_request_duration_seconds_sum[1m])) by (cluster, job,
+        method) / sum(rate(cortex_cache_request_duration_seconds_count[1m])) by (cluster,
+        job, method)
+      record: cluster_job_method:cortex_cache_request_duration_seconds:avg
+    - expr: sum(rate(cortex_cache_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job, method)
+      record: cluster_job_method:cortex_cache_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_cache_request_duration_seconds_sum[1m])) by (cluster, job,
+        method)
+      record: cluster_job_method:cortex_cache_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_cache_request_duration_seconds_count[1m])) by (cluster,
+        job, method)
+      record: cluster_job_method:cortex_cache_request_duration_seconds_count:sum_rate
+  - name: mimir_storage
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_kv_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_kv_request_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_kv_request_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_kv_request_duration_seconds:50quantile
+    - expr: sum(rate(cortex_kv_request_duration_seconds_sum[1m])) by (cluster, job)
+        / sum(rate(cortex_kv_request_duration_seconds_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_kv_request_duration_seconds:avg
+    - expr: sum(rate(cortex_kv_request_duration_seconds_bucket[1m])) by (le, cluster,
+        job)
+      record: cluster_job:cortex_kv_request_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_kv_request_duration_seconds_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_kv_request_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_kv_request_duration_seconds_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_kv_request_duration_seconds_count:sum_rate
+  - name: mimir_queries
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_query_frontend_retries_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_query_frontend_retries:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_query_frontend_retries_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_query_frontend_retries:50quantile
+    - expr: sum(rate(cortex_query_frontend_retries_sum[1m])) by (cluster, job) / sum(rate(cortex_query_frontend_retries_count[1m]))
+        by (cluster, job)
+      record: cluster_job:cortex_query_frontend_retries:avg
+    - expr: sum(rate(cortex_query_frontend_retries_bucket[1m])) by (le, cluster, job)
+      record: cluster_job:cortex_query_frontend_retries_bucket:sum_rate
+    - expr: sum(rate(cortex_query_frontend_retries_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_query_frontend_retries_sum:sum_rate
+    - expr: sum(rate(cortex_query_frontend_retries_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_query_frontend_retries_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_query_frontend_queue_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_query_frontend_queue_duration_seconds_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds:50quantile
+    - expr: sum(rate(cortex_query_frontend_queue_duration_seconds_sum[1m])) by (cluster,
+        job) / sum(rate(cortex_query_frontend_queue_duration_seconds_count[1m])) by
+        (cluster, job)
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds:avg
+    - expr: sum(rate(cortex_query_frontend_queue_duration_seconds_bucket[1m])) by (le,
+        cluster, job)
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds_bucket:sum_rate
+    - expr: sum(rate(cortex_query_frontend_queue_duration_seconds_sum[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds_sum:sum_rate
+    - expr: sum(rate(cortex_query_frontend_queue_duration_seconds_count[1m])) by (cluster,
+        job)
+      record: cluster_job:cortex_query_frontend_queue_duration_seconds_count:sum_rate
+  - name: mimir_ingester_queries
+    rules:
+    - expr: histogram_quantile(0.99, sum(rate(cortex_ingester_queried_series_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_series:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_ingester_queried_series_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_series:50quantile
+    - expr: sum(rate(cortex_ingester_queried_series_sum[1m])) by (cluster, job) / sum(rate(cortex_ingester_queried_series_count[1m]))
+        by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_series:avg
+    - expr: sum(rate(cortex_ingester_queried_series_bucket[1m])) by (le, cluster, job)
+      record: cluster_job:cortex_ingester_queried_series_bucket:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_series_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_series_sum:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_series_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_series_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_ingester_queried_samples_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_samples:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_ingester_queried_samples_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_samples:50quantile
+    - expr: sum(rate(cortex_ingester_queried_samples_sum[1m])) by (cluster, job) / sum(rate(cortex_ingester_queried_samples_count[1m]))
+        by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_samples:avg
+    - expr: sum(rate(cortex_ingester_queried_samples_bucket[1m])) by (le, cluster, job)
+      record: cluster_job:cortex_ingester_queried_samples_bucket:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_samples_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_samples_sum:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_samples_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_samples_count:sum_rate
+    - expr: histogram_quantile(0.99, sum(rate(cortex_ingester_queried_exemplars_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_exemplars:99quantile
+    - expr: histogram_quantile(0.50, sum(rate(cortex_ingester_queried_exemplars_bucket[1m]))
+        by (le, cluster, job))
+      record: cluster_job:cortex_ingester_queried_exemplars:50quantile
+    - expr: sum(rate(cortex_ingester_queried_exemplars_sum[1m])) by (cluster, job) /
+        sum(rate(cortex_ingester_queried_exemplars_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_exemplars:avg
+    - expr: sum(rate(cortex_ingester_queried_exemplars_bucket[1m])) by (le, cluster,
+        job)
+      record: cluster_job:cortex_ingester_queried_exemplars_bucket:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_exemplars_sum[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_exemplars_sum:sum_rate
+    - expr: sum(rate(cortex_ingester_queried_exemplars_count[1m])) by (cluster, job)
+      record: cluster_job:cortex_ingester_queried_exemplars_count:sum_rate
+  - name: mimir_received_samples
+    rules:
+    - expr: |
+        sum by (cluster, namespace, job) (rate(cortex_distributor_received_samples_total[5m]))
+      record: cluster_namespace_job:cortex_distributor_received_samples:rate5m
+  - name: mimir_exemplars_in
+    rules:
+    - expr: |
+        sum by (cluster, namespace, job) (rate(cortex_distributor_exemplars_in_total[5m]))
+      record: cluster_namespace_job:cortex_distributor_exemplars_in:rate5m
+  - name: mimir_received_exemplars
+    rules:
+    - expr: |
+        sum by (cluster, namespace, job) (rate(cortex_distributor_received_exemplars_total[5m]))
+      record: cluster_namespace_job:cortex_distributor_received_exemplars:rate5m
+  - name: mimir_exemplars_ingested
+    rules:
+    - expr: |
+        sum by (cluster, namespace, job) (rate(cortex_ingester_ingested_exemplars_total[5m]))
+      record: cluster_namespace_job:cortex_ingester_ingested_exemplars:rate5m
+  - name: mimir_exemplars_appended
+    rules:
+    - expr: |
+        sum by (cluster, namespace, job) (rate(cortex_ingester_tsdb_exemplar_exemplars_appended_total[5m]))
+      record: cluster_namespace_job:cortex_ingester_tsdb_exemplar_exemplars_appended:rate5m
+  - name: mimir_scaling_rules
+    rules:
+    - expr: |
+        # Convenience rule to get the number of replicas for both a deployment and a statefulset.
+        # Multi-zone deployments are grouped together removing the "zone-X" suffix.
+        sum by (cluster, namespace, deployment) (
+          label_replace(
+            kube_deployment_spec_replicas,
+            # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+            # always matches everything and the (optional) zone is not removed.
+            "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+          )
+        )
+        or
+        sum by (cluster, namespace, deployment) (
+          label_replace(kube_statefulset_replicas, "deployment", "$1", "statefulset", "(.*?)(?:-zone-[a-z])?")
+        )
+      record: cluster_namespace_deployment:actual_replicas:count
+    - expr: |
+        ceil(
+          quantile_over_time(0.99,
+            sum by (cluster, namespace) (
+              cluster_namespace_job:cortex_distributor_received_samples:rate5m
+            )[24h:]
+          )
+          / 240000
+        )
+      labels:
+        deployment: distributor
+        reason: sample_rate
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          sum by (cluster, namespace) (cortex_limits_overrides{limit_name="ingestion_rate"})
+          * 0.59999999999999998 / 240000
+        )
+      labels:
+        deployment: distributor
+        reason: sample_rate_limits
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          quantile_over_time(0.99,
+            sum by (cluster, namespace) (
+              cluster_namespace_job:cortex_distributor_received_samples:rate5m
+            )[24h:]
+          )
+          * 3 / 80000
+        )
+      labels:
+        deployment: ingester
+        reason: sample_rate
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          quantile_over_time(0.99,
+            sum by(cluster, namespace) (
+              cortex_ingester_memory_series
+            )[24h:]
+          )
+          / 1500000
+        )
+      labels:
+        deployment: ingester
+        reason: active_series
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          sum by (cluster, namespace) (cortex_limits_overrides{limit_name="max_global_series_per_user"})
+          * 3 * 0.59999999999999998 / 1500000
+        )
+      labels:
+        deployment: ingester
+        reason: active_series_limits
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          sum by (cluster, namespace) (cortex_limits_overrides{limit_name="ingestion_rate"})
+          * 0.59999999999999998 / 80000
+        )
+      labels:
+        deployment: ingester
+        reason: sample_rate_limits
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        ceil(
+          (sum by (cluster, namespace) (
+            cortex_ingester_tsdb_storage_blocks_bytes{job=~".+/ingester.*"}
+          ) / 4)
+            /
+          avg by (cluster, namespace) (
+            memcached_limit_bytes{job=~".+/memcached"}
+          )
+        )
+      labels:
+        deployment: memcached
+        reason: active_series
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        sum by (cluster, namespace, deployment) (
+          label_replace(
+            label_replace(
+              sum by (cluster, namespace, pod)(rate(container_cpu_usage_seconds_total[1m])),
+              "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+            ),
+            # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+            # always matches everything and the (optional) zone is not removed.
+            "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+          )
+        )
+      record: cluster_namespace_deployment:container_cpu_usage_seconds_total:sum_rate
+    - expr: |
+        # Convenience rule to get the CPU request for both a deployment and a statefulset.
+        # Multi-zone deployments are grouped together removing the "zone-X" suffix.
+        # This recording rule is made compatible with the breaking changes introduced in kube-state-metrics v2
+        # that remove resource metrics, ref:
+        # - https://github.com/kubernetes/kube-state-metrics/blob/master/CHANGELOG.md#v200-alpha--2020-09-16
+        # - https://github.com/kubernetes/kube-state-metrics/pull/1004
+        #
+        # This is the old expression, compatible with kube-state-metrics < v2.0.0,
+        # where kube_pod_container_resource_requests_cpu_cores was removed:
+        (
+          sum by (cluster, namespace, deployment) (
+            label_replace(
+              label_replace(
+                kube_pod_container_resource_requests_cpu_cores,
+                "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+              ),
+              # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+              # always matches everything and the (optional) zone is not removed.
+              "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+            )
+          )
+        )
+        or
+        # This expression is compatible with kube-state-metrics >= v1.4.0,
+        # where kube_pod_container_resource_requests was introduced.
+        (
+          sum by (cluster, namespace, deployment) (
+            label_replace(
+              label_replace(
+                kube_pod_container_resource_requests{resource="cpu"},
+                "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+              ),
+              # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+              # always matches everything and the (optional) zone is not removed.
+              "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+            )
+          )
+        )
+      record: cluster_namespace_deployment:kube_pod_container_resource_requests_cpu_cores:sum
+    - expr: |
+        # Jobs should be sized to their CPU usage.
+        # We do this by comparing 99th percentile usage over the last 24hrs to
+        # their current provisioned #replicas and resource requests.
+        ceil(
+          cluster_namespace_deployment:actual_replicas:count
+            *
+          quantile_over_time(0.99, cluster_namespace_deployment:container_cpu_usage_seconds_total:sum_rate[24h])
+            /
+          cluster_namespace_deployment:kube_pod_container_resource_requests_cpu_cores:sum
+        )
+      labels:
+        reason: cpu_usage
+      record: cluster_namespace_deployment_reason:required_replicas:count
+    - expr: |
+        # Convenience rule to get the Memory utilization for both a deployment and a statefulset.
+        # Multi-zone deployments are grouped together removing the "zone-X" suffix.
+        sum by (cluster, namespace, deployment) (
+          label_replace(
+            label_replace(
+              container_memory_usage_bytes{image!=""},
+              "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+            ),
+            # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+            # always matches everything and the (optional) zone is not removed.
+            "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+          )
+        )
+      record: cluster_namespace_deployment:container_memory_usage_bytes:sum
+    - expr: |
+        # Convenience rule to get the Memory request for both a deployment and a statefulset.
+        # Multi-zone deployments are grouped together removing the "zone-X" suffix.
+        # This recording rule is made compatible with the breaking changes introduced in kube-state-metrics v2
+        # that remove resource metrics, ref:
+        # - https://github.com/kubernetes/kube-state-metrics/blob/master/CHANGELOG.md#v200-alpha--2020-09-16
+        # - https://github.com/kubernetes/kube-state-metrics/pull/1004
+        #
+        # This is the old expression, compatible with kube-state-metrics < v2.0.0,
+        # where kube_pod_container_resource_requests_memory_bytes was removed:
+        (
+          sum by (cluster, namespace, deployment) (
+            label_replace(
+              label_replace(
+                kube_pod_container_resource_requests_memory_bytes,
+                "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+              ),
+              # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+              # always matches everything and the (optional) zone is not removed.
+              "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+            )
+          )
+        )
+        or
+        # This expression is compatible with kube-state-metrics >= v1.4.0,
+        # where kube_pod_container_resource_requests was introduced.
+        (
+          sum by (cluster, namespace, deployment) (
+            label_replace(
+              label_replace(
+                kube_pod_container_resource_requests{resource="memory"},
+                "deployment", "$1", "pod", "(.*)-(?:([0-9]+)|([a-z0-9]+)-([a-z0-9]+))"
+              ),
+              # The question mark in "(.*?)" is used to make it non-greedy, otherwise it
+              # always matches everything and the (optional) zone is not removed.
+              "deployment", "$1", "deployment", "(.*?)(?:-zone-[a-z])?"
+            )
+          )
+        )
+      record: cluster_namespace_deployment:kube_pod_container_resource_requests_memory_bytes:sum
+    - expr: |
+        # Jobs should be sized to their Memory usage.
+        # We do this by comparing 99th percentile usage over the last 24hrs to
+        # their current provisioned #replicas and resource requests.
+        ceil(
+          cluster_namespace_deployment:actual_replicas:count
+            *
+          quantile_over_time(0.99, cluster_namespace_deployment:container_memory_usage_bytes:sum[24h])
+            /
+          cluster_namespace_deployment:kube_pod_container_resource_requests_memory_bytes:sum
+        )
+      labels:
+        reason: memory_usage
+      record: cluster_namespace_deployment_reason:required_replicas:count
+  - name: mimir_alertmanager_rules
+    rules:
+    - expr: |
+        sum by (cluster, job, pod) (cortex_alertmanager_alerts)
+      record: cluster_job_pod:cortex_alertmanager_alerts:sum
+    - expr: |
+        sum by (cluster, job, pod) (cortex_alertmanager_silences)
+      record: cluster_job_pod:cortex_alertmanager_silences:sum
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_alerts_received_total[5m]))
+      record: cluster_job:cortex_alertmanager_alerts_received_total:rate5m
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_alerts_invalid_total[5m]))
+      record: cluster_job:cortex_alertmanager_alerts_invalid_total:rate5m
+    - expr: |
+        sum by (cluster, job, integration) (rate(cortex_alertmanager_notifications_total[5m]))
+      record: cluster_job_integration:cortex_alertmanager_notifications_total:rate5m
+    - expr: |
+        sum by (cluster, job, integration) (rate(cortex_alertmanager_notifications_failed_total[5m]))
+      record: cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_state_replication_total[5m]))
+      record: cluster_job:cortex_alertmanager_state_replication_total:rate5m
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_state_replication_failed_total[5m]))
+      record: cluster_job:cortex_alertmanager_state_replication_failed_total:rate5m
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_partial_state_merges_total[5m]))
+      record: cluster_job:cortex_alertmanager_partial_state_merges_total:rate5m
+    - expr: |
+        sum by (cluster, job) (rate(cortex_alertmanager_partial_state_merges_failed_total[5m]))
+      record: cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m
+  - name: mimir_ingester_rules
+    rules:
+    - expr: |
+        sum by(cluster, namespace, pod) (rate(cortex_ingester_ingested_samples_total[1m]))
+      record: cluster_namespace_pod:cortex_ingester_ingested_samples_total:rate1m
+---
+# Source: mimir-distributed/templates/compactor/compactor-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-compactor
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: compactor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: compactor
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/compactor"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/continuous_test/continuous-test-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-continuous-test
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: continuous-test
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: continuous-test
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/continuous-test"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/distributor/distributor-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-distributor
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: distributor
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: distributor
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/distributor"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/ingester/ingester-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-ingester
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: ingester
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: ingester
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/ingester"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/querier/querier-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-querier
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: querier
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: querier
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/querier"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/query-frontend/query-frontend-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-query-frontend
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-frontend
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-frontend
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/query-frontend"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/query-scheduler/query-scheduler-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-query-scheduler
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: query-scheduler
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: query-scheduler
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/query-scheduler"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http
+---
+# Source: mimir-distributed/templates/store-gateway/store-gateway-servmon.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mimir-distributed-store-gateway
+  namespace: "monitoring"
+  labels:
+    helm.sh/chart: mimir-distributed-5.1.2
+    app.kubernetes.io/name: mimir
+    app.kubernetes.io/instance: mimir-distributed
+    app.kubernetes.io/component: store-gateway
+    app.kubernetes.io/part-of: memberlist
+    app.kubernetes.io/version: "2.10.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mimir
+      app.kubernetes.io/instance: mimir-distributed
+      app.kubernetes.io/component: store-gateway
+    matchExpressions:
+      - key: prometheus.io/service-monitor
+        operator: NotIn
+        values:
+          - "false"
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels: [job]
+          replacement: "monitoring/store-gateway"
+          targetLabel: job
+        - replacement: "mimir-distributed"
+          targetLabel: cluster
+      scheme: http

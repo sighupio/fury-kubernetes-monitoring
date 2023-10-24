@@ -1,0 +1,22 @@
+# Mimir - maintenance
+
+To maintain the Mimir package, you should follow this steps.
+
+```bash
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm search repo grafana/mimir-distributed # get the latest chart version
+helm pull grafana/mimir-distributed --version 5.1.2 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
+```
+
+Run the following command:
+
+```bash
+helm template mimir-distributed /tmp/mimir-distributed -n monitoring --values MAINTENANCE.values.yaml > mimir-distributed-built.yaml
+```
+
+With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+
+What was customized:
+
+- TBD
