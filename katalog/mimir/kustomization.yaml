@@ -31,6 +31,8 @@ patchesStrategicMerge:
     spec:
       remoteWrite:
         - url: http://mimir-distributed-gateway/api/v1/push
+          headers:
+            "X-Scope-OrgID": "fury"
 
 images:
   - name: docker.io/nginxinc/nginx-unprivileged
