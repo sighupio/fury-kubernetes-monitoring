@@ -12,3 +12,7 @@ datasources:
     type: prometheus
     url: http://mimir-distributed-gateway/prometheus
     version: 1
+    jsonData:
+      httpHeaderName1: 'X-Scope-OrgID'
+    secureJsonData:
+      httpHeaderValue1: 'fury'

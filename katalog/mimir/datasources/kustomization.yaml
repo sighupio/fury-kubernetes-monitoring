@@ -17,4 +17,4 @@ secretGenerator:
   - name: grafana-datasource-mimir
     namespace: monitoring
     files:
-      - prometheus.yaml
+      - mimir.yaml
