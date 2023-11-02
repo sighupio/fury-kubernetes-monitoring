@@ -19,4 +19,8 @@ With the `mimir-distributed-built.yaml` file, check differences with the current
 
 What was customized:
 
-- TBD
+- Disabled mimir alertmanager
+- Disabled in-tree minio, configured to use our own minio-ha deployment
+- Disabled overrides exporter
+- Disabled ruler
+- Disabled rollout operator

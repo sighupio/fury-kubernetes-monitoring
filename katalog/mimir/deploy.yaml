@@ -1,3 +1,7 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 ---
 # Source: mimir-distributed/templates/compactor/compactor-pdb.yaml
 apiVersion: policy/v1
@@ -851,17 +855,13 @@ spec:
               memory: 512Mi
           securityContext:
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
       nodeSelector:
         {}
       affinity:
         {}
-      
       tolerations:
         []
       terminationGracePeriodSeconds: 30
-      volumes:
 ---
 # Source: mimir-distributed/templates/distributor/distributor-dep.yaml
 apiVersion: apps/v1
@@ -963,7 +963,6 @@ spec:
           env:
             - name: "GOMAXPROCS"
               value: "8"
-          envFrom:
       nodeSelector:
         {}
       affinity:
@@ -1076,8 +1075,6 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
       nodeSelector:
         {}
       affinity:
@@ -1209,7 +1206,6 @@ spec:
           env:
             - name: "GOMAXPROCS"
               value: "5"
-          envFrom:
       nodeSelector:
         {}
       affinity:
@@ -1332,8 +1328,6 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
       nodeSelector:
         {}
       affinity:
@@ -1457,8 +1451,6 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
       nodeSelector:
         {}
       affinity:
@@ -1656,8 +1648,6 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
 ---
 # Source: mimir-distributed/templates/ingester/ingester-statefulset.yaml
 apiVersion: apps/v1
@@ -1792,8 +1782,6 @@ spec:
               drop:
               - ALL
             readOnlyRootFilesystem: true
-          env:
-          envFrom:
 ---
 # Source: mimir-distributed/templates/store-gateway/store-gateway-statefulset.yaml
 apiVersion: apps/v1
@@ -1932,7 +1920,7 @@ spec:
               value: "5"
             - name: "GOMEMLIMIT"
               value: "536870912"
-          envFrom:
+
 ---
 # Source: mimir-distributed/templates/minio/create-bucket-job.yaml
 # Minio provides post-install hook to create bucket
