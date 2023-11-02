@@ -17,7 +17,6 @@ Thanos is an opensource Prometheus setup that allows having 2 important features
 - Kubernetes >= `1.24.0`
 - Kustomize = `v3.5.3`
 - [prometheus-operator](../prometheus-operator)
-- [prometheus-operated](../prometheus-operated)
 
 ## Setup in Fury Module
 
