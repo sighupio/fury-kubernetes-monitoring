@@ -9,7 +9,6 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - ../prometheus-operator
   - ../prometheus-operated
   - datasources
   - dashboards
