@@ -12,6 +12,7 @@ resources:
   - ../prometheus-operated
   - datasources
   - dashboards
+  - prometheusRules.yaml
   - deploy.yaml
 
 configMapGenerator:
