@@ -62,6 +62,7 @@ steps:
       - kustomize build katalog/prometheus-operator > prometheus-operator.yml
       - kustomize build katalog/thanos/thanos-minio/single > thanos.yml
       - kustomize build katalog/x509-exporter > x509-exporter.yml
+      - kustomize build katalog/mimir > mimir.yml
 
   - &check-deprecated-apis
     name: check-deprecated-apis-alertmanager-operated
@@ -144,6 +145,11 @@ steps:
     name: check-deprecated-apis-x509-exporter
     environment:
       KUBERNETES_MANIFESTS: x509-exporter.yml
+
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-mimir
+    environment:
+      KUBERNETES_MANIFESTS: mimir.yml
 
 ---
 name: check-prometheus-rules
