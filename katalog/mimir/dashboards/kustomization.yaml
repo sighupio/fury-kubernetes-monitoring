@@ -1,0 +1,45 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+generatorOptions:
+  labels:
+    grafana-sighup-dashboard: default
+  annotations:
+    grafana-folder: "Monitoring"
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: mimir-dashboards
+    files:
+      # Disabled, we are not bundling alertmanager
+      #- mimir_alertmanager_16007_rev9.json
+      #- mimir_alertmanager_resources_16006_rev9.json
+      - mimir_compactor_16009_rev9.json
+      - mimir_compactor_resources_16008_rev9.json
+      - mimir_config_16010_rev9.json
+      - mimir_object_store_16011_rev9.json
+      # Disabled, we are not doing overrides
+      #- mimir_overrides_16012_rev9.json
+      - mimir_queries_16013_rev9.json
+      - mimir_reads_16016_rev9.json
+      # Disabled, no data with our setup
+      #- mimir_reads_networking_16014_rev9.json
+      - mimir_reads_resources_16015_rev9.json
+      # Disabled, no rollout in our setup
+      #- mimir_rollout_progress_16017_rev9.json
+      # Disabled, no rollout in our setup
+      #- mimir_ruler_16018_rev9.json
+      # Disabled, no scaling in our setup
+      #- mimir_scaling_16019_rev9.json
+      - mimir_tenants_16021_rev9.json
+      - mimir_writes_16026_rev9.json
+      # Disabled, no data with our setup
+      #- mimir_writes_networking_16023_rev8.json
+      - mimir_writes_resources_16024_rev9.json
