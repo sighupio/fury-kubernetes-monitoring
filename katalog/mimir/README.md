@@ -29,7 +29,7 @@ Also, the storage is configured by default to use the minio-ha package from the 
 
 ## Deployment
 
-You can deploy tempo by running the following command in the root of
+You can deploy Mimir by running the following command in the root of
 the project:
 
 ```shell
