@@ -1220,8 +1220,6 @@ spec:
               value: "5"
       nodeSelector:
         {}
-      affinity:
-        {}
       topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -1734,8 +1732,6 @@ spec:
       initContainers:
         []
       nodeSelector:
-        {}
-      affinity:
         {}
       topologySpreadConstraints:
       - maxSkew: 1
