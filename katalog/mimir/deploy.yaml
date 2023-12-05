@@ -1124,18 +1124,6 @@ metadata:
     {}
   namespace: "monitoring"
 spec:
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-                - key: "app.kubernetes.io/component"
-                  operator: In
-                  values:
-                    - querier
-            topologyKey: "kubernetes.io/hostname"
   replicas: 2
   selector:
     matchLabels:
@@ -1160,6 +1148,18 @@ spec:
       annotations:
         checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app.kubernetes.io/component"
+                      operator: In
+                      values:
+                        - querier
+                topologyKey: "kubernetes.io/hostname"
       serviceAccountName: mimir-distributed
       securityContext:
         fsGroup: 10001
@@ -1678,18 +1678,6 @@ metadata:
     {}
   namespace: "monitoring"
 spec:
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-                - key: "app.kubernetes.io/component"
-                  operator: In
-                  values:
-                    - ingester
-            topologyKey: "kubernetes.io/hostname"
   podManagementPolicy: Parallel
   replicas: 3
   selector:
@@ -1723,6 +1711,18 @@ spec:
         checksum/config: 5d10cc23fc1f18ad17e677b52094c5658eb5ce9ff790416fc6bb5810442b3fca
       namespace: "monitoring"
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app.kubernetes.io/component"
+                      operator: In
+                      values:
+                        - ingester
+                topologyKey: "kubernetes.io/hostname"
       serviceAccountName: mimir-distributed
       securityContext:
         fsGroup: 10001
