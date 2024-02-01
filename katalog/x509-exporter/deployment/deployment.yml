@@ -45,6 +45,7 @@ spec:
             - --watch-kube-secrets
             - --secret-type=kubernetes.io/tls:tls.crt
             - --listen-address=:9793
+            - --max-cache-duration=24h
           ports:
             - name: metrics
               containerPort: 9793
