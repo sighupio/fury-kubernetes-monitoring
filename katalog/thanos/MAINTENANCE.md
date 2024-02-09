@@ -16,6 +16,7 @@ To prepare a new release of this package:
       - "v0.30.2"
       - "v0.31.0"
       - "v0.32.2"
+      - "v0.34.0"
     destinations:
       - registry.sighup.io/fury/thanos
 ```

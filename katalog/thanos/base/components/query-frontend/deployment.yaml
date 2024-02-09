@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/component: query-layer-frontend
     app.kubernetes.io/instance: thanos-query-frontend
     app.kubernetes.io/name: thanos-query-frontend
-    app.kubernetes.io/version: v0.32.2
+    app.kubernetes.io/version: v0.34.0
 spec:
   replicas: 1
   strategy:
@@ -28,7 +28,7 @@ spec:
         app.kubernetes.io/component: query-layer-frontend
         app.kubernetes.io/instance: thanos-query-frontend
         app.kubernetes.io/name: thanos-query-frontend
-        app.kubernetes.io/version: v0.32.2
+        app.kubernetes.io/version: v0.34.0
     spec:
       nodeSelector:
         kubernetes.io/os: linux      
@@ -41,7 +41,7 @@ spec:
                 labelSelector:
                   matchLabels:
                     app.kubernetes.io/name:  thanos-query-frontend
-                    app.kubernetes.io/version: v0.32.2
+                    app.kubernetes.io/version: v0.34.0
                     app.kubernetes.io/component: query-layer-frontend
                 topologyKey: kubernetes.io/hostname
               weight: 1

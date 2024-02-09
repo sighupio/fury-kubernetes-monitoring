@@ -10,7 +10,7 @@ metadata:
   namespace: "monitoring"
   labels:
     app.kubernetes.io/name: thanos
-    app.kubernetes.io/version: v0.32.2
+    app.kubernetes.io/version: v0.34.0
 spec:
   groups:
   - name: thanos-sidecar
