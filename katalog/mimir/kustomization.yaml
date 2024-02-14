@@ -40,7 +40,7 @@ images:
     newTag: "1.25-alpine"
   - name: grafana/mimir
     newName: registry.sighup.io/fury/grafana/mimir
-    newTag: "2.10.3"
+    newTag: "2.11.0"
   - name: grafana/mimir-continuous-test
     newName: registry.sighup.io/fury/grafana/mimir-continuous-test
-    newTag: "2.10.3"
+    newTag: "2.11.0"

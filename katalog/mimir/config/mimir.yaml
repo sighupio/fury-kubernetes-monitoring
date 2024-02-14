@@ -58,24 +58,22 @@ limits:
   max_cache_freshness: 10m
   max_query_parallelism: 240
   max_total_query_length: 12000h
-  compactor_blocks_retention_period: 720h # 30 days retention by default
 memberlist:
   abort_if_cluster_join_fails: false
   compression_enabled: false
   join_members:
-  - dns+mimir-distributed-gossip-ring.monitoring.svc.cluster.local:7946
+  - dns+mimir-distributed-gossip-ring.monitoring.svc.cluster.local.:7946
 querier:
   max_concurrent: 16
 query_scheduler:
   max_outstanding_requests_per_tenant: 800
 ruler:
-  alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.mimir-distributed-alertmanager-headless.monitoring.svc.cluster.local/alertmanager
+  alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.mimir-distributed-alertmanager-headless.monitoring.svc.cluster.local./alertmanager
   enable_api: true
   rule_path: /data
 runtime_config:
   file: /var/mimir/runtime.yaml
 server:
-  grpc_server_max_concurrent_streams: 1000
   grpc_server_max_connection_age: 2m
   grpc_server_max_connection_age_grace: 5m
   grpc_server_max_connection_idle: 1m
