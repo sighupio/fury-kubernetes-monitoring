@@ -4,12 +4,12 @@
 
 image:
   repository: registry.sighup.io/fury/minio
-  tag: RELEASE.2023-01-12T02-06-16Z
+  tag: RELEASE.2024-02-09T21-25-16Z
   pullPolicy: IfNotPresent
 
 mcImage:
   repository: registry.sighup.io/fury/minio/mc
-  tag: RELEASE.2023-01-28T20-29-38Z
+  tag: RELEASE.2024-02-09T22-18-24Z
   pullPolicy: IfNotPresent
 
 mode: distributed
