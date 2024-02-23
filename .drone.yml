@@ -183,9 +183,6 @@ type: docker
 depends_on:
   - policeman
 
-node:
-  runner: internal
-
 platform:
   os: linux
   arch: amd64
@@ -198,77 +195,58 @@ trigger:
       - refs/tags/**
 
 steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.27.1
+  - name: create-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
     volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
       - name: shared
         path: /shared
     depends_on: [clone]
-    settings:
-      action: custom-cluster-127
-      cluster_version: "1.27.1"
-      local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-127
-      instance_path: /shared
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_VERSION: v1.27.3
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      # /drone/src is the default workdir for the pipeline
+      # using this folder we don't need to mount another
+      # shared volume between the steps
+      KUBECONFIG: /drone/src/kubeconfig
+    commands:
+      # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
+      # does not work when disabling the default CNI. It will always go in timeout.
+      - kind create cluster --name $${CLUSTER_NAME} --image registry.sighup.io/fury/kindest/node:$${CLUSTER_VERSION} --config katalog/tests/kind-config.yml
+      # save the kubeconfig so we can use it from other steps.
+      - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
   - name: e2e
     # KUBECTL 1.27.1 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
-    image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.27.1_3.5.3_4.33.3
+    image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
     pull: always
+    network_mode: host
     volumes:
       - name: shared
         path: /shared
-    depends_on: 
-    - init
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      KUBECONFIG: /drone/src/kubeconfig
+    depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-127
+      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.27.1
+  - name: delete-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
     pull: always
     depends_on: [e2e]
-    settings:
-      action: destroy
-      pipeline_id: cluster-127
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+    commands:
+      # does not matter if the command fails
+      - kind delete cluster --name $${CLUSTER_NAME} || true
     when:
       status:
         - success
@@ -277,6 +255,9 @@ steps:
 volumes:
   - name: shared
     temp: {}
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
 
 ---
 name: e2e-kubernetes-1.28
@@ -286,9 +267,6 @@ type: docker
 depends_on:
   - policeman
 
-node:
-  runner: internal
-
 platform:
   os: linux
   arch: amd64
@@ -301,77 +279,58 @@ trigger:
       - refs/tags/**
 
 steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v2.2.0
+  - name: create-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
     volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
       - name: shared
         path: /shared
     depends_on: [clone]
-    settings:
-      action: custom-cluster-128
-      cluster_version: "1.28.0"
-      local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-128
-      instance_path: /shared
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_VERSION: v1.28.0
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      # /drone/src is the default workdir for the pipeline
+      # using this folder we don't need to mount another
+      # shared volume between the steps
+      KUBECONFIG: /drone/src/kubeconfig
+    commands:
+      # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
+      # does not work when disabling the default CNI. It will always go in timeout.
+      - kind create cluster --name $${CLUSTER_NAME} --image registry.sighup.io/fury/kindest/node:$${CLUSTER_VERSION} --config katalog/tests/kind-config.yml
+      # save the kubeconfig so we can use it from other steps.
+      - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
   - name: e2e
     # KUBECTL 1.28.5 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.28.5_3.5.3_4.33.3
     pull: always
+    network_mode: host
     volumes:
       - name: shared
         path: /shared
-    depends_on: 
-    - init
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      KUBECONFIG: /drone/src/kubeconfig
+    depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-128
+      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v2.2.0
+  - name: delete-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
     pull: always
     depends_on: [e2e]
-    settings:
-      action: destroy
-      pipeline_id: cluster-128
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+    commands:
+      # does not matter if the command fails
+      - kind delete cluster --name $${CLUSTER_NAME} || true
     when:
       status:
         - success
@@ -380,6 +339,9 @@ steps:
 volumes:
   - name: shared
     temp: {}
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
 
 ---
 name: e2e-kubernetes-1.29
@@ -389,9 +351,6 @@ type: docker
 depends_on:
   - policeman
 
-node:
-  runner: internal
-
 platform:
   os: linux
   arch: amd64
@@ -404,77 +363,58 @@ trigger:
       - refs/tags/**
 
 steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v2.2.0
+  - name: create-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
     volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
       - name: shared
         path: /shared
     depends_on: [clone]
-    settings:
-      action: custom-cluster-129
-      cluster_version: "1.29.0"
-      local_kind_config_path: katalog/tests/kind-config.yml
-      pipeline_id: cluster-129
-      instance_path: /shared
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_VERSION: v1.29.0
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      # /drone/src is the default workdir for the pipeline
+      # using this folder we don't need to mount another
+      # shared volume between the steps
+      KUBECONFIG: /drone/src/kubeconfig
+    commands:
+      # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
+      # does not work when disabling the default CNI. It will always go in timeout.
+      - kind create cluster --name $${CLUSTER_NAME} --image registry.sighup.io/fury/kindest/node:$${CLUSTER_VERSION} --config katalog/tests/kind-config.yml
+      # save the kubeconfig so we can use it from other steps.
+      - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
   - name: e2e
     # KUBECTL 1.29.1 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.29.1_3.5.3_4.33.3
     pull: always
+    network_mode: host
     volumes:
       - name: shared
         path: /shared
-    depends_on: 
-    - init
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      KUBECONFIG: /drone/src/kubeconfig
+    depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-129
+      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v2.2.0
+  - name: delete-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
     pull: always
     depends_on: [e2e]
-    settings:
-      action: destroy
-      pipeline_id: cluster-129
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+    commands:
+      # does not matter if the command fails
+      - kind delete cluster --name $${CLUSTER_NAME} || true
     when:
       status:
         - success
@@ -483,6 +423,9 @@ steps:
 volumes:
   - name: shared
     temp: {}
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
 
 ---
 name: release
