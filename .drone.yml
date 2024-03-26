@@ -180,6 +180,9 @@ name: e2e-kubernetes-1.27
 kind: pipeline
 type: docker
 
+clone:
+  depth: 1
+
 depends_on:
   - policeman
 
@@ -204,11 +207,11 @@ steps:
     depends_on: [clone]
     environment:
       CLUSTER_VERSION: v1.27.3
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-127
       # /drone/src is the default workdir for the pipeline
       # using this folder we don't need to mount another
       # shared volume between the steps
-      KUBECONFIG: /drone/src/kubeconfig
+      KUBECONFIG: /drone/src/kubeconfig-127
     commands:
       # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
       # does not work when disabling the default CNI. It will always go in timeout.
@@ -221,15 +224,11 @@ steps:
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
     pull: always
     network_mode: host
-    volumes:
-      - name: shared
-        path: /shared
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
-      KUBECONFIG: /drone/src/kubeconfig
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-127
+      KUBECONFIG: /drone/src/kubeconfig-127
     depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
@@ -241,7 +240,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-127
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -251,8 +250,6 @@ steps:
         - failure
 
 volumes:
-  - name: shared
-    temp: {}
   - name: dockersock
     host:
       path: /var/run/docker.sock
@@ -261,6 +258,9 @@ volumes:
 name: e2e-kubernetes-1.28
 kind: pipeline
 type: docker
+
+clone:
+  depth: 1
 
 depends_on:
   - policeman
@@ -284,16 +284,14 @@ steps:
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
-      - name: shared
-        path: /shared
     depends_on: [clone]
     environment:
       CLUSTER_VERSION: v1.28.0
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
       # /drone/src is the default workdir for the pipeline
       # using this folder we don't need to mount another
       # shared volume between the steps
-      KUBECONFIG: /drone/src/kubeconfig
+      KUBECONFIG: /drone/src/kubeconfig-128
     commands:
       # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
       # does not work when disabling the default CNI. It will always go in timeout.
@@ -306,15 +304,11 @@ steps:
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.28.5_3.5.3_4.33.3
     pull: always
     network_mode: host
-    volumes:
-      - name: shared
-        path: /shared
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
-      KUBECONFIG: /drone/src/kubeconfig
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
+      KUBECONFIG: /drone/src/kubeconfig-128
     depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
@@ -326,7 +320,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -336,8 +330,6 @@ steps:
         - failure
 
 volumes:
-  - name: shared
-    temp: {}
   - name: dockersock
     host:
       path: /var/run/docker.sock
@@ -347,9 +339,11 @@ name: e2e-kubernetes-1.29
 kind: pipeline
 type: docker
 
+clone:
+  depth: 1
+
 depends_on:
   - policeman
-  - e2e-kubernetes-1.28
 
 platform:
   os: linux
@@ -369,16 +363,14 @@ steps:
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
-      - name: shared
-        path: /shared
     depends_on: [clone]
     environment:
       CLUSTER_VERSION: v1.29.0
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-129
       # /drone/src is the default workdir for the pipeline
       # using this folder we don't need to mount another
       # shared volume between the steps
-      KUBECONFIG: /drone/src/kubeconfig
+      KUBECONFIG: /drone/src/kubeconfig-129
     commands:
       # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
       # does not work when disabling the default CNI. It will always go in timeout.
@@ -391,15 +383,11 @@ steps:
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.29.1_3.5.3_4.33.3
     pull: always
     network_mode: host
-    volumes:
-      - name: shared
-        path: /shared
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
-      KUBECONFIG: /drone/src/kubeconfig
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-129
+      KUBECONFIG: /drone/src/kubeconfig-129
     depends_on: [create-kind-cluster]
     commands:
-      - export KUBECONFIG=/drone/src/kubeconfig
       - bats -t katalog/tests/tests.sh
       - bats -t katalog/tests/grafana-ldap.sh
 
@@ -411,7 +399,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-129  
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -421,8 +409,6 @@ steps:
         - failure
 
 volumes:
-  - name: shared
-    temp: {}
   - name: dockersock
     host:
       path: /var/run/docker.sock
