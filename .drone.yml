@@ -201,8 +201,6 @@ steps:
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
-      - name: shared
-        path: /shared
     depends_on: [clone]
     environment:
       CLUSTER_VERSION: v1.27.3
