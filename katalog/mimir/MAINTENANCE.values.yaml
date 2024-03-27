@@ -2,6 +2,10 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+kubeVersionOverride: 1.29.0
+
+useExternalConfig: true
+
 image:
   # -- Grafana Mimir container image repository. Note: for Grafana Enterprise Metrics use the value 'enterprise.image.repository'
   repository: grafana/mimir
@@ -30,6 +34,8 @@ mimir:
     blocks_storage:
       s3:
         bucket_name: mimir
+  rbac:
+    usePodSecurityPolicy: false
 
 alertmanager:
   enabled: false
@@ -333,7 +339,7 @@ metaMonitoring:
   # Dashboard configuration for deploying Grafana dashboards for Mimir
   dashboards:
     # -- If enabled, Grafana dashboards are deployed
-    enabled: true
+    enabled: false
     # -- Annotations to add to the Grafana dashboard ConfigMap
     annotations:
       grafana-folder: "Mimir"
@@ -349,11 +355,11 @@ metaMonitoring:
   # Rules for the Prometheus Operator
   prometheusRule:
     # -- If enabled, a PrometheusRule resource for Prometheus Operator is created
-    enabled: true
+    enabled: false
     # -- Create standard Mimir alerts in Prometheus Operator via a PrometheusRule CRD
-    mimirAlerts: true
+    mimirAlerts: false
     # -- Create standard Mimir recording rules in Prometheus Operator via a PrometheusRule CRD
-    mimirRules: true
+    mimirRules: false
 
   # metaMonitoringAgent configures the built in Grafana Agent that can scrape metrics and logs and send them to a local or remote destination
   grafanaAgent:

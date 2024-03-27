@@ -34,7 +34,7 @@ spec:
           args:
             - --listen-address=:9793
             - --trim-path-components=2
-            - --max-cache-duration=24h
+            - --max-cache-duration=300s
           ports:
             - name: metrics
               containerPort: 9793
