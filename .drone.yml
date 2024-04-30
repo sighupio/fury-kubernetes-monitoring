@@ -193,8 +193,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
-      - refs/heads/release-v*
       - refs/tags/**
 
 steps:
@@ -273,8 +271,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
-      - refs/heads/release-v*
       - refs/tags/**
 
 steps:
@@ -352,8 +348,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
-      - refs/heads/release-v*
       - refs/tags/**
 
 steps:
