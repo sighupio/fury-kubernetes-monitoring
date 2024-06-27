@@ -33,9 +33,7 @@
       "icon": "external link",
       "includeVars": false,
       "keepTime": false,
-      "tags": [
-        "kubernetes-mixin"
-      ],
+      "tags": ["kubernetes-mixin"],
       "targetBlank": false,
       "title": "Dashboards",
       "tooltip": "",
@@ -61,7 +59,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -98,9 +96,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -111,7 +107,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_node_info{cluster=\"$cluster\", node=~\"$node\"})",
@@ -127,7 +123,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -177,9 +173,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -190,7 +184,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_node_spec_unschedulable{cluster=\"$cluster\", node=~\"$node\"}==0)",
@@ -204,7 +198,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -241,9 +235,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -254,7 +246,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_namespace_created)",
@@ -270,7 +262,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -321,9 +313,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -334,7 +324,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": " count(count by (pod)(container_spec_memory_reservation_limit_bytes{pod!=\"\", node=~\"$node\", namespace=~\"$namespace\"}))",
@@ -351,7 +341,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -405,9 +395,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -418,7 +406,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_pod_container_status_terminated_reason{reason!=\"Completed\", namespace=~\"$namespace\"} !=0 ) or vector(0)",
@@ -435,7 +423,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -489,9 +477,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -502,7 +488,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_pod_container_status_waiting{namespace=~\"$namespace\"} !=0 ) or vector(0)",
@@ -520,7 +506,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -554,9 +540,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -568,7 +552,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(x509_cert_not_after)",
@@ -583,7 +567,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -621,9 +605,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -635,7 +617,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "sum(((x509_cert_not_after - time()) / 86400) < bool 0)",
@@ -650,7 +632,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -688,9 +670,7 @@
         "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -702,7 +682,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "sum(0 < ((x509_cert_not_after - time()) / 86400) < bool 7)",
@@ -717,7 +697,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
+        "uid": "$datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -767,9 +747,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -780,7 +758,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "editorMode": "code",
           "expr": "count(kube_node_spec_unschedulable{cluster=\"$cluster\", node=~\"$node\"}!=0) OR on() vector(0)",
@@ -990,7 +968,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1176,9 +1154,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -1189,7 +1165,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "max(kube_pod_container_resource_requests{resource=\"memory\", node=~\"$node\", namespace=~\"$namespace\"}) by (pod)",
@@ -1202,7 +1178,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "max(kube_pod_container_resource_limits{resource=\"memory\", node=~\"$node\", namespace=~\"$namespace\"}) by (pod)",
@@ -1214,7 +1190,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "max(container_memory_working_set_bytes{name!=\"\", node=~\"$node\", namespace=~\"$namespace\"}) by (pod)",
@@ -1228,7 +1204,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "max(kube_pod_container_resource_requests{resource=\"cpu\", node=~\"$node\", namespace=~\"$namespace\"}) by (pod)",
@@ -1241,7 +1217,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "max(kube_pod_container_resource_limits{resource=\"cpu\"}) by (pod)",
@@ -1254,7 +1230,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\", container_name!=\"POD\"}[5m])) by (pod)",
@@ -1268,7 +1244,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -1283,7 +1259,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -1378,7 +1354,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1445,15 +1421,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -1466,7 +1438,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_number_unavailable{namespace=~\"$namespace\"})",
@@ -1478,7 +1450,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_number_available{namespace=~\"$namespace\"})",
@@ -1495,7 +1467,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1561,15 +1533,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -1582,7 +1550,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_deployment_created{namespace=~\"$namespace\"}) - count(kube_deployment_status_replicas_available{namespace=~\"$namespace\"})",
@@ -1594,7 +1562,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_deployment_created{namespace=~\"$namespace\"})",
@@ -1610,7 +1578,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1661,15 +1629,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -1682,7 +1646,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_job_status_succeeded{namespace=~\"$namespace\"})",
@@ -1694,7 +1658,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_job_status_failed{namespace=~\"$namespace\"})",
@@ -1711,7 +1675,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1777,15 +1741,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -1798,7 +1758,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase!=\"Running\", namespace=~\"$namespace\"} and kube_pod_status_phase{phase!=\"Succeeded\", namespace=~\"$namespace\"}) OR on() vector(0)",
@@ -1810,7 +1770,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Running\", namespace=~\"$namespace\"} or kube_pod_status_phase{phase=\"Succeeded\", namespace=~\"$namespace\"})",
@@ -1827,7 +1787,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -1893,15 +1853,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -1914,7 +1870,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_replicaset_created{namespace=~\"$namespace\"}) - count(kube_replicaset_status_ready_replicas{namespace=~\"$namespace\"})",
@@ -1926,7 +1882,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_replicaset_created{namespace=~\"$namespace\"})",
@@ -1942,7 +1898,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -2008,15 +1964,11 @@
               "displayMode": "list",
               "placement": "right",
               "showLegend": true,
-              "values": [
-                "percent"
-              ]
+              "values": ["percent"]
             },
             "pieType": "donut",
             "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
+              "calcs": ["lastNotNull"],
               "fields": "",
               "values": false
             },
@@ -2029,7 +1981,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_statefulset_created{namespace=~\"$namespace\"}) - count(kube_statefulset_status_replicas_ready{namespace=~\"$namespace\"})",
@@ -2041,7 +1993,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "count(kube_statefulset_created{namespace=~\"$namespace\"})",
@@ -2071,7 +2023,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -2147,9 +2099,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -2160,7 +2110,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_number_available{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2174,7 +2124,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_desired_number_scheduled{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2187,7 +2137,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_current_number_scheduled{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2200,7 +2150,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_number_ready{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2213,7 +2163,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_updated_number_scheduled{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2226,7 +2176,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_daemonset_status_number_unavailable{namespace=~\"$namespace\"}) by (namespace,daemonset)",
@@ -2377,7 +2327,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -2453,9 +2403,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -2466,7 +2414,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_deployment_status_replicas_available{namespace=~\"$namespace\"}) by (namespace,deployment)",
@@ -2480,7 +2428,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_deployment_status_replicas_ready{namespace=~\"$namespace\"}) by (namespace,deployment)",
@@ -2493,7 +2441,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_deployment_status_replicas_updated{namespace=~\"$namespace\"}) by (namespace,deployment)",
@@ -2506,7 +2454,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_deployment_status_replicas_unavailable) by (namespace,deployment)",
@@ -2666,7 +2614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -2742,9 +2690,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -2755,7 +2701,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_job_status_active{namespace=~\"$namespace\"}) by (namespace, job, job_name)",
@@ -2770,7 +2716,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_job_status_succeeded{namespace=~\"$namespace\"}) by (namespace, job, job_name)",
@@ -2785,7 +2731,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_job_status_failed{namespace=~\"$namespace\"}) by (namespace, job, job_name)",
@@ -2975,7 +2921,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -3072,9 +3018,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -3085,7 +3029,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Running\", namespace=~\"$namespace\"}) by (namespace, pod)",
@@ -3099,7 +3043,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Failed\", namespace=~\"$namespace\"}) by (namespace, pod)",
@@ -3112,7 +3056,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Pending\", namespace=~\"$namespace\"}) by (namespace, pod)",
@@ -3125,7 +3069,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Succeeded\", namespace=~\"$namespace\"}) by (namespace, pod)",
@@ -3138,7 +3082,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_phase{phase=\"Unknown\", namespace=~\"$namespace\"}) by (namespace, pod)",
@@ -3267,7 +3211,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -3343,9 +3287,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -3356,7 +3298,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_replicaset_status_replicas{namespace=~\"$namespace\"}) by (namespace, replicaset)",
@@ -3370,7 +3312,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_replicaset_status_ready_replicas{namespace=~\"$namespace\"}) by (namespace, replicaset)",
@@ -3385,7 +3327,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_replicaset_spec_replicas{namespace=~\"$namespace\"}) by (namespace, replicaset)",
@@ -3538,7 +3480,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -3635,9 +3577,7 @@
             "footer": {
               "enablePagination": true,
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": true
             },
             "showHeader": true,
@@ -3648,7 +3588,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_statefulset_status_replicas_current{namespace=~\"$namespace\"}) by (namespace, statefulset)",
@@ -3662,7 +3602,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_statefulset_status_replicas_ready{namespace=~\"$namespace\"}) by (namespace, statefulset)",
@@ -3677,7 +3617,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_statefulset_replicas{namespace=~\"$namespace\"}) by (namespace, statefulset)",
@@ -3692,7 +3632,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_statefulset_status_replicas_available) by (namespace, statefulset)",
@@ -3707,7 +3647,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_statefulset_status_replicas_updated) by (namespace, statefulset)",
@@ -3875,7 +3815,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
+            "uid": "$datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -4104,9 +4044,7 @@
           "options": {
             "footer": {
               "fields": "",
-              "reducer": [
-                "sum"
-              ],
+              "reducer": ["sum"],
               "show": false
             },
             "frameIndex": 2,
@@ -4123,7 +4061,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": " sum by (persistentvolumeclaim,namespace,storageclass,volumename) (kube_persistentvolumeclaim_info{namespace=~\"${namespace}\"})",
@@ -4136,7 +4074,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum by (persistentvolumeclaim) (kubelet_volume_stats_capacity_bytes{namespace=~\"${namespace}\"}/1024/1024/1024)",
@@ -4149,7 +4087,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum by (persistentvolumeclaim) (kubelet_volume_stats_used_bytes{namespace=~\"${namespace}\"}/1024/1024/1024)",
@@ -4162,7 +4100,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum by (persistentvolumeclaim) (kubelet_volume_stats_available_bytes{namespace=~\"${namespace}\"}/1024/1024/1024)",
@@ -4175,7 +4113,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum(kube_persistentvolumeclaim_status_phase{namespace=~\"${namespace}\",phase=~\"(Pending|Lost)\"}) by (persistentvolumeclaim) + sum(kube_persistentvolumeclaim_status_phase{namespace=~\"${namespace}\",phase=~\"(Lost)\"}) by (persistentvolumeclaim)",
@@ -4188,7 +4126,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "P1809F7CD0C75ACF3"
+                "uid": "$datasource"
               },
               "editorMode": "code",
               "expr": "sum by (persistentvolumeclaim) (kubelet_volume_stats_used_bytes{namespace=~\"${namespace}\"}/kubelet_volume_stats_capacity_bytes{namespace=~\"${namespace}\"} * 100)",
@@ -4252,9 +4190,7 @@
   "refresh": "5s",
   "schemaVersion": 37,
   "style": "dark",
-  "tags": [
-    "kubernetes"
-  ],
+  "tags": ["kubernetes"],
   "templating": {
     "list": [
       {
@@ -4278,12 +4214,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": ["All"],
+          "value": ["$__all"]
         },
         "datasource": {
           "type": "prometheus",
@@ -4362,16 +4294,12 @@
       {
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": ["All"],
+          "value": ["$__all"]
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "P1809F7CD0C75ACF3"
+          "uid": "$datasource"
         },
         "definition": "label_values(kube_node_role{cluster=\"$cluster\", role=\"$node_role\"}, node)",
         "hide": 0,
@@ -4392,12 +4320,8 @@
       {
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": ["All"],
+          "value": ["$__all"]
         },
         "datasource": {
           "type": "prometheus",
