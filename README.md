@@ -61,6 +61,7 @@ Kubernetes Fury Monitoring provides the following packages:
 | [thanos](katalog/thanos)                               | `0.34.0` | Thanos is a high-availability Prometheus setup that provides long term storage via an external object store               |
 | [x509-exporter](katalog/x509-exporter)                 | `3.12.0` | Provides monitoring for certificates                                                                                      |
 | [mimir](katalog/mimir)                                 | `2.11.0` | Mimir is an open source, horizontally scalable, highly available, multi-tenant TSDB for long-term storage for Prometheus. |
+| [haproxy](katalog/haproxy)                             | `N.A.`   | Grafana dashboards and prometheus rules (alerts) for HAproxy.                                                             |
 
 ### Integration with cloud providers
 
