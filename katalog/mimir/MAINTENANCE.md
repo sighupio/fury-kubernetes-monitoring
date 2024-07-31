@@ -18,17 +18,25 @@ helm template mimir-distributed /tmp/mimir-distributed -n monitoring --values MA
 With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
 Move the dashboards in place:
+
 ```bash
 cp /tmp/mimir-distributed/mixins/dashboards/*.json dashboards
 ```
 
 Move the prometheus rules in place:
+
 ```bash
 helm template mimir-distributed /tmp/mimir-distributed \
-  --set metaMonitoring.prometheusRule.enabled=true --set metaMonitoring.prometheusRule.mimirAlerts=true --set metaMonitoring.prometheusRule.mimirRules=true \
-  -s templates/metamonitoring/mixin-alerts.yaml -s templates/metamonitoring/prometheusrule.yaml -s templates/metamonitoring/recording-rules.yaml \
+  --set metaMonitoring.prometheusRule.enabled=true \
+  --set metaMonitoring.prometheusRule.mimirAlerts=true \
+  --set metaMonitoring.prometheusRule.mimirRules=true \
+  -s templates/metamonitoring/mixin-alerts.yaml \
+  -s templates/metamonitoring/prometheusrule.yaml \
+  -s templates/metamonitoring/recording-rules.yaml \
   -n monitoring --values MAINTENANCE.values.yaml > rules.yaml
 ```
+
+Note: the `config/mimir.yaml` file is not generated via the Helm chart.
 
 What was customized:
 
@@ -41,3 +49,4 @@ What was customized:
 - PrometheusRules have been moved on a dedicated file
 - Removed Pod Security Policy
 - Added `compactor_blocks_retention_period: 720h` on mimir config
+- Added `max_global_series_per_user: 0` to mimir config
