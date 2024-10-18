@@ -17,9 +17,9 @@ images:
   - name: registry.sighup.io/fury/groundnuty/k8s-wait-for
     newTag: v2.0
   - name: registry.sighup.io/fury/minio/mc
-    newTag: RELEASE.2024-02-09T22-18-24Z
+    newTag: RELEASE.2024-10-08T09-37-26Z
   - name: registry.sighup.io/fury/minio
-    newTag: RELEASE.2024-02-09T21-25-16Z
+    newTag: RELEASE.2024-10-13T13-34-11Z
 
 secretGenerator:
   - name: minio-monitoring
