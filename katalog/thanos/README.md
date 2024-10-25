@@ -2,6 +2,10 @@
 
 <!-- <KFD-DOCS> -->
 
+> [!CAUTION]
+> The Thanos package has been deprecated and will be removed in the next release.
+> Refer to the [Mimir package](../mimir/README.md) as a replacement for HA Prometheus deployments and long-term storage for metrics.
+
 Thanos is an opensource Prometheus setup that allows having 2 important features:
 
 1. high availability on Prometheus (setting more Prometheus replicas)
