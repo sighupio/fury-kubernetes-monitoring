@@ -6,7 +6,7 @@ To maintain the Mimir package, you should follow this steps.
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm search repo grafana/mimir-distributed # get the latest chart version
-helm pull grafana/mimir-distributed --version 5.2.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
+helm pull /tmp/mimir-distributed/grafana/mimir-distributed --version 5.5.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
 ```
 
 Run the following command:
@@ -20,7 +20,7 @@ With the `mimir-distributed-built.yaml` file, check differences with the current
 Move the dashboards in place:
 
 ```bash
-cp /tmp/mimir-distributed/mixins/dashboards/*.json dashboards
+/mixins/dashboards/*.json dashboards
 ```
 
 Move the prometheus rules in place:
