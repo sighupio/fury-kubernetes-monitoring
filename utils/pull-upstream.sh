@@ -157,11 +157,11 @@ case "${FURY_MODULE}" in
     populate_package "prometheus"
 
     mv "${WORK_DIR}/manifests/kubePrometheus-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
-    sed -i "s/Watchdog/DeadMansSwitch/" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
+    sed -i '' -e "s/Watchdog/DeadMansSwitch/" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
 
     mv "${WORK_DIR}/manifests/kubernetesControlPlane-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml"
 
-    echo -e "\033[0;31m⚠: you have to remove from $(readlink -e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
+    echo -e "\033[0;31m⚠: you have to remove from $(readlink --e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink --e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
 
     rm -f "${KATALOG_PATH}/${FURY_MODULE}/roleBindingSpecificNamespaces.yaml" \
       "${KATALOG_PATH}/${FURY_MODULE}/roleSpecificNamespaces.yaml"
