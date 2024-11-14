@@ -31,8 +31,7 @@ spec:
     rules:
     - alert: KubeControllerManagerDown
       annotations:
-        description: KubeControllerManager has disappeared from Prometheus target
-          discovery.
+        description: KubeControllerManager has disappeared from Prometheus target discovery.
         runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubecontrollermanagerdown
         summary: Target disappeared from Prometheus target discovery.
       expr: |
