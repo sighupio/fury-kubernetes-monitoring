@@ -4,17 +4,16 @@
 
 apiVersion: v1
 data:
-  general.yaml: |-
+  dashboards.yaml: |-
     {
         "apiVersion": 1,
         "providers": [
             {
-                "folder": "",
+                "folder": "Default",
                 "folderUid": "",
                 "name": "0",
                 "options": {
-                    "path": "/grafana-dashboard-definitions/",
-                    "foldersFromFilesStructure": true
+                    "path": "/grafana-dashboard-definitions/0"
                 },
                 "orgId": 1,
                 "type": "file"
@@ -27,6 +26,6 @@ metadata:
     app.kubernetes.io/component: grafana
     app.kubernetes.io/name: grafana
     app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 9.5.3
+    app.kubernetes.io/version: 11.2.0
   name: grafana-dashboards
   namespace: monitoring
