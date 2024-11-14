@@ -1,0 +1,6 @@
+kubectl 1.29.3
+kustomize 3.10.0
+terraform 1.4.6
+yq 4.34.1
+helm 3.12.3
+helmfile 0.156.0

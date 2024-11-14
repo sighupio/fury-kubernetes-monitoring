@@ -33,7 +33,7 @@ UPSTREAM_RELEASE="${1}"
 FURY_MODULE="${2}"
 
 WORK_DIR="$(mktemp -d kube.prometheus.XXXXXX -p /tmp)"
-KATALOG_PATH="$(dirname "$(readlink -e "${0}")")/../katalog"
+KATALOG_PATH="$(dirname "$(readlink --e "${0}")")/../katalog"
 
 function cleanup {
   echo "Deleting temporary working directory ${WORK_DIR}"
