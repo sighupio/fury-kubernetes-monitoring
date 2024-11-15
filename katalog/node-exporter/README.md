@@ -14,9 +14,9 @@ enabled by default from the project's [repository][ne-gh]
 
 ## Image repository and tag
 
-* node-exporter image: `registry.sighup.io/fury/prometheus/node-exporter:v1.6.1`
+* node-exporter image: `registry.sighup.io/fury/prometheus/node-exporter:v1.8.2`
 * node-exporter repository: [Node-Exporter on Github][ne-gh]
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v1.8.2`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.18.1`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration
