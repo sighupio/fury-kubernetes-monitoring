@@ -357,7 +357,7 @@ steps:
         path: /var/run/docker.sock
     depends_on: [clone]
     environment:
-      CLUSTER_VERSION: v1.30.5
+      CLUSTER_VERSION: v1.30.4
       CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-130
       # /drone/src is the default workdir for the pipeline
       # using this folder we don't need to mount another
@@ -446,7 +446,7 @@ steps:
       - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
   - name: e2e
-    image: qquay.io/sighup/e2e-testing:1.1.0_1.31.1_3.10.0_4.33.3
+    image: quay.io/sighup/e2e-testing:1.1.0_1.31.1_3.10.0_4.33.3
     pull: always
     network_mode: host
     environment:
