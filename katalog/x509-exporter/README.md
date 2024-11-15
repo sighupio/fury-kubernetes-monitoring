@@ -9,13 +9,13 @@ The original project is: [x509-certificate-exporter](https://github.com/enix/x50
 ## Requirements
 
 - Kubernetes >= `1.21.0`
-- Kustomize = `v3.5.3`
+- Kustomize = `v3.10.0`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-* Certificate exporter image: `registry.sighup.io/fury/enix/x509-certificate-exporter:3.2.0`
+- Certificate exporter image: `registry.sighup.io/fury/enix/x509-certificate-exporter:3.17.0`
 
 ## Deployment
 
