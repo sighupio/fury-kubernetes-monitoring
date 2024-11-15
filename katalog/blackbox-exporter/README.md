@@ -14,11 +14,11 @@ The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS
 
 ## Image repository and tag
 
-- Blackbox exporter image: `registry.sighup.io/fury/prometheus/blackbox-exporter:v0.24.0`
+- Blackbox exporter image: `registry.sighup.io/fury/prometheus/blackbox-exporter:v0.25.0`
 - Blackbox exporter repository: [Blackbox exporter on GitHub][blackbox-exporter-gh]
 - Kubernetes ConfigMap Reload image: `registry.sighup.io/fury/jimmidyson/configmap-reload:v0.5.0`
 - Kubernetes ConfigMap Reload repository: [Kubernetes ConfigMap Reload on GitHub][configmap-reload-gh]
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.14.2`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.18.1`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration

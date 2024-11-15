@@ -27,9 +27,9 @@ From kube-state-metrics
 
 ## Image repository and tag
 
-* kube-state-metrics image: `registry.sighup.io/fury/kube-state-metrics/kube-state-metrics:v2.9.2`
+* kube-state-metrics image: `registry.sighup.io/fury/kube-state-metrics/kube-state-metrics:v2.13.0`
 * kube-state-metrics repository: [kube-state-metrics on GH][ksm-gh]
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.14.2`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.18.1`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 ## Configuration
