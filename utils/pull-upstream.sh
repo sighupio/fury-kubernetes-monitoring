@@ -169,7 +169,7 @@ case "${FURY_MODULE}" in
   "prometheus-operator")
     populate_package "prometheusOperator"
 
-    cp -af "${WORK_DIR}"/manifests/setup/0* ~/src/github.com/sighupio/fury-kubernetes-monitoring/katalog/prometheus-operator/crds
+    cp -af "${WORK_DIR}"/manifests/setup/0* ${KATALOG_PATH}/prometheus-operator/crds
     ;;
   *)
     echo "$(basename "$0"): error: unknown package ${FURY_MODULE}" 1>&2
