@@ -20,7 +20,6 @@ images:
     newTag: v0.18.1
   - name: ghcr.io/jimmidyson/configmap-reload
     newName: registry.sighup.io/fury/jimmidyson/configmap-reload
-    newTag: v0.13.1
 resources:
   - clusterRole.yaml
   - clusterRoleBinding.yaml
