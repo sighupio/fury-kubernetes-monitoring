@@ -21,7 +21,7 @@ It can also replace the [metrics server](https://github.com/kubernetes-incubator
 
 ## Image repository and tag
 
-- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.11.1`
+- Prometheus adapter image: `registry.sighup.io/fury/prometheus-adapter/prometheus-adapter:v0.12.0`
 - Prometheus adapter repository: [Prometheus adapter on GitHub][pa-gh]
 
 ## Configuration

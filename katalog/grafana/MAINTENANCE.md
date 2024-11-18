@@ -22,3 +22,7 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 - We've changed the json file inside grafana-dashboardSources, dropping the folder name and enbling the option to use subfolders.
 - Added `FOLDER_ANNOTATION` environment variable to the dashboards sidecar.
 - Added custom grafana dashboard (`fury-cluster-overview.json`), which shows an overview of the status of the resources present in the cluster.
+
+## Considerations
+
+For the release 3.3.0 the grafana deployment tag was manually setted to a newer version because the suggested by the upstream have some issues. For more details, check [this issue](https://github.com/grafana/grafana/issues/92634).
