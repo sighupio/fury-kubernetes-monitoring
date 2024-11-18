@@ -13,7 +13,6 @@ images:
     newTag: v0.76.2
   - name: quay.io/brancz/kube-rbac-proxy
     newName: registry.sighup.io/fury/brancz/kube-rbac-proxy
-    newTag: v0.18.1
 
 patchesStrategicMerge:
 - |-
