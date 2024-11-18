@@ -49,13 +49,6 @@ patches:
               resources:
                 requests:
                   storage: 150Gi
-        # with the following we can use ScrapeConfig custom resources and
-        # make the k8s prom detect the ones labeled with `prometheus: k8s`
-        # and scrape those targets.
-        # Useful to scrape remote hosts, for example.
-        scrapeConfigSelector:
-          matchLabels:
-            prometheus: k8s
 
   - target:
       group: rbac.authorization.k8s.io
