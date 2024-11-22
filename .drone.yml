@@ -165,7 +165,7 @@ platform:
 
 steps:
   - name: prom-rules
-    image: quay.io/sighup/prom-rules:3.16_2.36.1_4.27.2
+    image: quay.io/sighup/prom-rules:3.16_2.54.1_4.27.2
     pull: always
     depends_on: [clone]
     commands:
@@ -315,7 +315,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-129  
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-129
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -390,7 +390,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-130  
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-130
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -465,7 +465,7 @@ steps:
     pull: always
     depends_on: [e2e]
     environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-131  
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-131
     commands:
       # does not matter if the command fails
       - kind delete cluster --name $${CLUSTER_NAME} || true
@@ -498,7 +498,6 @@ trigger:
       - refs/tags/**
 
 steps:
-
   - name: prepare-tar-gz
     image: alpine:latest
     pull: always
