@@ -1,13 +1,16 @@
 # Mimir - maintenance
 
-To maintain the Mimir package, you should follow this steps.
+To update the Mimir package follow these steps.
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm search repo grafana/mimir-distributed # get the latest chart version
-helm pull /tmp/mimir-distributed/grafana/mimir-distributed --version 5.5.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
+helm pull grafana/mimir-distributed --version 5.5.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
 ```
+
+> [!NOTE]
+> The following commands assume your PWD is `fury-kubernetes-monitoring/katalog/mimir`.
 
 Run the following command:
 
@@ -17,26 +20,29 @@ helm template mimir-distributed /tmp/mimir-distributed -n monitoring --values MA
 
 With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
+> [!NOTE]
+> The `config/mimir.yaml` file is not generated via the Helm chart.
+
 Move the dashboards in place:
 
 ```bash
-/mixins/dashboards/*.json dashboards
+cp /tmp/mimir-distributed/mixins/dashboards/*.json dashboards
 ```
 
-Move the prometheus rules in place:
+Move the Prometheus rules in place:
 
 ```bash
 helm template mimir-distributed /tmp/mimir-distributed \
   --set metaMonitoring.prometheusRule.enabled=true \
   --set metaMonitoring.prometheusRule.mimirAlerts=true \
   --set metaMonitoring.prometheusRule.mimirRules=true \
-  -s templates/metamonitoring/mixin-alerts.yaml \
-  -s templates/metamonitoring/prometheusrule.yaml \
-  -s templates/metamonitoring/recording-rules.yaml \
+  --set templates/metamonitoring/mixin-alerts.yaml \
+  --set templates/metamonitoring/prometheusrule.yaml \
+  --set templates/metamonitoring/recording-rules.yaml \
   -n monitoring --values MAINTENANCE.values.yaml > rules.yaml
 ```
 
-Note: the `config/mimir.yaml` file is not generated via the Helm chart.
+With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
 What was customized:
 
