@@ -33,7 +33,7 @@ UPSTREAM_RELEASE="${1}"
 FURY_MODULE="${2}"
 
 WORK_DIR="$(mktemp -d kube.prometheus.XXXXXX -p /tmp)"
-KATALOG_PATH="$(dirname "$(readlink --e "${0}")")/../katalog"
+KATALOG_PATH="$(dirname "$(readlink -f "${0}")")/../katalog"
 
 function cleanup {
   echo "Deleting temporary working directory ${WORK_DIR}"
@@ -161,7 +161,7 @@ case "${FURY_MODULE}" in
 
     mv "${WORK_DIR}/manifests/kubernetesControlPlane-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml"
 
-    echo -e "\033[0;31m⚠: you have to remove from $(readlink --e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink --e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
+    echo -e "\033[0;31m⚠: you have to remove from $(readlink -f "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -f "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
 
     rm -f "${KATALOG_PATH}/${FURY_MODULE}/roleBindingSpecificNamespaces.yaml" \
       "${KATALOG_PATH}/${FURY_MODULE}/roleSpecificNamespaces.yaml"
