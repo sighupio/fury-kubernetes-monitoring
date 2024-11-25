@@ -2,6 +2,8 @@
 
 To update the Mimir package follow these steps.
 
+1. Add the chart repo to your system if you don't have it already, check Mimir releases for the version of the chart that you want to use and download it to a temp folder:
+
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
@@ -9,42 +11,48 @@ helm search repo grafana/mimir-distributed # get the latest chart version
 helm pull grafana/mimir-distributed --version 5.5.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
 ```
 
-> [!NOTE]
+> Mimir Distributed Helm chart source code is here: <https://github.com/grafana/mimir/tree/main/operations/helm/charts/mimir-distributed>
+<!-- spacer -->
+> [!IMPORTANT]
 > The following commands assume your PWD is `fury-kubernetes-monitoring/katalog/mimir`.
 
-Run the following command:
+1. Open the `MAINTENANCE.values.yaml`, check that the values still apply and are aligned with the new version of the chart. Bump Mimir's version if needed. It is recommended to compare the default values from the chart with the MAINTENANCE.values.yaml and adjust the maintenance one accordingly.
+
+2. Run the following command:
 
 ```bash
 helm template mimir-distributed /tmp/mimir-distributed -n monitoring --values MAINTENANCE.values.yaml > mimir-distributed-built.yaml
 ```
 
-With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+4.With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
 > [!NOTE]
-> The `config/mimir.yaml` file is not generated via the Helm chart.
+> The `config/mimir.yaml` file is not generated via the Helm chart. It was manually generated based on the documentation.
 
-Move the dashboards in place:
+5. Move the dashboards in place:
 
 ```bash
 cp /tmp/mimir-distributed/mixins/dashboards/*.json dashboards
 ```
 
-Move the Prometheus rules in place:
+6. Move the Prometheus rules in place:
 
 ```bash
 helm template mimir-distributed /tmp/mimir-distributed \
   --set metaMonitoring.prometheusRule.enabled=true \
   --set metaMonitoring.prometheusRule.mimirAlerts=true \
   --set metaMonitoring.prometheusRule.mimirRules=true \
-  --set templates/metamonitoring/mixin-alerts.yaml \
-  --set templates/metamonitoring/prometheusrule.yaml \
-  --set templates/metamonitoring/recording-rules.yaml \
-  -n monitoring --values MAINTENANCE.values.yaml > rules.yaml
+  --show-only templates/metamonitoring/mixin-alerts.yaml \
+  --show-only templates/metamonitoring/prometheusrule.yaml \
+  --show-only templates/metamonitoring/recording-rules.yaml \
+  -n monitoring --values MAINTENANCE.values.yaml > prometheusRules-built.yaml
 ```
 
-With the `mimir-distributed-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+7. With the `prometheusRules-built.yaml` file, check differences with the current `prometheusRules.yml` file and change accordingly.
 
-What was customized:
+## Customizations
+
+The following changes have been applied to what we get from upstream:
 
 - Disabled mimir alertmanager
 - Disabled in-tree minio, configured to use our own minio-ha deployment
@@ -56,3 +64,11 @@ What was customized:
 - Removed Pod Security Policy
 - Added `compactor_blocks_retention_period: 720h` on mimir config
 - Added `max_global_series_per_user: 0` to mimir config
+- Enabled Gateway for non-enterprise
+- Enabled autoscaling (HPA)
+- Changed Grafana Dashboards annotations and labels to make them compatible with KFD's monitoring
+- Enabled Service Monitor
+- Disabled Graphite's aggregation cache
+- Disabled Graphite's metric name cache
+- Enabled continuous-test
+- Removed Smoke Test
