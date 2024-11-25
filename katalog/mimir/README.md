@@ -16,7 +16,6 @@ Mimir is an open source, horizontally scalable, highly available, multi-tenant T
 
 - registry.sighup.io/fury/grafana/mimir
 - registry.sighup.io/fury/nginxinc/nginx-unprivileged
-- registry.sighup.io/fury/grafana/mimir-continuous-test
 
 ## Configuration
 
