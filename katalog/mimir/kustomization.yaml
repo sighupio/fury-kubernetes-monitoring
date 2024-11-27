@@ -37,10 +37,5 @@ patchesStrategicMerge:
 images:
   - name: docker.io/nginxinc/nginx-unprivileged
     newName: registry.sighup.io/fury/nginxinc/nginx-unprivileged
-    newTag: "1.25-alpine"
   - name: grafana/mimir
     newName: registry.sighup.io/fury/grafana/mimir
-    newTag: "2.11.0"
-  - name: grafana/mimir-continuous-test
-    newName: registry.sighup.io/fury/grafana/mimir-continuous-test
-    newTag: "2.11.0"

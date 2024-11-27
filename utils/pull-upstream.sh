@@ -33,7 +33,7 @@ UPSTREAM_RELEASE="${1}"
 FURY_MODULE="${2}"
 
 WORK_DIR="$(mktemp -d kube.prometheus.XXXXXX -p /tmp)"
-KATALOG_PATH="$(dirname "$(readlink -e "${0}")")/../katalog"
+KATALOG_PATH="$(dirname "$(readlink -f "${0}")")/../katalog"
 
 function cleanup {
   echo "Deleting temporary working directory ${WORK_DIR}"
@@ -157,11 +157,11 @@ case "${FURY_MODULE}" in
     populate_package "prometheus"
 
     mv "${WORK_DIR}/manifests/kubePrometheus-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
-    sed -i "s/Watchdog/DeadMansSwitch/" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
+    sed -i '' -e "s/Watchdog/DeadMansSwitch/" "${KATALOG_PATH}/${FURY_MODULE}/kube-prometheus-rules.yml"
 
     mv "${WORK_DIR}/manifests/kubernetesControlPlane-prometheusRule.yaml" "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml"
 
-    echo -e "\033[0;31m⚠: you have to remove from $(readlink -e "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -e "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
+    echo -e "\033[0;31m⚠: you have to remove from $(readlink -f "${KATALOG_PATH}/${FURY_MODULE}/kubernetes-monitoring-rules.yml") CPUThrottlingHigh and move KubeClientCertificateExpiration, KubeSchedulerDown and KubeControllerManagerDown to $(readlink -f "${KATALOG_PATH}/configs/kubeadm/rules.yml")\033[0m"
 
     rm -f "${KATALOG_PATH}/${FURY_MODULE}/roleBindingSpecificNamespaces.yaml" \
       "${KATALOG_PATH}/${FURY_MODULE}/roleSpecificNamespaces.yaml"
@@ -169,7 +169,7 @@ case "${FURY_MODULE}" in
   "prometheus-operator")
     populate_package "prometheusOperator"
 
-    cp -af "${WORK_DIR}"/manifests/setup/0* ~/src/github.com/sighupio/fury-kubernetes-monitoring/katalog/prometheus-operator/crds
+    cp -af "${WORK_DIR}"/manifests/setup/0* "${KATALOG_PATH}/prometheus-operator/crds"
     ;;
   *)
     echo "$(basename "$0"): error: unknown package ${FURY_MODULE}" 1>&2

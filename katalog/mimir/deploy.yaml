@@ -845,7 +845,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: continuous-test
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=continuous-test"
@@ -942,7 +942,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: distributor
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=distributor"
@@ -1070,7 +1070,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: gateway
-          image: docker.io/nginxinc/nginx-unprivileged:1.25-alpine
+          image: docker.io/nginxinc/nginx-unprivileged:1.27-alpine
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: nginx-config
@@ -1181,7 +1181,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: querier
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=querier"
@@ -1305,7 +1305,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: query-frontend
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=query-frontend"
@@ -1425,7 +1425,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: query-scheduler
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=query-scheduler"
@@ -1608,7 +1608,7 @@ spec:
           emptyDir: {}
       containers:
         - name: compactor
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=compactor"
@@ -1736,7 +1736,7 @@ spec:
           emptyDir: {}
       containers:
         - name: ingester
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=ingester"
@@ -1872,7 +1872,7 @@ spec:
           emptyDir: {}
       containers:
         - name: store-gateway
-          image: "grafana/mimir:2.10.3"
+          image: "grafana/mimir:2.14.0"
           imagePullPolicy: IfNotPresent
           args:
             - "-target=store-gateway"

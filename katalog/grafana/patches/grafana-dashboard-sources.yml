@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
 apiVersion: v1
 data:
   dashboards.yaml: |-
@@ -9,11 +10,12 @@ data:
         "apiVersion": 1,
         "providers": [
             {
-                "folder": "Default",
+                "folder": "",
                 "folderUid": "",
                 "name": "0",
                 "options": {
-                    "path": "/grafana-dashboard-definitions/0"
+                    "path": "/grafana-dashboard-definitions/",
+                    "foldersFromFilesStructure": true
                 },
                 "orgId": 1,
                 "type": "file"
@@ -22,10 +24,5 @@ data:
     }
 kind: ConfigMap
 metadata:
-  labels:
-    app.kubernetes.io/component: grafana
-    app.kubernetes.io/name: grafana
-    app.kubernetes.io/part-of: kube-prometheus
-    app.kubernetes.io/version: 11.2.0
   name: grafana-dashboards
   namespace: monitoring

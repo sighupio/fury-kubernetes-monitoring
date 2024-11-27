@@ -8,17 +8,15 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: "minio-sa"
-  namespace: "monitoring"
 ---
 # Source: minio/templates/console-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: minio-monitoring-console
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-monitoring
     heritage: Helm
 spec:
@@ -37,10 +35,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: minio-monitoring
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-monitoring
     heritage: Helm
     monitoring: "true"
@@ -60,12 +57,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: minio-monitoring-svc
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
-    release: "minio-monitoring"
-    heritage: "Helm"
+    chart: minio-5.3.0
+    release: minio-monitoring
+    heritage: Helm
 spec:
   publishNotReadyAddresses: true
   clusterIP: None
@@ -83,10 +79,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: minio-monitoring
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-monitoring
     heritage: Helm
 spec:
@@ -119,23 +114,25 @@ spec:
                         - minio-monitoring
                 topologyKey: "kubernetes.io/hostname"
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 1000
+        runAsUser: 1000
       serviceAccountName: minio-sa
       containers:
         - name: minio
-          image: registry.sighup.io/fury/minio
+          image: registry.sighup.io/fury/minio:RELEASE.2024-04-18T19-09-19Z
           imagePullPolicy: IfNotPresent
-          command: [ "/bin/sh",
+          command: [
+            "/bin/sh",
             "-ce",
-            "/usr/bin/docker-entrypoint.sh minio server  http://minio-monitoring-{0...2}.minio-monitoring-svc.monitoring.svc.cluster.local/export-{0...1} -S /etc/minio/certs/ --address :9000 --console-address :9001" ]
+            "/usr/bin/docker-entrypoint.sh minio server http://minio-monitoring-{0...2}.minio-monitoring-svc.monitoring.svc/export-{0...1} -S /etc/minio/certs/ --address :9000 --console-address :9001"
+          ]
           volumeMounts:
             - name: export-0
               mountPath: /export-0
             - name: export-1
-              mountPath: /export-1            
+              mountPath: /export-1
           ports:
             - name: http
               containerPort: 9000
@@ -146,31 +143,37 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: minio-monitoring
-                  key: ROOT_USER
+                  key: rootUser
             - name: MINIO_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: minio-monitoring
-                  key: ROOT_PASSWORD
+                  key: rootPassword
             - name: MINIO_PROMETHEUS_AUTH_TYPE
               value: "public"
           resources:
             requests:
               cpu: 100m
               memory: 512Mi
+          securityContext:
+            readOnlyRootFilesystem: false
       volumes:
         - name: minio-user
           secret:
             secretName: minio-monitoring        
   volumeClaimTemplates:
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: export-0
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 10Gi
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: export-1
       spec:
         accessModes: [ "ReadWriteOnce" ]
@@ -183,10 +186,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
   name: minio-monitoring-cluster
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-monitoring
     heritage: Helm
 spec:
@@ -205,10 +207,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: minio-monitoring
-  namespace: "monitoring"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-monitoring
     heritage: Helm
 spec:
