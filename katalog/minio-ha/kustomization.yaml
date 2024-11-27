@@ -23,5 +23,6 @@ images:
 
 secretGenerator:
   - name: minio-monitoring
-    envs:
-      - config/minio.root.env
+    literals:
+    - rootPassword=minio123
+    - rootUser=minio
