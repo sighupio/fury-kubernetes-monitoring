@@ -34,6 +34,7 @@ FURY_MODULE="${2}"
 
 WORK_DIR="$(mktemp -d kube.prometheus.XXXXXX -p /tmp)"
 KATALOG_PATH="$(dirname "$(readlink -f "${0}")")/../katalog"
+VALUES_PATH="$(dirname "$(readlink -f "${0}")")/../values"
 
 function cleanup {
   echo "Deleting temporary working directory ${WORK_DIR}"
@@ -152,6 +153,19 @@ case "${FURY_MODULE}" in
     ;;
   "prometheus-adapter")
     populate_package "prometheusAdapter"
+    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    cd "${WORK_DIR}"
+    helm template \
+      --release-name prometheus-adapter \
+      --namespace monitoring \
+      -f "${VALUES_PATH}/prometheus-adapter.yml" \
+      --api-versions apiregistration.k8s.io/v1 \
+      prometheus-community/prometheus-adapter | yq --split-exp '.kind + "-" + .metadata.name'
+    cd -
+    cat "${WORK_DIR}/APIService-v1beta1.custom.metrics.k8s.io" >> "${KATALOG_PATH}/prometheus-adapter/apiService.yaml"
+    cat "${WORK_DIR}/APIService-v1beta1.external.metrics.k8s.io" >> "${KATALOG_PATH}/prometheus-adapter/apiService.yaml"
+    yq -i ".data = (load(\"${WORK_DIR}/ConfigMap-prometheus-adapter.yml\") | .data)" configMap.yaml
+    yq -i '.rules[0].apiGroups = ["metrics.k8s.io", "custom.metrics.k8s.io", "external.metrics.k8s.io"]' clusterRoleServerResources.yaml
     ;;
   "prometheus-operated")
     populate_package "prometheus"
