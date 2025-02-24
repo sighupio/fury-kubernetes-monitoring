@@ -24,12 +24,12 @@ spec:
 apiVersion: apiregistration.k8s.io/v1
 kind: APIService
 metadata:
+  name: v1beta1.custom.metrics.k8s.io
   labels:
     app.kubernetes.io/component: metrics-adapter
-    app.kubernetes.io/part-of: prometheus-adapter
     app.kubernetes.io/name: prometheus-adapter
-    app.kubernetes.io/version: v0.12.0
-  name: v1beta1.custom.metrics.k8s.io
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.12.0
 spec:
   service:
     name: prometheus-adapter
@@ -43,12 +43,12 @@ spec:
 apiVersion: apiregistration.k8s.io/v1
 kind: APIService
 metadata:
+  name: v1beta1.external.metrics.k8s.io
   labels:
     app.kubernetes.io/component: metrics-adapter
-    app.kubernetes.io/part-of: prometheus-adapter
     app.kubernetes.io/name: prometheus-adapter
-    app.kubernetes.io/version: v0.12.0
-  name: v1beta1.external.metrics.k8s.io
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.12.0
 spec:
   service:
     name: prometheus-adapter
