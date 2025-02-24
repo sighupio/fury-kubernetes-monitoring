@@ -22,6 +22,18 @@ patchesStrategicMerge:
   spec:
     replicas: 1
 
+patchesJson6902:
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: RoleBinding
+      name: resource-metrics-auth-reader
+      namespace: monitoring
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: kube-system
+
 resources:
   - apiService.yaml
   - clusterRole.yaml
