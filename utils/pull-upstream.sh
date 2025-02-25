@@ -170,6 +170,8 @@ case "${FURY_MODULE}" in
     grep -v '#' < "${WORK_DIR}/APIService-v1beta1.external.metrics.k8s.io" | yq "del(.metadata.labels) | .metadata.labels = (load(\"${WORK_DIR}/labels.yml\"))" >> "${KATALOG_PATH}/prometheus-adapter/apiService.yaml"
     yq -i ".data = (load(\"${WORK_DIR}/ConfigMap-prometheus-adapter.yml\") | .data)" configMap.yaml
     yq -i '.rules[0].apiGroups = ["metrics.k8s.io", "custom.metrics.k8s.io", "external.metrics.k8s.io"]' clusterRoleServerResources.yaml
+    # shellcheck disable=SC2086
+    yq -i ".spec.template.metadata.annotations.\"checksum.config/md5\" = \"$(md5 -q ${VALUES_PATH}/prometheus-adapter.yml)\"" deployment.yaml
     ;;
   "prometheus-operated")
     populate_package "prometheus"
