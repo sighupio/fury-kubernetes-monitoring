@@ -29,7 +29,7 @@ This is a maintenance release that includes bug fixes and improvements to the ex
 
 ### prometheus-adapter
 
-- [[#192](https://github.com/sighupio/fury-kubernetes-monitoring/pull/192)] **Add `v1beta2.custom.metrics.k8s.io` service to prometheus-adapter** to use custom metrics with the Horizontal Pod Autoscaler (HPA).
+- [[#193](https://github.com/sighupio/fury-kubernetes-monitoring/pull/193)] **Add `v1beta2.custom.metrics.k8s.io` service to prometheus-adapter** to use custom metrics with the Horizontal Pod Autoscaler (HPA).
 
 ## Update Guide 🦮
 
