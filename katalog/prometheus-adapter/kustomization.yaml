@@ -21,6 +21,16 @@ patchesStrategicMerge:
     namespace: monitoring
   spec:
     replicas: 1
+    template:
+      spec:
+        containers:
+          - name: prometheus-adapter
+            # we increase the memory limit because we have more rules than the default from upstream and they use slightly more memory in the adapter's container.
+            resources:
+              requests:
+                memory: 512Mi
+              limits:
+                memory: 512Mi
 
 patchesJson6902:
   - target:
