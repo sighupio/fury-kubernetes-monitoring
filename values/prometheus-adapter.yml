@@ -1,0 +1,196 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+rules:
+  default: false
+  # Custom rules are the same as the default ones but with a 1m timeframe instead of 5m.
+  custom:
+    # ───────────────────────────────────────────────────────
+    # Rule 1: Process container-related metrics (rates of "_seconds_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{__name__=~"^container_.*",container!="POD",namespace!="",pod!=""}'
+      seriesFilters: []  # No additional filtering
+      resources:
+        overrides:
+          namespace:
+            resource: namespace  # Maps namespace label to Kubernetes resource
+          pod:
+            resource: pod        # Maps pod label to Kubernetes resource
+      name:
+        matches: ^container_(.*)_seconds_total$  # Match metrics ending in "_seconds_total"
+        as: ""  # Do not rename
+      # Converts cumulative "_seconds_total" metrics into rates over 1 minute
+      metricsQuery: sum(rate(<<.Series>>{<<.LabelMatchers>>,container!="POD"}[1m])) by (<<.GroupBy>>)
+
+    # ───────────────────────────────────────────────────────
+    # Rule 2: Process container-related metrics (rates of "_total" excluding "_seconds_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{__name__=~"^container_.*",container!="POD",namespace!="",pod!=""}'
+      seriesFilters:
+        - isNot: ^container_.*_seconds_total$  # Exclude "_seconds_total" metrics
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+          pod:
+            resource: pod
+      name:
+        matches: ^container_(.*)_total$  # Match metrics ending in "_total"
+        as: ""  # Keep the original name
+      # Converts cumulative "_total" metrics into rates over 1 minute
+      metricsQuery: sum(rate(<<.Series>>{<<.LabelMatchers>>,container!="POD"}[1m])) by (<<.GroupBy>>)
+
+    # ───────────────────────────────────────────────────────
+    # Rule 3: Process container-related metrics (excluding "_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{__name__=~"^container_.*",container!="POD",namespace!="",pod!=""}'
+      seriesFilters:
+        - isNot: ^container_.*_total$  # Exclude "_total" metrics
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+          pod:
+            resource: pod
+      name:
+        matches: ^container_(.*)$  # Match any remaining container metrics
+        as: ""  # Keep the original name
+      # Aggregates non-rate container metrics by grouping
+      metricsQuery: sum(<<.Series>>{<<.LabelMatchers>>,container!="POD"}) by (<<.GroupBy>>)
+
+    # ───────────────────────────────────────────────────────
+    # Rule 4: Process non-container metrics (excluding "_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{namespace!="",__name__!~"^container_.*"}'
+      seriesFilters:
+        - isNot: .*_total$  # Exclude "_total" metrics
+      resources:
+        template: <<.Resource>>  # Use dynamic resource mapping
+      name:
+        matches: ""
+        as: ""  # Keep the original name
+      # Aggregates non-container metrics
+      metricsQuery: sum(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)
+
+    # ───────────────────────────────────────────────────────
+    # Rule 5: Process non-container metrics (rates of "_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{namespace!="",__name__!~"^container_.*"}'
+      seriesFilters:
+        - isNot: .*_seconds_total  # Exclude "_seconds_total" metrics
+      resources:
+        template: <<.Resource>>
+      name:
+        matches: ^(.*)_total$  # Match "_total" metrics
+        as: ""  # Keep the original name
+      # Converts cumulative "_total" metrics into rates over 1 minute
+      metricsQuery: sum(rate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>)
+
+    # ───────────────────────────────────────────────────────
+    # Rule 6: Process non-container metrics (rates of "_seconds_total")
+    # ───────────────────────────────────────────────────────
+    - seriesQuery: '{namespace!="",__name__!~"^container_.*"}'
+      seriesFilters: [ ]
+      resources:
+        template: <<.Resource>>
+      name:
+        matches: ^(.*)_seconds_total$  # Match "_seconds_total" metrics
+        as: ""  # Keep the original name
+      # Converts cumulative "_seconds_total" metrics into rates over 1 minute
+      metricsQuery: sum(rate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>)
+
+  # Reported from https://github.com/sighupio/fury-kubernetes-monitoring/blob/main/katalog/prometheus-adapter/configMap.yaml
+  resource:
+    # ───────────────────────────────────────────────────────
+    # CPU Usage Queries
+    # ───────────────────────────────────────────────────────
+    cpu:
+      containerLabel: "container"  # Uses "container" label to identify containers
+      containerQuery: |
+        sum by (<<.GroupBy>>) (
+          irate (
+              container_cpu_usage_seconds_total{<<.LabelMatchers>>,container!="",pod!=""}[120s]
+          )
+        )
+      # Computes CPU usage as an **instant rate** over 120s
+
+      nodeQuery: |
+        sum by (<<.GroupBy>>) (
+          1 - irate(
+            node_cpu_seconds_total{mode="idle"}[60s]
+          )
+          * on(namespace, pod) group_left(node) (
+            node_namespace_pod:kube_pod_info:{<<.LabelMatchers>>}
+          )
+        )
+        or sum by (<<.GroupBy>>) (
+          1 - irate(
+            windows_cpu_time_total{mode="idle", job="windows-exporter",<<.LabelMatchers>>}[4m]
+          )
+        )
+      # Computes CPU usage for nodes by subtracting idle time
+
+      resources:
+        overrides:
+          namespace:
+            resource: "namespace"
+          node:
+            resource: "node"
+          pod:
+            resource: "pod"
+
+    # ───────────────────────────────────────────────────────
+    # Memory Usage Queries
+    # ───────────────────────────────────────────────────────
+    memory:
+      containerLabel: "container"
+      containerQuery: |
+        sum by (<<.GroupBy>>) (
+          container_memory_working_set_bytes{<<.LabelMatchers>>,container!="",pod!=""}
+        )
+      # Computes memory usage for containers
+
+      nodeQuery: |
+        sum by (<<.GroupBy>>) (
+          node_memory_MemTotal_bytes{job="node-exporter",<<.LabelMatchers>>}
+          -
+          node_memory_MemAvailable_bytes{job="node-exporter",<<.LabelMatchers>>}
+        )
+        or sum by (<<.GroupBy>>) (
+          windows_cs_physical_memory_bytes{job="windows-exporter",<<.LabelMatchers>>}
+          -
+          windows_memory_available_bytes{job="windows-exporter",<<.LabelMatchers>>}
+        )
+      # Computes memory usage for nodes
+
+      resources:
+        overrides:
+          instance:
+            resource: "node"
+          namespace:
+            resource: "namespace"
+          pod:
+            resource: "pod"
+
+    window: "5m"  # Aggregation window for calculations
+  # Generic example of external metrics for queues
+  external:
+    - seriesQuery: '{__name__=~"^.*_queue_(length|size)$",namespace!=""}'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+      name:
+        matches: ^.*_queue_(length|size)$
+        as: "$0"
+      metricsQuery: max(<<.Series>>{<<.LabelMatchers>>})
+    - seriesQuery: '{__name__=~"^.*_queue$",namespace!=""}'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+      name:
+        matches: ^.*_queue$
+        as: "$0"
+      metricsQuery: max(<<.Series>>{<<.LabelMatchers>>})

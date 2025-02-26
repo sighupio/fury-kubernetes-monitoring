@@ -6,6 +6,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: monitoring
+
 images:
   - name: registry.k8s.io/prometheus-adapter/prometheus-adapter
     newName: registry.sighup.io/fury/prometheus-adapter/prometheus-adapter
@@ -19,6 +21,28 @@ patchesStrategicMerge:
     namespace: monitoring
   spec:
     replicas: 1
+    template:
+      spec:
+        containers:
+          - name: prometheus-adapter
+            # we increase the memory limit because we have more rules than the default from upstream and they use slightly more memory in the adapter's container.
+            resources:
+              requests:
+                memory: 512Mi
+              limits:
+                memory: 512Mi
+
+patchesJson6902:
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: RoleBinding
+      name: resource-metrics-auth-reader
+      namespace: monitoring
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: kube-system
 
 resources:
   - apiService.yaml
