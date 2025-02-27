@@ -177,37 +177,33 @@ service provider as follows:
 
 - For AWS EKS
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/eks-sm
-
-```yaml
 ```
 
 - For GCP GKE
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/gke-sm
-
-```yaml
 ```
 
 - For Azure AKS
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/aks-sm
-
-```yaml
 ```
 
 - For on-premises and self-managed
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/kubeadm-sm
-
-```yaml
 ```
 
-5. To deploy the packages to your cluster, execute:
+1. To deploy the packages to your cluster, execute:
 
 ```shell
 kustomize build . | kubectl apply -f - --server-side
