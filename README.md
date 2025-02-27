@@ -5,7 +5,7 @@
 </h1>
 <!-- markdownlint-enable MD033 -->
 
-![Release](https://img.shields.io/badge/Latest%20Release-v3.3.0-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v3.3.1-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-monitoring?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -103,7 +103,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 ```yaml
 versions:
-  monitoring: v3.3.0
+  monitoring: v3.3.1
 
 bases:
     - name: monitoring/prometheus-operator
@@ -177,37 +177,33 @@ service provider as follows:
 
 - For AWS EKS
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/eks-sm
-
-```yaml
 ```
 
 - For GCP GKE
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/gke-sm
-
-```yaml
 ```
 
 - For Azure AKS
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/aks-sm
-
-```yaml
 ```
 
 - For on-premises and self-managed
 
+```yaml
   ...
   - ./vendor/katalog/monitoring/kubeadm-sm
-
-```yaml
 ```
 
-5. To deploy the packages to your cluster, execute:
+1. To deploy the packages to your cluster, execute:
 
 ```shell
 kustomize build . | kubectl apply -f - --server-side

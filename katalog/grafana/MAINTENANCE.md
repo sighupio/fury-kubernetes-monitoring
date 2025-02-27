@@ -25,4 +25,4 @@ Replace `KUBE_PROMETHEUS_RELEASE` with the current upstream release.
 
 ## Considerations
 
-For the release 3.3.0 the grafana deployment tag was manually setted to a newer version because the suggested by the upstream have some issues. For more details, check [this issue](https://github.com/grafana/grafana/issues/92634).
+For the release 3.3.0 the Grafana deployment tag was manually set to a newer version because the suggested by the upstream had some issues. For more details, check [this issue](https://github.com/grafana/grafana/issues/92634).
