@@ -5,8 +5,8 @@ This package provides monitoring for Kubernetes components `kubelet` and
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
-- Kustomize = `3.5.3`
+- Kubernetes >= `1.29.0`
+- Kustomize = `5.6.0`
 - [prometheus-operator](../../prometheus-operator)
 
 ## Configuration
