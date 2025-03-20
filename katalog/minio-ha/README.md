@@ -8,8 +8,8 @@ In order to achieve high availability (HA) for MinIO, a cluster of multiple MinI
 
 ## Requirements
 
-- Kubernetes >= `1.23.0`
-- Kustomize >= `v3.5.3`
+- Kubernetes >= `1.29.0`
+- Kustomize = `5.6.0`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
