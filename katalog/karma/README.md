@@ -9,8 +9,8 @@ It can also aggregate alerts from multiple Alertmanager instances.
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
-- Kustomize `= v3.5.3`
+- Kubernetes >= `1.29.0`
+- Kustomize = `5.6.0`
 - [prometheus-operator](../prometheus-operator)
 - [prometheus-operated](../prometheus-operated)
 - [alertmanager-operated](../alertmanager-operated)
