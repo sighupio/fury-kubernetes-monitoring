@@ -132,7 +132,7 @@ spec:
             - name: export-0
               mountPath: /export-0
             - name: export-1
-              mountPath: /export-1            
+              mountPath: /export-1
           ports:
             - name: http
               containerPort: 9000
