@@ -8,8 +8,8 @@ kind: Kustomization
 bases:
   - ../../../grafana/
 
-patchesStrategicMerge:
-  - patches/grafana-ldap.yaml
+patches:
+  - path: patches/grafana-ldap.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
