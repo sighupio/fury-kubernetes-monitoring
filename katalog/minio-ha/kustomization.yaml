@@ -17,7 +17,7 @@ images:
   - name: registry.sighup.io/fury/groundnuty/k8s-wait-for
     newTag: v2.0
   - name: registry.sighup.io/fury/minio/mc
-    newTag: RELEASE.2025-02-28T09-55-16Z
+    newTag: RELEASE.2025-02-21T16-00-46Z
   - name: registry.sighup.io/fury/minio
     newTag: RELEASE.2025-02-28T09-55-16Z
 
