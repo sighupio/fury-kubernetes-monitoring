@@ -84,7 +84,7 @@ Please refer to the individual package documentation for further details.
 | `1.29.x`           | :white_check_mark: | No known issues |
 | `1.30.x`           | :white_check_mark: | No known issues |
 | `1.31.x`           | :white_check_mark: | No known issues |
-| `1.32.x`           | :white_check_mark: | No known issues |
+| `1.32.x`           | :white_check_mark: | Tech preview |
 
 Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
