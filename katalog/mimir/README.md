@@ -6,8 +6,8 @@ Mimir is an open source, horizontally scalable, highly available, multi-tenant T
 
 ## Requirements
 
-- Kubernetes >= `1.24.0`
-- Kustomize >= `v3.5.3`
+- Kubernetes >= `1.29.0`
+- Kustomize = `5.6.0`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
 - [grafana from KFD monitoring module][grafana]
 - [minio-ha](../minio-ha)

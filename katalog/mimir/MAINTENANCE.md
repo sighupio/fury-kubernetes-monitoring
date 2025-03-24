@@ -8,7 +8,7 @@ To update the Mimir package follow these steps.
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm search repo grafana/mimir-distributed # get the latest chart version
-helm pull grafana/mimir-distributed --version 5.5.1 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
+helm pull grafana/mimir-distributed --version 5.6.0 --untar --untardir /tmp # this command will download the chart in /tmp/mimir-distributed
 ```
 
 > Mimir Distributed Helm chart source code is here: <https://github.com/grafana/mimir/tree/main/operations/helm/charts/mimir-distributed>
