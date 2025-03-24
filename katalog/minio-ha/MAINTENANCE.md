@@ -9,7 +9,7 @@ Extract to a folder of your choice, for example: `/tmp/minio`.
 Run the following command:
 
 ```bash
-helm template minio-logging /tmp/minio/helm/minio --values MAINTENANCE.values.yaml -n logging > minio-built.yaml
+helm template minio-monitoring /tmp/minio/helm/minio --values MAINTENANCE.values.yaml -n monitoring > minio-built.yaml
 ```
 
 Minio's helm comes packaged with a specific mc (its client) version, to find out
