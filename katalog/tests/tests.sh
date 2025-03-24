@@ -216,3 +216,41 @@ load ./helper
   status=${loop_it_result:?}
   [ "$status" -eq 0 ]
 }
+
+@test "Deploy minio for mimir" {
+  info
+  deploy() {
+    apply katalog/minio-ha
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "Minio is Running" {
+  info
+  test() {
+    kubectl get pods -l app=minio -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 10 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}
+
+@test "Deploy mimir" {
+  info
+  deploy() {
+    apply katalog/mimir
+  }
+  run deploy
+  [ "$status" -eq 0 ]
+}
+
+@test "Mimir is Running" {
+  info
+  test() {
+    kubectl get pods -l app.kubernetes.io/name=mimir -o json -n monitoring | jq '.items[].status.containerStatuses[].ready' | uniq | grep -q true
+  }
+  loop_it test 20 10
+  status=${loop_it_result:?}
+  [ "$status" -eq 0 ]
+}

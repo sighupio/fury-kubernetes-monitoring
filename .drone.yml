@@ -177,83 +177,6 @@ steps:
         - tag
 
 ---
-name: e2e-kubernetes-1.28
-kind: pipeline
-type: docker
-
-clone:
-  depth: 1
-
-depends_on:
-  - policeman
-
-platform:
-  os: linux
-  arch: amd64
-
-trigger:
-  ref:
-    include:
-      - refs/tags/**
-
-steps:
-  - name: create-kind-cluster
-    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
-    pull: always
-    volumes:
-      - name: dockersock
-        path: /var/run/docker.sock
-    depends_on: [clone]
-    environment:
-      CLUSTER_VERSION: v1.28.0
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
-      # /drone/src is the default workdir for the pipeline
-      # using this folder we don't need to mount another
-      # shared volume between the steps
-      KUBECONFIG: /drone/src/kubeconfig-128
-    commands:
-      # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
-      # does not work when disabling the default CNI. It will always go in timeout.
-      - kind create cluster --name $${CLUSTER_NAME} --image registry.sighup.io/fury/kindest/node:$${CLUSTER_VERSION} --config katalog/tests/kind-config.yml
-      # save the kubeconfig so we can use it from other steps.
-      - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
-
-  - name: e2e
-    # KUBECTL 1.28.5 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
-    image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.12.0_1.9.4_1.28.5_3.5.3_4.33.3
-    pull: always
-    network_mode: host
-    environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
-      KUBECONFIG: /drone/src/kubeconfig-128
-    depends_on: [create-kind-cluster]
-    commands:
-      - bats -t katalog/tests/tests.sh
-      - bats -t katalog/tests/grafana-ldap.sh
-
-  - name: delete-kind-cluster
-    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
-    volumes:
-      - name: dockersock
-        path: /var/run/docker.sock
-    pull: always
-    depends_on: [e2e]
-    environment:
-      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-128
-    commands:
-      # does not matter if the command fails
-      - kind delete cluster --name $${CLUSTER_NAME} || true
-    when:
-      status:
-        - success
-        - failure
-
-volumes:
-  - name: dockersock
-    host:
-      path: /var/run/docker.sock
-
----
 name: e2e-kubernetes-1.29
 kind: pipeline
 type: docker
@@ -480,15 +403,90 @@ volumes:
     host:
       path: /var/run/docker.sock
 ---
+name: e2e-kubernetes-1.32
+kind: pipeline
+type: docker
+
+clone:
+  depth: 1
+
+depends_on:
+  - policeman
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  ref:
+    include:
+      - refs/tags/**
+
+steps:
+  - name: create-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.27.0_1.32.2_5.6.0
+    pull: always
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    depends_on: [clone]
+    environment:
+      CLUSTER_VERSION: v1.32.2
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-132
+      # /drone/src is the default workdir for the pipeline
+      # using this folder we don't need to mount another
+      # shared volume between the steps
+      KUBECONFIG: /drone/src/kubeconfig-132
+    commands:
+      # NOTE: kind's `--wait` flag that waits for the control-plane ot be ready
+      # does not work when disabling the default CNI. It will always go in timeout.
+      - kind create cluster --name $${CLUSTER_NAME} --image registry.sighup.io/fury/kindest/node:$${CLUSTER_VERSION} --config katalog/tests/kind-config.yml
+      # save the kubeconfig so we can use it from other steps.
+      - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
+
+  - name: e2e
+    image: quay.io/sighup/e2e-testing:2.24.17_1.1.0_3.12.0_1.32.2_5.6.0_4.33.3
+    pull: always
+    network_mode: host
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-132
+      KUBECONFIG: /drone/src/kubeconfig-132
+    depends_on: [create-kind-cluster]
+    commands:
+      - bats -t katalog/tests/tests.sh
+      - bats -t katalog/tests/grafana-ldap.sh
+
+  - name: delete-kind-cluster
+    image: quay.io/sighup/dind-kind-kubectl-kustomize:0.27.0_1.32.2_5.6.0
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    pull: always
+    depends_on: [e2e]
+    environment:
+      CLUSTER_NAME: ${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-132
+    commands:
+      # does not matter if the command fails
+      - kind delete cluster --name $${CLUSTER_NAME} || true
+    when:
+      status:
+        - success
+        - failure
+
+volumes:
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
+---
 name: release
 kind: pipeline
 type: docker
 
 depends_on:
-  - e2e-kubernetes-1.28
   - e2e-kubernetes-1.29
   - e2e-kubernetes-1.30
   - e2e-kubernetes-1.31
+  - e2e-kubernetes-1.32
 platform:
   os: linux
   arch: amd64

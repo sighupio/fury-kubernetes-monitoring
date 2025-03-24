@@ -9,7 +9,7 @@ bases:
   - ../../../grafana/
 
 patches:
-  - patches/grafana-ldap.yaml
+  - path: patches/grafana-ldap.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
