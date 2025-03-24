@@ -16,19 +16,19 @@ COPY . .
 
 RUN npm install -g embedme@1.22.0 && /entrypoint.sh && embedme --verify "**/*.md"
 
-FROM golang:1.16 as add-license-requirement
+FROM golang:1.20 as add-license-requirement
 
-RUN go get -u github.com/google/addlicense && addlicense -c "SIGHUP s.r.l" -v -l bsd .
+RUN go install github.com/google/addlicense@v1.1.1 && addlicense -c "SIGHUP s.r.l" -v -l bsd -y "2017-present" .
 
-FROM golang:1.16 as check-license
+FROM golang:1.20 as check-license
 
-RUN go get -u github.com/google/addlicense && mkdir /app
+RUN go install github.com/google/addlicense@v1.1.1 && mkdir /app
 
 WORKDIR /app
 
 COPY . .
 
-RUN addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
+RUN addlicense -c "SIGHUP s.r.l" -v -l bsd -y "2017-present" --check .
 
 FROM openpolicyagent/conftest:v0.28.1 as checklabel
 

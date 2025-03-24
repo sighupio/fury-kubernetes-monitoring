@@ -11,14 +11,14 @@ by kube-proxy.
 
 ## Requirements
 
-- Kubernetes >= `1.24.0`
-- Kustomize = `v3.5.3`
+- Kubernetes >= `1.29.0`
+- Kustomize = `5.6.0`
 - [prometheus-operator](../prometheus-operator)
 
 
 ## Image repository and tag
 
-- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.14.0`
+- kube-rbac-proxy image: `registry.sighup.io/fury/brancz/kube-rbac-proxy:v0.18.1`
 - kube-rbac-proxy repository: [kube-rbac-proxy on Github][krp-gh]
 
 

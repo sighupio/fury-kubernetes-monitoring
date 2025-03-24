@@ -17,7 +17,7 @@ patchesStrategicMerge:
     namespace: monitoring
   spec:
     alertmanagerConfigSelector: {}
-    image: registry.sighup.io/fury/prometheus/alertmanager:v0.26.0
+    image: registry.sighup.io/fury/prometheus/alertmanager:v0.27.0
     replicas: 1
 
 resources:
