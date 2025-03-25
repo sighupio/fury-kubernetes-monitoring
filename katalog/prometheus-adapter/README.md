@@ -1,6 +1,6 @@
 # Prometheus Adapter
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 The Prometheus adapter provides an implementation of Kubernetes
 [resource metrics](https://github.com/kubernetes/design-proposals-archive/blob/main/instrumentation/resource-metrics-api.md),
@@ -43,7 +43,7 @@ kustomize build katalog/prometheus-adapter | kubectl apply -f -
 
 [pa-gh]: https://github.com/kubernetes-sigs/prometheus-adapter
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

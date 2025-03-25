@@ -1,6 +1,6 @@
 # Kubeadm ServiceMonitor
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for the following Kubernetes components:
 
@@ -84,7 +84,7 @@ The followings alerts are already defined for this package.
 | EtcdHighFsyncDurations | This alert fires if the WAL fsync 99th percentile latency was higher than 0.5s in the last 10 minutes. | warning | 10m |
 | EtcdHighCommitDurations | This alert fires if the backend commit 99th percentile latency was higher than 0.25s in the last 10 minutes. | warning | 10m |
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

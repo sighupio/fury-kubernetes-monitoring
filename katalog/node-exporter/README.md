@@ -1,6 +1,6 @@
 # Node Exporter
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for hardware and OS metrics exposed by \*NIX
 kernels provided by node-exporter service. You can see a list of collectors
@@ -41,7 +41,7 @@ kustomize build | kubectl apply -f -
 [ne-gh]: https://github.com/prometheus/node_exporter
 [krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

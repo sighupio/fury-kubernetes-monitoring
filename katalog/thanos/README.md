@@ -1,6 +1,6 @@
 # Thanos
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 > [!CAUTION]
 > The Thanos package has been deprecated and will be removed in the next release.
@@ -24,7 +24,7 @@ Thanos is an opensource Prometheus setup that allows having 2 important features
 
 ## Setup in Fury Module
 
-KFD Thanos package has 2 different possible deployment setups `thanos-minio` using a MinIO instance for storage and `thanos-s3` using an S3 bucket as storage. Each one can be configured to proxy a single Prometheus instance or 3 Prometheus instances simultaneously:
+SD Thanos package has 2 different possible deployment setups `thanos-minio` using a MinIO instance for storage and `thanos-s3` using an S3 bucket as storage. Each one can be configured to proxy a single Prometheus instance or 3 Prometheus instances simultaneously:
 
 ```bash
 thanos-minio 
@@ -102,7 +102,7 @@ spec:
                       name: http
 ```
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

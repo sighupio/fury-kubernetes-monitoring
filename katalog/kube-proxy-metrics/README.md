@@ -1,6 +1,6 @@
 # kube-proxy Metrics Exporter
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 kube-proxy is a critical piece of any Kubernetes cluster, therefore it is highly
 recommended to gather its metrics. Sometimes (especially in managed clusters) it
@@ -45,7 +45,7 @@ kustomize build | kubectl apply -f -
 
 [krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

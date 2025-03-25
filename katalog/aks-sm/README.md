@@ -1,6 +1,6 @@
 # AKS ServiceMonitor
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for Kubernetes components `kubelet`, `coredns` and
 `api-server` on AKS.
@@ -28,7 +28,7 @@ Fury distribution AKS ServiceMonitor has the following configuration:
   - `pod-total`: Kubernetes / Networking / Pod
   - `workload-total`: Kubernetes / Networking / Workload
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

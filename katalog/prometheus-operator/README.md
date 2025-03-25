@@ -1,6 +1,6 @@
 # Prometheus Operator
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Operators are application-specific controllers for complex state-ful
 applications. They are used to having more Kubernetes-native control over
@@ -80,7 +80,7 @@ documentation.
 [prom-op-github]: https://github.com/prometheus-operator/prometheus-operator
 [krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

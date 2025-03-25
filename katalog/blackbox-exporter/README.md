@@ -1,6 +1,6 @@
 # Blackbox exporter
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.
 
@@ -50,7 +50,7 @@ kustomize build katalog/blackbox-exporter | kubectl apply -f - --server-side
 [configmap-reload-gh]: https://github.com/jimmidyson/configmap-reload
 [krp-gh]: https://github.com/brancz/kube-rbac-proxy
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

@@ -1,6 +1,6 @@
 # GKE ServiceMonitor
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for Kubernetes components `kubelet` and
 `api-server` on GKE, the managed cluster solution by GCP.
@@ -26,7 +26,7 @@ Fury distribution GKE ServiceMonitor has following configuration:
   - `pod-total`: Kubernetes / Networking / Pod
   - `workload-total`: Kubernetes / Networking / Workload
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

@@ -1,6 +1,6 @@
 # Prometheus Operated
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Prometheus Operated deploys Prometheus instances via Prometheus CRD as defined
 by [Prometheus Operator](../prometheus-operator).
@@ -195,7 +195,7 @@ The following alerts are already defined for this package.
 [prom-doc]: https://prometheus.io/docs/introduction/overview
 [example]: https://github.com/sighupio/fury-kubernetes-monitoring/examples/serviceMonitor
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

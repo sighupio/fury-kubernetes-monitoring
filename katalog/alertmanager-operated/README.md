@@ -1,6 +1,6 @@
 # Alertmanager Operated
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Alertmanager handles alerts sent by Prometheus server and routes them to
 configured receiver integrations such as email, Slack, PageDuty, or OpsGenie. It
@@ -63,7 +63,7 @@ Links
 [example]: ../../examples/prometheus-alertmanager-externalUrl
 [example-2]: ../../examples/alertmanager-configuration
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

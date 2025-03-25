@@ -1,6 +1,6 @@
 # Mimir
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Mimir is an open source, horizontally scalable, highly available, multi-tenant TSDB for long-term storage for Prometheus.
 
@@ -8,8 +8,8 @@ Mimir is an open source, horizontally scalable, highly available, multi-tenant T
 
 - Kubernetes >= `1.29.0`
 - Kustomize = `5.6.0`
-- [prometheus-operator from KFD monitoring module][prometheus-operator]
-- [grafana from KFD monitoring module][grafana]
+- [prometheus-operator from SD monitoring module][prometheus-operator]
+- [grafana from SD monitoring module][grafana]
 - [minio-ha](../minio-ha)
 
 ## Image repository
@@ -41,7 +41,7 @@ kustomize build | kubectl apply -f -
 [grafana]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/grafana
 
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

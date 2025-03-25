@@ -1,6 +1,6 @@
 # EKS ServiceMonitor
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for Kubernetes components `kubelet` and
 `api-server` on EKS.
@@ -28,7 +28,7 @@ Fury distribution EKS ServiceMonitor has following configuration:
   - `pod-total`: Kubernetes / Networking / Pod
   - `workload-total`: Kubernetes / Networking / Workload
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

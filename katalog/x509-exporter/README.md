@@ -1,6 +1,6 @@
 # x509 Exporter
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides monitoring for certificates.
 The original project is: [x509-certificate-exporter](https://github.com/enix/x509-certificate-exporter)
@@ -25,7 +25,7 @@ You can deploy x509 exporter by running the following command:
 kustomize build | kubectl apply -f -
 ```
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

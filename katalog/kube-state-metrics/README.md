@@ -1,6 +1,6 @@
 # Kube State Metrics
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 This package provides kube-state-metrics service which listens to Kubernetes API
 server and generates metrics about the state of Kubernetes objects like
@@ -54,7 +54,7 @@ kustomize build | kubectl apply -f -
 [ksm-gh]: https://github.com/kubernetes/kube-state-metrics
 [krp-gh]: https://quay.io/repository/brancz/kube-rbac-proxy
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

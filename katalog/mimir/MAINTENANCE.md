@@ -66,7 +66,7 @@ The following changes have been applied to what we get from upstream:
 - Added `max_global_series_per_user: 0` to mimir config
 - Enabled Gateway for non-enterprise
 - Enabled autoscaling (HPA)
-- Changed Grafana Dashboards annotations and labels to make them compatible with KFD's monitoring
+- Changed Grafana Dashboards annotations and labels to make them compatible with SD's monitoring
 - Enabled Service Monitor
 - Disabled Graphite's aggregation cache
 - Disabled Graphite's metric name cache

@@ -1,6 +1,6 @@
 # Grafana
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Grafana is an open-source data visualization and graph composer platform for
 numeric time-series data with Prometheus integration.
@@ -74,7 +74,7 @@ your browser.
 To learn how to add or remove dashboards to Grafana please see the
 [examples](../../examples/grafana-add-dashboard) folder.
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

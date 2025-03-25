@@ -1,6 +1,6 @@
 # MinIO HA
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 MinIO is a popular distributed object storage system that allows organizations to deploy highly available
 and scalable storage infrastructure.
@@ -10,7 +10,7 @@ In order to achieve high availability (HA) for MinIO, a cluster of multiple MinI
 
 - Kubernetes >= `1.29.0`
 - Kustomize = `5.6.0`
-- [prometheus-operator from KFD monitoring module][prometheus-operator]
+- [prometheus-operator from SD monitoring module][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
 > some metrics available from `minio` on prometheus
@@ -41,7 +41,7 @@ kustomize build | kubectl apply -f -
 [prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/prometheus-operator
 [minio-gh]: https://github.com/minio/minio
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

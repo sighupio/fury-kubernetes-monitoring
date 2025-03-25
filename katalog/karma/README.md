@@ -1,6 +1,6 @@
 # Karma
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
 Karma is a UI for Alertmanager, useful for browsing alerts based on labels and managing silences.
 It can also aggregate alerts from multiple Alertmanager instances.
@@ -42,7 +42,7 @@ kustomize build katalog/karma | kubectl apply -f -
 
 [k-gh]: https://github.com/prymitive/karma
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 ## License
 

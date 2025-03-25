@@ -1,20 +1,24 @@
 <!-- markdownlint-disable MD033 -->
-<h1>
-    <img src="https://github.com/sighupio/fury-distribution/blob/main/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
-    Kubernetes Fury Monitoring
+<h1 align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sighupio/distribution/refs/heads/main/docs/assets/white-logo.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/sighupio/distribution/refs/heads/main/docs/assets/black-logo.png">
+  <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="https://raw.githubusercontent.com/sighupio/distribution/refs/heads/main/docs/assets/white-logo.png">
+</picture><br/>
+  Monitoring Module
 </h1>
 <!-- markdownlint-enable MD033 -->
 
 ![Release](https://img.shields.io/badge/Latest%20Release-v3.3.1-blue)
-![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-monitoring?label=License)
+![License](https://img.shields.io/github/license/sighupio/module-monitoring?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
-<!-- <KFD-DOCS> -->
+<!-- <SD-DOCS> -->
 
-**Kubernetes Fury Monitoring** provides a fully-fledged monitoring stack for the
-[Kubernetes Fury Distribution (KFD)][kfd-repo]. This module extends and improves upon the [Kube-Prometheus][kube-prometheus-link] project.
+**Monitoring Module** provides a fully-fledged monitoring stack for the
+[SIGHUP Distribution (SD)][repo]. This module extends and improves upon the [Kube-Prometheus][kube-prometheus-link] project.
 
-If you are new to KFD please refer to the [official documentation][kfd-docs] on how to get started with KFD.
+If you are new to SD please refer to the [official documentation][docs] on how to get started with SD.
 
 ## Overview
 
@@ -44,7 +48,7 @@ namespace `kube-system`.
 
 ## Packages
 
-Kubernetes Fury Monitoring provides the following packages:
+Monitoring Module provides the following packages:
 
 | Package                                                | Version  | Description                                                                                                               |
 | ------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -94,7 +98,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 | Tool                        | Version    | Description                                                                                                                                                    |
 | --------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [furyctl][furyctl-repo]     | `>=0.25.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
+| [furyctl][furyctl-repo]     | `>=0.25.0` | The recommended tool to download and manage SD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
 | [kustomize][kustomize-repo] | `>=5.6.0`  | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
 ### Deployment with furyctl legacy
@@ -221,13 +225,13 @@ go to the [examples](examples) directory.
 [alertmanager-link]: https://github.com/prometheus/alertmanager
 [servicemonitor-link]: https://github.com/prometheus-operator/prometheus-operator#customresourcedefinitions
 [grafana-link]: https://grafana.com/
-[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-monitoring/blob/main/docs/COMPATIBILITY_MATRIX.md
-[kfd-repo]: https://github.com/sighupio/fury-distribution
+[compatibility-matrix]: https://github.com/sighupio/module-monitoring/blob/main/docs/COMPATIBILITY_MATRIX.md
+[repo]: https://github.com/sighupio/distribution
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
-[kfd-docs]: https://docs.kubernetesfury.com/docs/distribution/
+[docs]: https://docs.sighup.io/docs/distribution/
 
-<!-- </KFD-DOCS> -->
+<!-- </SD-DOCS> -->
 
 <!-- <FOOTER> -->
 

@@ -57,7 +57,7 @@ If you are opening a Draft PR, you can use the checklist to track the tests that
 have performed them.
 Example:
 
-- [ ] Tested the change with KFD version X.Y.Z
+- [ ] Tested the change with SD version X.Y.Z
 - [ ] Tested an upgrade from the previous version X
 -->
 
