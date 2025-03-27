@@ -30,7 +30,7 @@ patchesStrategicMerge:
               requests:
                 memory: 512Mi
               limits:
-                memory: 512Mi
+                memory: 1024Mi
 
 patchesJson6902:
   - target:
